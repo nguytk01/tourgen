@@ -8,8 +8,8 @@
   <name>controller</name>
   <url>http://maven.apache.org</url>
   <parent>
-	<groupId>wcsmanager</groupId>
-	<artifactId>wcsmanager-container</artifactId>
+	<groupId>tourgen</groupId>
+	<artifactId>tourgen-container</artifactId>
 	<version>1.0</version>
   </parent>
   <dependencies>
