@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nguytk01/tourgen.svg?branch=master)](https://travis-ci.org/nguytk01/tourgen)
+
 # tourgen
 Cross Country Tournament Generator
 
