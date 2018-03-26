@@ -56,10 +56,13 @@ class Location {
 	}
 	
 	 public boolean equals(Object obj)
- {
-     if(object instanceof Location){
-       //compare school's name, address
-        if(Location.equals(getStreetAddress()) && Location.equals(getCityname()) && Location.equals(getZipCode()))
+	 {
+     if(obj instanceof Location) {
+       
+    	Location loc = (Location) obj;
+        if(streetAddress.equals(loc.getStreetAddress())
+        		&& cityName.equals(loc.getCityName()) 
+        		&& (zipCode == loc.getZipCode()))
         {
             return true;
         }

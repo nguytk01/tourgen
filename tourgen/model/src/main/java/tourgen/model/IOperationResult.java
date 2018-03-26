@@ -1,3 +1,4 @@
+package tourgen.model;
 public interface IOperationResult{
     public Object getTicket();
     public boolean isFailed();

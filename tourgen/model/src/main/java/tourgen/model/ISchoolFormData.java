@@ -1,6 +1,6 @@
-package tourgen.util;
+package tourgen.model;
 
-public class SchoolFormData{
+public class ISchoolFormData{
     private String streetAddress;
     private String cityName;
     private int zipCode;
@@ -9,7 +9,7 @@ public class SchoolFormData{
     private boolean boysParticipationStatus;
     private String schoolName;
 
-    public SchoolFormData(String schoolName, String streetAddress, String cityName, int zipCode, int enrollmentNumber, boolean girlsPartcipationStatus, boolean boysParticipationStatus){
+    public ISchoolFormData(String schoolName, String streetAddress, String cityName, int zipCode, int enrollmentNumber, boolean girlsPartcipationStatus, boolean boysParticipationStatus){
         this.schoolName = schoolName;
         this.streetAddress = streetAddress;
         this.cityName = cityName;
@@ -39,11 +39,11 @@ public class SchoolFormData{
         return enrollmentNumber;
     }
 
-    public int getBoysParticipationStatus(){
+    public boolean getBoysParticipationStatus(){
         return boysParticipationStatus;
     }
 
-    public int getGirlsParticipationStatus(){
+    public boolean getGirlsParticipationStatus(){
         return girlsParticipationStatus;
     }
 }

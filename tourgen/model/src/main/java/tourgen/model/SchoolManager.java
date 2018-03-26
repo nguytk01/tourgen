@@ -9,43 +9,43 @@ public class SchoolManager extends java.util.Observable{
 
     public void addSchool(SchoolFormMVCData info){
         School school = new School(info.getSchoolName(), info.getStreetAddress(), info.getCityName(),
-                                    info.getZipCode(), info.getEnrollment(), info.getBoysPariticipationStatus(),
+                                    info.getZipCode(), info.getEnrollmentNumber(), info.getBoysParticipationStatus(),
                                     info.getGirlsParticipationStatus());
         schoolList.add(school);
-        IOperationResult result = new OperationResult(info.getTicket(), OperationResultCodeEnum.SUCCESS, "", school);
+        IOperationResult result = new OperationResult(info.getTicket(), OperationResultEnum.SUCCESS, "", school);
         setChanged();
         notifyObservers(result);
     }
 
-    public void removeSchool(SchoolMVCFormData info){
+    public void removeSchool(SchoolFormMVCData info){
         School school = new School(info.getSchoolName(), info.getStreetAddress(), info.getCityName(),
-                                    info.getZipCode(), info.getEnrollment(), info.getBoysParticipationStatus(),
+                                    info.getZipCode(), info.getEnrollmentNumber(), info.getBoysParticipationStatus(),
                                     info.getGirlsParticipationStatus());
         int index = schoolList.indexOf(school);
         IOperationResult result;
         if (index != -1){
             schoolList.remove(index);
-            result = new OperationResult(info.getTicket(), OperationResultCodeEnum.SUCCESS, "", school);
+            result = new OperationResult(info.getTicket(), OperationResultEnum.SUCCESS, "", school);
         }
-        result= new OperationResult(info.getTicket(), OperationResultCodeEnum.FAILURE, "Remove failure", null);
+        result= new OperationResult(info.getTicket(), OperationResultEnum.FAILURE, "Remove failure", null);
         setChanged();
         notifyObservers(result);
     }
 
-    public void editSchool(SchoolFormData info){
+    public void editSchool(SchoolFormMVCData info){
         School school = new School(info.getSchoolName(), info.getStreetAddress(), info.getCityName(),
-                                    info.getZipCode(), info.getEnrollment(), info.getBoysParticipationStatus(),
+                                    info.getZipCode(), info.getEnrollmentNumber(), info.getBoysParticipationStatus(),
                                     info.getGirlsParticipationStatus());
         int index = schoolList.indexOf(school);
 
         IOperationResult result;
         if (index != -1){
-            schoolList.get(index).setEnrollment(info.getEnrollment);
-            schoolList.get(Index).setBoysParticipationStatus(info.getBoysParticipationStatus());
-            schoolList.get(Index).setGirlsParticipationStatus(info.getGirlsParticipationStatus());
-            result = new OperationResult(info.getTicket(), OperationResultCodeEnum.SUCCESS, "", school);
+            schoolList.get(index).setEnroll(info.getEnrollmentNumber());
+            schoolList.get(index).setBStatus(info.getBoysParticipationStatus());
+            schoolList.get(index).setGStatus(info.getGirlsParticipationStatus());
+            result = new OperationResult(info.getTicket(), OperationResultEnum.SUCCESS, "", school);
         }
-        result= new OperationResult(info.getTicket(), OperationResultCodeEnum.FAILURE, "Remove failure", null);
+        result= new OperationResult(info.getTicket(), OperationResultEnum.FAILURE, "Remove failure", null);
         setChanged();
         notifyObservers(result);
     }

@@ -1,5 +1,6 @@
 package tourgen.model;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 class Meet {
 //SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -12,7 +13,7 @@ private java.util.ArrayList<School> participantSchools;
     private Meet(Stage meetStage, Date meetDate) {
         this.meetStage = meetStage;
         this.meetDate = meetDate;
-        participantSchools = new ArrayList<School>();
+        participantSchools = new java.util.ArrayList<School>();
         //String meetDate = dtFormat(meetDate);
     }
 

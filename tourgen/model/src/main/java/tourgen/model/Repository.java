@@ -1,30 +1,29 @@
 package tourgen.model;
+import java.util.ArrayList;
 
+public class Repository {
 
-public class Repository(){
+    private ArrayList<Tournament> girlsTourList;
+    private ArrayList<Tournament> boysTourList;
 
-    private ArrayList girlsTourList
-    private ArrayList boysTourList
-
-    public ArrayList getBoyList()
+    public ArrayList<Tournament> getBoyList()
     {
         return boysTourList;
     }
 
-    public ArrayList getGirlList()
+    public ArrayList<Tournament> getGirlList()
     {
         return girlsTourList;
     }
 
-    public void setBoyList(ArrayList list)
+    public void setBoyList(ArrayList<Tournament> list)
     {
         boysTourList = list;
     }
 
-    public void setGirlList(ArrayList list)
+    public void setGirlList(ArrayList<Tournament> list)
     {
         girlsTourList = list;
     }
-
 
 }

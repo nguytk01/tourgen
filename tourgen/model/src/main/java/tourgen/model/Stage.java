@@ -1,8 +1,9 @@
 package tourgen.model;
+import java.util.ArrayList;
 
 class Stage {
 
-private java.util.ArrayList<Meet> stageMeets;
+private ArrayList<Meet> stageMeets;
 private StageType stageType;
 
     private Stage(StageType stageType) {

@@ -1,10 +1,11 @@
+package tourgen.model;
 public class OperationResult implements IOperationResult{
     private Object observerTicket;
-    private OperationResultCodeEnum resultCode;
+    private OperationResultEnum resultCode;
     private String errorMessage;
     private Object attachedObject;
 
-    public OperationResult(Object observerTicketArg, OperationResultCodeEnum resultCodeArg, String errorMessageArg, Object attachedObject){
+    public OperationResult(Object observerTicketArg, OperationResultEnum resultCodeArg, String errorMessageArg, Object attachedObjectArg){
         this.observerTicket = observerTicketArg;
         this.resultCode = resultCodeArg;
         this.errorMessage = errorMessageArg;
@@ -12,13 +13,13 @@ public class OperationResult implements IOperationResult{
     }
 
     public Object getTicket(){
-        return ticket;
+        return observerTicket;
     }
     public boolean isFailed(){
-        return resultCode == OperationResult.FAILURE;
+        return resultCode == OperationResultEnum.FAILURE;
     }
     public boolean isOK(){
-        return resultCode == OperationResult.SUCCESS;
+        return resultCode == OperationResultEnum.SUCCESS;
     }
 
     public String getErrorMessage() {

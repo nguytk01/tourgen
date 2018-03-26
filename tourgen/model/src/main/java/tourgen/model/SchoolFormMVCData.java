@@ -1,6 +1,6 @@
-package tourgen.util;
+package tourgen.model;
 
-public class SchoolFormData{
+public class SchoolFormMVCData {
     private String streetAddress;
     private String cityName;
     private int zipCode;
@@ -14,7 +14,7 @@ public class SchoolFormData{
                             String schoolName,
                             String streetAddress, String cityName, int zipCode,
                             int enrollmentNumber,
-                            boolean girlsPartcipationStatus, boolean boysParticipationStatus){
+                            boolean girlsParticipationStatus, boolean boysParticipationStatus){
         this.observerTicket = observerTicketArg;
         this.schoolName = schoolName;
         this.streetAddress = streetAddress;
@@ -44,12 +44,16 @@ public class SchoolFormData{
     public int getEnrollmentNumber(){
         return enrollmentNumber;
     }
+    
+    public void setEnrollmentNumber(int enrollmentNumber){
+        this.enrollmentNumber = enrollmentNumber;
+    }
 
-    public int getBoysParticipationStatus(){
+    public boolean getBoysParticipationStatus(){
         return boysParticipationStatus;
     }
 
-    public int getGirlsParticipationStatus(){
+    public boolean getGirlsParticipationStatus(){
         return girlsParticipationStatus;
     }
 
