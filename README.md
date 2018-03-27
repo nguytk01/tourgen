@@ -1,13 +1,13 @@
 [![Build Status](https://travis-ci.org/nguytk01/tourgen.svg?branch=master)](https://travis-ci.org/nguytk01/tourgen)
 
 # tourgen
-Cross Country Tournament Generator
-
+Indiana High School Cross Country Tournament Generator
 
 
 ## How to build without maven ##
-Requirements: a Windows or Linux operating system, a Git client, a local JDK (7 or above preferably) installation.
-
+### Requirements: ###
+* Git client
+* a local JDK (7 or above preferably) installation.
 ### Windows ###
 1. Clone this repository to your computer
 2. Open Windows Command Line (`cmd.exe`)
