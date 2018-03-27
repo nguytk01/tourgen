@@ -1,0 +1,406 @@
+5000|Carmel|Carmel High School|520 E Main St|Carmel|46032
+4362|Ben Davis|Ben Davis High School|1200 N Girls Sch Rd|Indianapolis|46214
+3772|North Central|North Central High School|1801 E 86th St|Indianapolis|46240
+3736|Warren Central|Warren Central High School|9500 E 16th St|Indianapolis|46229
+3345|Penn|Penn High School|56100 Bittersweet Rd|Mishawaka|46545
+3306|Pike|Pike High School|5401 W 71st St|Indianapolis|46268
+3250|Fishers|Fishers High School|13000 Promise Rd|Fishers|46038
+3219|Lake Central|Lake Central High School|8400 Wicker Ave|Saint John|46373
+3118|Hamilton Southeastern|Hamilton Southeastern HS|13910 E 126th St|Fishers|46037
+2891|Avon|Avon High School|7575 E CR 150 S|Avon|46123
+2882|Noblesville|Noblesville High School|18111 Cumberland Rd|Noblesville|46060
+2763|Crown Point|Crown Point High School|1500 S Main St|Crown Point|46307
+2659|Franklin Central|Franklin Central High School|6215 S Franklin Rd|Indianapolis|46259
+2629|Brownsburg|Brownsburg High School|1000 S Odell St|Brownsburg|46112
+2520|Portage|Portage High School|6450 US Hwy 6|Portage|46368
+2500|Center Grove|Center Grove Elementary School|2455 S Morgantown Rd|Greenwood|46143
+2469|Lawrence North|Lawrence North High School|7802 N Hague Rd|Indianapolis|46256
+2351|Perry Meridian|Perry Meridian High School|401 W Meridian School Rd|Indianapolis|46217
+2348|Homestead Senior|Homestead Senior High School|4310 Homestead Rd|Fort Wayne|46814
+2340|Lawrence Central|Lawrence Central High School|7300 E 56th St|Indianapolis|46226
+2280|Carroll|Carroll High School|3701 Carroll Rd|Fort Wayne|46818
+2214|Merrillville|Merrillville High School|276 E 68th Pl|Merrillville|46410
+2185|Southport|Southport High School|971 E Banta Rd|Indianapolis|46227
+2176|Warsaw Community|Warsaw Community High School|1 Tiger Ln|Warsaw|46580
+2146|Westfield|Westfield High School|18250 N Union St|Westfield|46074
+2097|Northrop|Northrop High School|7001 Coldwater Rd|Fort Wayne|46825
+2082|Valparaiso|Valparaiso High School|2727 N Campbell St|Valparaiso|46385
+2076|Chesterton Senior|Chesterton Senior High School|2125 S 11th St|Chesterton|46304
+2066|Jeffersonville|Jeffersonville High School|2315 Allison Ln|Jeffersonville|47130
+2031|Lafayette Jefferson|Lafayette Jefferson High School  |1801 South 18th Street|Lafayette|47905
+2017|Columbus North|Columbus North High School|1400 25th St|Columbus|47201
+1946|LaPorte|LaPorte High School|602 F St|LaPorte|46350
+1940|Indianapolis Arsenal|Indianapolis Arsenal Technical High School |1500 E. Michigan St.|Indianapolis|46201
+1934|Castle|Castle High School|3344 Hwy 261|Newburgh|47630
+1933|Anderson|Anderson High School|4610 Madison Ave|Anderson|46013
+1928|Zionsville Community|Zionsville Community High School|1000 Mulberry St|Zionsville|46077
+1905|William Henry|William Henry Burkhart Elementary|5701 Brill Rd|Indianapolis|46227
+1866|Goshen|Goshen High School|401 Lincolnway East|Goshen|46526
+1854|Terre Haute|Terre Haute North Vigo High School|3434 Maple Ave|Terre Haute|47804
+1850|R Nelson|R Nelson Snider High School|4600 Fairlawn Pass|Fort Wayne|46815
+1845|Whiteland Community|Whiteland Community High School|300 Main St|Whiteland|46184
+1843|New Albany|New Albany Senior High School|1020 Vincennes St|New Albany|47150
+1794|South Adams|South Adams Middle School|1212 Starfire Way|Berne|46711
+1778|Terre Haute|Terre Haute North Vigo High School|3434 Maple Ave|Terre Haute|47804
+1769|Kokomo|Kokomo High School|2501 S Berkley|Kokomo|46902
+1769|McCutcheon|McCutcheon High School|4951 US 231 S|Lafayette|47909
+1767|Decatur Central|Decatur Central High School|5251 Kentucky Ave|Indianapolis|46221
+1753|Michigan City|Michigan City High School|8466 W Pahs Rd|Michigan City|46360
+1746|Floyd Central|Floyd Central High School|6575 Old Vincennes Rd|Floyd Knobs|47119
+1742|Bloomington|Bloomington High School South|1965 S Walnut St|Bloomington|47401
+1716|Concord Community|Concord Community High School|59117 Minuteman Way|Elkhart|46517
+1709|Bloomington|Bloomington High School South|1965 S Walnut St|Bloomington|47401
+1673|Elkhart Central|Elkhart Central High School|1 Blazer Blvd|Elkhart|46516
+1672|North Side|North Side High School|475 E State St|Fort Wayne|46805
+1648|Elkhart Memorial|Elkhart Memorial High School|2608 California Rd|Elkhart|46514
+1636|Plainfield|Plainfield High School|1 Red Pride Dr|Plainfield|46168
+1614|Evansville North|Evansville North High School  |15331 N. Highway 41|Evansville|47725
+1575|Huntington North|Huntington North High School|450 MacGahan St|Huntington|46750
+1551|Muncie Central|Muncie Central High School|801 N Walnut St|Muncie|47305
+1542|Bedford-North Lawrence|Bedford-North Lawrence High School|595 N Stars Blvd|Bedford|47421
+1534|Columbus East|Columbus East High School|230 S Marr Rd|Columbus|47201
+1533|Franklin Community|Franklin Community High School|2600 Cumberland Dr|Franklin|46131
+1510|Munster|Munster High School|8808 Columbia Ave|Munster|46321
+1510|GreenfieId-Central|GreenfieId-Central High School   |810 N. Broadway Street|Greenfield|46140
+1509|Martinsville|Martinsville High School|1360 E Gray St|Martinsville|46151
+1498|Seymour Senior|Seymour Senior High School|1350 W 2nd St|Seymour|47274
+1470|Mishawaka|Mishawaka High School|1202 Lincolnway E|Mishawaka|46544
+1421|Pendleton Heights|Pendleton Heights High School|One Arabian Dr|Pendleton|46064
+1409|South Side|South Side High School|3601 S Calhoun St|Fort Wayne|46807
+1402|Moorsville|Moorsville High School   |550 N. Indiana St.|Moorseville|46158
+1392|Northridge|Northridge High School|56779 Northridge Dr|Middlebury|46540
+1355|Evansville F.|Evansville F. J. Reitz High School|350 Dreier Blvd.|Evansville|47712
+1348|Hammond Morton|Hammond Morton Senior High School |6915 Grand Ave.|Hammond|46323
+1340|Wayne|Wayne High School|9100 Winchester Rd|Fort Wayne|46819
+1332|Jennings County|Jennings County High School|800 W Walnut|North Vernon|47265
+1331|Richmond|Richmond High School|380 Hub Etchison Pky|Richmond|47374
+1302|East Central|East Central High School|1 Trojan Pl, Suite A|St Leon|47012
+1265|Hobart|Hobart High School|2211 E Tenth St|Hobart|46342
+1262|East Noble|East Noble High School|901 Garden St|Kendallville|46755
+1249|Riley|Riley High School|1902 Fellows St|South Bend|46613
+1243|Evansville Harrison|Evansville Harrison High Sch  |211 Fielding Rd.|Evansville|47715
+1236|East Chicago|East Chicago Central High School|1401 East 144th Street|East Chicago|46312
+1235|Logansport Community|Logansport Community High School|1 Berry Ln|Logansport|46947
+1227|Mount Vernon|Mount Vernon High School|700 Harriett St|Mount Vernon|47620
+1200|Greenwood Community|Greenwood Community High Sch|615 W Smith Valley Rd|Greenwood|46142
+1197|Lowell Senior|Lowell Senior High School|2051 E Commercial Ave|Lowell|46356
+1185|Evans Central|Evans Central High School  |5400 First Ave.|Evansville|47710
+1184|Cathedral|Cathedral High School|5225 E 56th St|Indianapolis|46226
+1184|Roncalli|Roncalli High School|3300 Prague Rd|Indianapolis|46227
+1170|DeKaIb|DeKaIb High School   |3424 C.R. 427|Waterloo|46793
+1156|Shelbyville Sr|Shelbyville Sr High School|2003 S Miller St|Shelbyville|46176
+1147|Plymouth|Plymouth High School|1 Big Red Dr|Plymouth|46563
+1143|Clay|Clay High School|19131 Darden Rd|South Bend|46637
+"1119|New Palestine|New Palestine High School  |4485 S. Victory Dr., P.O. Box 448|New Palestine|46163"
+1117|Highland|Highland High School|9135 Erie St|Highland|46322
+1111|Connersville Sr|Connersville Sr High School  |3424 C.R. 427|Waterloo|46793
+1093|Jasper|Jasper High School|1600 St Charles St|Jasper|47546
+1083|Kankakee Valley|Kankakee Valley High School|3923 W SR 10|Wheatfield|46392
+1075|Bishop Dwenger|Bishop Dwenger High School|1300 E Washington Center Rd|Fort Wayne|46825
+1060|Jay County|Jay County High School|2072 W SR 67|Portland|47371
+1056|Columbia City|Columbia City High School|600 N Whitley St|Columbia City|46725
+1053|Marion|Marion High School|750 W 26th St|Marion|46953
+1046|Gary West|Gary West Side Leadership Academy |900 Gerry St.|Gary|46406
+1024|Northview|Northview High School|3150 W SR 340|Brazil|47834
+1023|New Castle|New Castle High School|801 Parkview Dr|New Castle|47362
+996|New Haven|New Haven Primary School|1445 Berwick Ln|New Haven|46774
+993|New Prairie|New Prairie High School|5333 N Cougar Rd|New Carlisle|46552
+976|Lebanon Senior|Lebanon Senior High School|510 Essex Dr|Lebanon|46052
+966|Madison Consolidated|Madison Consolidated High School|743 Clifty Dr|Madison|47250
+949|Beech Grove|Beech Grove Sr High School|5330 Hornet Ave|Beech Grove|46107
+945|Wawasee|Wawasee High School|1 Warrior Path - Bldg 1|Syracuse|46567
+909|Silver Creek|Silver Creek High School|557 Renz Ave|Sellersburg|47172
+906|Washington|Washington High School|608 E Walnut St|Washington|47501
+904|Hammond Gavit|Hammond Gavit Mdl/High School  |1670 175th St.|Hammond|46324
+903|Boonville|Boonville High School|300 N 1st St|Boonville|47601
+896|Saint Joseph|Saint Joseph Central School|6341 St Joe Ctr Rd|Fort Wayne|46835
+883|Northwood|Northwood High School   |2101 N. Main St.|Nappanee|46550
+876|Angola|Angola High School|350 S John McBride Ave|Angola|46703
+872|Leo|Leo Junior/Senior High School|14600 Amstutz Rd|Leo|46765
+871|Delta|Delta High School|3400 E SR 28|Muncie|47303
+868|South Dearborn|South Dearborn Middle School|5850 Squire Pl|Aurora|47001
+861|Frankfort Senior|Frankfort Senior High School|1 S Maish Rd|Frankfort|46041
+855|Western|Western High School|2600 S 600 W|Russiaville|46979
+845|Mississinewa|Mississinewa High School|1 Indian Trl|Gas City|46933
+836|Franklin County|Franklin County High|1 Wildcat Ln|Brookville|47012
+827|Herron|Herron High School|110 E 16th St|Indianapolis|46202
+813|Owen Valley|Owen Valley Middle School|626 W St Hwy 46|Spencer|47460
+812|Culver Academies|Culver Academies    |1300 Academy Rd. #147|Culver|46511
+811|Edgewood|Edgewood High School|601 S Edgewood Dr|Ellettsville|47429
+810|Hammond|Hammond High School|5926 Calumet Ave|Hammond|46320
+802|Evansville Bosse|Evansville Bosse High School  |1300 Washington Ave.|Evansville|47714
+801|Yorktown|Yorktown High School|1100 S Tiger Dr|Yorktown|47396
+800|Griffith Senior|Griffith Senior High School|600 N Wiggs St|Griffith|46319
+794|Scottsburg Senior|Scottsburg Senior High School|500 S Gardner|Scottsburg|47170
+794|Brebeuf Jesuit|Brebeuf Jesuit Preparatory School|2801 W 86th St|Indianapolis|46268
+791|Danville Community|Danville Community High School|100 Warrior Way|Danville|46122
+781|Concordia Lutheran|Concordia Lutheran High School|1601 St Joe River Dr|Fort Wayne|46805
+773|Twin Lakes|Twin Lakes Senior High School |300 S. Third St.|Monticello|47960
+769|Norwell|Norwell High School   |1100 E. US Highway 224|Ossian|46777
+760|Hammond Clark|Hammond Clark Mdl/High   |1921 Davis Ave.|Whiting|46394
+758|Guerin Catholic|Guerin Catholic High School|15300 N Gray Rd|Noblesville|46062
+750|Greensburg Community|Greensburg Community High School|1000 E Central Ave|Greensburg|47240
+745|Crispus Attucks|Crispus Attucks Medical Magnet HS|1140 Dr M Luther King Jr St|Indianapolis|46202
+742|Rushville Consolidated|Rushville Consolidated High School|1201 Lions Path|Rushville|46173
+742|Washington|Washington High School|608 E Walnut St|Washington|47501
+734|West Lafayette|West Lafayette Jr/Sr High School|1105 N Grant St|West Lafayette|47906
+733|Batesville|Batesville High School|One Bulldog Blvd|Batesville|47006
+728|Hamilton Heights|Hamilton Heights High School|25802 SR 19|Arcadia|46030
+723|West Noble|West Noble High School|5094 N US 33|Ligonier|46767
+716|Corydon Central|Corydon Central High School|375 Country Club Rd|Corydon|47112
+716|Vincennes Lincoln|Vincennes Lincoln High School  |1545 S. Hart St.|Vincennes|47591
+707|Charlestown Senior|Charlestown Senior High School|1 Pirate Pl|Charlestown|47111
+702|Crawfordsville Sr|Crawfordsville Sr High School|One Athenian Dr|Crawfordsville|47933
+700|Bishop Chatard|Bishop Chatard High School|5885 N Crittenden Ave|Indianapolis|46220
+696|Emmerich Manual|Emmerich Manual High School|2405 Madison Ave|Indianapolis|46225
+696|Indianapolis Northwest|Indianapolis Northwest High School  |5525 W. 34th St.|Indianapolis|46224
+691|Bellmont Senior|Bellmont Senior High School|1000 North Adams Dr|Decatur|46733
+690|Evansville Reitz|Evansville Reitz Memorial High School |1500 Lincoln Ave.|Evansville|47714
+689|North Harrison|North Harrison Middle School|1180 Hwy 64 NW|Ramsey|47166
+688|Mishawaka Marian|Mishawaka Marian High School  |1311 S. Logan St.|Mishawaka|46544
+680|21st Century Charter - Gary|Hanover Central Middle School|10631 W 141st St|Cedar Lake|46303
+666|Maconaquah|Maconaquah High School   |256 E. 800 S.|Bunker Hill|46914
+664|Calumet|Calumet High School   |3900 Calhoun St.|Gary|46408
+659|Peru|Peru High School|401 N Broadway|Peru|46970
+658|Mount Vernon|Mount Vernon High School|700 Harriett St|Mount Vernon|47620
+657|Brown County|Brown County Intermediate School|260 School House Ln PO Box 157|Nashville|47448
+654|Gibson Southern|Gibson Southern High School|3499 W 800 S|Fort Branch|47648
+635|Broad Ripple|Broad Ripple Mgnt HS for Prfm Arts|1115 Broad Ripple Ave|Indianapolis|46220
+631|Indian Creek|Indian Creek Elementary School|1002 S Indian Creek Dr|Trafalgar|46181
+624|Tri-West Senior|Tri-West Senior High School|7883 N SR 39|Lizton|46149
+620|North Montgomery|North Montgomery High School|5945 US 231 N|Crawfordsville|47933
+619|Lawrenceburg|Lawrenceburg High School|100 Tiger Blvd|Lawrenceburg|47025
+619|Heritage Hills|Heritage Hills High School|3644 E CR 1600 N|Lincoln City|47552
+618|Princeton Comm|Princeton Comm Intermediate School|1104 N Embree St|Princeton|47670
+617|Bishop Luers|Bishop Luers High School|333 E Paulding Rd|Fort Wayne|46816
+605|Jimtown|Jimtown High School|59021 CR 3 S|Elkhart|46517
+596|Heritage|Heritage Jr/Sr High School|13608 Monroeville Rd|Monroeville|46773
+595|Tippecanoe Valley|Tippecanoe Valley High School|8345 S SR 19|Akron|46910
+591|Sullivan|Sullivan High School|902 N Section|Sullivan|47882
+590|Garrett|Garrett High School|801 E Houston St|Garrett|46738
+588|Pike Central|Pike Central High School|1810 E SR 56|Petersburg|47567
+585|Medora|Benton Central Jr-Sr High School|4241 E 300 S|Oxford|47971
+584|Knox Community|Knox Community High School|1 Redskin Trl|Knox|46534
+580|John Glenn|John Glenn High School|201 John Glenn Dr|Walkerton|46574
+577|Brownstown Central|Brownstown Central Middle School|520 W Walnut St|Brownstown|47220
+577|Lakeland|Lakeland High School|0805 E 075 N|LaGrange|46761
+577|West Vigo|West Vigo High School|4590 W Sarah Myers Dr|West Terre Haute|47885
+573|Salem|Salem High School|700 N Harrison St|Salem|47167
+565|Fairfield|Fairfield Jr-Sr High School|67530 US 33|Goshen|46526
+563|Cardinal Ritter|Cardinal Ritter High School|3360 W 30th St|Indianapolis|46222
+562|Northwestern Senior|Northwestern Senior High School|3431 N 400 W|Kokomo|46901
+560|Gary Lighthouse|Gary Lighthouse Charter School|725 Clark Road|Gary|46406
+558|Blackford|Blackford High School|2392 N SR 3 N|Hartford City|47348
+556|Greencastle Senior|Greencastle Senior High School|910 E Washington St|Greencastle|46135
+553|Wheeler|Wheeler High School|587 W 300 N|Valparaiso|46385
+550|Southmont Sr|Southmont Sr High School|6425 US 231 S|Crawfordsville|47933
+546|South Vermillion|South Vermillion High School|770 W Wildcat Dr|Clinton|47842
+535|Muncie Burris|Muncie Burris Laboratory School  |2201 W University Ave|Muncie|47306
+534|Woodlan|Woodlan Jr/Sr High School|17215 Woodburn Rd|Woodburn|46797
+531|Rensselaer Central|Rensselaer Central High School|1106 E Grace St|Rensselaer|47978
+531|Southridge|Southridge High School   |1110 S Main St|Huntingburg|47542
+529|Western Boone|Western Boone Jr-Sr High School|1205 N SR 75|Thorntown|46071
+529|Mater Dei|Mater Dei High School|1300 Harmony Way|Evansville|47720
+528|Bishop Noll|Bishop Noll Institute|1519 Hoffman St|Hammond|46327
+527|Monrovia|Monrovia High School|205 S Chestnut St|Monrovia|46157
+525|Eastbrook|Eastbrook High School|560 S 900 E|Marion|46953
+524|Rochester Community|Rochester Community High School|1 Zebra Ln Box 108|Rochester|46975
+524|Tipton|Tipton High School|619 S Main St|Tipton|46072
+523|Speedway Senior|Speedway Senior High School|5357 W 25th St|Speedway|46224
+511|Manchester|Manchester Jr-Sr High School|1 Squire Dr|N Manchester|46962
+511|Oak Hill|Oak Hill Elementary School|425 S Nichols St|Lowell|46356
+506|Alexandria-Monroe|Alexandria-Monroe High School|1 Burden Ct|Alexandria|46001
+499|Boone Grove|Boone Grove Elementary School|325 W 550 S PO Box 91|Boone Grove|46302
+498|North Posey|North Posey Junior High School|5800 High School Rd|Poseyville|47633
+497|Bremen Senior|Bremen Senior High School|511 W Grant St|Bremen|46506
+492|Andrean|Andrean High School|5959 Broadway|Merrillville|46410
+491|Mitchell|Mitchell High School|1000 Bishop Blvd|Mitchell|47446
+491|Eastern (Greentown)|Eastern (Greentown) Jr & Sr High School|421 S. Harrison St.|Greentown|46936
+486|Whitko|Whitko High School|1 Big Blue Ave|South Whitley|46787
+480|Frankton|Frankton Jr-Sr High School|610 Clyde St|Frankton|46044
+473|Eastern (Pekin)|Eastern (Pekin) High School  |1100 N. Eastern School Rd. E-3|Pekin|47165
+470|Lapel Sr|Lapel Sr High School|1850 S 900 W|Lapel|46051
+468|Paoli Jr|Paoli Jr & Sr High School|501 Elm St|Paoli|47454
+468|Triton Central|Triton Central High School|4774 W 600 N|Fairland|46126
+466|Lewis Cass|Lewis Cass Jr-Sr High School  |6422 E SR 218 W|Walton|46994
+464|Clarksville Senior|Clarksville Senior High School|800 Dr Dot Lewis Dr|Clarksville|47129
+463|Centerville Sr|Centerville Sr High School|507 Willow Grove Rd|Centerville|47330
+458|Gary Roosevelt|Gary Roosevelt Car & Tech Academy|730 W. 25th Ave.|Gary|46407
+457|Crawford County|Crawford County High School|1130 S SR 66|Marengo|47140
+457|Cascade Senior|Cascade Senior High School|6565 S CR 200 W|Clayton|46118
+457|Indianapolis George|Indianapolis George Washington Community  |2215 W. Washington St.|Indianapolis|46222
+456|North Putnam|North Putnam Middle School|8905 N CR 250 E|Roachdale|46172
+449|Indianapolis Scecina|Indianapolis Scecina Memorial School  |5000 Nowland Ave.|Indianapolis|46201
+447|Bowman Leadership|Bowman Leadership Academy   |3401 West 5th Avenue|Gary|46406
+447|Elwood Community|Elwood Community High School  |1137 N. 19th St.|Elwood|46036
+446|Winchester Community|Winchester Community High School|700 Union St|Winchester|47394
+444|Union County|Union County High School|410 E Patriot Blvd|Liberty|47353
+443|Bluffton|Bluffton High School|1 Tiger Trl|Bluffton|46714
+442|Shenandoah|Shenandoah High School|7354 W US 36|Middletown|47356
+440|North Newton|North Newton Jr-Sr High School|1641 W 250 N|Morocco|47963
+439|River Forest|River Forest High School|3300 Indiana St|Hobart|46342
+437|Providence|Providence High School   |707 Providence Way|Clarksville|47129
+434|Whiting|Whiting High School|1751 Oliver St|Whiting|46394
+430|Delphi Community|Delphi Community Middle School|401 Armory Rd|Delphi|46923
+427|Wabash|Wabash High School|580 N Miami St|Wabash|46992
+425|Eastern Hancock|Eastern Hancock Middle School|10380 E 250 N|Charlottesville|46117
+421|Tell City|Tell City Jr-Sr High School|900 12th St|Tell City|47586
+419|Northeastern|Northeastern High School|7295 N US 27|Fountain City|47341
+416|Westview|Westview Jr-Sr High School|1635 S 600 W|Topeka|46571
+415|Prairie Heights|Prairie Heights Elementary School|0455 S 1150 E|LaGrange|46761
+413|Taylor|Taylor High School|3794 E CR 300 S|Kokomo|46902
+411|Milan|Milan High School|609 N Warpath Dr|Milan|47031
+407|South Spencer|South Spencer High School|1142 N Orchard Rd|Rockport|47635
+407|Heritage Christian|Heritage Christian School|6401 E 75th St|Indianapolis|46250
+404|Switzerland Co|Switzerland Co Middle School|1004 W Main St|Vevay|47043
+403|Park Tudor|Park Tudor School   |7200 N. College Ave.|Indianapolis|46240
+401|Madison-Grant|Madison-Grant High School   |11700 S.E. 00 W.|Fairmount|46928
+398|North Knox|North Knox Primary School|215 E 4th St|Bicknell|47512
+397|Forest Park|Forest Park Elementary School|2004 Alabama Ave|Fort Wayne|46805
+396|Wapahani|Wapahani High School|10401 E CR 167 S|Selma|47383
+394|Austin|Austin High School|401 S Hwy 31|Austin|47102
+393|Central Noble|Central Noble Junior Senior HS|302 Cougar Ct|Albion|46701
+382|Cloverdale|Cloverdale High School|205 E Market|Cloverdale|46120
+381|Knightstown|Knightstown High School|8149 W US Hwy 40|Knightstown|46148
+381|Lake Station|Lake Station Edison Jr-Sr High School|3304 Parkside Ave.|Lake Station|46405
+379|Perry Central|Perry Central Elementary School|18677 Old SR 37|Leopold|47551
+377|Eastern Greene|Eastern Greene Elementary School|10503 E SR 54|Bloomfield|47424
+377|Winamac Community|Winamac Community Middle School|715 School Dr|Winamac|46996
+375|Adams Central|Adams Central Middle School|222 W Washington St|Monroe|46772
+375|Seeger Memorial|Seeger Memorial Jr-Sr High School|1222 S SR 263|West Lebanon|47991
+372|Eastside Junior-Senior|Eastside Junior-Senior High School|603 E Green St|Butler|46721
+371|Indianapolis Arlington|Indianapolis Arlington Community HS  |4825 N. Arlington Ave.|Indianapolis|46226
+370|Hebron|Hebron High School|509 S Main St|Hebron|46341
+370|Monroe Central|Monroe Central Jr-Sr High School|1878 N CR 1000 W|Parker City|47368
+369|South Adams|South Adams Middle School|1212 Starfire Way|Berne|46711
+369|Fort Wayne|Fort Wayne Canterbury School   |3210 Smith Rd.|Fort Wayne|46804
+368|North Judson-San|North Judson-San Pierre Elem Sch|809 W Talmer Ave|North Judson|46366
+367|Churubusco|Churubusco Jr-Sr High School|1 Eagle Dr|Churubusco|46723
+366|Linton-Stockton|Linton-Stockton High School|10 NE H St|Linton|47441
+366|South Knox|South Knox Elementary School|6078 E SR 61|Vincennes|47591
+363|South Putnam|South Putnam Middle School|1780 E US Hwy 40|Greencastle|46135
+363|Laville|Laville Jr-Sr High School  |69969 US Highway 931 S.|Lakeville|46536
+361|Signature School|Signature School Inc|610 Main St|Evansville|47708
+361|Indianapolis Shortridge|Indianapolis Shortridge Law & Public Policy|3401 N. Meridian|Indianapolis|46208
+359|Southwestern (Hanover)|Southwestern (Hanover) Middle/Sr High School |167 S. Main Cross|Hanover|47243
+357|Indianapolis Howe|Indianapolis Howe Comm High School |4900 Julian Ave.|Indianapolis|46201
+354|South Ripley|South Ripley Junior High School|1589 S Benham Rd|Versailles|47042
+353|Carroll (Flora)|Carroll (Flora) Jr-Sr High School |2362 E. State Road 18|Flora|46929
+350|Fountain Central|Fountain Central High School|750 E US Hwy 136|Veedersburg|47987
+349|Henryville Jr|Henryville Jr & Sr High School|213 N Ferguson St|Henryville|47126
+342|Irvington Preparatory|Irvington Preparatory Academy   |5751 University Avenue|Indianapolis|46219
+341|Hagerstown|Hagerstown Jr-Sr High School|701 Baker Rd|Hagerstown|47346
+334|Covenant Christian|Covenant Christian High School|PO Box 430|DeMotte|46310
+331|Cambridge City|Cambridge City Lincoln Sr High School|205 E. Parkway Dr.|Cambridge City|47327
+330|Clinton Prairie|Clinton Prairie Jr-Sr High School|2400 S CR 450 W|Frankfort|46041
+329|Sheridan|Sheridan High School|24185 N Hinesley Rd|Sheridan|46069
+329|North Decatur|North Decatur Elementary School|3300 N SR 3|Greensburg|47240
+320|North Miami|North Miami Middle/High School|570 E 900 N|Denver|46926
+313|South Decatur|South Decatur Jr-Sr High School|8885 S SR 3|Greensburg|47240
+"313|Rossville Senior|Rossville Senior High School  |PO Box 530, 1 Egly Dr.|Rossville|46065"
+309|Covington Community|Covington Community High School|1017 6th St|Covington|47932
+309|Tecumseh|Tecumseh Jr-Sr High Sch  |5244 W. State Route 68|Lynnville|47619
+306|North Daviess|North Daviess Elementary School|5498 E SR 58|Elnora|47529
+304|Northfield|Northfield Jr-Sr High School|154 W 200 N|Wabash|46992
+304|Riverton Parke|Riverton Parke Jr-Sr High School|4907 S Coxville Rd|Montezuma|47862
+303|Fremont|Fremont High School|PO Box 655|Fremont|46737
+303|South Central|South Central Elementary|6595 E Hwy 11 SE|Elizabeth|47117
+296|Westville Elementary|Westville Elementary School|207 E Valparaiso St|Westville|46391
+295|Southwood|Southwood Jr-Sr High School|564 E SR 124|Wabash|46992
+291|Lafayette Central|Lafayette Central Catholic Jr-Sr High School|2410 S. 9th St.|Lafayette|47909
+289|University|University High School of Indiana |2825 W. 116th Street|Carmel|46032
+287|Hammond Academy|Hammond Academy of Science & Tech|33 Muenich Ct|Hammond|46320
+285|Tri Junior-Senior|Tri Junior-Senior High School|6972 S St Rd 103|Straughn|47387
+283|North Central|North Central High School|1801 E 86th St|Indianapolis|46240
+280|Union City|Union City Community Jr/Sr High|603 N Walnut St|Union City|47390
+280|West Central|West Central Senior High School|1852 S US 421|Francesville|47946
+279|Daleville|Daleville Jr-Sr High School|8400 S Bronco Dr|Daleville|47334
+278|Loogootee|Loogootee Jr-Sr High School  |201 Brooks Ave.|Loogootee|47553
+277|Charter School|Charter School of the Dunes|7300 East Melton Rd|Gary|46403
+277|Wood Memorial|Wood Memorial High   |943 South Franklin St.|Oakland City|47660
+"275|Kouts Middle/High|Kouts Middle/High School|302 E College Ave, Box 699|Kouts|46347"
+275|Pioneer|Pioneer Jr-Sr High School|PO Box 547|Royal Center|46978
+275|Wes-Del Middle/Senior|Wes-Del Middle/Senior High School|10000 N CR 600 W|Gaston|47342
+274|Clinton Central|Clinton Central Junior-Senior HS|PO Box 178|Michigantown|46057
+273|Tindley Accelerated|Tindley Accelerated Sch   |3960 Meadows Dr.|Indianapolis|46205
+273|Marquette Catholic|Marquette Catholic High School|306 W 10th St|Michigan City|46360
+271|Tri Central|Tri Central Elementary|2115 W 500 N|Sharpsville|46068
+269|Edinburgh Community|Edinburgh Community High School|300 S Keeley St|Edinburgh|46124
+268|Hauser|Hauser Jr-Sr High School|9273 N SR 9|Hope|47246
+268|Northeast Dubois|Northeast Dubois High School|4711 N Dubois Rd NE POB 249|Dubois|47527
+268|White River|White River Valley High School|Hwy 54 PO Box 1470|Switz City|47465
+266|21st Century|21st Century Charter Sch of Gary|556 Washington St|Gary|46402
+266|Springs Valley|Springs Valley Comm High School|326 S Larry Bird Blvd|French Lick|47432
+266|Washington Twp|Washington Twp Middle/High School|381 E SR 2|Valparaiso|46383
+266|Southern Wells|Southern Wells Jr-Sr High School |9120 S 300 W|Poneto|46781
+265|North White|North White Elementary School|304 E Broadway St|Monon|47959
+263|Career Academy|Career Academy High School|3801 Crescent Circle|South Bend|46628
+263|Jac-Cen-Del|Jac-Cen-Del Jr-Sr High School  |4586 N. U.S. 421|Osgood|47037
+261|Triton|Triton Jr-Sr High School|300 Triton Dr|Bourbon|46504
+258|Indianapolis Metropolitan|Indianapolis Metropolitan High School  |1635 W. Michigan St.|Indianapolis|46222
+257|West Washington|West Washington Jr-Sr High School|8028 W Batt Rd|Campbellsburg|47108
+255|Providence Cristo|Providence Cristo Rey High School|75 N Belleview Pl|Indianapolis|46222
+253|Lanesville|Lanesville Jr-Sr HS|2725 Crestview|Lanesville|47136
+251|Indianapolis Lutheran|Indianapolis Lutheran High School  |5555 S. Arlington Ave.|Indianapolis|46237
+249|Clay City|Clay City Elementary School|681 N Lankford St|Clay City|47841
+249|Culver Community|Culver Community Middle/High Sch|701 School|Culver|46511
+247|Anderson Preparatory|Anderson Preparatory Academy|101 West 29th Street|Anderson|46016
+245|North Vermillion|North Vermillion High School|5555 N Falcon Dr|Cayuga|47928
+244|Morgan Township|Morgan Township Middle/High School|299 S SR 49|Valparaiso|46383
+241|Christian Academy|Christian Academy of Indiana|1000 Academy Dr|New Albany|47150
+241|Blackhawk Christian|Blackhawk Christian Mdl/High Sch|7400 E State Blvd|Fort Wayne|46815
+240|Shakamak|Shakamak Jr-Sr High School|9233 Shakamak Sch Rd|Jasonville|47438
+238|Cowan|Cowan High School|9401 S Nottingham|Muncie|47302
+234|Tri-County Middle-Senior|Tri-County Middle-Senior High   |11298 W. 100 S.|Wolcott|47995
+233|Rising Sun|Rising Sun High School|120 S Henrietta St|Rising Sun|47040
+232|Christel House|Christel House Academy South|2717 S East St|Indianapolis|46225
+"230|Borden|Borden High School   |P.O. Box 260, 301 West St.|Borden|47106"
+228|Caston Elementary|Caston Elementary School|Box 128|Fulton|46931
+228|Bloomfield|Bloomfield Jr-Sr High School|PO Box 266 501 W Spring St|Bloomfield|47424
+227|Southwestern (Shelby)|Southwestern (Shelby) High School  |3406 W. 600 S.|Shelbyville|46176
+226|Orleans|Orleans Jr-Sr High School|200 W Wilson|Orleans|47452
+225|New Washington|New Washington Elementary School|PO Box 130 - 224 Poplar|New Washington|47162
+224|Rockville|Rockville Jr-Sr High School|506 Beadle St|Rockville|47872
+223|Attica|Attica High School|211 E Sycamore St|Attica|47918
+220|South Newton|South Newton Senior High School|13102 S 50 E|Kentland|47951
+212|South Central|South Central Elementary|6595 E Hwy 11 SE|Elizabeth|47117
+"210|Oldenburg Academy|Oldenburg Academy    |PO Box 200, 1 Twister Circle|Oldenburg|47036"
+203|Barr Reeve|Barr Reeve Middle/High School|Box 129|Montgomery|47558
+203|Faith Christian|Faith Christian School|5526 SR 26 E|Lafayette|47905
+202|Frontier|Frontier Jr-Sr High School|1 Falcon Dr|Chalmers|47929
+198|Argos Comm|Argos Comm Jr-Sr High School|500 Yearick Ave|Argos|46501
+194|Morristown|Morristown Jr-Sr High School|PO Box 960|Morristown|46161
+186|Blue River|Blue River Valley Jr-Sr High Sch|Box 249|Mount Summit|47361
+186|Lakewood Park|Lakewood Park Christian School|5555 CR 29 S|Auburn|46706
+185|Indiana Math|Indiana Math & Science Academy |7435 N. Keystone Ave|Indianapolis|46240
+185|Elkhart Christian|Elkhart Christian Academy|25943 CR 22 E|Elkhart|46517
+182|Oregon-Davis|Oregon-Davis Jr-Sr High School|5990 N 750 E|Hamlet|46532
+180|Greenwood Christian|Greenwood Christian Academy|835 W Worthsville Rd|Greenwood|46143
+177|Shoals Community|Shoals Community High School|7900 US Hwy 50|Shoals|47581
+172|Randolph Southern|Randolph Southern Elementary Sch|3 Rebel Dr|Lynn|47355
+165|International School|International School of Indiana High School |4330 N. Michigan Rd.|Indianapolis|46208
+163|Waldron|Waldron Jr-Sr High School|PO Box 369|Waldron|46182
+159|Turkey Run|Turkey Run Elementary School|1551 E SR 47|Marshall|47859
+150|Liberty Christian|Liberty Christian School|2323 Columbus Ave|Anderson|46016
+148|Bethany Christian|Bethany Christian School|2904 S Main St|Goshen|46526
+142|Trinity Lutheran|Trinity Lutheran School|30888 CR 6|Elkhart|46514
+137|Rock Creek|Rock Creek Community Academy|11525 Highway 31|Sellersburg|47172
+121|Hamilton Community|Hamilton Community High School|903 S Wayne St|Hamilton|46742
+120|Crothersville|Crothersville Jr-Sr High School|109 N Preston St|Crothersville|47229
+118|LaCrosse Elem|LaCrosse Elem & High School |4330 N. Michigan Rd.|Indianapolis|46208
+116|Eminence|Eminence Jr-Sr High School|PO Box 105 6760 N SR 42|Eminence|46125
+115|Indiana School|Indiana School For The Deaf|1200 E 42nd St|Indianapolis|46205
+109|Shawe Memorial|Shawe Memorial High School|201 W State St|Madison|47250
+107|Union (Modoc)|Union (Modoc) Junior & High School|8707 W. U.S. Hwy. 36|Modoc|47358
+106|Bethesda Christian|Bethesda Christian School|7950 N CR 650 E|Brownsburg|46112
+99|Covenant Christian|Covenant Christian High School|PO Box 430|DeMotte|46310
+99|Lakeland Christian|Lakeland Christian Academy|1093 S 250 E|Winona Lake|46590
+98|Vincennes Rivet|Vincennes Rivet Middle & High School|210 Barnett St.|Vincennes|47591
+92|Seton Catholic|Seton Catholic Elementary|801 W Main St|Richmond|47374
+81|Evansville Day|Evansville Day School   |3400 N. Green River Rd.|Evansville|47715
+73|Medora Jr|Medora Jr & Sr High School|Box 248|Medora|47260
+73|Cannelton Elem|Cannelton Elem & High School |109 3rd St.|Cannelton|47520
+71|Washington Catholic|Washington Catholic Mid/High Sch|201 NE Second St|Washington|47501
+58|Central Christian|Central Christian School|5801 Schwartz Rd|Fort Wayne|46835
+57|Indiana School|Indiana School For The Deaf|1200 E 42nd St|Indianapolis|46205
+33|Smith Academy|Smith Academy for Excellence|725 W Washington Blvd|Fort Wayne|46802

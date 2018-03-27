@@ -29,65 +29,12 @@ public class EditSchoolForm extends JFrame implements Observer, IEditSchoolForm{
 	private JTextField cityNameTextField;
 	private JTextField displayNameTextField;
 	
-	public void setTicket(Object obj)
-	{
-		ticket = obj;
-	}
-
-	public String getName()
-	{
-		return namesField.getText();
-	}
-	
-	public String getAddr()
-	{
-		return AddrField.getText();
-	}
-	
-	public int getEnroll()
-	{
-		return Integer.parseInt(EnrollField.getText());
-	}
-	
-	public boolean getBoyStatus()
-	{
-		return chBoys.isSelected();
-	}
-	
-	public boolean getGirlStatus()
-	{
-		return chGirls.isSelected();
-	}
-	
-	public boolean getHost()
-	{
-		return chEg.isSelected();
-	}
-	
-	public int getZip()
-	{
-		return Integer.parseInt(zipField.getText());
-	}
-			
-	
-	public void displaySchool(School school)
-	{
-		namesField.setText(school.getName());
-		AddrField.setText(school.getStreetAddress());
-		EnrollField.setText(new Integer(school.getEnroll()).toString());
-		chBoys.setSelected(school.getBStatus());
-		chGirls.setSelected(school.getGStatus());
-		
-		
-	}
-	
-	public EditSchoolForm(IController controllerArg) {
+	public EditSchoolForm(ActionListener listener) {
 		setTitle("Edit A School");
 		
 		setSize(400,400);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		
-		controller = controllerArg;
+
 		getContentPane().setLayout(null);
 		
 		JLabel lblName = new JLabel("Name:");
@@ -142,7 +89,6 @@ public class EditSchoolForm extends JFrame implements Observer, IEditSchoolForm{
 		zipField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("OK");
-		MyListener listener = new MyListener();
 		btnNewButton.addActionListener(listener);
 		btnNewButton.setBounds(299, 325, 89, 23);
 		getContentPane().add(btnNewButton);
@@ -170,12 +116,6 @@ public class EditSchoolForm extends JFrame implements Observer, IEditSchoolForm{
 		displayNameTextField.setColumns(10);
 	}
 
-	public class MyListener implements ActionListener{
-		public void actionPerformed(ActionEvent arg0) {
-			controller.editSchool(arg0);
-		}
-	};
-	
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
@@ -194,26 +134,67 @@ public class EditSchoolForm extends JFrame implements Observer, IEditSchoolForm{
 
 	@Override
 	public int getZipCode() {
-		return getZip();
+		return Integer.parseInt(zipField.getText());
 	}
 
 	@Override
 	public int getEnrollment() {
-		return getEnroll();
+		return Integer.parseInt(EnrollField.getText());
 	}
 
 	@Override
 	public boolean getBoysStatus() {
-		return getBoyStatus();
+		return chBoys.isSelected();
 	}
 
 	@Override
 	public boolean getGirlsStatus() {
-		return getGirlStatus();
+		return chGirls.isSelected();
 	}
 
 	@Override
 	public void showView() {
 		this.setVisible(true);	
+	}
+
+	@Override
+	public void showErrorMessage() {
+		
+	}
+
+	@Override
+	public void setHidden(boolean flag) {
+		this.setVisible(flag);
+		
+	}
+
+	@Override
+	public String getAddr() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setTicket(Object ticket) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cleanUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void display(Object schoolArg) {
+		School school = (School)schoolArg;
+		displayNameTextField.setText(school.getDisplayName());
+		namesField.setText(school.getName());
+		cityNameTextField.setText(school.getCityName());
+		zipField.setText(new Integer(school.getZipCode()).toString());
+		EnrollField.setText(new Integer(school.getEnroll()).toString());
+		chBoys.setSelected(school.getBStatus());
+		chGirls.setSelected(school.getGStatus());
 	}
 }

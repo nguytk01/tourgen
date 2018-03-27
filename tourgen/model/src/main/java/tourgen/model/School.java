@@ -169,4 +169,8 @@ public class School{
 	 return name;
  }
 
+public String getDisplayName() {
+	return displayName;
+}
+
 }

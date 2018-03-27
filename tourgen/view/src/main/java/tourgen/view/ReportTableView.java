@@ -1,96 +1,74 @@
 package tourgen.view;
 
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Color;
-import javax.swing.JTree;
+import javax.swing.JPanel;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.ExpandBar;
-import org.eclipse.swt.widgets.ExpandItem;
-import org.eclipse.swt.widgets.Shell;
+import org.jdesktop.swingx.JXCollapsiblePane;
+import org.jdesktop.swingx.JXFrame;
+import org.jdesktop.swingx.JXPanel;
+import org.jdesktop.swingx.JXTitledPanel;
+import org.jdesktop.swingx.VerticalLayout;
 
+import tourgen.model.Tournament;
 import tourgen.util.IReportTableView;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
-import javax.swing.JComboBox;
 /*import org.jdesktop.swingx.JXCollapsiblePane;*/
 
-public class ReportTableView extends JFrame implements IReportTableView{
+public class ReportTableView extends JPanel implements IReportTableView{
+	List<CollapsibleStagePanel> stageList;
+	Listener listener;
+	public ReportTableView() {
+		setSize(400,400);
+		this.setBorder(new LineBorder(new Color(0, 0, 0)));
+
+		this.setLayout(new VerticalLayout());
+		stageList = new ArrayList<CollapsibleStagePanel>();
+		
+		Listener listener = new Listener();
+	}
+
+	@Override
 	public void showReport() {
-		Display display = new Display ();
-		Shell shell = new Shell (display);
-		shell.setLayout(new FillLayout());
-		shell.setText("Report");
-		ExpandBar bar = new ExpandBar (shell, SWT.V_SCROLL);
-		org.eclipse.swt.graphics.Image image = display.getSystemImage(SWT.ICON_QUESTION);
-			
-		// First item
-		Composite composite = new Composite (bar, SWT.NONE);
-		GridLayout layout = new GridLayout ();
-		layout.marginLeft = layout.marginTop = layout.marginRight = layout.marginBottom = 10;
-		//layout.verticalSpacing = 10;
-		composite.setLayout(layout);
-		
-		ExpandItem item0 = new ExpandItem (bar, SWT.NONE, 0);
-		item0.setText("Secstional");
-		item0.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
-		item0.setControl(composite);
-		item0.setImage(image);
-	
-		// Second item
-		composite = new Composite (bar, SWT.NONE);
-		layout = new GridLayout (2, false);
-		layout.marginLeft = layout.marginTop = layout.marginRight = layout.marginBottom = 10;
-		layout.verticalSpacing = 10;
-		composite.setLayout(layout);
-		
-		ExpandItem item1 = new ExpandItem (bar, SWT.NONE, 1);
-		item1.setText("Regional");
-		item1.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
-		item1.setControl(composite);
-		item1.setImage(image);
-	
-		// Third item
-		composite = new Composite (bar, SWT.NONE);
-		layout = new GridLayout (2, true);
-		layout.marginLeft = layout.marginTop = layout.marginRight = layout.marginBottom = 10;
-		layout.verticalSpacing = 10;
-		composite.setLayout(layout);
-		
-		ExpandItem item2 = new ExpandItem (bar, SWT.NONE, 2);
-		item2.setText("Semi-state");
-		item2.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
-		item2.setControl(composite);
-		item2.setImage(image);
-		
-		ExpandItem item3 = new ExpandItem (bar, SWT.NONE, 2);
-		item3.setText("Final");
-		item3.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
-		item3.setControl(composite);
-		item3.setImage(image);
-	
-		item1.setExpanded(true);
-		bar.setSpacing(8);
-		shell.setSize(400, 350);
-		shell.open();
-		while (!shell.isDisposed ()) {
-			if (!display.readAndDispatch ()) {
-				display.sleep ();
-			}
+		this.setVisible(true);
+	}
+
+	public class Listener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			boolean collapsedState = false;
+			for (int i = 0; i <= stageList.size(); i++)
+				if (arg0.getSource() != stageList.get(i))
+					stageList.get(i).setCollapsed(true);
+				else stageList.get(i).setCollapsed(!stageList.get(i).isCollapsed());
+			repaint();
 		}
-		image.dispose();
-		display.dispose();
-			}
-	}	
+		
+	}
+
+	@Override
+	public void display(Object arg) {
+		Tournament tournament = (Tournament) arg;
+		if (stageList.isEmpty() == false) stageList.clear();
+		List<List<String>> stageDescriptionsList = tournament.getReport();
+		for (int i = 0 ; i < stageDescriptionsList.size(); i++) {
+			CollapsibleStagePanel panel = new CollapsibleStagePanel(stageDescriptionsList.get(i).get(0), listener);
+			stageList.add(panel);
+			this.add(panel);
+		}
+		
+	}
+}
+
 	

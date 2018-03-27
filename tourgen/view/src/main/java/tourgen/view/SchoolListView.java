@@ -6,42 +6,34 @@ import javax.swing.JTextField;
 
 import tourgen.controller.IController;
 import tourgen.model.School;
+import tourgen.model.SchoolManager;
 import tourgen.util.ISchoolListView;
 
-import javax.swing.JCheckBox;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
+import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.util.List;
+import java.util.Vector;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
 import javax.swing.JMenu;
 import javax.swing.JList;
-import javax.swing.JScrollBar;
 
 public class SchoolListView extends JFrame implements ISchoolListView{
 	
-	private IController controller;
-	private DefaultListModel<School> listModel;
+	private Vector<School> schoolVector;
 	private JList jList;
-	public void addSchool(School obj)
-	{
-		listModel.addElement(obj);
-		
-	}
+	private SchoolManager manager;
+	private JScrollPane scrollPane;
 	
-	public void removeSchool(School obj)
-	{
-		listModel.removeElement(obj);
-		
-	}
-	
-	public SchoolListView(IController controllerArg) {
+	public SchoolListView(ActionListener listAddListener, 
+			ActionListener listRemoveListener, 
+			ActionListener listEditListener, SchoolManager managerArg) {
+		manager = managerArg;
 		setTitle("School List");
 		this.setSize(483,463);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		controller = controllerArg;
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -51,69 +43,64 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 		
 		JMenuItem mntmAdd = new JMenuItem("Add");
 		mnSchool.add(mntmAdd);
-		ListAddListener listAddListener = new ListAddListener();
 		mntmAdd.addActionListener(listAddListener);
 		
 		JMenuItem mntmEdit = new JMenuItem("Edit");
 		mnSchool.add(mntmEdit);
-		ListEditListener listEditListener = new ListEditListener();
 		mntmEdit.addActionListener(listEditListener);
 		
 		JMenuItem mntmRemove = new JMenuItem("Remove");
 		mnSchool.add(mntmRemove);
-		ListRemoveListener listRemoveListener = new ListRemoveListener();
 		mntmRemove.addActionListener(listRemoveListener);
 		
 		getContentPane().setLayout(null);
 		
-		listModel = new DefaultListModel();
-		jList = new JList(listModel);
+		schoolVector = new Vector<School>();
+		jList = new JList(schoolVector);
 		jList.setBounds(61, 35, 379, 330);
-		getContentPane().add(jList);
-	}
-	
-	public class ListAddListener implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			controller.listAddEvent(arg0);
-		}
+		scrollPane = new JScrollPane();
+		scrollPane.setViewportView(jList);
+		getContentPane().setLayout(new BorderLayout());
+		jList.setVisibleRowCount(10);
+		getContentPane().add(scrollPane);
 		
 	}
 	
-	public class ListEditListener implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (jList.isSelectionEmpty()) return;
-			controller.listEditEvent(e,listModel.get(jList.getSelectedIndex()));
-		}
-		
-	}
-	
-	public class ListRemoveListener implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			controller.listRemoveEvent(e,listModel.get(jList.getSelectedIndex()));
-		}
-		
-	}
-
 	@Override
 	public void addSchoolToList(Object a) {
 		School school = (School) a;
-		listModel.addElement(school);
+		schoolVector.add(school);
 	}
 
 	@Override
 	public void removeSchoolFromList(Object a) {
 		School school = (School)a;
-		listModel.removeElementAt(listModel.indexOf(school));
+		schoolVector.remove(school);
 	}
 
 	@Override
 	public void showView() {
 		this.setVisible(true);
+	}
+	
+	public void populate(List<School> list) {
+		schoolVector.addAll(list);
+	}
+
+	@Override
+	public void populate() {
+		List<School> list = manager.getSchoolList();
+		schoolVector.clear();
+		schoolVector.addAll(list);
+	}
+
+	@Override
+	public Object getSelectedSchool() {
+		if (jList.isSelectionEmpty()!= false) {
+			return schoolVector.get(jList.getSelectedIndex());
+		}
+		else return null;
+
 	}
 }
 	

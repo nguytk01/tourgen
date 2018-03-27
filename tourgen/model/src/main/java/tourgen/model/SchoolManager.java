@@ -1,5 +1,11 @@
 package tourgen.model;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
 public class SchoolManager extends java.util.Observable{
     private java.util.ArrayList<School> schoolList;
 
@@ -42,5 +48,35 @@ public class SchoolManager extends java.util.Observable{
         result= new OperationResult(info.getTicket(), OperationResultEnum.FAILURE, "Remove failure", null);
         setChanged();
         notifyObservers(result);
+    }
+    
+    public List<School> getSchoolList(){
+    	return Collections.unmodifiableList(schoolList);
+    }
+    
+    public void initSchools() {
+    	InputStream stream = this.getClass().getClassLoader().getResourceAsStream("schoolData.txt");
+    	Scanner scanner = new Scanner(stream);
+    	scanner.useDelimiter("\\||\\r?\\n|\\r");
+    	School school;
+    	while (scanner.hasNext()) {
+    		int enrollmentNumber = Integer.parseInt(scanner.next());
+    		String displayName = scanner.next();
+    		String schoolName = scanner.next();
+    		String streetAddress = scanner.next();
+    		String cityName = scanner.next();
+    		int zipCode = Integer.parseInt(scanner.next());
+    		//scanner.next();
+    		
+    		school = new School(displayName, schoolName, streetAddress, cityName, zipCode, enrollmentNumber, true, false);
+    		schoolList.add(school);
+    	}
+    	
+    	try {
+			stream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

@@ -65,12 +65,10 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 			
 	
 	
-	
-	public AddSchoolForm(IController controllerArg) {
+	public AddSchoolForm(ActionListener listener) {
 		setTitle("Add A School");
 		this.setSize(523,308);
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
-		controller = controllerArg;
 		getContentPane().setLayout(null);
 		
 		JLabel lblName = new JLabel("Name:");
@@ -123,7 +121,7 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 		zipField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("OK");
-		MyListener listener = new MyListener();
+		
 		btnNewButton.addActionListener(listener);
 
 		btnNewButton.setBounds(299, 325, 89, 23);
@@ -151,12 +149,7 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 		getContentPane().add(cityNameTextField);
 		cityNameTextField.setColumns(10);
 	}
-		
-	public class MyListener implements ActionListener{
-		public void actionPerformed(ActionEvent arg0) {
-			controller.addSchool(arg0);
-		}
-	};
+
 		
 	@Override
 	public void update(Observable arg0, Object arg1) {
@@ -201,7 +194,30 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 		this.setVisible(true);
 		
 	}
+
+	@Override
+	public void showErrorMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setHidden(boolean flag) {
+		setVisible(flag);
+		
+	}
+
+	@Override
+	public void cleanUp() {
+		namesField.setText("");
+		EnrollField.setText("");
+		cityNameTextField.setText("");
+		zipField.setText("");
+		chBoys.setSelected(false);
+		chGirls.setSelected(false);
+		displayNameTextField.setText("");
+	}
 }
 
-	
+
 	
