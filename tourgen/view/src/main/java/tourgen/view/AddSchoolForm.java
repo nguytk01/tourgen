@@ -67,7 +67,7 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 	
 	public AddSchoolForm(ActionListener listener) {
 		setTitle("Add A School");
-		this.setSize(523,308);
+		this.setSize(480,323);
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -108,15 +108,15 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 		getContentPane().add(EnrollField);
 		
 		JCheckBox chGirls = new JCheckBox("Girls");
-		chGirls.setBounds(193, 201, 97, 23);
+		chGirls.setBounds(159, 197, 97, 23);
 		getContentPane().add(chGirls);
 		
 		JCheckBox chBoys = new JCheckBox("Boys");
-		chBoys.setBounds(193, 227, 97, 23);
+		chBoys.setBounds(159, 226, 97, 23);
 		getContentPane().add(chBoys);
 		
 		zipField = new JTextField();
-		zipField.setBounds(307, 101, 86, 20);
+		zipField.setBounds(307, 101, 81, 20);
 		getContentPane().add(zipField);
 		zipField.setColumns(10);
 		
@@ -124,11 +124,11 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 		
 		btnNewButton.addActionListener(listener);
 
-		btnNewButton.setBounds(299, 325, 89, 23);
+		btnNewButton.setBounds(243, 250, 89, 23);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("CANCEL");
-		btnNewButton_1.setBounds(398, 325, 89, 23);
+		btnNewButton_1.setBounds(342, 250, 89, 23);
 		getContentPane().add(btnNewButton_1);
 		
 		JLabel lblDisplayName = new JLabel("Display name");
