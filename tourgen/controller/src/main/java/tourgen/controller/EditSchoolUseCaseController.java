@@ -36,7 +36,6 @@ public class EditSchoolUseCaseController {
 	}
 	
 	public void startProcess() {
-		System.out.println("hey");
 		Object school = schoolList.getSelectedSchool();
 		form.display(school);
 		form.showView();

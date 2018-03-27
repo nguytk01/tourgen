@@ -55,7 +55,8 @@
 	  
   </dependencies>
   <build>
-  <finalName>mm-tourgen</finalName><plugins>
+		<finalName>mm-tourgen</finalName>
+		<plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -78,7 +79,7 @@
                         </descriptorRefs>
                         <archive>
                             <manifest>
-                                <mainClass>view.Main</mainClass>
+                                <mainClass>tourgen.view.Main</mainClass>
                             </manifest>
                         </archive>
                     </configuration>

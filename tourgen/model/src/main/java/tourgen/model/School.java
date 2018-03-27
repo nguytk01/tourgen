@@ -16,10 +16,11 @@ public class School{
     private String displayName;
 
 
- public School(String displayName, String schoolName, String streetAddress, String cityName, int zipCode, int enrollmentNumber, boolean gStatus, boolean bStatus)
+ public School(String displayNameArg, String schoolName, String streetAddress, String cityName, int zipCode, int enrollmentNumber, boolean gStatus, boolean bStatus)
  {
+	displayName = displayNameArg;
     name = schoolName;
-    Location school = new Location(streetAddress, cityName, zipCode);
+    schoolLoc = new Location(streetAddress, cityName, zipCode);
     enroll = enrollmentNumber;
     gStatus = gStatus;
     bStatus = bStatus;
@@ -27,7 +28,7 @@ public class School{
  
  public School ( SchoolFormMVCData info) {
 	 name = info.getSchoolName();
-	 Location school = new Location(info.getStreetAddress(), info.getCityName(), info.getZipCode());
+	 schoolLoc = new Location(info.getStreetAddress(), info.getCityName(), info.getZipCode());
 	 enroll = info.getEnrollmentNumber();
 	 bStatus = info.getBoysParticipationStatus();
 	 gStatus = info.getGirlsParticipationStatus();

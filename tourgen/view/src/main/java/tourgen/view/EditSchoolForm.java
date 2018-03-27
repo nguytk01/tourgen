@@ -75,11 +75,11 @@ public class EditSchoolForm extends JFrame implements Observer, IEditSchoolForm{
 		EnrollField.setBounds(120, 163, 200, 20);
 		getContentPane().add(EnrollField);
 		
-		JCheckBox chGirls = new JCheckBox("Girls");
+		chGirls = new JCheckBox("Girls");
 		chGirls.setBounds(173, 186, 97, 23);
 		getContentPane().add(chGirls);
 		
-		JCheckBox chBoys = new JCheckBox("Boys");
+		chBoys = new JCheckBox("Boys");
 		chBoys.setBounds(173, 212, 97, 23);
 		getContentPane().add(chBoys);
 		
@@ -88,14 +88,14 @@ public class EditSchoolForm extends JFrame implements Observer, IEditSchoolForm{
 		getContentPane().add(zipField);
 		zipField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("OK");
-		btnNewButton.addActionListener(listener);
-		btnNewButton.setBounds(299, 325, 89, 23);
-		getContentPane().add(btnNewButton);
+		JButton okButton = new JButton("OK");
+		okButton.addActionListener(listener);
+		okButton.setBounds(148, 257, 89, 23);
+		getContentPane().add(okButton);
 		
-		JButton btnNewButton_1 = new JButton("CANCEL");
-		btnNewButton_1.setBounds(398, 325, 89, 23);
-		getContentPane().add(btnNewButton_1);
+		JButton cancelBtn = new JButton("CANCEL");
+		cancelBtn.setBounds(249, 257, 89, 23);
+		getContentPane().add(cancelBtn);
 		
 		JLabel lblCity = new JLabel("City");
 		lblCity.setBounds(29, 134, 56, 16);
@@ -190,6 +190,7 @@ public class EditSchoolForm extends JFrame implements Observer, IEditSchoolForm{
 	public void display(Object schoolArg) {
 		School school = (School)schoolArg;
 		displayNameTextField.setText(school.getDisplayName());
+		AddrField.setText(school.getStreetAddress());
 		namesField.setText(school.getName());
 		cityNameTextField.setText(school.getCityName());
 		zipField.setText(new Integer(school.getZipCode()).toString());

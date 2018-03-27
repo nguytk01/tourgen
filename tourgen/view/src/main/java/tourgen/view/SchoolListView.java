@@ -28,8 +28,8 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 	private JScrollPane scrollPane;
 	
 	public SchoolListView(ActionListener listAddListener, 
-			ActionListener listRemoveListener, 
-			ActionListener listEditListener, SchoolManager managerArg) {
+			ActionListener listEditListener, 
+			ActionListener listRemoveListener, SchoolManager managerArg) {
 		manager = managerArg;
 		setTitle("School List");
 		this.setSize(483,463);
@@ -96,7 +96,7 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 
 	@Override
 	public Object getSelectedSchool() {
-		if (jList.isSelectionEmpty()!= false) {
+		if (jList.getSelectedIndex()!= -1) {
 			return schoolVector.get(jList.getSelectedIndex());
 		}
 		else return null;
