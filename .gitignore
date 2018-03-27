@@ -2,4 +2,3 @@
 *.jar
 **/target/
 !maven-wrapper.jar
-!swt.jar
