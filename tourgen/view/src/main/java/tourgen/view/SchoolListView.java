@@ -114,5 +114,4 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 			} else mntmEdit.setEnabled(true);
 	}
 }
->>>>>>> 117c519... ReportView Implemented.
 	

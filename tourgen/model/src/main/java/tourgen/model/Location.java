@@ -80,7 +80,6 @@ class Location {
 	public String getName() {
 		return name;
 	}
->>>>>>> 117c519... ReportView Implemented.
 	
 	
 }
