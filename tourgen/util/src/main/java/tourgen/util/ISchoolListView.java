@@ -6,4 +6,5 @@ public interface ISchoolListView {
 	public void showView();
 	public void populate();
 	public Object getSelectedSchool();
+	public void toggleEditButtonBasedOnState();
 }

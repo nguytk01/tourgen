@@ -8,24 +8,36 @@ public class Repository {
     private ArrayList<Tournament> girlsTourList;
     private ArrayList<Tournament> boysTourList;
 
-    public List<Tournament> getBoyList()
+    public Repository() {
+    	girlsTourList = new ArrayList<Tournament>();
+    	boysTourList = new ArrayList<Tournament>();
+    }
+    
+    List<Tournament> getBoyList()
     {
-        return boysTourList;
+        return Collections.unmodifiableList(boysTourList);
     }
 
     public List<Tournament> getGirlList()
     {
-        return Collections.unmodifiableList(girlsTourList);
+    	return Collections.unmodifiableList(girlsTourList);
     }
 
-    public void setBoyList(ArrayList<Tournament> list)
+    void setBoyList(ArrayList<Tournament> list)
     {
         boysTourList = list;
     }
 
-    public void setGirlList(ArrayList<Tournament> list)
+    void setGirlList(ArrayList<Tournament> list)
     {
         girlsTourList = list;
     }
+    
+    public void addTournament(Tournament tour) {
+    	if (tour.getTourParticipantsType() == TournamentParticipants.BOYS) {
+    		boysTourList.add(tour);
+    	} else girlsTourList.add(tour);
+    }
+	
 
 }

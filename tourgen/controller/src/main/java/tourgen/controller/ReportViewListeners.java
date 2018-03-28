@@ -3,6 +3,7 @@ package tourgen.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -34,7 +35,7 @@ public class ReportViewListeners {
 
 		@Override
 		public void valueChanged(ListSelectionEvent arg0) {
-			controller.changeTournamentView();
+			if ( !( (JList)arg0.getSource()).getValueIsAdjusting() ) controller.changeTournamentView();
 		}
 		
 	}

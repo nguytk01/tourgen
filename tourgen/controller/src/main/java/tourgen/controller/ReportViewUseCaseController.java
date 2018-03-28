@@ -6,14 +6,14 @@ import tourgen.util.IRepositoryView;
 
 public class ReportViewUseCaseController {
 	private IReportTableView reportTable;
-	private IRepositoryView repo;
+	private IRepositoryView repoView;
 	public ReportViewUseCaseController(IReportTableView reportTableArg, IRepositoryView repoArg ) {
 		reportTable = reportTableArg;
-		repo = repoArg;
+		repoView = repoArg;
 	}
 	
 	public void changeTournamentView() {
-		Object currentTournament = repo.getSelectedTournament();
+		Object currentTournament = repoView.getSelectedTournament();
 		reportTable.display(currentTournament);
 	}
 }

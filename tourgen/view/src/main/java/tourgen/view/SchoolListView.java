@@ -3,6 +3,7 @@ package tourgen.view;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.event.MenuListener;
 
 import tourgen.controller.IController;
 import tourgen.model.School;
@@ -26,26 +27,29 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 	private JList jList;
 	private SchoolManager manager;
 	private JScrollPane scrollPane;
-	
+	private JMenuItem mntmEdit;
 	public SchoolListView(ActionListener listAddListener, 
 			ActionListener listEditListener, 
-			ActionListener listRemoveListener, SchoolManager managerArg) {
+			ActionListener listRemoveListener, 
+			MenuListener showSchoolListActionsListener, 
+			SchoolManager managerArg) {
 		manager = managerArg;
 		setTitle("School List");
 		this.setSize(483,463);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
 		JMenu mnSchool = new JMenu("School");
 		menuBar.add(mnSchool);
+		mnSchool.addMenuListener(showSchoolListActionsListener);
 		
 		JMenuItem mntmAdd = new JMenuItem("Add");
 		mnSchool.add(mntmAdd);
 		mntmAdd.addActionListener(listAddListener);
 		
-		JMenuItem mntmEdit = new JMenuItem("Edit");
+		mntmEdit= new JMenuItem("Edit");
 		mnSchool.add(mntmEdit);
 		mntmEdit.addActionListener(listEditListener);
 		
@@ -102,5 +106,13 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 		else return null;
 
 	}
+	
+	@Override
+	public void toggleEditButtonBasedOnState(){
+			if (jList.getSelectedIndex() == -1){
+				mntmEdit.setEnabled(false);
+			} else mntmEdit.setEnabled(true);
+	}
 }
+>>>>>>> 117c519... ReportView Implemented.
 	

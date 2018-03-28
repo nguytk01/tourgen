@@ -1,52 +1,96 @@
 package tourgen.model;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 class Meet {
 //SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-private Stage meetStage;
-private Date meetDate;
-private School hostSchool;
-private java.util.ArrayList<School> participantSchools;
+ Stage meetStage;
+ Date meetDate;
+ String meetingTime;
+ School hostSchool;
+ java.util.ArrayList<School> participantSchools;
+ Location location;
 
-    private Meet(Stage meetStage, Date meetDate) {
+     Meet(Stage meetStage, Date meetDate) {
         this.meetStage = meetStage;
         this.meetDate = meetDate;
         participantSchools = new java.util.ArrayList<School>();
         //String meetDate = dtFormat(meetDate);
     }
 
-    private School getHostSchool() {
+     School getHostSchool() {
         return hostSchool;
     }
 
-    private Stage getStage() {
+     Stage getStage() {
         return meetStage;
     }
 
-    private Date getDate() {
+     Date getDate() {
         return meetDate;
     }
 
-    private void setHostSchool() {
-        this.hostSchool = hostSchool;
+     void setHostSchool(School hostSchoolArg) {
+        this.hostSchool = hostSchoolArg;
     }
 
-    private void setStage() {
-        this.meetStage = meetStage;
+    void setStage(Stage arg) {
+        this.meetStage = arg;
     }
 
-    private void setDate() {
-        this.meetDate = meetDate;
+    void setDate(Date arg) {
+        this.meetDate = arg;
     }
 
-    private void addSchooltoMeet(School newSchool) {
+     void addSchooltoMeet(School newSchool) {
         participantSchools.add(newSchool);
     }
 
-    private void removeSchoolfromMeet(School oldSchool) {
+     void removeSchoolfromMeet(School oldSchool) {
         participantSchools.remove(oldSchool);
     }
+     
+     String getmeetingTime(String time) {
+    	 return meetingTime;
+     }
+     
+     void setMeetingTime(String time) {
+    	 meetingTime = time;
+     }
 
+     void setLocation(Location arg) {
+    	 location = arg;
+     }
+     
+     public String getReport(int number, String participationHeader) {
+    	String hostSchoolString;
+    	StringBuilder builder = new StringBuilder();
+    	if (hostSchool == null) hostSchoolString = "";
+    	else hostSchoolString = hostSchool.getDisplayName();
+    	String[] arr = null;
+    	if (location.equals("Null"))
+    	arr = new String[] {new Integer(number).toString(), ". ", hostSchoolString, 
+    					" (", new Integer(participantSchools.size()).toString(), ") ",
+    					"| ",
+    					meetingTime, " (",location.getName(), ")", "\n"};
+    	else {
+    		arr = new String[] {new Integer(number).toString(), ". ", hostSchoolString, 
+					" (", new Integer(participantSchools.size()).toString(), ") ",
+					"| ",
+					meetingTime, "\n"};
+    	}
+    	
+    	for (int i = 0; i < arr.length; i++) {
+    		builder.append(arr[i]);
+    	}
+    	builder.append(participantSchools.get(0).getDisplayName());
+    	for (int i = 1; i < participantSchools.size(); i++) {
+    		builder.append(",");
+    		builder.append(participantSchools.get(i).getDisplayName());
+    	}
+    	builder.append("\n\n");
+		return builder.toString();
+     }
 }

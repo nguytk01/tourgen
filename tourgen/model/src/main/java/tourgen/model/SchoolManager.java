@@ -3,14 +3,17 @@ package tourgen.model;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class SchoolManager extends java.util.Observable{
     private java.util.ArrayList<School> schoolList;
+    private HashMap<String, School> schoolHashMap;
 
     public SchoolManager() {
         schoolList = new java.util.ArrayList<School>();
+        schoolHashMap = new HashMap<String, School>();
     }
 
     public void addSchool(SchoolFormMVCData info){
@@ -69,6 +72,7 @@ public class SchoolManager extends java.util.Observable{
     		//scanner.next();
     		
     		school = new School(displayName, schoolName, streetAddress, cityName, zipCode, enrollmentNumber, true, false);
+    		schoolHashMap.put(displayName, school);
     		schoolList.add(school);
     	}
     	
@@ -78,5 +82,12 @@ public class SchoolManager extends java.util.Observable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    School getSchoolFromDisplayName(String displayName) {
+    	if (schoolHashMap.containsKey(displayName.trim()) == false) {
+    		System.out.println(">" + displayName + "<");
+    		return null;
+    	} else return schoolHashMap.get(displayName.trim());
+    	
     }
 }

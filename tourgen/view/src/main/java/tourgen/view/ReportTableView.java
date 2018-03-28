@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -29,13 +30,14 @@ public class ReportTableView extends JPanel implements IReportTableView{
 	List<CollapsibleStagePanel> stageList;
 	Listener listener;
 	public ReportTableView() {
-		setSize(400,400);
+		//setSize(400,400);
 		this.setBorder(new LineBorder(new Color(0, 0, 0)));
-
+		
 		this.setLayout(new VerticalLayout());
 		stageList = new ArrayList<CollapsibleStagePanel>();
 		
-		Listener listener = new Listener();
+		listener = new Listener();
+		
 	}
 
 	@Override
@@ -48,10 +50,13 @@ public class ReportTableView extends JPanel implements IReportTableView{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			boolean collapsedState = false;
-			for (int i = 0; i <= stageList.size(); i++)
-				if (arg0.getSource() != stageList.get(i))
+			JPanel sourcePanel = null;
+			for (int i = 0; i < stageList.size(); i++) {
+				sourcePanel = ((JCustomizedButton) arg0.getSource()).getParentPanel();
+				if ( sourcePanel != stageList.get(i))
 					stageList.get(i).setCollapsed(true);
 				else stageList.get(i).setCollapsed(!stageList.get(i).isCollapsed());
+			}
 			repaint();
 		}
 		
@@ -61,14 +66,16 @@ public class ReportTableView extends JPanel implements IReportTableView{
 	public void display(Object arg) {
 		Tournament tournament = (Tournament) arg;
 		if (stageList.isEmpty() == false) stageList.clear();
-		List<List<String>> stageDescriptionsList = tournament.getReport();
-		for (int i = 0 ; i < stageDescriptionsList.size(); i++) {
-			CollapsibleStagePanel panel = new CollapsibleStagePanel(stageDescriptionsList.get(i).get(0), listener);
+		HashMap<String, String> stageDescriptionsMap = tournament.getReport();
+		for (String stageTitle : stageDescriptionsMap.keySet()) {
+			CollapsibleStagePanel panel = new CollapsibleStagePanel(stageTitle,stageDescriptionsMap.get(stageTitle), listener);	
 			stageList.add(panel);
+			panel.setCollapsed(true);
 			this.add(panel);
 		}
+		repaint();
+		revalidate();
+
 		
 	}
-}
-
-	
+}	

@@ -7,8 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionListener;
 
+import tourgen.model.Repository;
 import tourgen.util.IReportTableFrame;
 import tourgen.util.IReportTableView;
 import tourgen.util.IRepositoryView;
@@ -20,17 +22,20 @@ public class ReportTableFrame extends JFrame implements IReportTableFrame{
 	private RepositoryView repoView;
 	private ReportTableView reportView;
 	public ReportTableFrame(ActionListener reportViewManageSchoolsMenuListener, 
-			ListSelectionListener tournamentSelectionListener) {
+			ListSelectionListener tournamentSelectionListener,
+			Repository model) {
 		setTitle("Cross Country Report Table");
-		setSize(500,400);
+		setBounds(500,200,800,600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		repoView = new RepositoryView(tournamentSelectionListener);
+		repoView = new RepositoryView(tournamentSelectionListener, model);
 		reportView = new ReportTableView();
+		JScrollPane scrollPane= new JScrollPane(reportView);
+		//scrollPane.setViewportView(reportView);
 		
 		this.getContentPane().setLayout(new BorderLayout());
-		this.getContentPane().add(repoView, BorderLayout.EAST);
-		this.getContentPane().add(reportView,BorderLayout.CENTER);
+		this.getContentPane().add(repoView, BorderLayout.WEST);
+		this.getContentPane().add(scrollPane,BorderLayout.CENTER);
 		
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
@@ -38,9 +43,7 @@ public class ReportTableFrame extends JFrame implements IReportTableFrame{
 		schoolsMenu = new JMenu("Manage Schools");
 		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
-		
-		
-		
+
 		JMenuItem manageSchoolMenuItem = new JMenuItem("Manage schools");
 		fileMenu.add(manageSchoolMenuItem);
 		manageSchoolMenuItem.addActionListener(reportViewManageSchoolsMenuListener);
