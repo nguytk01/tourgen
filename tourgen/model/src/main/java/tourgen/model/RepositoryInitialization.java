@@ -79,7 +79,7 @@ public class RepositoryInitialization{
 				meet = buildMeet(semiStateStage,manager,date, time, location, host, participants);
 				semiStateStage.addMeetToStage(meet);
 			}
-			if (line.equals("State-Final")){
+			if (line.equals("State Finals")){
 				date = scanner.nextLine();
 				time = scanner.nextLine();
 				location = scanner.nextLine();

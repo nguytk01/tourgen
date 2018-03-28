@@ -3,8 +3,12 @@ package tourgen.view;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 
+import tourgen.controller.AddSchoolUseCaseController;
 import tourgen.controller.IController;
+import tourgen.model.IOperationResult;
+import tourgen.model.School;
 import tourgen.util.IAddSchoolForm;
 
 import javax.swing.JCheckBox;
@@ -13,8 +17,9 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
-public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
+public class AddSchoolForm extends JFrame implements IAddSchoolForm{
 	
 	private JTextField namesField;
 	private JTextField AddrField;
@@ -24,7 +29,7 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 	private JCheckBox chGirls;
 	private JCheckBox chEg;
 	
-	private IController controller;
+	private AddSchoolUseCaseController addSchoolUseCaseController;
 	
 	private Object ticket;
 	private JTextField displayNameTextField;
@@ -36,7 +41,7 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 		ticket = obj;
 	}
 	
-	public String getName()
+	public String getSchoolName()
 	{
 		return namesField.getText();
 	}
@@ -48,6 +53,7 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 	
 	public int getEnroll()
 	{
+		if (EnrollField.getText().length() == 0) return 0;
 		return Integer.parseInt(EnrollField.getText());
 	}
 	
@@ -62,90 +68,92 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 	{
 		return Integer.parseInt(zipField.getText());
 	}
-			
-	
-	
 	public AddSchoolForm(ActionListener listener) {
 		setTitle("Add A School");
-		this.setSize(480,323);
+		this.setSize(600,400);
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		JLabel lblName = new JLabel("Name:");
-		lblName.setBounds(29, 52, 46, 14);
+		JLabel lblName = new JLabel("Name");
+		lblName.setBounds(29, 44, 82, 20);
 		getContentPane().add(lblName);
 	
-		JLabel lblAddress = new JLabel("Address:");
-		lblAddress.setBounds(29, 77, 60, 14);
+		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setBounds(29, 77, 97, 20);
 		getContentPane().add(lblAddress);
 		
-		JLabel lblEnrollment = new JLabel("Enrollment:");
-		lblEnrollment.setBounds(30, 171, 82, 14);
+		JLabel lblEnrollment = new JLabel("Enrollment");
+		lblEnrollment.setBounds(29, 191, 123, 20);
 		getContentPane().add(lblEnrollment);
 		
-		JLabel lblParticipationStatus = new JLabel("Participation Status:");
-		lblParticipationStatus.setBounds(30, 201, 123, 14);
+		JLabel lblParticipationStatus = new JLabel("Participation Status");
+		lblParticipationStatus.setBounds(29, 228, 203, 35);
 		getContentPane().add(lblParticipationStatus);
 		
-		JLabel lblZip = new JLabel("ZIP: ");
-		lblZip.setBounds(282, 104, 46, 14);
+		JLabel lblZip = new JLabel("ZIP");
+		lblZip.setBounds(382, 114, 56, 27);
 		getContentPane().add(lblZip);
 		
 		namesField = new JTextField();
-		namesField.setBounds(124, 47, 264, 20);
+		namesField.setBounds(240, 46, 264, 26);
 		getContentPane().add(namesField);
 		namesField.setColumns(10);
 	
 		
 		AddrField = new JTextField();
 		AddrField.setColumns(10);
-		AddrField.setBounds(124, 72, 264, 20);
+		AddrField.setBounds(240, 77, 264, 26);
 		getContentPane().add(AddrField);
 		
 		EnrollField = new JTextField();
 		EnrollField.setColumns(10);
-		EnrollField.setBounds(124, 168, 264, 20);
+		EnrollField.setBounds(240, 191, 264, 26);
 		getContentPane().add(EnrollField);
 		
-		JCheckBox chGirls = new JCheckBox("Girls");
-		chGirls.setBounds(159, 197, 97, 23);
+		chGirls = new JCheckBox("Girls");
+		chGirls.setBounds(240, 234, 97, 23);
 		getContentPane().add(chGirls);
 		
-		JCheckBox chBoys = new JCheckBox("Boys");
-		chBoys.setBounds(159, 226, 97, 23);
+		chBoys = new JCheckBox("Boys");
+		chBoys.setBounds(341, 234, 97, 23);
 		getContentPane().add(chBoys);
 		
 		zipField = new JTextField();
-		zipField.setBounds(307, 101, 81, 20);
+		zipField.setBounds(422, 110, 82, 28);
 		getContentPane().add(zipField);
 		zipField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("OK");
+		JCustomizedButton btnNewButton = new JCustomizedButton(this,"OK");
+		btnNewButton.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		btnNewButton.addActionListener(listener);
 
-		btnNewButton.setBounds(243, 250, 89, 23);
+		btnNewButton.setBounds(284, 285, 89, 35);
 		getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("CANCEL");
-		btnNewButton_1.setBounds(342, 250, 89, 23);
-		getContentPane().add(btnNewButton_1);
-		
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.setBounds(383, 285, 129, 35);
+		getContentPane().add(cancelButton);
+				cancelButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent a){
+				setVisible(false);
+			}
+				});
 		JLabel lblDisplayName = new JLabel("Display name");
-		lblDisplayName.setBounds(30, 142, 82, 16);
+		lblDisplayName.setBounds(29, 148, 199, 35);
 		getContentPane().add(lblDisplayName);
 		
 		displayNameTextField = new JTextField();
-		displayNameTextField.setBounds(124, 133, 264, 22);
+		displayNameTextField.setBounds(240, 153, 264, 25);
 		getContentPane().add(displayNameTextField);
 		displayNameTextField.setColumns(10);
 		
 		JLabel lblCity = new JLabel("City");
-		lblCity.setBounds(29, 106, 56, 16);
+		lblCity.setBounds(29, 110, 60, 31);
 		getContentPane().add(lblCity);
 		
 		cityNameTextField = new JTextField();
-		cityNameTextField.setBounds(125, 101, 106, 22);
+		cityNameTextField.setBounds(239, 113, 123, 28);
 		getContentPane().add(cityNameTextField);
 		cityNameTextField.setColumns(10);
 	}
@@ -153,7 +161,15 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 		
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
+		IOperationResult result = (IOperationResult) arg1;
+		if (ticket == result.getTicket()){
+			if (result.isOK()){
+				ticket = null;
+				addSchoolUseCaseController.successAddSchool((School)result.getAttachedObject());
+			} else {
+				addSchoolUseCaseController.failureAddSchool(result.getErrorMessage());
+			}
+		}
 	}
 
 	@Override
@@ -190,26 +206,24 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 
 	@Override
 	public void showView() {
-		
-		this.setVisible(true);
-		
+		this.cleanUp();
+		this.setVisible(true);	
 	}
 
 	@Override
-	public void showErrorMessage() {
-		// TODO Auto-generated method stub
-		
+	public void showErrorMessage(String errorMessage) {
+		JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 	}
 
 	@Override
 	public void setHidden(boolean flag) {
-		setVisible(flag);
-		
+		setVisible(!flag);
 	}
 
 	@Override
 	public void cleanUp() {
 		namesField.setText("");
+		AddrField.setText("");
 		EnrollField.setText("");
 		cityNameTextField.setText("");
 		zipField.setText("");
@@ -217,7 +231,13 @@ public class AddSchoolForm extends JFrame implements Observer, IAddSchoolForm{
 		chGirls.setSelected(false);
 		displayNameTextField.setText("");
 	}
-}
-
-
 	
+	public void setAddSchoolUseCaseController(AddSchoolUseCaseController controllerArg){
+		addSchoolUseCaseController = controllerArg;
+	}
+
+	@Override
+	public void setAddSchoolUseCaseController(Object controllerArg) {
+		this.addSchoolUseCaseController = (AddSchoolUseCaseController)controllerArg;
+	}
+}

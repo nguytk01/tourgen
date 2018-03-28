@@ -54,9 +54,9 @@ public class ReportTableView extends JPanel implements IReportTableView{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			boolean collapsedState = false;
-			JPanel sourcePanel = null;
+			Object sourcePanel = null;
 			for (int i = 0; i < stageList.size(); i++) {
-				sourcePanel = ((JCustomizedButton) arg0.getSource()).getParentPanel();
+				sourcePanel = ((JCustomizedButton) arg0.getSource()).getSwingParent();
 				if ( sourcePanel != stageList.get(i))
 					stageList.get(i).setCollapsed(true);
 				else stageList.get(i).setCollapsed(!stageList.get(i).isCollapsed());

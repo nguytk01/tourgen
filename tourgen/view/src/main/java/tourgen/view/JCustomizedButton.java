@@ -4,14 +4,16 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class JCustomizedButton extends JButton {
-	private JPanel parent;
-	public JCustomizedButton(JPanel parentArg, String title) {
+import tourgen.util.ICustomizedButton;
+
+public class JCustomizedButton extends JButton implements ICustomizedButton{
+	private Object parent;
+	public JCustomizedButton(Object parentArg, String title) {
 		super(title);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		parent = parentArg;
 	}
-	public JPanel getParentPanel() {
+	public Object getSwingParent() {
 		return parent;
 	}
 }

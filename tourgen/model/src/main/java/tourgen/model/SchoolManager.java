@@ -10,45 +10,88 @@ import java.util.Scanner;
 public class SchoolManager extends java.util.Observable{
     private java.util.ArrayList<School> schoolList;
     private HashMap<String, School> schoolHashMap;
-
-    public SchoolManager() {
+	private Repository repo;
+	
+    public SchoolManager(Repository repoArg) {
+		repo = repoArg;
         schoolList = new java.util.ArrayList<School>();
         schoolHashMap = new HashMap<String, School>();
     }
 
     public void addSchool(SchoolFormMVCData info){
         School school = new School(info);
-        schoolList.add(school);
-        IOperationResult result = new OperationResult(info.getTicket(), OperationResultEnum.SUCCESS, "", school);
+        IOperationResult result;
+        int index = getSchoolIndexForAddition(info);
+        if (index != -1) {
+        	result =  new OperationResult(info.getTicket(), OperationResultEnum.FAILURE, "Duplicate information found in the database.", null);
+        } else {
+        	schoolList.add(school);
+        	result = new OperationResult(info.getTicket(), OperationResultEnum.SUCCESS, "", school);
+        }
         setChanged();
         notifyObservers(result);
     }
+    
+    int getSchoolIndex(SchoolFormMVCData info) {
+    	for (int i = 0; i < schoolList.size(); i++) {
+    		if (schoolList.get(i).getName().equals(info.getSchoolName()) 
+    				&& schoolList.get(i).getName().equals(info.getSchoolName())
+    				&& schoolList.get(i).getName().equals(info.getSchoolName())) {
+    			return i;
+    		}
+    	}
+    	return -1;
+    }
+    
+    int getSchoolIndexForAddition(SchoolFormMVCData info) {
+    	for (int i = 0; i < schoolList.size(); i++) {
+    		if (schoolList.get(i).getName().equals(info.getSchoolName()) 
+    				&& schoolList.get(i).getStreetAddress().equals(info.getStreetAddress())
+    				&& schoolList.get(i).getZipCode() == info.getZipCode()
+    				&& schoolList.get(i).getCityName().equals(info.getCityName())) {
+    			return i;
+    		}
+    	}
+    	return -1;
+    }
 
     public void removeSchool(SchoolFormMVCData info){
-        School school = new School(info);
-        int index = schoolList.indexOf(school);
+        School school = null;
+        int index = getSchoolIndex(info);
         IOperationResult result;
         if (index != -1){
-            schoolList.remove(index);
+            /*boolean repoRemoveResult = repo.removeSchool(schoolList.get(index));
+			if (result = false) {
+				result= new OperationResult(info.getTicket(), OperationResultEnum.FAILURE, "Unable to remove the school. It has an important role in the tournament format", null);
+				setChanged();
+				notifyObservers(result);
+				return;
+			}*/
+        	school = schoolList.get(index);
+			schoolList.remove(index);
             result = new OperationResult(info.getTicket(), OperationResultEnum.SUCCESS, "", school);
-        }
+			
+        } else {
         result= new OperationResult(info.getTicket(), OperationResultEnum.FAILURE, "Remove failure", null);
+        }
         setChanged();
         notifyObservers(result);
     }
 
     public void editSchool(SchoolFormMVCData info){
-        School school = new School(info);
-        int index = schoolList.indexOf(school);
-
+        
+        int index = getSchoolIndex(info);
+        School school = null;
         IOperationResult result;
         if (index != -1){
+        	school = schoolList.get(index);
             schoolList.get(index).setEnroll(info.getEnrollmentNumber());
             schoolList.get(index).setBStatus(info.getBoysParticipationStatus());
             schoolList.get(index).setGStatus(info.getGirlsParticipationStatus());
             result = new OperationResult(info.getTicket(), OperationResultEnum.SUCCESS, "", school);
+        }else { 
+        	result= new OperationResult(info.getTicket(), OperationResultEnum.FAILURE, "Remove failure", null);
         }
-        result= new OperationResult(info.getTicket(), OperationResultEnum.FAILURE, "Remove failure", null);
         setChanged();
         notifyObservers(result);
     }

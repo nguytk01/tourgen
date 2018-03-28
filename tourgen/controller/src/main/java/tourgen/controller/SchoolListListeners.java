@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import tourgen.model.School;
+import tourgen.model.SchoolFormMVCData;
+import tourgen.util.ICustomizedButton;
+import tourgen.util.ISchoolListView;
+
 public class SchoolListListeners {
 	private AddSchoolUseCaseController addController;
 	private EditSchoolUseCaseController editController;
@@ -28,9 +33,34 @@ public class SchoolListListeners {
 	}
 	
 	public class RemoveSchoolListener implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			String name;
+            String displayName;
+		    String cityName;
+		    int enroll;
+		    boolean Bstatus;
+		    boolean Gstatus;
+		    boolean Eligible;
+            String streetAddr;
+            int zipCode;
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
+            if (arg0.getSource() instanceof ICustomizedButton && ( (ICustomizedButton)arg0.getSource()).getSwingParent() instanceof ISchoolListView){
+                ISchoolListView schoolListView = (ISchoolListView) (((ICustomizedButton) arg0.getSource()).getSwingParent());
+				School school = (School)schoolListView.getSelectedSchool();
+				
+				name = school.getName();				
+				streetAddr = school.getStreetAddress();
+				zipCode = school.getZipCode();
+				cityName = school.getCityName();
+
+
+				Object ticket = new Object();
+                SchoolFormMVCData formData = new SchoolFormMVCData(ticket, "", name, streetAddr, cityName, zipCode, 0, false, false);
+                schoolListView.setTicket(ticket);
+
+                removeController.removeSchool(formData);
+            }
+			
 		}
 		
 	}
@@ -69,6 +99,7 @@ public class SchoolListListeners {
 		@Override
 		public void menuSelected(MenuEvent arg0) {
 			viewSchoolListController.toggleEditButtonBasedOnState();
+			viewSchoolListController.toggleRemoveButtonBasedOnState();
 		}
 		
 	}

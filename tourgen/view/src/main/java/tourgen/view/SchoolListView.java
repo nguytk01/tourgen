@@ -6,14 +6,18 @@ import javax.swing.JTextField;
 import javax.swing.event.MenuListener;
 
 import tourgen.controller.IController;
+import tourgen.controller.RemoveSchoolUseCaseController;
+import tourgen.model.IOperationResult;
 import tourgen.model.School;
 import tourgen.model.SchoolManager;
 import tourgen.util.ISchoolListView;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.Vector;
 
 import javax.swing.JMenuBar;
@@ -22,7 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JMenu;
 import javax.swing.JList;
 
-public class SchoolListView extends JFrame implements ISchoolListView{
+public class SchoolListView extends JFrame implements ISchoolListView, Observer{
 	
 	private Vector<School> schoolVector;
 	private JList jList;
@@ -30,6 +34,10 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 	private JScrollPane scrollPane;
 	private JMenuItem mntmEdit;
 	private JMenuItem mntmRemove;
+	private JCustomizedButton dummyCustomizedRemoveButton;
+	private Object ticket;
+	private RemoveSchoolUseCaseController removeSchoolUseCaseController;
+	
 	public SchoolListView(ActionListener listAddListener, 
 			ActionListener listEditListener, 
 			ActionListener listRemoveListener, 
@@ -39,6 +47,9 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 		setTitle("School List");
 		this.setBounds(300,100,400,700);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		dummyCustomizedRemoveButton = new JCustomizedButton(this, "Dummy");
+		dummyCustomizedRemoveButton.addActionListener(listRemoveListener);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -57,7 +68,12 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 		
 		mntmRemove = new JMenuItem("Remove");
 		mnSchool.add(mntmRemove);
-		mntmRemove.addActionListener(listRemoveListener);
+		mntmRemove.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent a){
+					dummyCustomizedRemoveButton.doClick();
+				}
+			}
+		);
 		
 		getContentPane().setLayout(null);
 		
@@ -72,16 +88,34 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 		
 	}
 	
+	public void setRemoveUseCaseController(Object controllerArg){
+		removeSchoolUseCaseController = (RemoveSchoolUseCaseController)controllerArg;
+	}
+	
 	@Override
 	public void addSchoolToList(Object a) {
 		School school = (School) a;
-		schoolVector.add(school);
+		Vector<School> newVector = new Vector<School>();
+		newVector.add(school);
+		newVector.addAll(schoolVector);
+		schoolVector = newVector;
+		jList.setListData(newVector);
+		//repaint();
 	}
 
 	@Override
-	public void removeSchoolFromList(Object a) {
+	public void remove(Object a) {
 		School school = (School)a;
-		schoolVector.remove(school);
+		for (int i =0; i< schoolVector.size(); i++) {
+			if (school.getName().equals(schoolVector.get(i).getName())){
+				schoolVector.remove(i);
+				repaint();
+				break;
+				
+			}
+		}
+		
+		//schoolVector.remove(school);
 	}
 
 	@Override
@@ -118,8 +152,15 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
+		IOperationResult result = (IOperationResult) arg1;
+		if (ticket == result.getTicket()){
+			if (result.isOK()){
+				ticket = null;
+				removeSchoolUseCaseController.successRemoveSchool((School)result.getAttachedObject());
+			} else {
+				removeSchoolUseCaseController.failureRemoveSchool(result.getErrorMessage());
+			}
+		}
 	}
 
 	@Override
@@ -127,6 +168,14 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 		if (jList.getSelectedIndex() == -1){
 			mntmRemove.setEnabled(false);
 		} else mntmRemove.setEnabled(true);
+		
+	}
+	
+	public void setTicket(Object ticketArg){
+		ticket = ticketArg;
+	}
+	
+	public void showErrorMessage(String errorMessage){
 		
 	}
 }

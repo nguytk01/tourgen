@@ -33,7 +33,7 @@ public class SchoolFormMVCData {
     }
     
     public String getSchoolDisplayName(){
-        return schoolName;
+        return schoolDisplayName;
     }
 
     public String getStreetAddress(){

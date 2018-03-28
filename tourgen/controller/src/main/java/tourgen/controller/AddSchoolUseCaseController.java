@@ -18,9 +18,11 @@ public class AddSchoolUseCaseController {
 				AddSchoolFormListeners listenersArg) {
 		listeners = listenersArg;
 		listeners.setCoordinator(this);
+		manager = managerArg;
 		this.form = formArg;
 		this.schoolList = schoolListArg;
 		this.listeners = listenersArg;
+		form.setAddSchoolUseCaseController(this);
 	}
 	
 	public void addSchool(SchoolFormMVCData obj) {
@@ -32,8 +34,8 @@ public class AddSchoolUseCaseController {
 		schoolList.addSchoolToList(school);
 	}
 	
-	public void failureAddSchool() {
-		form.showErrorMessage();
+	public void failureAddSchool(String errorMessage) {
+		form.showErrorMessage(errorMessage);
 	}
 	
 	public void startProcess() {

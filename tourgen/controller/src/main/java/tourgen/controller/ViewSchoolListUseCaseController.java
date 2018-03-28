@@ -16,6 +16,10 @@ public class ViewSchoolListUseCaseController {
 	public void toggleEditButtonBasedOnState(){
 		schoolListView.toggleEditButtonBasedOnState();
 	}
+
+	public void toggleRemoveButtonBasedOnState() {
+		schoolListView.toggleRemoveButtonBasedOnState();
+	}
 	
 	
 }

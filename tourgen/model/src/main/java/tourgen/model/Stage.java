@@ -27,7 +27,7 @@ private String participantsHeader;
     		case SECTIONAL : return "Sectionals";
     		case REGIONAL: return "Regionals";
     		case SEMISTATE: return "Semi-states";
-    		case STATEFINAL: return "State-final";
+    		case STATEFINAL: return "State finals";
     		default: return "Stage";
     	}
     }

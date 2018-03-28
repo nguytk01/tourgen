@@ -18,9 +18,11 @@ public class EditSchoolUseCaseController {
 				EditSchoolFormListeners listenersArg) {
 		listeners = listenersArg;
 		listeners.setCoordinator(this);
+		manager = managerArg;
 		this.form = formArg;
 		this.schoolList = schoolListArg;
 		this.listeners = listenersArg;
+		form.setEditSchoolUseCaseController(this);
 	}
 	
 	public void editSchool(SchoolFormMVCData obj) {
@@ -31,8 +33,8 @@ public class EditSchoolUseCaseController {
 		form.setHidden(true);
 	}
 	
-	public void failureEditSchool() {
-		form.showErrorMessage();
+	public void failureEditSchool(String errorMessage) {
+		form.showErrorMessage(errorMessage);
 	}
 	
 	public void startProcess() {

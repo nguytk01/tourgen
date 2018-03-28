@@ -3,9 +3,10 @@ package tourgen.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import tourgen.controller.AddSchoolFormListeners.AddSchoolListener;
+import tourgen.controller.EditSchoolFormListeners.EditSchoolListener;
 import tourgen.model.SchoolFormMVCData;
 import tourgen.util.IAddSchoolForm;
+import tourgen.util.ICustomizedButton;
 import tourgen.util.IEditSchoolForm;
 
 public class EditSchoolFormListeners {
@@ -37,23 +38,29 @@ public class EditSchoolFormListeners {
             String streetAddr;
             int zipCode;
 
-            if (arg0.getSource() instanceof IAddSchoolForm){
-                IEditSchoolForm form = (IEditSchoolForm) arg0;
+            if (arg0.getSource() instanceof ICustomizedButton && ( (ICustomizedButton)arg0.getSource()).getSwingParent() instanceof IEditSchoolForm){
+                IEditSchoolForm form = (IEditSchoolForm) ((ICustomizedButton) arg0.getSource()).getSwingParent();
 
-				name = form.getName();
+				name = form.getSchoolName();
 				displayName = form.getDisplayName();
 				
 				streetAddr = form.getAddr();
 				cityName = form.getCityName();
 				zipCode = form.getZipCode();
 
-				enroll = form.getEnrollment();
+				try {
+					enroll = form.getEnrollment();
+					if (enroll < 0 || enroll > 900000) throw new Exception();
+				} catch (Exception e) {
+					form.showErrorMessage("Invalid enrollment number. Please try again.");
+					return;
+				}
 				Bstatus = form.getBoysStatus();
 				Gstatus = form.getGirlsStatus();
 
 
 				Object ticket = new Object();
-                SchoolFormMVCData formData = new SchoolFormMVCData(ticket, displayName, name, streetAddr, cityName, zipCode, enroll, Bstatus, Gstatus);
+                SchoolFormMVCData formData = new SchoolFormMVCData(ticket, displayName, name, streetAddr, cityName, zipCode, enroll, Gstatus, Bstatus);
                 form.setTicket(ticket);
 
                 controller.editSchool(formData);

@@ -33,8 +33,9 @@ public class Main {
 	public static void main(String[] args) {
 		FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
 		setUIFont(resource);
-		SchoolManager manager = new SchoolManager();
 		Repository repo = new Repository();
+		SchoolManager manager = new SchoolManager(repo);
+		
 		
 		AddSchoolFormListeners addSchoolFormListeners = new AddSchoolFormListeners();
 		ActionListener addListener = addSchoolFormListeners.new AddSchoolListener();
@@ -58,6 +59,7 @@ public class Main {
 		listListeners.setAddController(addUseCaseController);
 		listListeners.setEditController(editUseCaseController);
 		listListeners.setRemoveController(removeUseCaseController);
+		schoolList.setRemoveUseCaseController(removeUseCaseController);
 		
 		ReportViewListeners reportViewListeners = new ReportViewListeners();
 		ActionListener reportViewManageSchoolButtonListener = reportViewListeners.new ManageSchoolButtonListener();

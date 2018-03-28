@@ -1,5 +1,7 @@
 package tourgen.controller;
 
+import tourgen.model.School;
+import tourgen.model.SchoolFormMVCData;
 import tourgen.model.SchoolManager;
 import tourgen.util.IAddSchoolForm;
 import tourgen.util.ISchoolListView;
@@ -17,6 +19,17 @@ public class RemoveSchoolUseCaseController {
 		listeners.setRemoveController(this);
 	}
 	
+	public void removeSchool(SchoolFormMVCData school){
+		manager.removeSchool(school);
+	}
+	
+	public void successRemoveSchool(School school){
+		schoolList.remove(school);
+	}
+	
+	public void failureRemoveSchool(String errorMessage){
+		schoolList.showErrorMessage(errorMessage);
+	}
 	
 	
 }
