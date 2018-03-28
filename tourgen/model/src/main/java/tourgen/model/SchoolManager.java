@@ -58,7 +58,7 @@ public class SchoolManager extends java.util.Observable{
     }
     
     public void initSchools() {
-    	InputStream stream = this.getClass().getClassLoader().getResourceAsStream("schoolData.txt");
+    	InputStream stream = this.getClass().getClassLoader().getResourceAsStream("schoolDataAlphabetData.txt");
     	Scanner scanner = new Scanner(stream);
     	scanner.useDelimiter("\\||\\r?\\n|\\r");
     	School school;

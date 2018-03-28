@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,15 +30,18 @@ import java.awt.Color;
 public class ReportTableView extends JPanel implements IReportTableView{
 	List<CollapsibleStagePanel> stageList;
 	Listener listener;
+	JPanel northPanel;
 	public ReportTableView() {
 		//setSize(400,400);
 		this.setBorder(new LineBorder(new Color(0, 0, 0)));
+		northPanel = new JPanel();
 		
-		this.setLayout(new VerticalLayout());
+		this.setLayout(new BorderLayout());
 		stageList = new ArrayList<CollapsibleStagePanel>();
 		
 		listener = new Listener();
-		
+		this.add(northPanel,BorderLayout.NORTH);
+		northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
 	}
 
 	@Override
@@ -71,7 +75,7 @@ public class ReportTableView extends JPanel implements IReportTableView{
 			CollapsibleStagePanel panel = new CollapsibleStagePanel(stageTitle,stageDescriptionsMap.get(stageTitle), listener);	
 			stageList.add(panel);
 			panel.setCollapsed(true);
-			this.add(panel);
+			northPanel.add(panel);
 		}
 		repaint();
 		revalidate();

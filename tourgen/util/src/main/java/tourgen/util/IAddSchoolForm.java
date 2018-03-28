@@ -1,6 +1,8 @@
 package tourgen.util;
 
-public interface IAddSchoolForm{
+import java.util.Observer;
+
+public interface IAddSchoolForm extends Observer{
 	public String getName();
 	public String getDisplayName();
 	public String getAddr();

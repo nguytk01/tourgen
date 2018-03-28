@@ -1,9 +1,13 @@
 package tourgen.view;
 
+import java.awt.Font;
 import java.awt.event.ActionListener;
 
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.MenuListener;
+import javax.swing.plaf.FontUIResource;
 
 import tourgen.controller.AddSchoolFormListeners;
 import tourgen.controller.AddSchoolUseCaseController;
@@ -27,6 +31,8 @@ import tourgen.util.ISchoolListView;
 
 public class Main {
 	public static void main(String[] args) {
+		FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
+		setUIFont(resource);
 		SchoolManager manager = new SchoolManager();
 		Repository repo = new Repository();
 		
@@ -77,5 +83,28 @@ public class Main {
 		repositoryView.populate();
 		
 		reportFrame.showView();
+		
+		manager.addObserver(editForm);
+		manager.addObserver(addForm);
+		manager.addObserver(schoolList);
+		
+	}
+	
+	public static void setUIFont (javax.swing.plaf.FontUIResource f) {
+		java.util.Enumeration keys = UIManager.getLookAndFeelDefaults().keys();
+		UIDefaults uiDef = UIManager.getLookAndFeelDefaults();
+		uiDef.put("Menu.font", f);
+		UIManager.put("Menu.font", f);
+		uiDef.put("MenuItem.font", f);
+		UIManager.put("MenuItem.font", f);
+		uiDef.put("TextPane.font", f);
+		UIManager.put("TextPane.font", f);
+		uiDef.put("defaultFont", 20);
+		while (keys.hasMoreElements()) {
+			Object key = keys.nextElement();
+			Object value = UIManager.get(key);
+			if (value instanceof javax.swing.plaf.FontUIResource)
+				uiDef.put(key, f);
+		}	
 	}
 }

@@ -1,6 +1,7 @@
 package tourgen.view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -15,8 +16,6 @@ import tourgen.util.IReportTableFrame;
 import tourgen.util.IReportTableView;
 import tourgen.util.IRepositoryView;
 
-
-
 public class ReportTableFrame extends JFrame implements IReportTableFrame{
 	private JMenu schoolsMenu;
 	private RepositoryView repoView;
@@ -25,12 +24,13 @@ public class ReportTableFrame extends JFrame implements IReportTableFrame{
 			ListSelectionListener tournamentSelectionListener,
 			Repository model) {
 		setTitle("Cross Country Report Table");
-		setBounds(500,200,800,600);
+		setBounds(200,50,1400,800);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		repoView = new RepositoryView(tournamentSelectionListener, model);
 		reportView = new ReportTableView();
 		JScrollPane scrollPane= new JScrollPane(reportView);
+		scrollPane.setPreferredSize(new Dimension(100,100));
 		//scrollPane.setViewportView(reportView);
 		
 		this.getContentPane().setLayout(new BorderLayout());

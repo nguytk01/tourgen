@@ -9,29 +9,29 @@ import java.util.ArrayList;
 
 public class RepositoryInitialization{
 	public void init(Repository repo, SchoolManager manager){
-		String sectionalStageHeader = "Entry List Deadline: Monday, Oct. 2, 2017, 4 pm ET / 3 pm CT.\n" + 
-				"\n" + 
-				"Date: Saturday, Oct. 7, 2017.\n" + 
-				"Admission: $5 per person.\n\n" + 
-				"Advancement: The top 10 individuals from non‐advancing teams and the first 5 qualifying teams from each sectional shall advance to designated regionals.\n\n" + 
-				"Note: Races conducted at host school unless indicated otherwise.";
+		String sectionalStageHeader = "<b>Entry List Deadline:</b> Monday, Oct. 2, 2017, 4 pm ET / 3 pm CT.<br />" + 
+				"<br />" + 
+				"<b>Date:</b> Saturday, Oct. 7, 2017.<br />" + 
+				"<b>Admission:</b> $5 per person.<br />" + 
+				"<b>Advancement:</b> The top 10 individuals from non‐advancing teams and the first 5 qualifying teams from each sectional shall advance <br/>to designated regionals.<br />" + 
+				"<b>Note:</b> Races conducted at host school unless indicated otherwise.<br/><br/>";
 		
-		String regionalStageHeader = "Date: Saturday, Oct. 14, 2017.\n\n" + 
-				"Admission: $5 per person.\n\n" + 
-				"Advancement: The top 10 individuals from non‐advancing teams and the first 5 qualifying teams from each regional shall advance to designated semi‐states.\n\n" + 
-				"Note: Races conducted at host school unless indicated otherwise.";
+		String regionalStageHeader = "<b>Date:</b> Saturday, Oct. 14, 2017.<br />" + 
+				"<b>Admission</b>: $5 per person.<br />" + 
+				"<b>Advancement</b>: The top 10 individuals from non‐advancing teams and the first 5 qualifying teams from each regional shall advance <br/>to designated semi‐states.<br />" + 
+				"<b>Note</b>: Races conducted at host school unless indicated otherwise.<br/><br/>";
 		
-		String semiStateStageHeader = "Date: Saturday, Oct. 21, 2017.\n\n" + 
-				"Admission: $5 per person.\n\n" + 
-				"Advancement: The top 10 individuals from non-advancing teams and the first 6 qualifying teams from each semi-state shall advance to the state finals.\n\n" + 
-				"Note: Races conducted at host school unless indicated otherwise.";
+		String semiStateStageHeader = "<b>Date:</b> Saturday, Oct. 21, 2017.<br />" + 
+				"<b>Admission</b>: $5 per person.<br />" + 
+				"<b>Advancement</b>: The top 10 individuals from non-advancing teams and the first 6 qualifying teams from each semi-state shall advance <br/>to the state finals.<br />" + 
+				"<b>Note</b>: Races conducted at host school unless indicated otherwise.<br/><br/>";
 		
-		String stateFinalStageHeader = "Date: Saturday, Oct. 28, 2017.\n\n"
-				+ "Site: LaVern Gibson Championship Cross Country Course, Wabash Valley Sports Center, 599 S. Tabortown Road, Terre Haute, IN  47803."
-				+ "Course Layout\n\n" + 
-				"Times: Boys at 1 pm ET; Girls at 1:45 pm ET.\n\n" + 
-				"Admission: $10 per person.";
-		
+		String stateFinalStageHeader = "<b>Date:</b> Saturday, Oct. 28, 2017.<br />"
+				+ "<b>Site</b>: LaVern Gibson Championship Cross Country Course, Wabash Valley Sports Center, 599 S. Tabortown Road, <br/>Terre Haute, IN  47803.<br/>"
+				+ "<b><u><a href=\"http://www.ihsaa.org/Portals/0/boys%20sports/crosscountry/LaVern%20Gibson%205%20K%20Course.pdf\">Course Layout</a></u></b><br />" + 
+				"<b>Times</b>: Boys at 1 pm ET; Girls at 1:45 pm ET.<br />" + 
+				"<b>Admission</b>: $10 per person.<br/>";
+			
 		
 		InputStream stream = this.getClass().getClassLoader().getResourceAsStream("tournamentData.txt");
 		
@@ -39,9 +39,9 @@ public class RepositoryInitialization{
     	//scanner.useDelimiter("\\||\\n?\\n|\\r");
 		List<Stage> stageList = new ArrayList<Stage>();
 		Stage sectionalStage =  new Stage(StageType.SECTIONAL, sectionalStageHeader, "");
-		Stage regionalStage = new Stage(StageType.REGIONAL, regionalStageHeader, "Feeder Sectionals:");
-		Stage semiStateStage = new Stage(StageType.SEMISTATE, semiStateStageHeader,"Feeder Regionals:");
-		Stage stateFinalStage = new Stage(StageType.STATEFINAL, stateFinalStageHeader,"Feeder Semi-states:");
+		Stage regionalStage = new Stage(StageType.REGIONAL, regionalStageHeader, "Feeder Sectionals: ");
+		Stage semiStateStage = new Stage(StageType.SEMISTATE, semiStateStageHeader,"Feeder Regionals: ");
+		Stage stateFinalStage = new Stage(StageType.STATEFINAL, stateFinalStageHeader,"Feeder Semi-states: ");
 		String date;
 		String time;
 		String location;
@@ -90,7 +90,7 @@ public class RepositoryInitialization{
 			}
 			//sScanner scanner = new Scanner();
 		}
-		Tournament girls2017Tournament = new Tournament("2017-2018 Girls Cross Country Tournament", TournamentParticipants.GIRLS);
+		Tournament girls2017Tournament = new Tournament("2017-2018 Girls Cross Country", TournamentParticipants.GIRLS);
 		girls2017Tournament.addStage(sectionalStage);
 		girls2017Tournament.addStage(regionalStage);
 		girls2017Tournament.addStage(semiStateStage);

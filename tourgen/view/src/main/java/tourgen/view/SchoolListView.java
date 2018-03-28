@@ -13,6 +13,7 @@ import tourgen.util.ISchoolListView;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Observable;
 import java.util.Vector;
 
 import javax.swing.JMenuBar;
@@ -28,6 +29,7 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 	private SchoolManager manager;
 	private JScrollPane scrollPane;
 	private JMenuItem mntmEdit;
+	private JMenuItem mntmRemove;
 	public SchoolListView(ActionListener listAddListener, 
 			ActionListener listEditListener, 
 			ActionListener listRemoveListener, 
@@ -35,7 +37,7 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 			SchoolManager managerArg) {
 		manager = managerArg;
 		setTitle("School List");
-		this.setSize(483,463);
+		this.setBounds(300,100,400,700);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -53,7 +55,7 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 		mnSchool.add(mntmEdit);
 		mntmEdit.addActionListener(listEditListener);
 		
-		JMenuItem mntmRemove = new JMenuItem("Remove");
+		mntmRemove = new JMenuItem("Remove");
 		mnSchool.add(mntmRemove);
 		mntmRemove.addActionListener(listRemoveListener);
 		
@@ -112,6 +114,20 @@ public class SchoolListView extends JFrame implements ISchoolListView{
 			if (jList.getSelectedIndex() == -1){
 				mntmEdit.setEnabled(false);
 			} else mntmEdit.setEnabled(true);
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void toggleRemoveButtonBasedOnState() {
+		if (jList.getSelectedIndex() == -1){
+			mntmRemove.setEnabled(false);
+		} else mntmRemove.setEnabled(true);
+		
 	}
 }
 	

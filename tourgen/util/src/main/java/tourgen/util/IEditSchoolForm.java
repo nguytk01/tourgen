@@ -1,6 +1,8 @@
 package tourgen.util;
 
-public interface IEditSchoolForm extends IAddSchoolForm{
+import java.util.Observer;
+
+public interface IEditSchoolForm extends IAddSchoolForm, Observer{
 
 	void display(Object school);
 }

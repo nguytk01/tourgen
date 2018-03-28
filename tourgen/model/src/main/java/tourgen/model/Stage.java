@@ -34,8 +34,12 @@ private String participantsHeader;
     
     public String getReport() {
     	StringBuilder builder = new StringBuilder();
+    	builder.append(stageHeader);
     	for (int i = 1; i <= stageMeets.size(); i++) {
-    		builder.append(stageMeets.get(i-1).getReport(i,participantsHeader));
+    		if (stageMeets.size() < 2) 
+    			builder.append(stageMeets.get(i-1).getReport(0,participantsHeader));
+    		else 
+    			builder.append(stageMeets.get(i-1).getReport(i,participantsHeader));
     	}
     	return builder.toString();
     }
