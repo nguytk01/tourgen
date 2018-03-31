@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/nguytk01/tourgen.svg?branch=master)](https://travis-ci.org/nguytk01/tourgen)
 
 # tourgen
-Indiana High School Cross Country Tournament Generator
+Indiana High School Cross Country Tournament Generator.
 
 
 ## How to build without maven ##
