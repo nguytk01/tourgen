@@ -4,13 +4,13 @@
   <groupId>tourgen.model</groupId>
   <artifactId>model</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <!--<version>1.0</version>-->
   <name>model</name>
   <url>http://maven.apache.org</url>
   <parent>
 	<groupId>tourgen</groupId>
 	<artifactId>tourgen-container</artifactId>
-	<version>1.0</version>
+	<version>0.5</version>
   </parent>
   <dependencies>
     <dependency>
@@ -22,12 +22,29 @@
 	<dependency>
 		<groupId>tourgen.util</groupId>
 		<artifactId>util</artifactId>
-		<version>1.0</version>
+		<version>0.5</version>
     </dependency>
 		<dependency>
     <groupId>org.apache.commons</groupId>
     <artifactId>commons-text</artifactId>
     <version>1.3</version>
+</dependency>
+		<dependency>
+			<groupId>com.google.maps</groupId>
+			<artifactId>google-maps-services</artifactId>
+			<version>0.2.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+	<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>1.7.25</version>
+    <scope>test</scope>
+	</dependency>
+	<dependency>
+    <groupId>joda-time</groupId>
+    <artifactId>joda-time</artifactId>
+    <version>2.9.9</version>
 </dependency>
   </dependencies>
   <build>
@@ -35,9 +52,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.20.1</version>
+        <version>2.21.0</version>
         <configuration>
-          <skipTests>true</skipTests>
+          <skipTests>false</skipTests>
+		  <trimStackTrace>false</trimStackTrace>
         </configuration>
       </plugin>
     </plugins>

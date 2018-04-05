@@ -4,13 +4,13 @@
   <groupId>tourgen.controller</groupId>
   <artifactId>controller</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <!--<version>1.0</version>-->
   <name>controller</name>
   <url>http://maven.apache.org</url>
   <parent>
 	<groupId>tourgen</groupId>
 	<artifactId>tourgen-container</artifactId>
-	<version>1.0</version>
+	<version>0.5</version>
   </parent>
   <dependencies>
     <dependency>
@@ -22,7 +22,7 @@
 	<dependency>
 		<groupId>tourgen.model</groupId>
 		<artifactId>model</artifactId>
-		<version>1.0</version>
+		<version>0.5</version>
 	</dependency>
   </dependencies>
 </project>

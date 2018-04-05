@@ -4,15 +4,15 @@
  
 <groupId>tourgen</groupId>
 <artifactId>tourgen-container</artifactId>
-<version>1.0</version>
+<!--<version>0.5</version>-->
 
 <packaging>pom</packaging>
-<name>model</name>
+<name>abc</name>
 
 <parent>
   <groupId>tourgen</groupId>
   	<artifactId>tourgen</artifactId>
-  	<version>1.0</version>
+  	<version>0.5</version>
 </parent>
 
 <modules>

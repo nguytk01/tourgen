@@ -5,11 +5,11 @@
   <parent>
     <groupId>tourgen</groupId>
     <artifactId>tourgen-container</artifactId>
-    <version>1.0</version>
+    <version>0.5</version>
   </parent>
   <groupId>tourgen.util</groupId>
   <artifactId>util</artifactId>
-  <version>1.0</version>
+  <!--<version>0.5</version>-->
   <name>util</name>
   <url>http://maven.apache.org</url>
   <dependencies>
