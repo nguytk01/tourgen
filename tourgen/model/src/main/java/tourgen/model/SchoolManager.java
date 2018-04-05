@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class SchoolManager extends java.util.Observable{
     private java.util.ArrayList<School> schoolList;
     private HashMap<String, School> schoolHashMap;
-	private Repository repo;
+    private Repository repo;
 	
     public SchoolManager(Repository repoArg) {
 		repo = repoArg;
@@ -101,9 +101,18 @@ public class SchoolManager extends java.util.Observable{
     }
     
     public void initSchools() {
-    	InputStream stream = this.getClass().getClassLoader().getResourceAsStream("schoolDataAlphabetData.txt");
+    	InputStream stream = this.getClass()
+		.getClassLoader()
+		.getResourceAsStream("schoolDataAlphabetData.txt");
+	InputStream coordinatesStream = this.getClass()
+		.getClassLoader()
+		.getResourceAsStream("schoolCoordinatesData.csv");
+
     	Scanner scanner = new Scanner(stream);
     	scanner.useDelimiter("\\||\\r?\\n|\\r");
+
+	Scanner coordinatesFileScanner = new Scanner(coordinatesStream);
+
     	School school;
     	while (scanner.hasNext()) {
     		int enrollmentNumber = Integer.parseInt(scanner.next());
@@ -112,10 +121,13 @@ public class SchoolManager extends java.util.Observable{
     		String streetAddress = scanner.next();
     		String cityName = scanner.next();
     		int zipCode = Integer.parseInt(scanner.next());
+
     		//scanner.next();
-    		
     		school = new School(displayName, schoolName, streetAddress, cityName, zipCode, enrollmentNumber, true, false);
-    		schoolHashMap.put(displayName, school);
+ 		double[] coor = getCoordinatesFromStream(coordinatesFileScanner);	
+		school.getSchoolLoc().setLatitude(coor[0]);
+		school.getSchoolLoc().setLongitude(coor[1]);
+   		schoolHashMap.put(displayName, school);
     		schoolList.add(school);
     	}
     	
@@ -126,11 +138,26 @@ public class SchoolManager extends java.util.Observable{
 			e.printStackTrace();
 		}
     }
+
+    double[] getCoordinatesFromStream(Scanner streamLineScanner){
+	String line = null;
+	String[] lineComponents;
+	double[] result = null;
+	if (streamLineScanner.hasNextLine()){
+		line = streamLineScanner.nextLine();
+		//System.out.println("line is " + line);
+		lineComponents = line.split("\\|");
+		//System.out.println("line length: " + lineComponents.length);
+		result = new double[]{Double.parseDouble(lineComponents[4]),
+		       			Double.parseDouble(lineComponents[5])};
+		return result;
+	} else return null;
+
+    }
     School getSchoolFromDisplayName(String displayName) {
     	if (schoolHashMap.containsKey(displayName.trim()) == false) {
     		System.out.println("cannot find school in schoolManager >" + displayName + "<");
     		return null;
     	} else return schoolHashMap.get(displayName.trim());
-    	
     }
 }
