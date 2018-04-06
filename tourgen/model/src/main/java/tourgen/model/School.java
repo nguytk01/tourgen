@@ -7,12 +7,12 @@ public class School{
     private Location diffLoc;
     private String name;
     private Location schoolLoc;
-    private Location hostLoc;
+    //private Location hostLoc;
     private int enroll;
     private boolean bStatus;
     private boolean gStatus;
-    private Location hostAdd;
-    private String  hostName;
+    //private Location hostAdd;
+    //private String  hostName;
     private String displayName;
 
 
@@ -131,7 +131,7 @@ public class School{
      gStatus = girls;
  }
 
- public Location getHostAdd()
+ /*public Location getHostAdd()
  {
      return hostAdd;
  }
@@ -150,7 +150,7 @@ public class School{
  {
      hostName = host;
  }
-
+*/
 
  public boolean equals(Object obj)
  {

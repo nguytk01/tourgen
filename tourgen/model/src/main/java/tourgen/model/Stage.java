@@ -130,4 +130,10 @@ private String participantsHeader;
         return boysMeetingTime;
     }
 
- }
+    @Deprecated
+    public List<Meet> getListMeet()
+    {
+    	return Collections.unmodifiableList(stageMeets);
+    }
+
+}

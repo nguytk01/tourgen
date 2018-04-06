@@ -20,6 +20,7 @@ import tourgen.model.Stage;
 import tourgen.model.StageType;
 import tourgen.model.Tournament;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.event.MouseInputListener;
 import javax.tools.DocumentationTool.Location;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -38,20 +40,45 @@ import java.util.Set;
  *
  * @author Daniel Stahr
  */
-public class Main3{
+public class MapDriver{
 	
 	
 
-	private static School schoolTest = new School("Fake","Officialy Fake", "2300", "fort Wayne", 4500,180,true,false);
-	private static Meet meet;
-	private static ArrayList<School> schools = new ArrayList<School>();
-	private static tourgen.model.Location a =  schoolTest.getSchoolLoc();
-	private static Set<SwingWaypoint> waypoints;
-    
-	private static WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
-	private static JXMapViewer mapViewer;
+	private  School schoolTest = new School("Fake","Officialy Fake", "2300", "fort Wayne", 4500,180,true,false);
+	private  Meet meet;
+	private  ArrayList<School> schools = new ArrayList<School>();
 	
-    public static void main3(Repository tournament) {
+	private  tourgen.model.Location tempLoc =  schoolTest.getSchoolLoc();
+	private  Set<SwingWaypoint> waypoints;
+    
+	private WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
+	private JXMapViewer mapViewer;
+	
+	private Meet CurrentMeet;
+	private Repository repo;
+	
+	List<Meet> meetList;
+	
+	private ArrayList<GeoPosition> Geo = new ArrayList<GeoPosition>();
+	
+//	private int j,i;
+	
+	public MapDriver() {
+		
+		meetList = new ArrayList<Meet>();
+        waypoints = new HashSet<SwingWaypoint>();
+        TileFactoryInfo info = new OSMTileFactoryInfo();
+        DefaultTileFactory tileFactory = new DefaultTileFactory(info);
+        mapViewer = new JXMapViewer();
+        mapViewer.setTileFactory(tileFactory);
+        JFrame frame = new JFrame("THE MAP");
+        frame.getContentPane().add(mapViewer);
+        frame.setSize(800, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+	}
+	
+    public MapDriver(Repository tournament) {
         // Create a TileFactoryInfo for OSM
         TileFactoryInfo info = new OSMTileFactoryInfo();
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);
@@ -64,41 +91,32 @@ public class Main3{
         // Setup JXMapViewer
         mapViewer = new JXMapViewer();
         mapViewer.setTileFactory(tileFactory);
-
+        repo = tournament;
         
         //Meet class
        // Meet meet = new Meet(new Stage(StageType.SECTIONAL,"",""),new Date());
         
         //meet = tournament.getGirlList().get(0).getStageList().get(0).getListMeet().get(0);
         
-        displayMeets(tournament, meet);
+       
+        //meet = displayHostSchool(tournament, meet);
         
-
-        schools = meet.getParticipatingSchool();
+        //meetList = tournament.getGirlList().get(0).getStageList().get(0).getListMeet();
+        meetList = new ArrayList<Meet>();
         
-        GeoPosition TestLoc = new GeoPosition(schools.get(0).getSchoolLoc().getLatitude(),schools.get(0).getSchoolLoc().getLongitude());
-
-		
-		
+       // schools = meet.getParticipatingSchool();
+        
+        
+      
         ////Geo position school
         
         //example locations for schools///////
 		
-		a.setLatitude(41);
-		a.setLongitude(-85);
-		
-		GeoPosition fortwayne = new GeoPosition(a.getLatitude(),  a.getLongitude());
-		
-		//click on a school Pin to get the index in the school List >> Replace 1 for i as any index
-		tourgen.model.Location Host = schools.get(0).getHostLoc();
-		//gets the host location
-		//hihglight host pin
-		//GeoPosition HostPin = new GeoPosition(Host.getLatitude(),  Host.getLongitude());
-		//Set<SwingWaypoint> HostPointTest = new HashSet<SwingWaypoint>(Arrays.asList(
-          //      new SwingWaypoint(schools.get(1).getHostName(), HostPin)));
+		tempLoc.setLatitude(41);
+		tempLoc.setLongitude(-85);
 		
 		
-		
+		GeoPosition fortwayne = new GeoPosition(tempLoc.getLatitude(),  tempLoc.getLongitude());
 		
 		////////////////////////////////////
 
@@ -116,26 +134,46 @@ public class Main3{
         mapViewer.addKeyListener(new PanKeyListener(mapViewer));
        
         
-      
-        
-        
         
         // Create waypoints from the geo-positions
-        waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
-                new SwingWaypoint("Fort Wayne", fortwayne)));
-     
-       
+        waypoints = new HashSet<SwingWaypoint>();
+
+      
         
         
         //Iteration for all schools to be displayed from the File of database of shcools and pins
-        for(int i = 0; i < schools.size() ; i++)
-		{
-			a = schools.get(i).getSchoolLoc();
-			GeoPosition points = new GeoPosition(a.getLatitude(),a.getLongitude());
-			waypoints.add(new SwingWaypoint(schools.get(i).getDisplayName(),points));
-		}
-      
         
+        
+       /* for(j= 0 ; j < meetList.size() ; j++)
+        {
+        	
+        	 for(i =0; i < meetList.get(j).getParticipatingSchool().size() ; i++)
+             {
+             	schools = meetList.get(j).getParticipatingSchool();
+             	//schools.set(i, meet.getParticipatingSchool().get(i));
+
+             	tempLoc = schools.get(i).getSchoolLoc();
+    			GeoPosition points = new GeoPosition(tempLoc.getLatitude(),  tempLoc.getLongitude());
+    			System.out.println(meetList.get(j).getHostSchool().getName());
+    			System.out.println("1" + schools);
+    			System.out.println("2" + schools.get(i));
+    			System.out.println("2.5" + schools.get(i).getDisplayName());
+    			System.out.println("3" + meetList.get(j));
+    			System.out.println("4" + waypoints);
+    			waypoints.add(new SwingWaypoint(schools.get(i).getDisplayName(), points, meetList.get(j)));
+    			
+    			
+    			
+             }
+        	 
+        	 
+        }*/
+
+        
+        
+        
+        
+       
         // Set the overlay painter
         /*WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
          * 
@@ -154,33 +192,85 @@ public class Main3{
         
         
         // Display the viewer in a JFrame
-        JFrame frame = new JFrame("JXMapviewer2 Example 7");
+        JFrame frame = new JFrame("THE MAP");
         frame.getContentPane().add(mapViewer);
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
     
-    public static void displayMeets(Repository tournaments ,Meet meeting)
+    public Meet displayHostSchool(Repository tournaments ,Meet meeting)
     {
+    	
     	 meeting = tournaments.getGirlList().get(0).getStageList().get(0).getListMeet().get(0);
-    	 
+    	 return meeting;
+
     }
     
-    public static void displaySchools(Repository tournaments ,Meet meet)
-    {
-    	 //tourgen.model.Location loc = tournaments.getGirlList().get(0).getStageList().get(0).getListMeet().get(0).getParticipatingSchool().get(0).getSchoolLoc().;
-    	 
-    }
     
-    public static Meet getMapPin()
-    {
-    	return meet;
-    }
-    
-   
-    		
-    
+  public void addMeet(Meet meet)
+  {
+	  
+	  meetList.add(meet);
+	  refresh();
+
+  }
+  
+  public void showMeetList(List<Meet> meets)
+  {
+	  meetList.clear();
+	  mapViewer.removeAll();
+	  waypoints.clear();
+	  
+	  meetList.addAll(meets);
+	  for (SwingWaypoint w : waypoints) {
+          mapViewer.add(w.getButton());
+      }
+	  
+	  waypoints.addAll(waypoints);
+	  
+	  
+  }
+  
+  
+  
+  public void refresh()
+  {
+	  
+	  waypoints.clear();
+	  
+	  for(int j= 0 ; j < meetList.size() ; j++) {
+		  for(int i =0; i < meetList.get(j).getParticipatingSchool().size() ; i++)
+		  	{
+			      	schools = meetList.get(j).getParticipatingSchool();
+			      	//schools.set(i, meet.getParticipatingSchool().get(i));
+			
+			      	tempLoc = schools.get(i).getSchoolLoc();
+						GeoPosition points = new GeoPosition(tempLoc.getLatitude(),  tempLoc.getLongitude());
+						/*System.out.println(meetList.get(j).getHostSchool().getName());
+						System.out.println("1" + schools);
+						System.out.println("2" + schools.get(i));
+						System.out.println("2.5" + schools.get(i).getDisplayName());
+						System.out.println("3" + meetList.get(j));
+						System.out.println("4" + waypoints);*/
+						waypoints.add(new SwingWaypoint(schools.get(i).getDisplayName(), points, meetList.get(j)));
+			
+			
+      	}
+	  }
+	  swingWaypointPainter.setWaypoints(waypoints);
+      
+      mapViewer.setOverlayPainter(swingWaypointPainter);
+      
+
+      // Add the JButtons to the map viewer
+      for (SwingWaypoint w : waypoints) {
+          mapViewer.add(w.getButton());
+      }
+  }
+  
+  
+
     
     
 }

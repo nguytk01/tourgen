@@ -30,11 +30,15 @@ import tourgen.util.IRepositoryView;
 import tourgen.util.ISchoolListView;
 
 public class Main {
+	
+	private static MapDriver mainMap = new MapDriver();
+	
 	public static void main(String[] args) {
 		FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
 		setUIFont(resource);
 		Repository repo = new Repository();
 		SchoolManager manager = new SchoolManager(repo);
+		
 		
 		
 		AddSchoolFormListeners addSchoolFormListeners = new AddSchoolFormListeners();
@@ -89,6 +93,11 @@ public class Main {
 		manager.addObserver(editForm);
 		manager.addObserver(addForm);
 		manager.addObserver(schoolList);
+		
+		
+		
+		mainMap = new MapDriver(repo);
+		
 		
 	}
 	

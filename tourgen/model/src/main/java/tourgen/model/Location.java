@@ -1,6 +1,6 @@
 package tourgen.model;
 
-class Location {
+public class Location {
 	private String streetAddress;
 	private String cityName;
 	private int zipCode;
@@ -9,7 +9,7 @@ class Location {
 	private String name;
 	private String latLonString;
 
-	Location (String streetAddressArg, String cityNameArg, int zipCodeArg){
+	public Location (String streetAddressArg, String cityNameArg, int zipCodeArg){
 		streetAddress = streetAddressArg;
 		cityName = cityNameArg;
 		zipCode = zipCodeArg;
