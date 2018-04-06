@@ -7,6 +7,7 @@ class Location {
 	private double latitude;
 	private double longitude;
 	private String name;
+	private String latLonString;
 
 	Location (String streetAddressArg, String cityNameArg, int zipCodeArg){
 		streetAddress = streetAddressArg;
@@ -56,30 +57,40 @@ class Location {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-	
-	 public boolean equals(Object obj)
-	 {
-     if(obj instanceof Location) {
-       
-    	Location loc = (Location) obj;
-        if(streetAddress.equals(loc.getStreetAddress())
-        		&& cityName.equals(loc.getCityName()) 
-        		&& (zipCode == loc.getZipCode()))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    } else {
-        return false;
-    }
 
- }
+	public String getCoordinateString(){
+		if (this.longitude != 0 && this.latitude != 0){
+			if (this.latLonString == null){
+				this.latLonString = new Double(this.latitude).toString() + "," + new Double(this.longitude).toString();
+			}
+			return this.latLonString;
+		} else return null;
+	}
+
+	public boolean equals(Object obj) {
+		if(obj instanceof Location) {
+		Location loc = (Location) obj;
+			if(streetAddress.equals(loc.getStreetAddress())
+        			&& cityName.equals(loc.getCityName()) 
+	        		&& (zipCode == loc.getZipCode())) {
+				return true;
+			} else {
+				return false;
+			}
+	    	} else {
+			return false;
+		}
+	}
+
 	public String getName() {
 		return name;
 	}
+
+	void setName(String nameArg){
+		name = nameArg;		
+	}
 	
-	
+	public int hashCode(){
+		return name.hashCode();
+	}
 }
