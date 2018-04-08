@@ -46,7 +46,7 @@ public class MapDriver{
 
 	private  School schoolTest = new School("Fake","Officialy Fake", "2300", "fort Wayne", 4500,180,true,false);
 	private  Meet meet;
-	private  ArrayList<School> schools = new ArrayList<School>();
+	private  List<School> schools = new ArrayList<School>();
 	
 	private  tourgen.model.Location tempLoc =  schoolTest.getSchoolLoc();
 	private  Set<SwingWaypoint> waypoints;
