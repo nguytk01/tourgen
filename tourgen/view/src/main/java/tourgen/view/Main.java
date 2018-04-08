@@ -80,8 +80,8 @@ public class Main {
 		manager.initSchools();
 		schoolList.populate();
 		
-		RepositoryInitialization init = new RepositoryInitialization();
-		init.init(repo, manager);
+		//RepositoryInitialization init = new RepositoryInitialization();
+		RepositoryInitialization.init(repo, manager);
 		repositoryView.populate();
 		
 		reportFrame.showView();
