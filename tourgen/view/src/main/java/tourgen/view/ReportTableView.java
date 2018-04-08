@@ -31,7 +31,9 @@ public class ReportTableView extends JPanel implements IReportTableView{
 	List<CollapsibleStagePanel> stageList;
 	Listener listener;
 	JPanel northPanel;
+	ReportContentRenderer reportContentRenderer;
 	public ReportTableView() {
+		reportContentRenderer = new ReportContentRenderer();
 		//setSize(400,400);
 		this.setBorder(new LineBorder(new Color(0, 0, 0)));
 		northPanel = new JPanel();
@@ -70,7 +72,7 @@ public class ReportTableView extends JPanel implements IReportTableView{
 	public void display(Object arg) {
 		Tournament tournament = (Tournament) arg;
 		if (stageList.isEmpty() == false) stageList.clear();
-		HashMap<String, String> stageDescriptionsMap = tournament.getReport();
+		HashMap<String, String> stageDescriptionsMap = reportContentRenderer.getTournamentReport(tournament);
 		for (String stageTitle : stageDescriptionsMap.keySet()) {
 			CollapsibleStagePanel panel = new CollapsibleStagePanel(stageTitle,stageDescriptionsMap.get(stageTitle), listener);	
 			stageList.add(panel);
