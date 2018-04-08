@@ -84,24 +84,25 @@ public final class RepositoryInitialization{
 		Stage sectionalStage =  new Stage(StageType.SECTIONAL, "", "");
 		sectionalStage.setAdmissionFee(5);
 		sectionalStage.setEntryListDeadline(
-				new org.joda.time.DateTime(2017, 10, 2, 0, 0, 
-						org.joda.time.DateTimeZone.forID("America/New_York")));
+				new org.joda.time.DateTime(2017, 10, 2, 16, 0, 
+						org.joda.time.DateTimeZone.forID("America/Fort_Wayne")));
 		sectionalStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 7, 0, 0 ));
 		sectionalStage.setRacesConductedAtHost(true);
 		sectionalStage.setNoteOnChangingHostLocation(true);
 		sectionalStage.setAdvancementRule("The top 10 individuals from "
-				+ "non‐advancing teams and the first 5 qualifying teams from "
+				+ "non-advancing teams and the first 5 qualifying teams from "
 				+ "each sectional shall advance to designated regionals.");
 		
 		Stage regionalStage =  new Stage(StageType.REGIONAL, "", "Feeder sectionals:");
+
 		regionalStage.setAdmissionFee(5);
 		regionalStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 21, 0, 0 ));
 		regionalStage.setRacesConductedAtHost(true);
 		regionalStage.setNoteOnChangingHostLocation(true);
 		regionalStage.setAdvancementRule("The top 10 individuals from "
-				+ "non‐advancing teams and the first 5 qualifying teams from "
-				+ "each sectional shall advance to designated regionals.");
-		
+				+ "non-advancing teams and the first 5 qualifying teams from "
+				+ "each regional shall advance to designated semi-states.");
+	
 		Stage semiStateStage =  new Stage(StageType.SEMISTATE, "", "Feeder regionals:");
 		semiStateStage.setAdmissionFee(10);
 		semiStateStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 28, 0, 0 ));
@@ -109,17 +110,14 @@ public final class RepositoryInitialization{
 		semiStateStage.setNoteOnChangingHostLocation(true);
 		semiStateStage.setAdvancementRule("The top 10 individuals from "
 				+ "non‐advancing teams and the first 5 qualifying teams from "
-				+ "each sectional shall advance to designated regionals.");
-		
+				+ "each semi-state shall advance to state finals.");
+
 		Stage stateFinalStage =  new Stage(StageType.STATEFINAL, "", "Feeder semi-states:");
 		stateFinalStage.setAdmissionFee(5);
 		stateFinalStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 7, 0, 0 ));
 		stateFinalStage.setRacesConductedAtHost(true);
 		stateFinalStage.setNoteOnChangingHostLocation(true);
-		stateFinalStage.setAdvancementRule("The top 10 individuals from "
-				+ "non‐advancing teams and the first 5 qualifying teams from "
-				+ "each sectional shall advance to designated regionals.");
-		
+
 		String date;
 		String time;
 		String location;
@@ -186,13 +184,16 @@ public final class RepositoryInitialization{
 		}*/
 		
 		Meet meet = new Meet(parentStage, null);
-		org.joda.time.DateTime[] meetTimes = getMeetTime(time, stageMeetDate);
+		org.joda.time.DateTime[] meetTimes = getMeetTime(time, parentStage.getStageMeetDate());
 		
 		if (host.equals("Null")) meet.setHostSchool(null); 
 		else meet.setHostSchool(manager.getSchoolFromDisplayName(host));
 		meet.setMeetingTime(meetTimes[0]);
 		meet.setAlternateMeetingTime(meetTimes[1]);
 		
+		//System.out.println(parentStage.getStageTitle());
+		//System.out.println("Host school " + host);
+		//System.out.println(meet.getHostSchool());
 		if (location.equals("Null")) meet.setLocation(meet.getHostSchool().getSchoolLoc());
 		else meet.setLocation(new Location(location));
 		String[] teams = participants.split(",");
