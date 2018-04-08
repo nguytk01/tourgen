@@ -128,7 +128,7 @@ public class SchoolManager extends java.util.Observable{
     }
     School getSchoolFromDisplayName(String displayName) {
     	if (schoolHashMap.containsKey(displayName.trim()) == false) {
-    		System.out.println(">" + displayName + "<");
+    		System.out.println("cannot find school in schoolManager >" + displayName + "<");
     		return null;
     	} else return schoolHashMap.get(displayName.trim());
     	
