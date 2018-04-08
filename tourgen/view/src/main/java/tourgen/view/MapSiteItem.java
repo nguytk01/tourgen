@@ -13,7 +13,7 @@ public class MapSiteItem {
 	private GeoPosition gpsLocation;
 	private School school;
 	private Location loc;
-	private SwingWaypoint2 swingWaypoint;
+	private SwingWaypoint swingWaypoint;
 	private MapPanel mapPanel;
 	public MapSiteItem(MapPanel panel, School schoolParam) {
 	
@@ -22,16 +22,12 @@ public class MapSiteItem {
 		loc = school.getSchoolLoc();
 		mapPanel = panel;
 		gpsLocation = new GeoPosition(loc.getLatitude(), loc.getLongitude());
-		swingWaypoint = new SwingWaypoint2(this, "",gpsLocation);
+		//swingWaypoint = new SwingWaypoint2(this, "",gpsLocation);
 		
 	}
 
 	
-
-
-
-
-	public SwingWaypoint2 getSwingWaypoint() {
+	public SwingWaypoint getSwingWaypoint() {
 		return swingWaypoint;
 	}
 	
