@@ -91,7 +91,7 @@ private String participantsHeader;
     }
     
     void setRacesConductedAtHost(boolean arg) {
-    	
+    	racesConductedAtHost = arg;
     }
     
     void setNoteOnChangingHostLocation(boolean arg) {
