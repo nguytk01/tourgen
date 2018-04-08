@@ -62,7 +62,7 @@ public class ReportContentRenderer {
     	String[] arr = null;
 
     	String numbering = new Integer(number).toString() + ". ";
-    	if (number < 1)
+    	if (number < 1 )
     		arr = new String[] {};
     	else
     	if (meet.getLocation().getName().equals("Null")){
@@ -108,7 +108,9 @@ public class ReportContentRenderer {
     	//System.out.println(wrappedLine);
     	//wrappedLine = wrappedLine.replaceAll("</b>", "</span>");
 
-    	builder.append(wrappedLine);
+	String  meetFeederHeader = "<b>" + meet.getFeederHeader() + "</b>";
+    	builder.append(meetFeederHeader);
+	builder.append(wrappedLine);
     	builder.append("<br/><br/>");
 		return builder.toString();
     }
@@ -197,10 +199,15 @@ public class ReportContentRenderer {
 	builder.append(stageMeetDate + newlineCharacter);
 	builder.append("<b>Admission: </b>");
 	builder.append(admissionFee + newlineCharacter);
-	builder.append("<b>Advancement: </b>");
-	builder.append(advancementRule + newlineCharacter);
-	builder.append("<b>Note: </b>");
-       builder.append(note + newlineCharacter + newlineCharacter);	
+	if (advancementRule != null && advancementRule.length() > 0) {
+		advancementRule = WordUtils.wrap(advancementRule, 120, "<br/>", false);
+		builder.append("<b>Advancement: </b>");
+		builder.append(advancementRule + newlineCharacter);
+	}
+	if (advancementRule != null & note.length() > 0) {
+		builder.append("<b>Note: </b>");
+	       builder.append(note + newlineCharacter + newlineCharacter);	
+	}
        return builder.toString();
     }
 

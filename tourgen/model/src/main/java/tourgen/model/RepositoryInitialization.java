@@ -51,30 +51,6 @@ public final class RepositoryInitialization{
 	private static String easternUSTimeZone = "America/New_York";
 
 	public static void init(Repository repo, SchoolManager manager){
-		String sectionalStageHeader = "<b>Entry List Deadline:</b> Monday, Oct. 2, 2017, 4 pm ET / 3 pm CT.<br />" + 
-				"<br />" + 
-				"<b>Date:</b> Saturday, Oct. 7, 2017.<br />" + 
-				"<b>Admission:</b> $5 per person.<br />" + 
-				"<b>Advancement:</b> The top 10 individuals from non‐advancing teams and the first 5 qualifying teams from each sectional shall advance <br/>to designated regionals.<br />" + 
-				"<b>Note:</b> Races conducted at host school unless indicated otherwise.<br/><br/>";
-		
-		String regionalStageHeader = "<b>Date:</b> Saturday, Oct. 14, 2017.<br />" + 
-				"<b>Admission</b>: $5 per person.<br />" + 
-				"<b>Advancement</b>: The top 10 individuals from non‐advancing teams and the first 5 qualifying teams from each regional shall advance <br/>to designated semi‐states.<br />" + 
-				"<b>Note</b>: Races conducted at host school unless indicated otherwise.<br/><br/>";
-		
-		String semiStateStageHeader = "<b>Date:</b> Saturday, Oct. 21, 2017.<br />" + 
-				"<b>Admission</b>: $5 per person.<br />" + 
-				"<b>Advancement</b>: The top 10 individuals from non-advancing teams and the first 6 qualifying teams from each semi-state shall advance <br/>to the state finals.<br />" + 
-				"<b>Note</b>: Races conducted at host school unless indicated otherwise.<br/><br/>";
-		
-		String stateFinalStageHeader = "<b>Date:</b> Saturday, Oct. 28, 2017.<br />"
-				+ "<b>Site</b>: LaVern Gibson Championship Cross Country Course, Wabash Valley Sports Center, 599 S. Tabortown Road, <br/>Terre Haute, IN  47803.<br/>"
-				+ "<b><u><a href=\"http://www.ihsaa.org/Portals/0/boys%20sports/crosscountry/LaVern%20Gibson%205%20K%20Course.pdf\">Course Layout</a></u></b><br />" + 
-				"<b>Times</b>: Boys at 1 pm ET; Girls at 1:45 pm ET.<br />" + 
-				"<b>Admission</b>: $10 per person.<br/>";
-			
-		
 		InputStream stream = RepositoryInitialization.class.getClassLoader().getResourceAsStream("tournamentData.txt");
 		
     	Scanner scanner = new Scanner(stream);
@@ -96,7 +72,7 @@ public final class RepositoryInitialization{
 		Stage regionalStage =  new Stage(StageType.REGIONAL, "", "Feeder sectionals:");
 
 		regionalStage.setAdmissionFee(5);
-		regionalStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 21, 0, 0 ));
+		regionalStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 14, 0, 0 ));
 		regionalStage.setRacesConductedAtHost(true);
 		regionalStage.setNoteOnChangingHostLocation(true);
 		regionalStage.setAdvancementRule("The top 10 individuals from "
@@ -104,8 +80,8 @@ public final class RepositoryInitialization{
 				+ "each regional shall advance to designated semi-states.");
 	
 		Stage semiStateStage =  new Stage(StageType.SEMISTATE, "", "Feeder regionals:");
-		semiStateStage.setAdmissionFee(10);
-		semiStateStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 28, 0, 0 ));
+		semiStateStage.setAdmissionFee(5);
+		semiStateStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 21, 0, 0 ));
 		semiStateStage.setRacesConductedAtHost(true);
 		semiStateStage.setNoteOnChangingHostLocation(true);
 		semiStateStage.setAdvancementRule("The top 10 individuals from "
@@ -113,8 +89,8 @@ public final class RepositoryInitialization{
 				+ "each semi-state shall advance to state finals.");
 
 		Stage stateFinalStage =  new Stage(StageType.STATEFINAL, "", "Feeder semi-states:");
-		stateFinalStage.setAdmissionFee(5);
-		stateFinalStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 7, 0, 0 ));
+		stateFinalStage.setAdmissionFee(10);
+		stateFinalStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 28, 0, 0 ));
 		stateFinalStage.setRacesConductedAtHost(true);
 		stateFinalStage.setNoteOnChangingHostLocation(true);
 

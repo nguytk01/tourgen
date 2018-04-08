@@ -57,6 +57,16 @@ public class Meet {
 		this.meetStage = arg;
 	}
 
+	public String getFeederHeader(){
+		switch (meetStage.getStageType()) {
+			case SECTIONAL : return "";
+			case REGIONAL: return "Feeder Sectionals: ";
+			case SEMISTATE: return "Feeder Regionals:";
+			case STATEFINAL: return "Feeder Semi-states:";
+			default: return "Stage";
+		}
+	}
+
 	@Deprecated
 	void setDate(Date arg) {
 		this.meetDate = arg;

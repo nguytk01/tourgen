@@ -62,6 +62,7 @@ private String participantsHeader;
     	}
     }
 
+    
     public List<Meet> getMeetList(){
         return Collections.unmodifiableList(stageMeets);
     }
@@ -134,6 +135,10 @@ private String participantsHeader;
     public List<Meet> getListMeet()
     {
     	return Collections.unmodifiableList(stageMeets);
+    }
+
+    public StageType getStageType(){
+	    return stageType;
     }
 
 }
