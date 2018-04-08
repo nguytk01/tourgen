@@ -101,7 +101,4 @@ public class Meet {
 		return meetingTime;
 	}
 
-	public ArrayList<School> getParticipatingSchool() {
-		return participantSchools;
-	}
 }

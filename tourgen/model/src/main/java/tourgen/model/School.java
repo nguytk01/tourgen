@@ -7,12 +7,17 @@ public class School{
     private Location diffLoc;
     private String name;
     private Location schoolLoc;
-    //private Location hostLoc;
+    
+    @Deprecated
+    private Location hostLoc;
     private int enroll;
     private boolean bStatus;
     private boolean gStatus;
-    //private Location hostAdd;
-    //private String  hostName;
+
+    @Deprecated
+    private Location hostAdd;
+    @Deprecated
+    private String  hostName;
     private String displayName;
 
 
