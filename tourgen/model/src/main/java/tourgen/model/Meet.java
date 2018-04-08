@@ -1,19 +1,30 @@
 package tourgen.model;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.text.WordUtils;
 
-class Meet {
+public class Meet {
 //SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
- Stage meetStage;
+	/**
+	 * Example:
+	 * 1. Hammond Gavit (14) | 10/10:45 am CT (Riverside Park) | Boys Results | Girls Results 
+	*Calumet, East Chicago Central, Gary West Side, Griffith, Hammond, Hammond Academy of Science & Technology, Hammond Bishop Noll, Hammond Clark, Hammond Gavit, Hammond Morton, Highland, Lake Central, Munster, Whiting.
+	 */
+ private Stage meetStage;
+ @Deprecated
  Date meetDate;
- String meetingTime;
+ 
+ org.joda.time.DateTime meetingTime;
+ org.joda.time.DateTime alternateMeetingTime;
  School hostSchool;
  java.util.ArrayList<School> participantSchools;
  Location location;
+
 
      Meet(Stage meetStage, Date meetDate) {
         this.meetStage = meetStage;
@@ -22,7 +33,7 @@ class Meet {
         //String meetDate = dtFormat(meetDate);
     }
 
-     School getHostSchool() {
+    public School getHostSchool() {
         return hostSchool;
     }
 
@@ -30,6 +41,7 @@ class Meet {
         return meetStage;
     }
 
+    @Deprecated
      Date getDate() {
         return meetDate;
     }
@@ -42,78 +54,48 @@ class Meet {
         this.meetStage = arg;
     }
 
+    @Deprecated
     void setDate(Date arg) {
         this.meetDate = arg;
     }
 
-     void addSchooltoMeet(School newSchool) {
+    void addSchooltoMeet(School newSchool) {
         participantSchools.add(newSchool);
     }
 
-     void removeSchoolfromMeet(School oldSchool) {
+    void removeSchoolfromMeet(School oldSchool) {
         participantSchools.remove(oldSchool);
     }
-     
-     String getmeetingTime(String time) {
+
+    org.joda.time.DateTime getmeetingDate() {
     	 return meetingTime;
-     }
-     
-     void setMeetingTime(String time) {
+    }
+
+    void setMeetingTime(org.joda.time.DateTime time) {
     	 meetingTime = time;
-     }
+    }
+
+    void setAlternateMeetingTime(org.joda.time.DateTime time){
+      alternateMeetingTime = time;
+    }
 
      void setLocation(Location arg) {
     	 location = arg;
      }
      
-     public String getReport(int number, String participationHeader) {
-    	String hostSchoolString;
-    	StringBuilder builder = new StringBuilder();
-    	if (hostSchool == null) hostSchoolString = "";
-    	else hostSchoolString = hostSchool.getDisplayName();
-    	String[] arr = null;
-    	
-    	String numbering = new Integer(number).toString() + ". ";
-    	if (number < 1)
-    		arr = new String[] {};
-    	else
-    	if (location.equals("Null"))
-    	arr = new String[] {numbering, hostSchoolString, 
-    					" (", new Integer(participantSchools.size()).toString(), ") ",
-    					"| ",
-    					meetingTime, " (",location.getName(), ")", "<br/>"};
-    	else {
-    		arr = new String[] {numbering, hostSchoolString, 
-					" (", new Integer(participantSchools.size()).toString(), ") ",
-					"| ",
-					meetingTime, "<br/>"};
-    	}
-    	builder.append("<b>");
-    	for (int i = 0; i < arr.length; i++) {
-    		builder.append(arr[i]);
-    	}
-    	builder.append("</b>");
-    	StringBuilder builder2 = new StringBuilder();
-    	String hostSchoolName = "";
-    	for (int i = 0; i < participantSchools.size(); i++) {
-    		if (hostSchool == participantSchools.get(i)) {
-    			hostSchoolName = participantSchools.get(i).getDisplayName();
-    			hostSchoolName = hostSchoolName.replaceAll(" ", "*");
-    			builder2.append(hostSchoolName);
-    		}
-    		else builder2.append( participantSchools.get(i).getDisplayName());
-    		if (i < participantSchools.size()-1)
-    			builder2.append(", ");
-    	}
-    	String wrappedLine = WordUtils.wrap(builder2.toString(), 120, "<br/>", false);
-    	//System.out.println(wrappedLine);
-    	wrappedLine = wrappedLine.replace(hostSchoolName, "<span style=\"background-color: yellow\">" + hostSchoolName + "</span>");
-    	wrappedLine = wrappedLine.replace("*", " ");
-    	//System.out.println(wrappedLine);
-    	//wrappedLine = wrappedLine.replaceAll("</b>", "</span>");
-    	builder.append(participationHeader);
-    	builder.append(wrappedLine);
-    	builder.append("<br/><br/>");
-		return builder.toString();
+     public Location getLocation() {
+    	 return location;
+     }
+     
+     public List<School> getParticipatingSchool(){
+    	 return Collections.unmodifiableList(participantSchools);
+     }
+     
+     public org.joda.time.DateTime getAlternateMeetingTime(){
+    	 return alternateMeetingTime;
+     }
+     
+     public org.joda.time.DateTime getPrimaryMeetingTime(){
+    	 return meetingTime;
      }
 }

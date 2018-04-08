@@ -21,6 +21,7 @@ public class School{
 	displayName = displayNameArg;
     name = schoolName;
     schoolLoc = new Location(streetAddress, cityName, zipCode);
+    schoolLoc.setName(displayName);
     enroll = enrollmentNumber;
     gStatus = gStatus;
     bStatus = bStatus;
@@ -32,6 +33,7 @@ public class School{
 	 enroll = info.getEnrollmentNumber();
 	 bStatus = info.getBoysParticipationStatus();
 	 gStatus = info.getGirlsParticipationStatus();
+    	schoolLoc.setName(displayName);
 	 displayName = info.getSchoolDisplayName();
  }
 
@@ -44,6 +46,7 @@ public class School{
  {
      schoolID = ID;
  }
+ @Deprecated
  public Location getDiffLoc()
  {
      return diffLoc;
@@ -61,6 +64,7 @@ public class School{
      return schoolLoc.getZipCode();
  }
 
+ @Deprecated
  public void setDiffLoc(Location loc)
  {
      diffLoc = loc;
@@ -85,11 +89,13 @@ public class School{
      this.name = name;
  }
 
+ @Deprecated
  public Location getHostLoc()
  {
      return hostLoc;
  }
  
+ @Deprecated
  public void setHostLoc(Location loc)
  {
      hostLoc = loc;
