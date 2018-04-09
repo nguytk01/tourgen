@@ -32,3 +32,11 @@ Indiana High School Cross Country Tournament Generator.
 ** In `General Settings`, change `Tab Policy` to `Spaces Only`
 ** `Tab size` to be `4`
 ** `Indentation size` to `2`
+
+## How to get the report of checkstyle ##
+Since Eclipse only shows you errors on the file level (as far as I know), you can use maven to generate checkstyle report.
+In order to get the report, follow the following steps:
+1. Run `mvn install` if you have maven installed, or `mvnw.cmd install` on the experimental branch to install the jars built from this project into the local repository.
+2. Run `mvn site`
+3. Look at the tourgen/target/checkstyle-result.xml from the project's root directory.
+
