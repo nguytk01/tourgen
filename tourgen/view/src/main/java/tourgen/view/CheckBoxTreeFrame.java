@@ -49,23 +49,25 @@ import tourgen.model.School;
 import tourgen.model.Stage;
 import tourgen.model.Tournament;
 
-
 /**
  * @version 1.1 01/15/99
  */
 public class CheckBoxTreeFrame extends JFrame {
-	
-	private Repository repo;
-  
-  public CheckBoxTreeFrame(Repository repository, CheckBoxTreeCustomCheckBoxListener checkBoxListener, MapController controller) {
+
+  private Repository repo;
+
+  public CheckBoxTreeFrame(Repository repository, 
+      CheckBoxTreeCustomCheckBoxListener checkBoxListener,
+      MapController controller) {
     super("Tournament 2017-18 Tree");
-    setBounds(50,50,650,650);
+    setBounds(50, 50, 650, 650);
     repo = repository;
 
-    getContentPane().add( new CheckBoxTreePanel(checkBoxListener, repository, controller),    BorderLayout.CENTER);
-    //getContentPane().add(panel, BorderLayout.EAST);
-    //getContentPane().add(textPanel, BorderLayout.SOUTH);
+    getContentPane().add(
+        new CheckBoxTreePanel(checkBoxListener, repository, controller), 
+        BorderLayout.CENTER);
+    // getContentPane().add(panel, BorderLayout.EAST);
+    // getContentPane().add(textPanel, BorderLayout.SOUTH);
   }
-
 
 }

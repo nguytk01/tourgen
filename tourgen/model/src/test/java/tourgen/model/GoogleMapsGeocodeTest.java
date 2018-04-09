@@ -11,13 +11,13 @@ import com.google.maps.errors.ApiException;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
-import tourgen.model.GoogleMapsAPIKey;
+import tourgen.model.GoogleMapsApiKey;
 
 public class GoogleMapsGeocodeTest{
 	@Test
 	public void GoogleMapsGeocodeTest(){
 		GeoApiContext.Builder builder = new GeoApiContext.Builder()
-			.apiKey(GoogleMapsAPIKey.getGoogleGeocodeApiKey());
+			.apiKey(GoogleMapsApiKey.getGoogleGeocodeApiKey());
 		GeoApiContext context = builder.build();
 		GeocodingApiRequest request = new GeocodingApiRequest(context);
 		GeocodingResult[] response = null;

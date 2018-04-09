@@ -34,108 +34,113 @@ import tourgen.util.IReportTableView;
 import tourgen.util.IRepositoryView;
 import tourgen.util.ISchoolListView;
 
-import tourgen.model.RepositoryIOManager;
+import tourgen.model.RepositoryIoManager;
 
 import javax.swing.JFrame;
-public class Main {
-	
-	private static MapDriver mainMap;// = new MapDriver();
-	
-	public static void main(String[] args) {
-		FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
-		setUIFont(resource);
-		Repository repo = null;
-		SchoolManager manager = null; //new SchoolManager(repo);
-		manager = RepositoryIOManager.loadEverythingUp();
-		if (manager == null) {
-			repo = Repository.getInstance();
-			manager = new SchoolManager(repo);	
-			manager.initSchools();
-			RepositoryInitialization.init(repo, manager);
-		} else{
-			repo = manager.getRepository();
-		}
-		
-		AddSchoolFormListeners addSchoolFormListeners = new AddSchoolFormListeners();
-		ActionListener addListener = addSchoolFormListeners.new AddSchoolListener();
-		
-		EditSchoolFormListeners editSchoolFormListeners = new EditSchoolFormListeners();
-		ActionListener editListener = editSchoolFormListeners.new EditSchoolListener();
-		
-		SchoolListListeners listListeners = new SchoolListListeners();
-		ActionListener listAddButtonListener = listListeners.new AddSchoolListener();
-		ActionListener listEditButtonListener = listListeners.new EditSchoolListener();
-		ActionListener listRemoveButtonListener = listListeners.new RemoveSchoolListener();
-		MenuListener listShowSchoolListActions = listListeners.new ShowSchoolListActionsListener();
-		IAddSchoolForm addForm = new AddSchoolForm(addListener);
-		IEditSchoolForm editForm = new EditSchoolForm(editListener);
-		ISchoolListView schoolList =  new SchoolListView(listAddButtonListener, listEditButtonListener, listRemoveButtonListener, listShowSchoolListActions, manager);
-		
-		AddSchoolUseCaseController addUseCaseController = new AddSchoolUseCaseController(manager,schoolList,addForm,addSchoolFormListeners);
-		EditSchoolUseCaseController editUseCaseController = new EditSchoolUseCaseController(manager,schoolList,editForm,editSchoolFormListeners);
-		RemoveSchoolUseCaseController removeUseCaseController = new RemoveSchoolUseCaseController(schoolList, listListeners, manager);
-		listListeners.setAddController(addUseCaseController);
-		listListeners.setEditController(editUseCaseController);
-		listListeners.setRemoveController(removeUseCaseController);
-		schoolList.setRemoveUseCaseController(removeUseCaseController);
-		
-		ReportViewListeners reportViewListeners = new ReportViewListeners();
-		ActionListener reportViewManageSchoolButtonListener = reportViewListeners.new ManageSchoolButtonListener();
-		ListSelectionListener tournamentSelectionListener = reportViewListeners.new TournamentSelectionListener();
-		
-		IReportTableFrame reportFrame = new ReportTableFrame(reportViewManageSchoolButtonListener,tournamentSelectionListener,repo);
-		IReportTableView reportTableView = reportFrame.returnReportTableView();
-		IRepositoryView repositoryView = reportFrame.returnRepositoryView();
-		
-		
-		
-		ReportViewUseCaseController  reportViewUseCaseController = new ReportViewUseCaseController(reportTableView, repositoryView);
-		reportViewListeners.setCoordinator(reportViewUseCaseController);
-		ViewSchoolListUseCaseController viewSchoolListUseCaseController = new ViewSchoolListUseCaseController(schoolList);
-		listListeners.setViewSchoolListController(viewSchoolListUseCaseController);
-		reportViewListeners.setViewSchoolListUseCaseController(viewSchoolListUseCaseController);
-		
-		//manager.initSchools();
-		//schoolList.populate();
-		
-		//RepositoryInitialization init = new RepositoryInitialization();
-		//RepositoryInitialization.init(repo, manager);
-		repositoryView.populate();
-		
-		reportFrame.showView();
-		
-		manager.addObserver(editForm);
-		manager.addObserver(addForm);
-		manager.addObserver(schoolList);
-		
-		MapDriver mainMap = new MapDriver(repo);
-		MapController mapController2 = new MapController(null,mainMap); 
-		CheckBoxTreeCustomCheckBoxListener checkBoxListener2 = new CheckBoxTreeCustomCheckBoxListener(mapController2);
-		mainMap.setCon(checkBoxListener2, mapController2);
-		mainMap.initGUI();
 
-		/* test GMapPinButton resources in Maven case */
-		//JFrame myframe = new JFrame();
-		//myframe.setBounds(50,50,300,300);
-		//myframe.add(new GMapPinButton("hey"));
-		//myframe.setVisible(true);
-	}
-	
-	public static void setUIFont (javax.swing.plaf.FontUIResource f) {
-		java.util.Enumeration keys = UIManager.getLookAndFeelDefaults().keys();
-		UIDefaults uiDef = UIManager.getLookAndFeelDefaults();
-		uiDef.put("Menu.font", f);
-		UIManager.put("Menu.font", f);
-		uiDef.put("MenuItem.font", f);
-		UIManager.put("MenuItem.font", f);
-		uiDef.put("TextPane.font", f);
-		UIManager.put("TextPane.font", f);
-		uiDef.put("defaultFont", 20);
-		while (keys.hasMoreElements()) {
-			Object key = keys.nextElement();
-			Object value = UIManager.get(key);
-			if (value instanceof javax.swing.plaf.FontUIResource)
-				uiDef.put(key, f);
-		}	
-	}
+public class Main {
+
+  private static MapDriver mainMap;// = new MapDriver();
+
+  public static void main(String[] args) {
+    FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
+    setUIFont(resource);
+    Repository repo = null;
+    SchoolManager manager = null; // new SchoolManager(repo);
+    manager = RepositoryIoManager.loadEverythingUp();
+    if (manager == null) {
+      repo = Repository.getInstance();
+      manager = new SchoolManager(repo);
+      manager.initSchools();
+      RepositoryInitialization.init(repo, manager);
+    } else {
+      repo = manager.getRepository();
+    }
+
+    AddSchoolFormListeners addSchoolFormListeners = new AddSchoolFormListeners();
+    ActionListener addListener = addSchoolFormListeners.new AddSchoolListener();
+
+    EditSchoolFormListeners editSchoolFormListeners = new EditSchoolFormListeners();
+    ActionListener editListener = editSchoolFormListeners.new EditSchoolListener();
+
+    SchoolListListeners listListeners = new SchoolListListeners();
+    ActionListener listAddButtonListener = listListeners.new AddSchoolListener();
+    ActionListener listEditButtonListener = listListeners.new EditSchoolListener();
+    ActionListener listRemoveButtonListener = listListeners.new RemoveSchoolListener();
+    MenuListener listShowSchoolListActions = listListeners.new ShowSchoolListActionsListener();
+    IAddSchoolForm addForm = new AddSchoolForm(addListener);
+    IEditSchoolForm editForm = new EditSchoolForm(editListener);
+    ISchoolListView schoolList = new SchoolListView(listAddButtonListener, listEditButtonListener,
+        listRemoveButtonListener, listShowSchoolListActions, manager);
+
+    AddSchoolUseCaseController addUseCaseController = new AddSchoolUseCaseController(manager, schoolList, addForm,
+        addSchoolFormListeners);
+    EditSchoolUseCaseController editUseCaseController = new EditSchoolUseCaseController(manager, schoolList, editForm,
+        editSchoolFormListeners);
+    RemoveSchoolUseCaseController removeUseCaseController = new RemoveSchoolUseCaseController(schoolList, listListeners,
+        manager);
+    listListeners.setAddController(addUseCaseController);
+    listListeners.setEditController(editUseCaseController);
+    listListeners.setRemoveController(removeUseCaseController);
+    schoolList.setRemoveUseCaseController(removeUseCaseController);
+
+    ReportViewListeners reportViewListeners = new ReportViewListeners();
+    ActionListener reportViewManageSchoolButtonListener = reportViewListeners.new ManageSchoolButtonListener();
+    ListSelectionListener tournamentSelectionListener = reportViewListeners.new TournamentSelectionListener();
+
+    IReportTableFrame reportFrame = new ReportTableFrame(reportViewManageSchoolButtonListener,
+        tournamentSelectionListener, repo);
+    IReportTableView reportTableView = reportFrame.returnReportTableView();
+    IRepositoryView repositoryView = reportFrame.returnRepositoryView();
+
+    ReportViewUseCaseController reportViewUseCaseController = new ReportViewUseCaseController(reportTableView,
+        repositoryView);
+    reportViewListeners.setCoordinator(reportViewUseCaseController);
+    ViewSchoolListUseCaseController viewSchoolListUseCaseController = new ViewSchoolListUseCaseController(schoolList);
+    listListeners.setViewSchoolListController(viewSchoolListUseCaseController);
+    reportViewListeners.setViewSchoolListUseCaseController(viewSchoolListUseCaseController);
+
+    // manager.initSchools();
+    // schoolList.populate();
+
+    // RepositoryInitialization init = new RepositoryInitialization();
+    // RepositoryInitialization.init(repo, manager);
+    repositoryView.populate();
+
+    reportFrame.showView();
+
+    manager.addObserver(editForm);
+    manager.addObserver(addForm);
+    manager.addObserver(schoolList);
+
+    MapDriver mainMap = new MapDriver(repo);
+    MapController mapController2 = new MapController(null, mainMap);
+    CheckBoxTreeCustomCheckBoxListener checkBoxListener2 = new CheckBoxTreeCustomCheckBoxListener(mapController2);
+    mainMap.setCon(checkBoxListener2, mapController2);
+    mainMap.initGUI();
+
+    /* test GMapPinButton resources in Maven case */
+    // JFrame myframe = new JFrame();
+    // myframe.setBounds(50,50,300,300);
+    // myframe.add(new GMapPinButton("hey"));
+    // myframe.setVisible(true);
+  }
+
+  public static void setUIFont(javax.swing.plaf.FontUIResource f) {
+    java.util.Enumeration keys = UIManager.getLookAndFeelDefaults().keys();
+    UIDefaults uiDef = UIManager.getLookAndFeelDefaults();
+    uiDef.put("Menu.font", f);
+    UIManager.put("Menu.font", f);
+    uiDef.put("MenuItem.font", f);
+    UIManager.put("MenuItem.font", f);
+    uiDef.put("TextPane.font", f);
+    UIManager.put("TextPane.font", f);
+    uiDef.put("defaultFont", 20);
+    while (keys.hasMoreElements()) {
+      Object key = keys.nextElement();
+      Object value = UIManager.get(key);
+      if (value instanceof javax.swing.plaf.FontUIResource)
+        uiDef.put(key, f);
+    }
+  }
 }

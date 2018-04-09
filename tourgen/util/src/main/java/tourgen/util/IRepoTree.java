@@ -5,10 +5,9 @@ import java.util.Set;
 
 public interface IRepoTree {
 
-	
-	//public void nodeSelectionEvent();
-	//public Set getMeetList();
+  // public void nodeSelectionEvent();
+  // public Set getMeetList();
 
-	public Set<ICheckNode> getMeetList();
-	
+  public Set<ICheckNode> getMeetList();
+
 }

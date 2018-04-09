@@ -11,7 +11,7 @@ import com.google.maps.DistanceMatrixApiRequest;
 import org.joda.time.Duration;
 import org.joda.time.Instant;
 
-import tourgen.model.GoogleMapsAPIKey;
+import tourgen.model.GoogleMapsApiKey;
 
 import static org.junit.Assert.assertEquals;
 
@@ -21,7 +21,7 @@ import java.util.Arrays;
 public class GoogleMapsDistanceAPITest{
 	@Test
 	public void testDistanceAPI(){
-		GeoApiContext.Builder builder = new GeoApiContext.Builder().apiKey(GoogleMapsAPIKey.getGoogleDistanceMatrixApiKey());
+		GeoApiContext.Builder builder = new GeoApiContext.Builder().apiKey(GoogleMapsApiKey.getGoogleDistanceMatrixApiKey());
 		GeoApiContext context = builder.build();
 		DistanceMatrix matrix = null;
 		try {

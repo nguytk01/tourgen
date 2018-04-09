@@ -15,7 +15,7 @@ public class GoogleMapsApiHelperTests{
 		String destPlaceID1 = "place_id:ChIJidwp0ZhvbYgRRO17SY_cCBA";
 		String destPlaceID2 = "place_id:ChIJb6T-dVuobIgRfz7RNYfKz0Y";
 		GoogleMapsApiHelper helper = new GoogleMapsApiHelper();
-		long[][] distance = helper.getDistanceWithPlaceID(new String[]{originPlaceID}, new String[]{destPlaceID1, destPlaceID2});
+		long[][] distance = helper.getDistanceWithPlaceId(new String[]{originPlaceID}, new String[]{destPlaceID1, destPlaceID2});
 		assertTrue(distance != null);
 		assertTrue(distance[0].length == 2);
 		assertTrue(distance[0][0] > 0);

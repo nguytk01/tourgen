@@ -1,4 +1,5 @@
 package tourgen.model;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,112 +10,133 @@ import java.util.List;
 import org.apache.commons.text.WordUtils;
 
 public class Meet implements Serializable {
-//SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  // SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	/**
-	 * Example:
-	 * 1. Hammond Gavit (14) | 10/10:45 am CT (Riverside Park) | Boys Results | Girls Results 
-	*Calumet, East Chicago Central, Gary West Side, Griffith, Hammond, Hammond Academy of Science & Technology, Hammond Bishop Noll, Hammond Clark, Hammond Gavit, Hammond Morton, Highland, Lake Central, Munster, Whiting.
-	 */
-	private Stage meetStage;
-	@Deprecated
-	Date meetDate;
- 
-	org.joda.time.DateTime meetingTime;
-	org.joda.time.DateTime alternateMeetingTime;
-	School hostSchool;
-	java.util.ArrayList<School> participantSchools;
-	Location location;
+  /**
+   * Example: 1. Hammond Gavit (14) | 10/10:45 am CT (Riverside Park) | Boys
+   * Results | Girls Results Calumet, East Chicago Central, Gary West Side,
+   * Griffith, Hammond, Hammond Academy of Science & Technology, Hammond Bishop
+   * Noll, Hammond Clark, Hammond Gavit, Hammond Morton, Highland, Lake Central,
+   * Munster, Whiting.
+   */
+  private Stage meetStage;
+  @Deprecated
+  Date meetDate;
 
-	public Meet(Stage meetStage, Date meetDate) {
-		this.meetStage = meetStage;
-		this.meetDate = meetDate;
-		participantSchools = new java.util.ArrayList<School>();
-		//String meetDate = dtFormat(meetDate);
-	}
+  org.joda.time.DateTime meetingTime;
+  org.joda.time.DateTime alternateMeetingTime;
+  School hostSchool;
+  java.util.ArrayList<School> participantSchools;
+  Location location;
 
-	public Meet() {
-		participantSchools = new java.util.ArrayList<School>();
-	}
+  /**
+   * construct a meet from the given stage and the given meetDate.
+   * The meetDate paramter is obsolete. It is there for backward compatibility.
+   * The client can pass a null object.
+   * @param meetStage the stage of the meet.
+   * @param meetDate the meeting date of the meet (obsolete).
+   */
+  public Meet(Stage meetStage, Date meetDate) {
+    this.meetStage = meetStage;
+    this.meetDate = meetDate;
+    participantSchools = new java.util.ArrayList<School>();
+    // String meetDate = dtFormat(meetDate);
+  }
 
-	public School getHostSchool() {
-		return hostSchool;
-	}
+  public Meet() {
+    participantSchools = new java.util.ArrayList<School>();
+  }
 
-	public Stage getStage() {
-		return meetStage;
-	}
+  public School getHostSchool() {
+    return hostSchool;
+  }
 
-	@Deprecated
-	public Date getDate() {
-		return meetDate;
-	}
+  public Stage getStage() {
+    return meetStage;
+  }
 
-	public void setHostSchool(School hostSchoolArg) {
-		this.hostSchool = hostSchoolArg;
-	}
+  @Deprecated
+  public Date getDate() {
+    return meetDate;
+  }
 
-	public  void setStage(Stage arg) {
-		this.meetStage = arg;
-	}
+  public void setHostSchool(School hostSchoolArg) {
+    this.hostSchool = hostSchoolArg;
+  }
 
-	public String getFeederHeader(){
-		switch (meetStage.getStageType()) {
-			case SECTIONAL : return "";
-			case REGIONAL: return "Feeder Sectionals: ";
-			case SEMISTATE: return "Feeder Regionals:";
-			case STATEFINAL: return "Feeder Semi-states:";
-			default: return "Stage";
-		}
-	}
+  public void setStage(Stage arg) {
+    this.meetStage = arg;
+  }
 
-	@Deprecated
-	void setDate(Date arg) {
-		this.meetDate = arg;
-	}
+  /**
+   * Return the prefix String before the listing of the schools of each meet.
+   * @return a string
+   */
+  public String getFeederHeader() {
+    switch (meetStage.getStageType()) {
+      case SECTIONAL:
+        return "";
+      case REGIONAL:
+        return "Feeder Sectionals: ";
+      case SEMISTATE:
+        return "Feeder Regionals:";
+      case STATEFINAL:
+        return "Feeder Semi-states:";
+      default:
+        return "Stage";
+    }
+  }
 
-	org.joda.time.DateTime getmeetingDate() {
-		return meetingTime;
-	}
+  @Deprecated
+  void setDate(Date arg) {
+    this.meetDate = arg;
+  }
 
-	void setMeetingTime(org.joda.time.DateTime time) {
-		meetingTime = time;
-	}
-	public void addSchooltoMeet(School newSchool) {
-		participantSchools.add(newSchool);
-	}
+  org.joda.time.DateTime getmeetingDate() {
+    return meetingTime;
+  }
 
-	public void removeSchoolfromMeet(School oldSchool) {
-		participantSchools.remove(oldSchool);
-	}
+  void setMeetingTime(org.joda.time.DateTime time) {
+    meetingTime = time;
+  }
 
-	void setAlternateMeetingTime(org.joda.time.DateTime time){
-		alternateMeetingTime = time;
-	}
+  public void addSchooltoMeet(School newSchool) {
+    participantSchools.add(newSchool);
+  }
 
-	public void setLocation(Location arg) {
-		location = arg;
-	}
+  public void removeSchoolfromMeet(School oldSchool) {
+    participantSchools.remove(oldSchool);
+  }
 
-	public Location getLocation() {
-		return location;
-	}
+  void setAlternateMeetingTime(org.joda.time.DateTime time) {
+    alternateMeetingTime = time;
+  }
 
-	public List<School> getParticipatingSchool(){
-		return Collections.unmodifiableList(participantSchools);
-	}
+  public void setLocation(Location arg) {
+    location = arg;
+  }
 
-	public org.joda.time.DateTime getAlternateMeetingTime(){
-		return alternateMeetingTime;
-	}
+  public Location getLocation() {
+    return location;
+  }
 
-	public org.joda.time.DateTime getPrimaryMeetingTime(){
-		return meetingTime;
-	}
+  public List<School> getParticipatingSchool() {
+    return Collections.unmodifiableList(participantSchools);
+  }
 
-	public String toString() {
-		if (hostSchool != null) 
-			return hostSchool.getDisplayName();
-		else return location.getName();
-	}
+  public org.joda.time.DateTime getAlternateMeetingTime() {
+    return alternateMeetingTime;
+  }
+
+  public org.joda.time.DateTime getPrimaryMeetingTime() {
+    return meetingTime;
+  }
+
+  public String toString() {
+    if (hostSchool != null) {
+      return hostSchool.getDisplayName();
+    } else {
+      return location.getName();
+    }
+  }
 }

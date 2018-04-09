@@ -10,13 +10,13 @@ import com.google.maps.errors.ApiException;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
-import tourgen.model.GoogleMapsAPIKey;
+import tourgen.model.GoogleMapsApiKey;
 
 public class GooglePlacesAPITest{
 	@Test
 	public void GooglePlacesAPITest(){
 		GeoApiContext.Builder builder = new GeoApiContext.Builder()
-			.apiKey(GoogleMapsAPIKey.getGooglePlacesApiKey());
+			.apiKey(GoogleMapsApiKey.getGooglePlacesApiKey());
 
 		GeoApiContext context = builder.build();
 		PlacesSearchResponse response;

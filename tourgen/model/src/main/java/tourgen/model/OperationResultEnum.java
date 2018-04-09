@@ -1,4 +1,5 @@
 package tourgen.model;
-public enum OperationResultEnum{
+
+public enum OperationResultEnum {
     SUCCESS, FAILURE;
 }

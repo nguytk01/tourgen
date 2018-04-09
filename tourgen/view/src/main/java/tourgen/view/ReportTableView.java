@@ -1,6 +1,5 @@
 package tourgen.view;
 
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,61 +26,64 @@ import java.awt.Color;
 
 /*import org.jdesktop.swingx.JXCollapsiblePane;*/
 
-public class ReportTableView extends JPanel implements IReportTableView{
-	List<CollapsibleStagePanel> stageList;
-	Listener listener;
-	JPanel northPanel;
-	ReportContentRenderer reportContentRenderer;
-	public ReportTableView() {
-		reportContentRenderer = new ReportContentRenderer();
-		//setSize(400,400);
-		this.setBorder(new LineBorder(new Color(0, 0, 0)));
-		northPanel = new JPanel();
-		
-		this.setLayout(new BorderLayout());
-		stageList = new ArrayList<CollapsibleStagePanel>();
-		
-		listener = new Listener();
-		this.add(northPanel,BorderLayout.NORTH);
-		northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
-	}
+public class ReportTableView extends JPanel implements IReportTableView {
+  List<CollapsibleStagePanel> stageList;
+  Listener listener;
+  JPanel northPanel;
+  ReportContentRenderer reportContentRenderer;
 
-	@Override
-	public void showReport() {
-		this.setVisible(true);
-	}
+  public ReportTableView() {
+    reportContentRenderer = new ReportContentRenderer();
+    // setSize(400,400);
+    this.setBorder(new LineBorder(new Color(0, 0, 0)));
+    northPanel = new JPanel();
 
-	public class Listener implements ActionListener{
+    this.setLayout(new BorderLayout());
+    stageList = new ArrayList<CollapsibleStagePanel>();
 
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			boolean collapsedState = false;
-			Object sourcePanel = null;
-			for (int i = 0; i < stageList.size(); i++) {
-				sourcePanel = ((JCustomizedButton) arg0.getSource()).getSwingParent();
-				if ( sourcePanel != stageList.get(i))
-					stageList.get(i).setCollapsed(true);
-				else stageList.get(i).setCollapsed(!stageList.get(i).isCollapsed());
-			}
-			repaint();
-		}
-		
-	}
+    listener = new Listener();
+    this.add(northPanel, BorderLayout.NORTH);
+    northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+  }
 
-	@Override
-	public void display(Object arg) {
-		Tournament tournament = (Tournament) arg;
-		if (stageList.isEmpty() == false) stageList.clear();
-		HashMap<String, String> stageDescriptionsMap = reportContentRenderer.getTournamentReport(tournament);
-		for (String stageTitle : stageDescriptionsMap.keySet()) {
-			CollapsibleStagePanel panel = new CollapsibleStagePanel(stageTitle,stageDescriptionsMap.get(stageTitle), listener);	
-			stageList.add(panel);
-			panel.setCollapsed(true);
-			northPanel.add(panel);
-		}
-		repaint();
-		revalidate();
+  @Override
+  public void showReport() {
+    this.setVisible(true);
+  }
 
-		
-	}
-}	
+  public class Listener implements ActionListener {
+
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+      boolean collapsedState = false;
+      Object sourcePanel = null;
+      for (int i = 0; i < stageList.size(); i++) {
+        sourcePanel = ((JCustomizedButton) arg0.getSource()).getSwingParent();
+        if (sourcePanel != stageList.get(i))
+          stageList.get(i).setCollapsed(true);
+        else
+          stageList.get(i).setCollapsed(!stageList.get(i).isCollapsed());
+      }
+      repaint();
+    }
+
+  }
+
+  @Override
+  public void display(Object arg) {
+    Tournament tournament = (Tournament) arg;
+    if (stageList.isEmpty() == false)
+      stageList.clear();
+    HashMap<String, String> stageDescriptionsMap = reportContentRenderer.getTournamentReport(tournament);
+    for (String stageTitle : stageDescriptionsMap.keySet()) {
+      CollapsibleStagePanel panel = new CollapsibleStagePanel(stageTitle, stageDescriptionsMap.get(stageTitle),
+          listener);
+      stageList.add(panel);
+      panel.setCollapsed(true);
+      northPanel.add(panel);
+    }
+    repaint();
+    revalidate();
+
+  }
+}

@@ -1,70 +1,81 @@
 package tourgen.model;
 
-public class SchoolFormMVCData {
-    private String streetAddress;
-    private String cityName;
-    private int zipCode;
-    private int enrollmentNumber;
-    private boolean girlsParticipationStatus;
-    private boolean boysParticipationStatus;
-    private String schoolName;
-    private Object observerTicket;
-    private String schoolDisplayName;
-    
-    public SchoolFormMVCData(Object observerTicketArg,
-                            String schoolDisplayName, 
-                            String schoolName,
-                            String streetAddress, String cityName, int zipCode,
-                            int enrollmentNumber,
-                            boolean girlsParticipationStatus, boolean boysParticipationStatus){
-        this.observerTicket = observerTicketArg;
-        this.schoolDisplayName = schoolDisplayName;
-        this.schoolName = schoolName;
-        this.streetAddress = streetAddress;
-        this.cityName = cityName;
-        this.zipCode = zipCode;
-        this.enrollmentNumber = enrollmentNumber;
-        this.girlsParticipationStatus = girlsParticipationStatus;
-        this.boysParticipationStatus = boysParticipationStatus;
-    }
+public class SchoolFormMvcData {
+  private String streetAddress;
+  private String cityName;
+  private int zipCode;
+  private int enrollmentNumber;
+  private boolean girlsParticipationStatus;
+  private boolean boysParticipationStatus;
+  private String schoolName;
+  private Object observerTicket;
+  private String schoolDisplayName;
+  
+  /**
+ * Data box to be passed from the view to the model.
+ * @param observerTicketArg a ticket for the observer know which message is for itself.
+ * @param schoolDisplayName the display name of the school
+ * @param schoolName the full name of the school
+ * @param streetAddress the street address of the school
+ * @param cityName the city name of the school
+ * @param zipCode the zip code of the school
+ * @param enrollmentNumber the enrollment number
+ * @param girlsParticipationStatus the participation in girls' tournament of the school
+ * @param boysParticipationStatus the participation in boys' tournament of the school
+ */
+  
+  public SchoolFormMvcData(Object observerTicketArg, String schoolDisplayName, 
+      String schoolName, String streetAddress,
+      String cityName, int zipCode, int enrollmentNumber, boolean girlsParticipationStatus,
+      boolean boysParticipationStatus) {
+    this.observerTicket = observerTicketArg;
+    this.schoolDisplayName = schoolDisplayName;
+    this.schoolName = schoolName;
+    this.streetAddress = streetAddress;
+    this.cityName = cityName;
+    this.zipCode = zipCode;
+    this.enrollmentNumber = enrollmentNumber;
+    this.girlsParticipationStatus = girlsParticipationStatus;
+    this.boysParticipationStatus = boysParticipationStatus;
+  }
 
-    public String getSchoolName(){
-        return schoolName;
-    }
-    
-    public String getSchoolDisplayName(){
-        return schoolDisplayName;
-    }
+  public String getSchoolName() {
+    return schoolName;
+  }
 
-    public String getStreetAddress(){
-        return streetAddress;
-    }
+  public String getSchoolDisplayName() {
+    return schoolDisplayName;
+  }
 
-    public String getCityName(){
-        return cityName;
-    }
+  public String getStreetAddress() {
+    return streetAddress;
+  }
 
-    public int getZipCode(){
-        return zipCode;
-    }
+  public String getCityName() {
+    return cityName;
+  }
 
-    public int getEnrollmentNumber(){
-        return enrollmentNumber;
-    }
-    
-    public void setEnrollmentNumber(int enrollmentNumber){
-        this.enrollmentNumber = enrollmentNumber;
-    }
+  public int getZipCode() {
+    return zipCode;
+  }
 
-    public boolean getBoysParticipationStatus(){
-        return boysParticipationStatus;
-    }
+  public int getEnrollmentNumber() {
+    return enrollmentNumber;
+  }
 
-    public boolean getGirlsParticipationStatus(){
-        return girlsParticipationStatus;
-    }
+  public void setEnrollmentNumber(int enrollmentNumber) {
+    this.enrollmentNumber = enrollmentNumber;
+  }
 
-    public Object getTicket(){
-        return observerTicket;
-    }
+  public boolean getBoysParticipationStatus() {
+    return boysParticipationStatus;
+  }
+
+  public boolean getGirlsParticipationStatus() {
+    return girlsParticipationStatus;
+  }
+
+  public Object getTicket() {
+    return observerTicket;
+  }
 }

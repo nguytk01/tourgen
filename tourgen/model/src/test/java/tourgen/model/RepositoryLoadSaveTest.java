@@ -33,8 +33,8 @@ public class RepositoryLoadSaveTest {
 		SchoolManager sm = new SchoolManager(Repository.getInstance());
 		sm.initSchools();
 		RepositoryInitialization.init(Repository.getInstance(), sm);
-		RepositoryIOManager.saveSchoolManager("saveX.bin", sm);
-		SchoolManager smn = (SchoolManager) RepositoryIOManager.loadSchoolManager("saveX.bin");
+		RepositoryIoManager.saveSchoolManager("saveX.bin", sm);
+		SchoolManager smn = (SchoolManager) RepositoryIoManager.loadSchoolManager("saveX.bin");
 		assertTrue(smn != null);
 		assertTrue(smn.getRepository().getBoyList().size() != 0);
 		assertTrue(smn.getRepository().getBoyList().get(0) != null);
