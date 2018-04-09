@@ -47,6 +47,14 @@ public final class RepositoryInitialization{
 	private static final org.joda.time.format.DateTimeFormatter singleHourFormatter = 
 			new org.joda.time.format.DateTimeFormatterBuilder()
 			.appendClockhourOfHalfday(1).toFormatter();
+	private static final org.joda.time.format.DateTimeFormatter singleHourAmPmTimeZoneFormatter = 
+			new org.joda.time.format.DateTimeFormatterBuilder()
+			.appendClockhourOfHalfday(1)
+			.appendLiteral(" ")
+			.appendHalfdayOfDayText()
+			.appendLiteral(" ")
+			.appendTimeZoneName(mapEtCtToTimeZone)
+			.toFormatter();
 	private static String centralUSTimeZone = "America/Chicago";
 	private static String easternUSTimeZone = "America/New_York";
 
@@ -131,7 +139,7 @@ public final class RepositoryInitialization{
 				meet = buildMeet(semiStateStage,manager,date, semiStateStage.getStageMeetDate(), time, location, host, participants);
 				semiStateStage.addMeetToStage(meet);
 			}
-			if (line.equals("State Finals")){
+			if (line.equals("State-Final")){
 				date = scanner.nextLine();
 				time = scanner.nextLine();
 				location = scanner.nextLine();
@@ -167,6 +175,10 @@ public final class RepositoryInitialization{
 		meet.setMeetingTime(meetTimes[0]);
 		meet.setAlternateMeetingTime(meetTimes[1]);
 		
+		if (parentStage.getStageType() == StageType.STATEFINAL){
+			parentStage.setBoysMeetingTime(meetTimes[1]);
+			parentStage.setGirlsMeetingTime(meetTimes[0]);
+		}	
 		//System.out.println(parentStage.getStageTitle());
 		//System.out.println("Host school " + host);
 		//System.out.println(meet.getHostSchool());
@@ -226,7 +238,8 @@ public final class RepositoryInitialization{
 				zerothSecond,
 				primaryMeetTimeTemp.getZone());
 		
-		if (primaryMeetTime.getHourOfDay() >=12) amOrPm = 12;
+		if (primaryMeetTime.getHourOfDay() >=12 
+				&& alternateMeetTimeTemp.getHourOfDay() < 12) amOrPm = 12;
 		org.joda.time.DateTime alternateMeetTime = new org.joda.time.DateTime(
 				stageMeetDate.getYear(), 
 				stageMeetDate.getMonthOfYear(), 

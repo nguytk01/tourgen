@@ -108,7 +108,7 @@ public class ReportContentRenderer {
     	//System.out.println(wrappedLine);
     	//wrappedLine = wrappedLine.replaceAll("</b>", "</span>");
 
-	String  meetFeederHeader = "<b>" + meet.getFeederHeader() + "</b>";
+	String  meetFeederHeader = "<b>" + meet.getFeederHeader() + "</b>" + " ";
     	builder.append(meetFeederHeader);
 	builder.append(wrappedLine);
     	builder.append("<br/><br/>");
@@ -116,6 +116,7 @@ public class ReportContentRenderer {
     }
 
     public String buildStageHeader(Stage stage){
+	if (stage.getStageType() == StageType.STATEFINAL) return buildStateFinalHeader(stage);
 	String entryListDeadline = "";
 	String stageMeetDate = "";
 	String admissionFee = "";
@@ -156,22 +157,17 @@ public class ReportContentRenderer {
 			.toFormatter();
 
 		entryListDeadline = 
-			"<b>Entry List Deadline: </b>"+
-			easternTimeEntryListDeadlineFormatter.print(entryListDeadlineDate)
-			.replace("EDT","ET")
-			.replace("CDT", "CT")
-			.replace("AM","am")
-			.replace("PM","pm") + 
-			"/" + 
-			centralTimeEntryListDeadlineFormatter.print(
-					entryListDeadlineDate.toDateTime(
-						DateTimeZone.forID("America/Chicago")))
-					.replace("EDT","ET")
-					.replace("CDT", "CT")
-					.replace("AM","am")
-					.replace("PM","pm")+
-			newlineCharacter +
-			newlineCharacter;
+			"<b>Entry List Deadline: </b>"
+			+ fixTimeFormat(
+				easternTimeEntryListDeadlineFormatter.print(
+				entryListDeadlineDate))
+			+ "/"  
+			+ fixTimeFormat(
+				centralTimeEntryListDeadlineFormatter.print(
+				entryListDeadlineDate.toDateTime(
+					DateTimeZone.forID("America/Chicago"))))
+			+ newlineCharacter
+			+ newlineCharacter;
 		
 	}
 	org.joda.time.format.DateTimeFormatter stageDateFormatter = 
@@ -185,7 +181,7 @@ public class ReportContentRenderer {
 			.appendYear(4,4)
 			.toFormatter();
 
-	stageMeetDate = stageDateFormatter.print(stage.getStageMeetDate()).replace("EDT","ET").replace("CDT", "CT").replace("AM","am").replace("PM","pm");
+	stageMeetDate = fixTimeFormat(stageDateFormatter.print(stage.getStageMeetDate()));
 	admissionFee = "$" + new DecimalFormat("0").format(stage.getAdmissionFee()) + " per person";
 	advancementRule = stage.getAdvancementRules();
 	if (stage.isRacesConductedAtHost()) {
@@ -233,8 +229,91 @@ public class ReportContentRenderer {
 				.appendLiteral(" ")
 				.appendHalfdayOfDayText();
 	//System.out.println("alternate meet time " + meet.getAlternateMeetingTime());
-	String meetAlternateTime = meetAlternateDateFormatterBuilder.toFormatter().print(meet.getAlternateMeetingTime()).replace("EDT","ET").replace("CDT", "CT").replace("AM","am").replace("PM","pm");
-	String meetPrimaryTime = meetPrimaryDateFormatterBuilder.toFormatter().print(meet.getPrimaryMeetingTime()).replace("EDT","ET").replace("CDT", "CT").replace("AM","am").replace("PM","pm");
+	String meetAlternateTime = fixTimeFormat(meetAlternateDateFormatterBuilder.toFormatter().print(meet.getAlternateMeetingTime()));
+	String meetPrimaryTime = fixTimeFormat(meetPrimaryDateFormatterBuilder.toFormatter().print(meet.getPrimaryMeetingTime()));
 	return meetAlternateTime + "/" + meetPrimaryTime;
     }
+
+    public String buildStateFinalHeader(Stage stage){
+	StringBuilder builder = new StringBuilder();
+	org.joda.time.format.DateTimeFormatter singleHourAmPmTimeZoneFormatter = 
+			new org.joda.time.format.DateTimeFormatterBuilder()
+			.appendClockhourOfHalfday(1)
+			.appendLiteral(" ")
+			.appendHalfdayOfDayText()
+			.appendLiteral(" ")
+			.appendTimeZoneShortName(mapEtCtToTimeZone)
+			.toFormatter();
+	org.joda.time.format.DateTimeFormatter stageDateFormatter = 
+			new DateTimeFormatterBuilder()
+			.appendDayOfWeekText()
+			.appendLiteral(", ")
+			.appendMonthOfYearShortText()
+			.appendLiteral(". ")
+			.appendDayOfMonth(1)
+			.appendLiteral(", ")
+			.appendYear(4,4)
+			.toFormatter();
+
+	String stageMeetDate = fixTimeFormat(stageDateFormatter.print(stage.getStageMeetDate()));
+
+	org.joda.time.format.DateTimeFormatterBuilder boysGirlsFormatterBuilder = 
+			new DateTimeFormatterBuilder()
+			.appendClockhourOfHalfday(1)
+			.appendLiteral(":")
+			.appendMinuteOfHour(1)
+			.appendLiteral(" ")
+			.appendHalfdayOfDayText()
+			.appendLiteral(" ")
+			.appendTimeZoneShortName(mapEtCtToTimeZone);
+	String boysMeetingTimeStr ;
+	if (stage.getBoysMeetingTime().getMinuteOfHour() == 0) 
+		boysMeetingTimeStr = fixTimeFormat(singleHourAmPmTimeZoneFormatter.print(
+					stage.getBoysMeetingTime()));
+	else boysMeetingTimeStr = fixTimeFormat(
+			boysGirlsFormatterBuilder.toFormatter().print(stage.getBoysMeetingTime()));
+	String girlsMeetingTimeStr;
+       	if (stage.getGirlsMeetingTime().getMinuteOfHour() == 0) 
+		girlsMeetingTimeStr = fixTimeFormat(singleHourAmPmTimeZoneFormatter.print(
+					stage.getGirlsMeetingTime()));
+	else
+		girlsMeetingTimeStr = fixTimeFormat(
+			boysGirlsFormatterBuilder.toFormatter().print(
+				stage.getGirlsMeetingTime()));
+
+	System.out.println(stage.getMeetList().size());
+	tourgen.model.Location stageLocation = stage.getMeetList().get(0).getLocation();
+	String stageLocationStr = stageLocation.getName();
+	
+	builder.append("<b>Date: </b>");
+	builder.append(stageMeetDate);
+	builder.append(newlineCharacter);
+
+	builder.append("<b>Site: </b>");
+	builder.append(stageLocationStr);
+	builder.append(newlineCharacter);
+
+	builder.append("<b>Times: </b>");
+	builder.append("Boys at ");
+	builder.append(boysMeetingTimeStr);
+	builder.append("; ");
+	builder.append("Girls at ");
+	builder.append(girlsMeetingTimeStr);
+	builder.append(newlineCharacter);
+
+	builder.append("<b>Admission: </b>");
+	builder.append("$" + new DecimalFormat("0").format(stage.getAdmissionFee())
+			+ " per person");
+	builder.append(newlineCharacter);
+
+
+	return builder.toString();
+    }
+
+    private String fixTimeFormat(String time){
+	    return time.replace("EDT","ET")
+			.replace("CDT", "CT")
+			.replace("AM","am")
+			.replace("PM","pm");
+	}
 }
