@@ -1,7 +1,8 @@
 package tourgen.model;
 
+import java.io.Serializable;
 
-public class School{
+public class School implements Serializable{
 
     private int schoolID;
     private Location diffLoc;

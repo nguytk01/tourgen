@@ -1,6 +1,8 @@
 package tourgen.model;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable{
 	private String streetAddress;
 	private String cityName;
 	private int zipCode;

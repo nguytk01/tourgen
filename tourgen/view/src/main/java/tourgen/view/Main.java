@@ -36,7 +36,7 @@ public class Main {
 	public static void main(String[] args) {
 		FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
 		setUIFont(resource);
-		Repository repo = new Repository();
+		Repository repo = Repository.getInstance();
 		SchoolManager manager = new SchoolManager(repo);
 		
 		

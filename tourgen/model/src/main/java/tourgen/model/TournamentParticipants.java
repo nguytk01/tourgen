@@ -1,5 +1,7 @@
 package tourgen.model;
 
-public enum TournamentParticipants {
+import java.io.Serializable;
+
+public enum TournamentParticipants implements Serializable{
 	GIRLS, BOYS
 }

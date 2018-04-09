@@ -36,7 +36,7 @@ public class RepositoryInitializationTest {
 
 	@Test	
 	public void runImportTest(){
-		Repository repo = new Repository();
+		Repository repo = Repository.getInstance();
 		SchoolManager manager = new SchoolManager(repo);
 		manager.initSchools();
 		RepositoryInitialization.init(repo, manager);

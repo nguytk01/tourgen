@@ -1,3 +1,5 @@
+package tourgen.model;
+
 import org.junit.Test;
 
 import com.google.maps.PlacesApi;

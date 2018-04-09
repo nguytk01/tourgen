@@ -1,6 +1,8 @@
 package tourgen.model;
 
-public enum StageType{
+import java.io.Serializable;
+
+public enum StageType implements Serializable{
 
     SECTIONAL, REGIONAL, SEMISTATE, STATEFINAL;
 }

@@ -2,12 +2,13 @@ package tourgen.model;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-public class SchoolManager extends java.util.Observable{
+public class SchoolManager extends java.util.Observable implements Serializable {
     private java.util.ArrayList<School> schoolList;
     private HashMap<String, School> schoolHashMap;
     private Repository repo;
@@ -159,5 +160,10 @@ public class SchoolManager extends java.util.Observable{
     		System.out.println("cannot find school in schoolManager >" + displayName + "<");
     		return null;
     	} else return schoolHashMap.get(displayName.trim());
+    }
+    
+    public Repository getRepository()
+    {
+    	return repo;
     }
 }

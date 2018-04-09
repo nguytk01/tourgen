@@ -1,4 +1,5 @@
 package tourgen.model;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +8,7 @@ import java.util.List;
 
 import org.apache.commons.text.WordUtils;
 
-public class Meet {
+public class Meet implements Serializable {
 //SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	/**

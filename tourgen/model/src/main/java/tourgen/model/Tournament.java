@@ -1,11 +1,12 @@
 package tourgen.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class Tournament {
+public class Tournament implements Serializable {
     TournamentParticipants gender;
     List<Stage> stageList;
     String tournamentName;

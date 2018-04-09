@@ -17,7 +17,7 @@ public class ReportContentRendererTest{
 	private Repository repo;
 	private SchoolManager manager;
 	public ReportContentRendererTest(){
-		repo = new Repository();
+		repo = Repository.getInstance();
 		manager = new SchoolManager(repo);
 		manager.initSchools();
 		RepositoryInitialization.init(repo, manager);
