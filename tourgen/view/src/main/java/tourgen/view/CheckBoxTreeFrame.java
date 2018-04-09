@@ -49,13 +49,16 @@ import tourgen.model.School;
 import tourgen.model.Stage;
 import tourgen.model.Tournament;
 
-/**
- * @version 1.1 01/15/99
- */
 public class CheckBoxTreeFrame extends JFrame {
 
   private Repository repo;
 
+  /**
+   * Construct a CheckBoxTreeFrame. 
+   * @param repository a repository Object
+   * @param checkBoxListener an ActionListener for the CheckBox
+   * @param controller a MapController instance
+   */
   public CheckBoxTreeFrame(Repository repository, 
       CheckBoxTreeCustomCheckBoxListener checkBoxListener,
       MapController controller) {

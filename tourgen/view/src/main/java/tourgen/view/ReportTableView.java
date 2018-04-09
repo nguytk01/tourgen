@@ -32,6 +32,9 @@ public class ReportTableView extends JPanel implements IReportTableView {
   JPanel northPanel;
   ReportContentRenderer reportContentRenderer;
 
+  /**
+   * Build a report table view.
+   */
   public ReportTableView() {
     reportContentRenderer = new ReportContentRenderer();
     // setSize(400,400);
@@ -59,24 +62,27 @@ public class ReportTableView extends JPanel implements IReportTableView {
       Object sourcePanel = null;
       for (int i = 0; i < stageList.size(); i++) {
         sourcePanel = ((JCustomizedButton) arg0.getSource()).getSwingParent();
-        if (sourcePanel != stageList.get(i))
+        if (sourcePanel != stageList.get(i)) {
           stageList.get(i).setCollapsed(true);
-        else
+        } else {
           stageList.get(i).setCollapsed(!stageList.get(i).isCollapsed());
+        }
       }
       repaint();
     }
-
   }
 
   @Override
   public void display(Object arg) {
     Tournament tournament = (Tournament) arg;
-    if (stageList.isEmpty() == false)
+    if (stageList.isEmpty() == false) {
       stageList.clear();
-    HashMap<String, String> stageDescriptionsMap = reportContentRenderer.getTournamentReport(tournament);
+    }
+    HashMap<String, String> stageDescriptionsMap = 
+        reportContentRenderer.getTournamentReport(tournament);
     for (String stageTitle : stageDescriptionsMap.keySet()) {
-      CollapsibleStagePanel panel = new CollapsibleStagePanel(stageTitle, stageDescriptionsMap.get(stageTitle),
+      CollapsibleStagePanel panel = 
+          new CollapsibleStagePanel(stageTitle, stageDescriptionsMap.get(stageTitle),
           listener);
       stageList.add(panel);
       panel.setCollapsed(true);
@@ -87,3 +93,9 @@ public class ReportTableView extends JPanel implements IReportTableView {
 
   }
 }
+
+  /*@Override
+  public void display(Object tournament) {
+    // TODO Auto-generated method stub
+    
+  }*/

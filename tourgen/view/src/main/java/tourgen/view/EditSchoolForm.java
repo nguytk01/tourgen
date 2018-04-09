@@ -33,6 +33,10 @@ public class EditSchoolForm extends JFrame implements IEditSchoolForm {
   private JTextField displayNameTextField;
   private EditSchoolUseCaseController editSchoolUseCaseController;
 
+  /**
+   * Construct an Edit School Form.
+   * @param listener an ActionListener for the form.
+   */
   public EditSchoolForm(ActionListener listener) {
     setTitle("Edit A School");
 

@@ -42,9 +42,13 @@ public class Main {
 
   private static MapDriver mainMap;// = new MapDriver();
 
+  /**
+   * Main entrance of the program.
+   * @param args command line arguments of the program.
+   */
   public static void main(String[] args) {
     FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
-    setUIFont(resource);
+    setUiFont(resource);
     Repository repo = null;
     SchoolManager manager = null; // new SchoolManager(repo);
     manager = RepositoryIoManager.loadEverythingUp();
@@ -73,11 +77,14 @@ public class Main {
     ISchoolListView schoolList = new SchoolListView(listAddButtonListener, listEditButtonListener,
         listRemoveButtonListener, listShowSchoolListActions, manager);
 
-    AddSchoolUseCaseController addUseCaseController = new AddSchoolUseCaseController(manager, schoolList, addForm,
+    AddSchoolUseCaseController addUseCaseController = 
+        new AddSchoolUseCaseController(manager, schoolList, addForm,
         addSchoolFormListeners);
-    EditSchoolUseCaseController editUseCaseController = new EditSchoolUseCaseController(manager, schoolList, editForm,
+    EditSchoolUseCaseController editUseCaseController = 
+        new EditSchoolUseCaseController(manager, schoolList, editForm,
         editSchoolFormListeners);
-    RemoveSchoolUseCaseController removeUseCaseController = new RemoveSchoolUseCaseController(schoolList, listListeners,
+    RemoveSchoolUseCaseController removeUseCaseController = 
+        new RemoveSchoolUseCaseController(schoolList, listListeners,
         manager);
     listListeners.setAddController(addUseCaseController);
     listListeners.setEditController(editUseCaseController);
@@ -85,18 +92,22 @@ public class Main {
     schoolList.setRemoveUseCaseController(removeUseCaseController);
 
     ReportViewListeners reportViewListeners = new ReportViewListeners();
-    ActionListener reportViewManageSchoolButtonListener = reportViewListeners.new ManageSchoolButtonListener();
-    ListSelectionListener tournamentSelectionListener = reportViewListeners.new TournamentSelectionListener();
+    ActionListener reportViewManageSchoolButtonListener = 
+        reportViewListeners.new ManageSchoolButtonListener();
+    ListSelectionListener tournamentSelectionListener = 
+        reportViewListeners.new TournamentSelectionListener();
 
     IReportTableFrame reportFrame = new ReportTableFrame(reportViewManageSchoolButtonListener,
         tournamentSelectionListener, repo);
     IReportTableView reportTableView = reportFrame.returnReportTableView();
     IRepositoryView repositoryView = reportFrame.returnRepositoryView();
 
-    ReportViewUseCaseController reportViewUseCaseController = new ReportViewUseCaseController(reportTableView,
+    ReportViewUseCaseController reportViewUseCaseController = 
+        new ReportViewUseCaseController(reportTableView,
         repositoryView);
     reportViewListeners.setCoordinator(reportViewUseCaseController);
-    ViewSchoolListUseCaseController viewSchoolListUseCaseController = new ViewSchoolListUseCaseController(schoolList);
+    ViewSchoolListUseCaseController viewSchoolListUseCaseController = 
+        new ViewSchoolListUseCaseController(schoolList);
     listListeners.setViewSchoolListController(viewSchoolListUseCaseController);
     reportViewListeners.setViewSchoolListUseCaseController(viewSchoolListUseCaseController);
 
@@ -115,9 +126,10 @@ public class Main {
 
     MapDriver mainMap = new MapDriver(repo);
     MapController mapController2 = new MapController(null, mainMap);
-    CheckBoxTreeCustomCheckBoxListener checkBoxListener2 = new CheckBoxTreeCustomCheckBoxListener(mapController2);
+    CheckBoxTreeCustomCheckBoxListener checkBoxListener2 = 
+        new CheckBoxTreeCustomCheckBoxListener(mapController2);
     mainMap.setCon(checkBoxListener2, mapController2);
-    mainMap.initGUI();
+    mainMap.initGui();
 
     /* test GMapPinButton resources in Maven case */
     // JFrame myframe = new JFrame();
@@ -126,8 +138,11 @@ public class Main {
     // myframe.setVisible(true);
   }
 
-  public static void setUIFont(javax.swing.plaf.FontUIResource f) {
-    java.util.Enumeration keys = UIManager.getLookAndFeelDefaults().keys();
+  /**
+   * Set UIFont for the entire running instance.
+   * @param f the fontUIResource used for the entire running instance
+   */
+  public static void setUiFont(javax.swing.plaf.FontUIResource f) {
     UIDefaults uiDef = UIManager.getLookAndFeelDefaults();
     uiDef.put("Menu.font", f);
     UIManager.put("Menu.font", f);
@@ -136,11 +151,13 @@ public class Main {
     uiDef.put("TextPane.font", f);
     UIManager.put("TextPane.font", f);
     uiDef.put("defaultFont", 20);
+    java.util.Enumeration keys = UIManager.getLookAndFeelDefaults().keys();
     while (keys.hasMoreElements()) {
       Object key = keys.nextElement();
       Object value = UIManager.get(key);
-      if (value instanceof javax.swing.plaf.FontUIResource)
+      if (value instanceof javax.swing.plaf.FontUIResource) {
         uiDef.put(key, f);
+      }
     }
   }
 }

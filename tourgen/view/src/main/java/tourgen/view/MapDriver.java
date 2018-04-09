@@ -187,8 +187,12 @@ public class MapDriver implements IMapDriver {
      */
 
   }
-
-  public void initGUI() {
+  
+  /**
+   * GUI initialization for the map.
+   */
+  
+  public void initGui() {
     swingWaypointPainter.setWaypoints(waypoints);
 
     mapViewer.setOverlayPainter(swingWaypointPainter);
@@ -205,7 +209,8 @@ public class MapDriver implements IMapDriver {
     // CheckBoxTreeFrame frame2 = new CheckBoxTreeFrame(repo, checkBoxListener,
     // mapController);
     frame.getContentPane().setLayout(new BorderLayout());
-    frame.getContentPane().add(new CheckBoxTreePanel(checkBoxListener, repo, mapController), BorderLayout.WEST);
+    frame.getContentPane().add(
+        new CheckBoxTreePanel(checkBoxListener, repo, mapController), BorderLayout.WEST);
     frame.getContentPane().add(mapViewer, BorderLayout.CENTER);
     frame.setSize(1400, 900);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -241,9 +246,9 @@ public class MapDriver implements IMapDriver {
     waypoints.clear();
     // System.out.println("showMeetList ");
     List<Meet> meets = new ArrayList<Meet>();
-    for (Object i : meetsArg)
+    for (Object i : meetsArg) {
       meets.add((Meet) i);
-
+    }
     meetList.addAll(meetsArg);
     // for (SwingWaypoint w : waypoints) {
     // mapViewer.add(w.getButton());

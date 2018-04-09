@@ -47,9 +47,14 @@ public class AddSchoolForm extends JFrame implements IAddSchoolForm {
     return addrField.getText();
   }
 
+  /**
+   * Return the enrollment number field of the form.
+   * @return an integer
+   */
   public int getEnroll() {
-    if (enrollField.getText().length() == 0)
+    if (enrollField.getText().length() == 0) {
       return 0;
+    }
     return Integer.parseInt(enrollField.getText());
   }
 
@@ -61,6 +66,10 @@ public class AddSchoolForm extends JFrame implements IAddSchoolForm {
     return Integer.parseInt(zipField.getText());
   }
 
+  /**
+   * Construct an add school form with an ActionListener passed in.
+   * @param listener the ActionListener for this form.
+   */
   public AddSchoolForm(ActionListener listener) {
     setTitle("Add A School");
     this.setSize(600, 400);

@@ -21,11 +21,17 @@ import java.awt.event.MouseListener;
 public class SwingWaypoint extends DefaultWaypoint {
   private final JButton button;
   private final String text;
-  private MapDriver MapDriver;
+  private MapDriver mapDriver;
   private Meet meet;
   private Repository repo;
   private List meetList;
 
+  /**
+   * Build the SwingWaypoint.
+   * @param text the text for the point. 
+   * @param coord the coordinates of the point
+   * @param meet the meet associated to the point.
+   */
   public SwingWaypoint(String text, GeoPosition coord, Meet meet) {
     super(coord);
     this.text = text;

@@ -36,13 +36,18 @@ public class CheckBoxTreeComponents {
       label.setForeground(UIManager.getColor("Tree.textForeground"));
     }
 
-    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean isSelected, boolean expanded,
+    public Component getTreeCellRendererComponent(JTree tree, Object value, 
+        boolean isSelected, boolean expanded,
         boolean leaf, int row, boolean hasFocus) {
-      String stringValue = tree.convertValueToText(value, isSelected, expanded, leaf, row, hasFocus);
+      
       setEnabled(tree.isEnabled());
       checkBox.setSelected(((CheckNode) value).isSelected());
       label.setFont(tree.getFont());
+      
+      String stringValue = tree.convertValueToText(value, isSelected, 
+          expanded, leaf, row, hasFocus);
       label.setText(stringValue);
+      
       label.setSelected(isSelected);
       label.setFocus(hasFocus);
       if (leaf) {
@@ -57,31 +62,32 @@ public class CheckBoxTreeComponents {
     }
 
     public Dimension getPreferredSize() {
-      Dimension d_check = checkBox.getPreferredSize();
-      Dimension d_label = label.getPreferredSize();
-      return new Dimension(d_check.width + d_label.width,
-          (d_check.height < d_label.height ? d_label.height : d_check.height));
+      Dimension diCheck = checkBox.getPreferredSize();
+      Dimension diLabel = label.getPreferredSize();
+      return new Dimension(diCheck.width + diLabel.width,
+          (diCheck.height < diLabel.height ? diLabel.height : diCheck.height));
     }
 
     public void doLayout() {
-      Dimension d_check = checkBox.getPreferredSize();
-      Dimension d_label = label.getPreferredSize();
-      int y_check = 0;
-      int y_label = 0;
-      if (d_check.height < d_label.height) {
-        y_check = (d_label.height - d_check.height) / 2;
+      Dimension diCheck = checkBox.getPreferredSize();
+      Dimension diLabel = label.getPreferredSize();
+      int coordYcheck = 0;
+      int coordYlabel = 0;
+      if (diCheck.height < diLabel.height) {
+        coordYcheck = (diLabel.height - diCheck.height) / 2;
       } else {
-        y_label = (d_check.height - d_label.height) / 2;
+        coordYlabel = (diCheck.height - diLabel.height) / 2;
       }
-      checkBox.setLocation(0, y_check);
-      checkBox.setBounds(0, y_check, d_check.width, d_check.height);
-      label.setLocation(d_check.width, y_label);
-      label.setBounds(d_check.width, y_label, d_label.width, d_label.height);
+      checkBox.setLocation(0, coordYcheck);
+      checkBox.setBounds(0, coordYcheck, diCheck.width, diCheck.height);
+      label.setLocation(diCheck.width, coordYlabel);
+      label.setBounds(diCheck.width, coordYlabel, diLabel.width, diLabel.height);
     }
 
     public void setBackground(Color color) {
-      if (color instanceof ColorUIResource)
+      if (color instanceof ColorUIResource) {
         color = null;
+      }
       super.setBackground(color);
     }
 
@@ -94,8 +100,9 @@ public class CheckBoxTreeComponents {
       }
 
       public void setBackground(Color color) {
-        if (color instanceof ColorUIResource)
+        if (color instanceof ColorUIResource) {
           color = null;
+        }
         super.setBackground(color);
       }
 
@@ -144,9 +151,9 @@ public class CheckBoxTreeComponents {
 
   static class CheckNode extends DefaultMutableTreeNode implements tourgen.util.ICheckNode {
 
-    public final static int SINGLE_SELECTION = 0;
+    public static final int SINGLE_SELECTION = 0;
 
-    public final static int DIG_IN_SELECTION = 4;
+    public static final int DIG_IN_SELECTION = 4;
 
     protected int selectionMode;
 

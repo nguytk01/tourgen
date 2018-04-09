@@ -15,46 +15,82 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class RepositoryInitialization {
-  private static final Map<String, DateTimeZone> mapEtCtToTimeZone = new HashMap<String, DateTimeZone>();
+  private static final Map<String, DateTimeZone> mapEtCtToTimeZone = 
+      new HashMap<String, DateTimeZone>();
+  
   static {
-
     mapEtCtToTimeZone.put("CT", DateTimeZone.forID("America/Chicago"));
     mapEtCtToTimeZone.put("ET", DateTimeZone.forID("America/New_York"));
   }
 
-  private static final org.joda.time.format.DateTimeFormatter hourMinuteFormatter = new org.joda.time.format.DateTimeFormatterBuilder()
-      .appendClockhourOfHalfday(1).appendLiteral(":").appendMinuteOfHour(0).toFormatter();
-  private static final org.joda.time.format.DateTimeFormatter hourMinuteAmPmTimeZoneFormatter = new org.joda.time.format.DateTimeFormatterBuilder()
-      .appendClockhourOfHalfday(1).appendLiteral(":").appendMinuteOfHour(1).appendLiteral(" ").appendHalfdayOfDayText()
-      .appendLiteral(" ").appendTimeZoneName(mapEtCtToTimeZone).toFormatter();
-  private static final org.joda.time.format.DateTimeFormatter hourMinuteAmPmFormatter = new org.joda.time.format.DateTimeFormatterBuilder()
-      .appendClockhourOfHalfday(1).appendLiteral(":").appendMinuteOfHour(0).appendLiteral(" ").appendHalfdayOfDayText()
+  private static final org.joda.time.format.DateTimeFormatter hourMinuteFormatter = 
+      new org.joda.time.format.DateTimeFormatterBuilder()
+      .appendClockhourOfHalfday(1)
+      .appendLiteral(":")
+      .appendMinuteOfHour(0)
       .toFormatter();
-  private static final org.joda.time.format.DateTimeFormatter singleHourFormatter = new org.joda.time.format.DateTimeFormatterBuilder()
-      .appendClockhourOfHalfday(1).toFormatter();
-  private static final org.joda.time.format.DateTimeFormatter singleHourAmPmTimeZoneFormatter = new org.joda.time.format.DateTimeFormatterBuilder()
-      .appendClockhourOfHalfday(1).appendLiteral(" ").appendHalfdayOfDayText().appendLiteral(" ")
-      .appendTimeZoneName(mapEtCtToTimeZone).toFormatter();
+  
+  private static final org.joda.time.format.DateTimeFormatter hourMinuteAmPmTimeZoneFormatter =
+      new org.joda.time.format.DateTimeFormatterBuilder()
+      .appendClockhourOfHalfday(1)
+      .appendLiteral(":")
+      .appendMinuteOfHour(1)
+      .appendLiteral(" ")
+      .appendHalfdayOfDayText()
+      .appendLiteral(" ")
+      .appendTimeZoneName(mapEtCtToTimeZone)
+      .toFormatter();
+  
+  private static final org.joda.time.format.DateTimeFormatter hourMinuteAmPmFormatter = 
+      new org.joda.time.format.DateTimeFormatterBuilder()
+      .appendClockhourOfHalfday(1)
+      .appendLiteral(":")
+      .appendMinuteOfHour(0)
+      .appendLiteral(" ")
+      .appendHalfdayOfDayText()
+      .toFormatter();
+  
+  private static final org.joda.time.format.DateTimeFormatter singleHourFormatter = 
+      new org.joda.time.format.DateTimeFormatterBuilder()
+      .appendClockhourOfHalfday(1)
+      .toFormatter();
+  
+  private static final org.joda.time.format.DateTimeFormatter singleHourAmPmTimeZoneFormatter =
+      new org.joda.time.format.DateTimeFormatterBuilder()
+      .appendClockhourOfHalfday(1)
+      .appendLiteral(" ")
+      .appendHalfdayOfDayText()
+      .appendLiteral(" ")
+      .appendTimeZoneName(mapEtCtToTimeZone)
+      .toFormatter();
   private static String centralUSTimeZone = "America/Chicago";
   private static String easternUSTimeZone = "America/New_York";
-
+  
+  /**
+   * This will import data from text files into repository. 
+   * @param repo an empty instance of repository
+   * @param manager a school manager object fully-loaded with data.
+   */
   public static void init(Repository repo, SchoolManager manager) {
-    InputStream stream = RepositoryInitialization.class.getClassLoader().getResourceAsStream("tournamentData.txt");
+    InputStream stream = RepositoryInitialization.class
+        .getClassLoader().getResourceAsStream("tournamentData.txt");
 
-    Scanner scanner = new Scanner(stream);
+    
     // scanner.useDelimiter("\\||\\n?\\n|\\r");
     List<Stage> stageList = new ArrayList<Stage>();
 
     Stage sectionalStage = new Stage(StageType.SECTIONAL, "", "");
     sectionalStage.setAdmissionFee(5);
     sectionalStage.setEntryListDeadline(
-        new org.joda.time.DateTime(2017, 10, 2, 16, 0, org.joda.time.DateTimeZone.forID("America/Fort_Wayne")));
+        new org.joda.time.DateTime(2017, 10, 2, 16, 0, 
+            org.joda.time.DateTimeZone.forID("America/Fort_Wayne")));
     sectionalStage.setStageMeetDate(new org.joda.time.DateTime(2017, 10, 7, 0, 0));
     sectionalStage.setRacesConductedAtHost(true);
     sectionalStage.setNoteOnChangingHostLocation(true);
     sectionalStage.setAdvancementRule(
-        "The top 10 individuals from " + "non-advancing teams and the first 5 qualifying teams from "
-            + "each sectional shall advance to designated regionals.");
+        "The top 10 individuals from " 
+        + "non-advancing teams and the first 5 qualifying teams from "
+        + "each sectional shall advance to designated regionals.");
 
     Stage regionalStage = new Stage(StageType.REGIONAL, "", "Feeder sectionals:");
 
@@ -63,8 +99,9 @@ public final class RepositoryInitialization {
     regionalStage.setRacesConductedAtHost(true);
     regionalStage.setNoteOnChangingHostLocation(true);
     regionalStage.setAdvancementRule(
-        "The top 10 individuals from " + "non-advancing teams and the first 5 qualifying teams from "
-            + "each regional shall advance to designated semi-states.");
+        "The top 10 individuals from " 
+        + "non-advancing teams and the first 5 qualifying teams from "
+        + "each regional shall advance to designated semi-states.");
 
     Stage semiStateStage = new Stage(StageType.SEMISTATE, "", "Feeder regionals:");
     semiStateStage.setAdmissionFee(5);
@@ -72,8 +109,9 @@ public final class RepositoryInitialization {
     semiStateStage.setRacesConductedAtHost(true);
     semiStateStage.setNoteOnChangingHostLocation(true);
     semiStateStage.setAdvancementRule(
-        "The top 10 individuals from " + "non‐advancing teams and the first 5 qualifying teams from "
-            + "each semi-state shall advance to state finals.");
+        "The top 10 individuals from " 
+        + "non‐advancing teams and the first 5 qualifying teams from "
+        + "each semi-state shall advance to state finals.");
 
     Stage stateFinalStage = new Stage(StageType.STATEFINAL, "", "Feeder semi-states:");
     stateFinalStage.setAdmissionFee(10);
@@ -88,6 +126,7 @@ public final class RepositoryInitialization {
     String participants;
 
     Meet meet;
+    Scanner scanner = new Scanner(stream);
     while (scanner.hasNext()) {
       String line = scanner.nextLine();
 
@@ -97,7 +136,10 @@ public final class RepositoryInitialization {
         location = scanner.nextLine();
         host = scanner.nextLine();
         participants = scanner.nextLine();
-        meet = buildMeet(sectionalStage, manager, date, sectionalStage.getStageMeetDate(), time, location, host,
+        meet = buildMeet(
+            sectionalStage, manager, date, 
+            sectionalStage.getStageMeetDate(), 
+            time, location, host,
             participants);
         sectionalStage.addMeetToStage(meet);
       }
@@ -107,7 +149,10 @@ public final class RepositoryInitialization {
         location = scanner.nextLine();
         host = scanner.nextLine();
         participants = scanner.nextLine();
-        meet = buildMeet(regionalStage, manager, date, regionalStage.getStageMeetDate(), time, location, host,
+        meet = buildMeet(
+            regionalStage, manager, date, 
+            regionalStage.getStageMeetDate(), 
+            time, location, host,
             participants);
         regionalStage.addMeetToStage(meet);
       }
@@ -117,7 +162,10 @@ public final class RepositoryInitialization {
         location = scanner.nextLine();
         host = scanner.nextLine();
         participants = scanner.nextLine();
-        meet = buildMeet(semiStateStage, manager, date, semiStateStage.getStageMeetDate(), time, location, host,
+        meet = buildMeet(
+            semiStateStage, manager, date, 
+            semiStateStage.getStageMeetDate(), 
+            time, location, host,
             participants);
         semiStateStage.addMeetToStage(meet);
       }
@@ -127,12 +175,16 @@ public final class RepositoryInitialization {
         location = scanner.nextLine();
         host = scanner.nextLine();
         participants = scanner.nextLine();
-        meet = buildMeet(stateFinalStage, manager, date, stateFinalStage.getStageMeetDate(), time, location, host,
+        meet = buildMeet(
+            stateFinalStage, manager, date, 
+            stateFinalStage.getStageMeetDate(), 
+            time, location, host,
             participants);
         stateFinalStage.addMeetToStage(meet);
       }
     }
-    Tournament girls2017Tournament = new Tournament("2017-2018 Girls Cross Country", TournamentParticipants.GIRLS);
+    Tournament girls2017Tournament = new Tournament("2017-2018 Girls Cross Country", 
+        TournamentParticipants.GIRLS);
     girls2017Tournament.addStage(sectionalStage);
     girls2017Tournament.addStage(regionalStage);
     girls2017Tournament.addStage(semiStateStage);
@@ -140,8 +192,21 @@ public final class RepositoryInitialization {
     repo.addTournament(girls2017Tournament);
   }
 
+  /**
+   * Build a meet based on the input parameters.
+   * @param parentStage a Stage object representing the parent stage of the meet
+   * @param manager the school manager object
+   * @param deprecatedDate a string for the date (deprecated)
+   * @param stageMeetDate  an actual date for the stage meet
+   * @param time the string containing the time for the meet
+   * @param location the string containing the location of the meet
+   * @param host the string containing the name of the host location
+   * @param participants a comma-separated string containing all participating schools in the list.
+   * @return a Meet built from the the parameters.
+   */
   public static Meet buildMeet(Stage parentStage, SchoolManager manager, String deprecatedDate,
-      org.joda.time.DateTime stageMeetDate, String time, String location, String host, String participants) {
+      org.joda.time.DateTime stageMeetDate, String time, String location, 
+      String host, String participants) {
     Date meetingDate = null;
     /*
      * try { meetingDate = (date.replace(".", "")); } catch (ParseException e) { //
@@ -178,6 +243,15 @@ public final class RepositoryInitialization {
     return meet;
   }
 
+  /**
+   * Return an array of 2 DateTime objects. The first one is the primary meeting time.
+   * The second one is the alternate meeting time. 
+   * The meeting time of a meet is as follows when printed out:
+   * alternate meeting time pm/am /_primary meeting time_ _pm/am_ _timezone:ET, CT, etc._
+   * @param time the string containing the time of the meet
+   * @param stageMeetDate the joda library's DateTime object of the stage containing this meet.
+   * @return an array of 2 joda library's DateTime objects.
+   */
   public static org.joda.time.DateTime[] getMeetTime(String time, DateTime stageMeetDate) {
     int amOrPm = 0;
     final int zerothSecond = 0;
@@ -235,11 +309,17 @@ public final class RepositoryInitialization {
     return new org.joda.time.DateTime[] { primaryMeetTime, alternateMeetTime };
   }
 
+  /**
+   * Assign the correct location to the meet based on the input location string.
+   * @param meet the meet object
+   * @param location location object
+   */
+  
   public static void processLocation(Meet meet, String location) {
     // System.out.println("Location : " + location);
-    if (location.equals("Null"))
+    if (location.equals("Null")) {
       meet.setLocation(meet.getHostSchool().getSchoolLoc());
-    else {
+    } else {
       String[] arr = location.split("\\|");
       // System.out.println(java.util.Arrays.deepToString(arr));
       String locationDisplayName = arr[0].trim();

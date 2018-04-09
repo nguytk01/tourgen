@@ -24,6 +24,12 @@ public class TourgenDistanceMatrix {
     helper = helperArg;
   }
 
+  /**
+   * return an array of long representing the distance from one location to a list of Locations.
+   * @param a center point
+   * @param locationList a list of clients
+   * @return an array of long
+   */
   public long[] getDistance1ToN(Location a, List<Location> locationList) {
     String[] origLatLon = new String[] { a.getCoordinateString() };
     String[] destLatLons = new String[locationList.size()];
@@ -40,7 +46,8 @@ public class TourgenDistanceMatrix {
         distanceMatrix.get(origLocationName).put(locationList.get(i).getName(), distance[0][i]);
       }
       return distance[0];
-    } else
+    } else {
       return null;
+    }
   }
 }

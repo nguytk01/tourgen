@@ -12,9 +12,8 @@ public class School implements Serializable {
   @Deprecated
   private Location hostLoc;
   private int enroll;
-  private boolean bStatus;
-  private boolean gStatus;
-
+  private boolean boysTournamentParticipationStatus;
+  private boolean girlsTournamentParticipationStatus;
   @Deprecated
   private Location hostAdd;
   @Deprecated
@@ -22,22 +21,23 @@ public class School implements Serializable {
   private String displayName;
 
   public School(String displayNameArg, String schoolName, String streetAddress, String cityName, int zipCode,
-      int enrollmentNumber, boolean gStatus, boolean bStatus) {
+      int enrollmentNumber, 
+      boolean girlsTournamentParticipatingStatusArg, boolean boysTournamentParticipatingStatusArg) {
     displayName = displayNameArg;
     name = schoolName;
     schoolLoc = new Location(streetAddress, cityName, zipCode);
     schoolLoc.setName(displayName);
     enroll = enrollmentNumber;
-    gStatus = gStatus;
-    bStatus = bStatus;
+    girlsTournamentParticipationStatus = girlsTournamentParticipatingStatusArg;
+    boysTournamentParticipationStatus = boysTournamentParticipatingStatusArg;
   }
 
   public School(SchoolFormMvcData info) {
     name = info.getSchoolName();
     schoolLoc = new Location(info.getStreetAddress(), info.getCityName(), info.getZipCode());
     enroll = info.getEnrollmentNumber();
-    bStatus = info.getBoysParticipationStatus();
-    gStatus = info.getGirlsParticipationStatus();
+    boysTournamentParticipationStatus = info.getBoysParticipationStatus();
+    girlsTournamentParticipationStatus = info.getGirlsParticipationStatus();
     schoolLoc.setName(displayName);
     displayName = info.getSchoolDisplayName();
   }
@@ -107,19 +107,19 @@ public class School implements Serializable {
   }
 
   public boolean getBStatus() {
-    return bStatus;
+    return boysTournamentParticipationStatus;
   }
 
   public void setBStatus(boolean boys) {
-    bStatus = boys;
+    boysTournamentParticipationStatus = boys;
   }
 
   public boolean getGStatus() {
-    return gStatus;
+    return girlsTournamentParticipationStatus;
   }
 
   public void setGStatus(boolean girls) {
-    gStatus = girls;
+    girlsTournamentParticipationStatus = girls;
   }
 
   /*

@@ -20,19 +20,24 @@ public class RepoTree extends JTree implements IRepoTree {
 
   }
 
+  /**
+   * Get a set of all ICheckNodes from the given parent node.
+   * @param node the node to start searching
+   * @return a set of child nodes.
+   */
   public Set<ICheckNode> getAllLeafNodes(CheckNode node) {
     Set<ICheckNode> leafNodesSet = new HashSet<ICheckNode>();
     if (node.isLeaf() && node.isSelected()) {
       leafNodesSet.add(node);
     } else {
-      for (int i = 0; i < node.getChildCount(); i++)
+      for (int i = 0; i < node.getChildCount(); i++) {
         leafNodesSet.addAll(getAllLeafNodes((CheckNode) node.getChildAt(i)));
+      }
     }
     return leafNodesSet;
   }
 
   public RepoTree(CheckNode node) {
-
     super(node);
 
   }

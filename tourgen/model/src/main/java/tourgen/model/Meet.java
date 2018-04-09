@@ -132,6 +132,10 @@ public class Meet implements Serializable {
     return meetingTime;
   }
 
+  /**
+   * returning a string of a meet.
+   */
+  
   public String toString() {
     if (hostSchool != null) {
       return hostSchool.getDisplayName();

@@ -34,17 +34,23 @@ public class CollapsibleStagePanel extends JPanel {
   private String contentStorage;
   private JPanel childPane;
 
+  /**
+   * Construct a CollapsibleStagePanel.
+   * @param titleArg A string containing the title
+   * @param panelContent A string containing the panel content
+   * @param listener an ActionListener for that panel.
+   */
   public CollapsibleStagePanel(String titleArg, String panelContent, ActionListener listener) {
     title = titleArg;
 
     JPanel containerPanel = new JPanel();
     containerPanel.setLayout(new BorderLayout());
 
-    JPanel sectionalTitlePane = new JPanel();
     button = new JCustomizedButton(this, title);
-
     button.addActionListener(listener);
     button.setFont(new Font("Tahoma", Font.BOLD, 24));
+    
+    JPanel sectionalTitlePane = new JPanel();
     sectionalTitlePane.setLayout(new BorderLayout());
 
     sectionalTitlePane.add(button);
@@ -66,7 +72,8 @@ public class CollapsibleStagePanel extends JPanel {
     content.setDocument(doc);
     // content.setText(WordUtils.wrap(panelContent, 60, "<br/>", true));
     try {
-      kit.insertHTML(doc, doc.getLength(), "<font size=\"5\">" + panelContent + "</font>", 0, 0, null);
+      kit.insertHTML(doc, doc.getLength(), 
+          "<font size=\"5\">" + panelContent + "</font>", 0, 0, null);
     } catch (BadLocationException | IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -89,6 +96,10 @@ public class CollapsibleStagePanel extends JPanel {
     content.setText(contentArg);
   }
 
+  /**
+   * Collapse or expand the panel based on the boolean parameter.
+   * @param flag a boolean flag to collapse or expand the panel.
+   */
   public void setCollapsed(boolean flag) {
     if (flag == true) {
       contentStorage = content.getText();

@@ -1,11 +1,14 @@
 package tourgen.view;
 
+import java.awt.Graphics2D;
+
+import java.awt.Rectangle;
+import java.awt.geom.Point2D;
+
+import javax.swing.JButton;
+
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.viewer.WaypointPainter;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.Point2D;
 
 /**
  * "Paints" the Swing waypoints. In fact, just takes care of correct positioning

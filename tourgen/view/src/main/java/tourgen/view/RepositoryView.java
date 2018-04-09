@@ -21,6 +21,11 @@ public class RepositoryView extends JPanel implements IRepositoryView {
   private JScrollPane scrollPane;
   private Repository repositoryModel;
 
+  /**
+   * Build a Repository View (a list of tournament).
+   * @param listener an ActionListener to listen to selection event in the list.
+   * @param repositoryModelArg a repository object.
+   */
   public RepositoryView(ListSelectionListener listener, Repository repositoryModelArg) {
     setSize(200, 500);
     setLayout(new BorderLayout());
@@ -36,7 +41,7 @@ public class RepositoryView extends JPanel implements IRepositoryView {
     tournamentVector.addAll(list);
   }
 
-  void populate(List<Object> list) {
+  void populatePrivate(List<Object> list) {
     for (Object i : list) {
       try {
         Tournament type = (Tournament) i;

@@ -26,15 +26,18 @@ public class GMapPinButton extends JButton {
 
   public GMapPinButton(String text) {
     // super(text);
-    GMapPinButtonCommonConstructor();
+    mapPinButtonCommonConstructor();
   }
 
   public GMapPinButton() {
     super();
-    GMapPinButtonCommonConstructor();
+    mapPinButtonCommonConstructor();
   }
 
-  public void GMapPinButtonCommonConstructor() {
+  /**
+   * Common routine used by the constructors of GMapPinButton.
+   */
+  public void mapPinButtonCommonConstructor() {
     currentButton = this;
     this.setIcon(okPin);
     this.setRolloverIcon(okPinHover);

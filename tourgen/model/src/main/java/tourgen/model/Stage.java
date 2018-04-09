@@ -31,13 +31,19 @@ public class Stage implements Serializable {
   private boolean noteOnChangingHostLocation;
 
   /**
-   * These are for Stage Final
+   * These are for Stage Final.
    */
   private Location stageMeetLocation;
 
   private org.joda.time.DateTime girlsMeetingTime;
   private org.joda.time.DateTime boysMeetingTime;
 
+  /**
+   * Construct a stage from an enum, a header string (deprecated), feeder header (deprecated).
+   * @param stageType an enum of type StageType
+   * @param stageHeaderArg deprecated
+   * @param participantsHeaderArg deprecated
+   */
   public Stage(StageType stageType, String stageHeaderArg, String participantsHeaderArg) {
     this.stageType = stageType;
     stageMeets = new ArrayList<Meet>();
@@ -53,6 +59,10 @@ public class Stage implements Serializable {
     stageMeets.remove(oldMeet);
   }
 
+  /**
+   * return the stage type string.
+   * @return a string containing the stage's type.
+   */
   public String getStageTitle() {
     switch (stageType) {
       case SECTIONAL:

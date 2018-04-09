@@ -38,8 +38,17 @@ public class SchoolListView extends JFrame implements ISchoolListView, Observer 
   private Object ticket;
   private RemoveSchoolUseCaseController removeSchoolUseCaseController;
 
+  /**
+   * Build the schools ListView.
+   * @param listAddListener a listener listening to action of adding a school 
+   * @param listEditListener a listener listening to action of editing a school 
+   * @param listRemoveListener a listener listening to action of removing a school 
+   * @param showSchoolListActionsListener a listener listening to action of showing a school 
+   * @param managerArg a school Manager arg.
+   */
   public SchoolListView(ActionListener listAddListener, ActionListener listEditListener,
-      ActionListener listRemoveListener, MenuListener showSchoolListActionsListener, SchoolManager managerArg) {
+      ActionListener listRemoveListener, 
+      MenuListener showSchoolListActionsListener, SchoolManager managerArg) {
     manager = managerArg;
     setTitle("School List");
     this.setBounds(300, 100, 400, 700);
@@ -134,8 +143,9 @@ public class SchoolListView extends JFrame implements ISchoolListView, Observer 
   public Object getSelectedSchool() {
     if (jList.getSelectedIndex() != -1) {
       return schoolVector.get(jList.getSelectedIndex());
-    } else
+    } else {
       return null;
+    }
 
   }
 
@@ -143,8 +153,9 @@ public class SchoolListView extends JFrame implements ISchoolListView, Observer 
   public void toggleEditButtonBasedOnState() {
     if (jList.getSelectedIndex() == -1) {
       mntmEdit.setEnabled(false);
-    } else
+    } else {
       mntmEdit.setEnabled(true);
+    }
   }
 
   @Override
@@ -164,8 +175,9 @@ public class SchoolListView extends JFrame implements ISchoolListView, Observer 
   public void toggleRemoveButtonBasedOnState() {
     if (jList.getSelectedIndex() == -1) {
       mntmRemove.setEnabled(false);
-    } else
+    } else {
       mntmRemove.setEnabled(true);
+    }
 
   }
 

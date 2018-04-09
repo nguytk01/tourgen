@@ -11,6 +11,12 @@ public class RemoveSchoolUseCaseController {
   private SchoolListListeners listeners;
   private SchoolManager manager;
 
+  /**
+   * Controller class for the school removal use case.
+   * @param schoolListArg school ListView
+   * @param listenersArg ActionListener object
+   * @param managerArg schoolManager object
+   */
   public RemoveSchoolUseCaseController(ISchoolListView schoolListArg, 
       SchoolListListeners listenersArg,
       SchoolManager managerArg) {

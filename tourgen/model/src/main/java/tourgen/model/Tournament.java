@@ -11,6 +11,11 @@ public class Tournament implements Serializable {
   List<Stage> stageList;
   String tournamentName;
 
+  /**
+   * Construct a tournament from a tournament name, and gender of the partipants of that tournament.
+   * @param name tournament's name
+   * @param genderArg genderType of type TournamentParticipants
+   */
   public Tournament(String name, TournamentParticipants genderArg) {
     tournamentName = name;
     stageList = new ArrayList<Stage>();

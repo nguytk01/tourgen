@@ -12,13 +12,13 @@ public class EditSchoolUseCaseController {
   private EditSchoolFormListeners listeners;
   private SchoolManager manager;
 
-    /**
-     * Controller for editing school's information use case.
-     * @param managerArg
-     * @param schoolListArg
-     * @param formArg
-     * @param listenersArg
-     */
+  /**
+   * Controller for editing school's information use case.
+   * @param managerArg schoolManager object
+   * @param schoolListArg schoolList object
+   * @param formArg Edit School Form object
+   * @param listenersArg ActionListener object
+   */
   
   public EditSchoolUseCaseController(SchoolManager managerArg, 
       ISchoolListView schoolListArg, IEditSchoolForm formArg,
@@ -44,6 +44,9 @@ public class EditSchoolUseCaseController {
     form.showErrorMessage(errorMessage);
   }
 
+  /**
+   * this will display the school in the edit school's dialog.
+   */
   public void startProcess() {
     Object school = schoolList.getSelectedSchool();
     form.display(school);

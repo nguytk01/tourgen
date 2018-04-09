@@ -26,6 +26,12 @@ public class HostSwingWaypoint extends DefaultWaypoint {
   private Repository repo;
   private List meetList;
 
+  /**
+   * Construct a HostSwingWaypoint.
+   * @param text text
+   * @param coord coord
+   * @param meet meet
+   */
   public HostSwingWaypoint(String text, GeoPosition coord, Meet meet) {
     super(coord);
     this.text = text;

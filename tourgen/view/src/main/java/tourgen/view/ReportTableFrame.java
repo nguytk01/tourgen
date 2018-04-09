@@ -21,6 +21,12 @@ public class ReportTableFrame extends JFrame implements IReportTableFrame {
   private RepositoryView repoView;
   private ReportTableView reportView;
 
+  /**
+   * Build a frame for the report table.
+   * @param reportViewManageSchoolsMenuListener ActionListener for the menu of the frame
+   * @param tournamentSelectionListener a SelectionListener to listen to tournament selection
+   * @param model a repository object.
+   */
   public ReportTableFrame(ActionListener reportViewManageSchoolsMenuListener,
       ListSelectionListener tournamentSelectionListener, Repository model) {
     setTitle("Cross Country Report Table");

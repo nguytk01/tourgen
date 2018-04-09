@@ -20,6 +20,12 @@ import tourgen.view.CheckBoxTreeComponents.CheckNode;
 import tourgen.view.CheckBoxTreeComponents.CheckRenderer;
 
 public class CheckBoxTreePanel extends JPanel {
+  /**
+   * Construct a CheckBoxTreePanel.
+   * @param checkBoxListener an ActionListener
+   * @param repo a Repository object
+   * @param controller a MapController object
+   */
   public CheckBoxTreePanel(CheckBoxTreeCustomCheckBoxListener checkBoxListener, Repository repo,
       MapController controller) {
     String[] strs = { "Tournament 2017-18", "Tournaments", // 0
@@ -55,11 +61,12 @@ public class CheckBoxTreePanel extends JPanel {
           // for (int schoolIndex = 0; schoolIndex < meet.getParticipatingSchool().size();
           // schoolIndex ++)
           // sectionalHost.add(meet.getHostSchool().getDisplayName());
-          if (stageIndex == 0)
+          if (stageIndex == 0) {
             sectionalHost.add(meet);
-
+          }
           if (stageIndex == 1) {
-            // regionalHost.add(stage.getListMeet().get(meetIndex).getHostSchool().getDisplayName());
+            // regionalHost.add(stage.getListMeet()
+            //.get(meetIndex).getHostSchool().getDisplayName());
             regionalHost.add(stage.getListMeet().get(meetIndex));
 
           }
@@ -121,12 +128,13 @@ public class CheckBoxTreePanel extends JPanel {
 
     }
 
-    RepoTree tree = new RepoTree(nodes[0]);
+    
     System.out.println("size of nodes[2]" + nodes[2].getChildCount());
     System.out.println("size of nodes[3]" + nodes[3].getChildCount());
     System.out.println("size of nodes[4]" + nodes[4].getChildCount());
     System.out.println("size of nodes[5]" + nodes[5].getChildCount());
-
+    
+    RepoTree tree = new RepoTree(nodes[0]);
     tree.setCellRenderer(new CheckRenderer(checkBoxListener));
     tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
     tree.putClientProperty("JTree.lineStyle", "Angled");
