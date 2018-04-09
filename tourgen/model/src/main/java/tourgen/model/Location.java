@@ -9,6 +9,7 @@ public class Location implements Serializable{
 	private double latitude;
 	private double longitude;
 	private String name;
+	private String fullName;
 	private String latLonString;
 
 	public Location (String streetAddressArg, String cityNameArg, int zipCodeArg){
@@ -94,5 +95,15 @@ public class Location implements Serializable{
 	
 	public int hashCode(){
 		return name.hashCode();
+	}
+
+	public void setFullName(String fullNameArg){
+		fullName = fullNameArg;
+	}
+
+	public String getFullStreetAddress(){
+		if (fullName != null && fullName.length() > 0)
+			return fullName + ", " + streetAddress + ", " + cityName + ", " + (new Integer(zipCode)).toString();
+		else return null;
 	}
 }

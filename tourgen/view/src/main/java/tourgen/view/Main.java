@@ -2,6 +2,8 @@ package tourgen.view;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
@@ -11,9 +13,12 @@ import javax.swing.plaf.FontUIResource;
 
 import tourgen.controller.AddSchoolFormListeners;
 import tourgen.controller.AddSchoolUseCaseController;
+import tourgen.controller.CheckBoxTreeCustomCheckBoxListener;
+import tourgen.controller.CheckBoxTreeListener;
 import tourgen.controller.EditSchoolFormListeners;
 import tourgen.controller.EditSchoolUseCaseController;
 import tourgen.controller.IController;
+import tourgen.controller.MapController;
 import tourgen.controller.RemoveSchoolUseCaseController;
 import tourgen.controller.ReportViewListeners;
 import tourgen.controller.ReportViewUseCaseController;
@@ -28,11 +33,13 @@ import tourgen.util.IReportTableFrame;
 import tourgen.util.IReportTableView;
 import tourgen.util.IRepositoryView;
 import tourgen.util.ISchoolListView;
+
 import tourgen.model.RepositoryIOManager;
 
+import javax.swing.JFrame;
 public class Main {
 	
-	private static MapDriver mainMap = new MapDriver();
+	private static MapDriver mainMap;// = new MapDriver();
 	
 	public static void main(String[] args) {
 		FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
@@ -88,11 +95,11 @@ public class Main {
 		listListeners.setViewSchoolListController(viewSchoolListUseCaseController);
 		reportViewListeners.setViewSchoolListUseCaseController(viewSchoolListUseCaseController);
 		
-		manager.initSchools();
-		schoolList.populate();
+		//manager.initSchools();
+		//schoolList.populate();
 		
 		//RepositoryInitialization init = new RepositoryInitialization();
-		RepositoryInitialization.init(repo, manager);
+		//RepositoryInitialization.init(repo, manager);
 		repositoryView.populate();
 		
 		reportFrame.showView();
@@ -101,11 +108,17 @@ public class Main {
 		manager.addObserver(addForm);
 		manager.addObserver(schoolList);
 		
-		
-		
-		mainMap = new MapDriver(repo);
-		
-		
+		MapDriver mainMap = new MapDriver(repo);
+		MapController mapController2 = new MapController(null,mainMap); 
+		CheckBoxTreeCustomCheckBoxListener checkBoxListener2 = new CheckBoxTreeCustomCheckBoxListener(mapController2);
+		mainMap.setCon(checkBoxListener2, mapController2);
+		mainMap.initGUI();
+
+		/* test GMapPinButton resources in Maven case */
+		//JFrame myframe = new JFrame();
+		//myframe.setBounds(50,50,300,300);
+		//myframe.add(new GMapPinButton("hey"));
+		//myframe.setVisible(true);
 	}
 	
 	public static void setUIFont (javax.swing.plaf.FontUIResource f) {

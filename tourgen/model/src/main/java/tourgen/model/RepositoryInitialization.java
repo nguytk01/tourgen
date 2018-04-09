@@ -182,9 +182,8 @@ public final class RepositoryInitialization{
 		//System.out.println(parentStage.getStageTitle());
 		//System.out.println("Host school " + host);
 		//System.out.println(meet.getHostSchool());
-		if (location.equals("Null")) meet.setLocation(meet.getHostSchool().getSchoolLoc());
-		else meet.setLocation(new Location(location));
-		String[] teams = participants.split(",");
+		processLocation(meet, location);
+				String[] teams = participants.split(",");
 		School schoolA = null;
 		for (String team: teams) {
 			schoolA = manager.getSchoolFromDisplayName(team);
@@ -252,4 +251,34 @@ public final class RepositoryInitialization{
 		return new org.joda.time.DateTime[] {primaryMeetTime, alternateMeetTime};
 	}
 
+	public static void processLocation(Meet meet, String location){
+		//System.out.println("Location : " + location);
+		if (location.equals("Null")) 
+			meet.setLocation(meet.getHostSchool().getSchoolLoc());
+		else {
+			String[] arr = location.split("\\|");
+			//System.out.println(java.util.Arrays.deepToString(arr));
+			String locationDisplayName = arr[0].trim();
+			String latitudeStr = arr[1].trim();
+			String longitudeStr = arr[2].trim();
+			String locationFullName = "";
+			String locationStreetAddress = "";
+			String locationCityName = "";
+			String locationZipCode = "";
+			Location a = new Location(locationDisplayName);
+			if (arr.length > 3){
+				locationFullName = arr[3].trim();
+				locationStreetAddress = arr[4].trim();
+				locationCityName = arr[5].trim();
+				locationZipCode = arr[6].trim();
+				a.setFullName(locationFullName);
+				a.setStreetAddress(locationStreetAddress);
+				a.setCityName(locationCityName);
+				a.setZipCode(Integer.parseInt(locationZipCode));
+			}
+			a.setLatitude(Double.parseDouble(latitudeStr));
+			a.setLongitude(Double.parseDouble(longitudeStr));
+						meet.setLocation(a);
+		}
+	}
 }	

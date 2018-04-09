@@ -13,15 +13,15 @@ import javax.swing.JButton;
 import javax.swing.event.MouseInputListener;
 
 public class GMapPinButton extends JButton {
-	private String pinPath = "src/main/resources/pin.png";
-	private String pinBrightPath = "src/main/resources/pin-bright.png";
-	private String pinOldPath = "resources/pin-old.png";
-	private String pinOldHoverPath = "resources/pin-old-hover.png";
-	private ImageIcon okPin;
-	private ImageIcon okPinHover;
+	private static String pinPath = "pin.png";
+	private static String pinBrightPath = "pin-bright.png";
+	private static String pinOldPath = "resources/pin-old.png";
+	private static String pinOldHoverPath = "resources/pin-old-hover.png";
+	private static ImageIcon okPin = getImageIcon(pinPath);
+	private static ImageIcon okPinHover = getImageIcon(pinBrightPath);
 	private ImageIcon okPinPressed;
-	private Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
-	private Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+	private static Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+	private static Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 	private JButton currentButton; 
 	
 	public GMapPinButton(String text) {
@@ -36,8 +36,6 @@ public class GMapPinButton extends JButton {
 	
 	public void GMapPinButtonCommonConstructor() {
 		currentButton = this;
-		okPin = makeIcon(pinPath, 50,50);
-		okPinHover = makeIcon(pinBrightPath,50,50);
 		this.setIcon(okPin);
 		this.setRolloverIcon(okPinHover);
 		//this.setPressedIcon(okPinPressed);
@@ -53,7 +51,7 @@ public class GMapPinButton extends JButton {
 	}
 
 	
-	private ImageIcon makeIcon(String img, int i, int j) {
+	private static ImageIcon makeIcon(String img, int i, int j) {
 		//The process of scaling an image!
 		ImageIcon ico = new ImageIcon(img);
 		Image image = ico.getImage(); // transform it 
@@ -61,10 +59,10 @@ public class GMapPinButton extends JButton {
 		return new ImageIcon(newimg);  // transform it back
 	}
 	
-	private ImageIcon getImageIcon(String iconName) {
+	private static ImageIcon getImageIcon(String iconName) {
 		BufferedImage bufferedImage = null;
 		try {
-			bufferedImage = ImageIO.read(this.getClass().getClassLoader().getResourceAsStream(iconName));
+			bufferedImage = ImageIO.read(GMapPinButton.class.getClassLoader().getResourceAsStream(iconName));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

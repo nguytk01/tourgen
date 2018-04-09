@@ -38,7 +38,9 @@ public class RepositoryIOManager extends java.util.Observable implements Seriali
 		}
 		catch (FileNotFoundException e)
 		{
-			e.printStackTrace();
+			/* file not found exception will be skipped */
+			/* data will be initialized from text file */
+			//e.printStackTrace();
 		}
 		catch (IOException e)
 		{
@@ -93,7 +95,9 @@ public class RepositoryIOManager extends java.util.Observable implements Seriali
 		}
 		catch (FileNotFoundException e)
 		{
-			e.printStackTrace();
+			/* file not found exception will be skipped */
+			/* data will be initialized from text file */
+			//e.printStackTrace();
 		}
 		catch (IOException e)
 		{

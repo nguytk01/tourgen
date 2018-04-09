@@ -112,4 +112,9 @@ public class Meet implements Serializable {
 		return meetingTime;
 	}
 
+	public String toString() {
+		if (hostSchool != null) 
+			return hostSchool.getDisplayName();
+		else return location.getName();
+	}
 }

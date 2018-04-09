@@ -22,3 +22,13 @@ Indiana High School Cross Country Tournament Generator.
 2. `File` > `Import` > Existing Projects into Workspace
 3. Set the `Root Directory` path to the `tourgen` folder, the one containing the README.md file.
 4. `Next` > `Finish`
+
+## How to run checkstyle ##
+* Follow the following link to install Checkstyle in Eclipse http://checkstyle.org/eclipse-cs/#!/
+* Follow the following link to activate Checkstyle in Eclipse http://checkstyle.org/eclipse-cs/#!/project-setup
+* Follow the following link to convert tabs to spaces in Eclipse https://stackoverflow.com/questions/407929/how-do-i-change-eclipse-to-use-spaces-instead-of-tabs
+** Menu `Window` > `Preferences` > `Java` > `Code Style`  > `Formatter`.
+** Create a new style based on Eclipse default
+** In `General Settings`, change `Tab Policy` to `Spaces Only`
+** `Tab size` to be `4`
+** `Indentation size` to `2`
