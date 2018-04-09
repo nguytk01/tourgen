@@ -28,6 +28,7 @@ import tourgen.util.IReportTableFrame;
 import tourgen.util.IReportTableView;
 import tourgen.util.IRepositoryView;
 import tourgen.util.ISchoolListView;
+import tourgen.model.RepositoryIOManager;
 
 public class Main {
 	
@@ -36,10 +37,17 @@ public class Main {
 	public static void main(String[] args) {
 		FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
 		setUIFont(resource);
-		Repository repo = Repository.getInstance();
-		SchoolManager manager = new SchoolManager(repo);
-		
-		
+		Repository repo = null;
+		SchoolManager manager = null; //new SchoolManager(repo);
+		manager = RepositoryIOManager.loadEverythingUp();
+		if (manager == null) {
+			repo = Repository.getInstance();
+			manager = new SchoolManager(repo);	
+			manager.initSchools();
+			RepositoryInitialization.init(repo, manager);
+		} else{
+			repo = manager.getRepository();
+		}
 		
 		AddSchoolFormListeners addSchoolFormListeners = new AddSchoolFormListeners();
 		ActionListener addListener = addSchoolFormListeners.new AddSchoolListener();
@@ -52,7 +60,6 @@ public class Main {
 		ActionListener listEditButtonListener = listListeners.new EditSchoolListener();
 		ActionListener listRemoveButtonListener = listListeners.new RemoveSchoolListener();
 		MenuListener listShowSchoolListActions = listListeners.new ShowSchoolListActionsListener();
-		
 		IAddSchoolForm addForm = new AddSchoolForm(addListener);
 		IEditSchoolForm editForm = new EditSchoolForm(editListener);
 		ISchoolListView schoolList =  new SchoolListView(listAddButtonListener, listEditButtonListener, listRemoveButtonListener, listShowSchoolListActions, manager);

@@ -124,4 +124,13 @@ public class RepositoryIOManager extends java.util.Observable implements Seriali
 			e.printStackTrace();
 		}
 	}
+
+	public static SchoolManager loadEverythingUp(){
+		SchoolManager manager = loadSchoolManager("schoolManager.bin");
+		if (manager != null){
+			Repository.getInstance().setBoyList(manager.getRepository().getBoyList());
+			Repository.getInstance().setGirlList(manager.getRepository().getGirlList());
+		}
+		return manager;
+	}
 }

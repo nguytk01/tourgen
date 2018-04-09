@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 
 import tourgen.model.Repository;
 import tourgen.util.IRepositoryView;
+import tourgen.model.RepositoryIOManager;
 
 public class RepositoryIOController {
 
@@ -22,10 +23,10 @@ public class RepositoryIOController {
 	}
 	
 	public Repository loadRepositoryFromPath(String fileName) {
-		//return (Repository) RepositoryIOManager.loadRepository(fileName);
+		return (Repository) RepositoryIOManager.loadRepository(fileName);
 	}
 	
-    public void saveRepositoryToPath(String fileName) {
+	public void saveRepositoryToPath(String fileName) {
 		//RepositoryIOManager.saveRepository(fileName, (Repository)Repository.readResolve());
-    }
+	}
 }
