@@ -1,13 +1,13 @@
 Sectional
 Saturday, Oct. 7, 2017
 10/10:45 am CT
-Riverside Park
+Riverside Park |41.571053|-87.503508
 Hammond Gavit
 Calumet, East Chicago Central, Gary West Side, Griffith, Hammond, Hammond Academy of Science & Technology, Hammond Bishop Noll, Hammond Clark, Hammond Gavit, Hammond Morton, Highland, Lake Central, Munster, Whiting
 Sectional
 Saturday, Oct. 7, 2017
 10/10:45 am CT
-Lemon Lake County Park
+Lemon Lake County Park|41.384020|-87.404621
 Crown Point
 21st Century Charter - Gary, Andrean, Crown Point, Lighthouse CPA, Gary Roosevelt, Hanover Central, Hebron, Hobart, Lowell, Merrillville, River Forest
 Sectional
@@ -31,7 +31,7 @@ Attica, Benton Central, Covington, Crawfordsville, Fountain Central, Frontier, N
 Sectional
 Saturday, Oct. 7, 2017
 10:30 am/11:15 am ET 
-Tippecanoe Amphitheater
+Tippecanoe Amphitheater|40.478923|-86.880151
 Harrison (West Lafayette)
 Clinton Central, Clinton Prairie, Delphi Community, Faith Christian, Frankfort, Harrison (West Lafayette), Lafayette Central Catholic, Lafayette Jefferson, McCutcheon, Rossville, West Lafayette, Western Boone
 Sectional
@@ -49,13 +49,13 @@ Carroll (Flora), Cass, Eastern (Greentown), Kokomo, Logansport, Maconaquah, Nort
 Sectional
 Saturday, Oct. 7, 2017
 1:00/1:45 pm ET
-Erskine Golf Course
+Erskine Golf Course|41.631756|-86.236020
 South Bend Riley
 Bremen, Glenn, Laville, Mishawaka, Mishawaka Marian, Penn, South Bend Adams, South Bend Career Academy, South Bend Clay, South Bend Riley, South Bend St. Joseph, South Bend Washington
 Sectional
 Saturday, Oct. 7, 2017
 10:30/11:15 am ET
-Oxbow Park
+Oxbow Park|41.629742|-85.906463
 Elkhart Central
 Bethany Christian, Concord, Elkhart Central, Elkhart Christian Academy, Elkhart Memorial, Fairfield, Goshen, Jimtown, Lakeland Christian Academy, Northridge, Northwood, Wawasee
 Sectional
@@ -79,7 +79,7 @@ Adams Central, Bellmont, Bluffton, Fort Wayne Bishop Luers, Fort Wayne Canterbur
 Sectional
 Saturday, Oct. 7, 2017
 10:30/11:15 am ET
-Indiana Wesleyan University
+Indiana Wesleyan University|40.51642705|-85.6641162748406
 Marion
 Blackford, Eastbrook, Huntington North, Madison-Grant, Marion, Mississinewa, Northfield, Oak Hill, Southern Wells, Southwood, Wabash
 Sectional
@@ -91,7 +91,7 @@ Alexandria Monroe, Anderson, Anderson Preparatory Academy, Blue River Valley, Da
 Sectional
 Saturday, Oct. 7, 2017
 10/10:45 am ET
-Muncie Sports Plex
+Muncie Sports Plex|40.199842|-85.328065
 Delta
 Cowan, Delta, Jay County, Monroe Central, Muncie Burris, Muncie Central, Randolph Southern, Union (Modoc), Union City, Wapahani, Wes-Del, Winchester Community
 Sectional
@@ -109,7 +109,7 @@ Ben Davis, Covenant Christian (Indianapolis), Decatur Central, Herron, Indiana M
 Sectional
 Saturday, Oct. 7, 2017
 10:30/11:15 am ET
-White River Elementary
+White River Elementary|40.063879|-85.993703
 Noblesville
 Carmel, Fishers, Guerin Catholic, Hamilton Heights, Hamilton Southeastern, Lebanon, Noblesville, Sheridan, Tindley, Tipton, University, Westfield
 Sectional
@@ -145,13 +145,13 @@ Center Grove, Christel House Academy, Eminence, Franklin Community, Greenwood Co
 Sectional
 Saturday, Oct. 7, 2017
 10:30/11:15 am ET
-Eagle Park
+Eagle Park|39.196021|-86.222891
 Brown County
 Brown County, Brownstown Central, Columbus East, Columbus North, Crothersville, Edinburgh, Hauser, Indian Creek, Martinsville, Seymour, Southwestern (Shelbyville), Trinity Lutheran, White River Valley
 Sectional
 Saturday, Oct. 7, 2017
 10/10:45 am ET
-LaVern Gibson XC Course
+LaVern Gibson XC Course|39.456488|-87.260560
 Terre Haute North Vigo
 Clay City, Linton-Stockton, North Central (Farmersburg), Northview, Owen Valley, Riverton Parke, Rockville, Shakamak, South Vermillion, Sullivan, Terre Haute North Vigo, Terre Haute South, Turkey Run, West Vigo
 Sectional
@@ -163,7 +163,7 @@ Bedford North Lawrence, Bloomfield, Bloomington North, Bloomington South, Easter
 Sectional
 Saturday, Oct. 7, 2017
 10:30/11:15 am ET
-Hanover College XC Course
+Hanover College XC Course|38.719626|-85.464261
 Southwestern (Hanover)
 Austin, Charlestown, Henryville, Jennings County, Madison Consolidated, New Washington, Scottsburg, Shawe Memorial, Silver Creek, Southwestern (Hanover), Switzerland County
 Sectional
@@ -175,7 +175,7 @@ Borden, Christian Academy of Indiana, Clarksville, Corydon Central, Crawford Cou
 Sectional
 Saturday, Oct. 7, 2017
 10:30/11:15 am ET
-Vincennes University Jasper
+Vincennes University Jasper|38.375857|-86.903940
 Jasper
 Cannelton, Forest Park, Heritage Hills, Jasper, Loogootee, Northeast Dubois, Perry Central, Shoals, South Spencer, Southridge, Springs Valley, Tell City
 Sectional
@@ -187,13 +187,13 @@ Barr Reeve, Gibson Southern, North Daviess, North Knox, Pike Central, Princeton 
 Sectional
 Saturday, Oct. 7, 2017
 10/10:45 am CT
-Angel Mounds
+Angel Mounds|37.943063|-87.457866
 Evansville Mater Dei
 Boonville, Castle, Evansville Bosse, Evansville Central, Evansville Harrison, Evansville Mater Dei, Evansville Memorial, Evansville North, Evansville F.J. Reitz, Mt. Vernon, North Posey, Signature
 Regional
 Saturday, Oct. 14, 2017
 11/11:45 am CT
-Lemon Lake County Park
+Lemon Lake County Park|41.384020|-87.404621
 Crown Point
 Crown Point, Hammond Gavit
 Regional
@@ -205,7 +205,7 @@ Chesterton, Rensselaer Central
 Regional
 Saturday, Oct. 14, 2017
 10:30/11:10 am ET
-Tippecanoe Amphitheater
+Tippecanoe Amphitheater|40.478923|-86.880151
 Harrison (West Lafayette)
 Benton Central, Harrison (West Lafayette)
 Regional
@@ -217,7 +217,7 @@ Culver Academies, Logansport
 Regional
 Saturday, Oct. 14, 2017
 10:30/11:15 am ET
-Oxbow Park
+Oxbow Park|41.629742|-85.906463
 Elkhart Central
 Elkhart Central, South Bend Riley
 Regional
@@ -229,13 +229,13 @@ Fort Wayne Northrop, West Noble
 Regional
 Saturday, Oct. 14, 2017
 10:30/11:15 am ET
-Indiana Wesleyan University
+Indiana Wesleyan University|40.51642705|-85.6641162748406
 Marion
 Bellmont, Marion
 Regional
 Saturday, Oct. 14, 2017
 10/10:45 am ET
-Muncie Sports Plex
+Muncie Sports Plex|40.199842|-85.328065
 Delta
 Delta, Pendleton Heights
 Regional
@@ -247,25 +247,25 @@ Ben Davis, South Putnam
 Regional
 Saturday, Oct. 14, 2017
 10:30/11:15 am ET
-White River Elementary
+White River Elementary|40.063879|-85.993703
 Noblesville
 Brebeuf Jesuit Preparatory, Noblesville
 Regional
 Saturday, Oct. 14, 2017
 10/10:45 am ET
-Benjamin Rush Middle School
+Benjamin Rush Middle School|39.627170|-85.452428
 Rushville Consolidated
 Connersville, New Palestine
 Regional
 Saturday, Oct. 14, 2017
 10:30/11:15 am ET
-Blue River Memorial Park
+Blue River Memorial Park|39.530922|-85.755959
 Shelbyville
 Franklin Community, South Dearborn
 Regional
 Saturday, Oct. 14, 2017
 10:30/11:15 am ET
-Eagle Park
+Eagle Park|39.196021|-86.222891
 Brown County
 Brown County, Southwestern (Hanover)
 Regional
@@ -283,25 +283,25 @@ Crawford County, Jasper
 Regional
 Saturday, Oct. 14, 2017
 11/11:45 am ET
-Prides Creek Golf Course
+Prides Creek Golf Course|38.481339|-87.258658
 Pike Central
 Evansville Mater Dei, South Knox
 Semi-State
 Saturday, Oct. 21, 2017
 11:30 am/12:15 pm ET
-Eagle Park
+Eagle Park|39.196021|-86.222891
 Brown County 
 Bedford North Lawrence, Brown County, Crawford County, Pike Central
 Semi-State
 Saturday, Oct. 21, 2017
 10:30/11:15 am ET
-Blue River Park
+Blue River Park|39.530922|-85.755959
 Shelbyville
 Ben Davis, Noblesville, Rushville Consolidated, Shelbyville
 Semi-State
 Saturday, Oct. 21, 2017
 1/1:45 pm ET
-The Plex IPFW
+The Plex IPFW|41.123614|-85.116671
 New Haven
 Delta, Elkhart Central, Marion, West Noble
 Semi-State
@@ -312,7 +312,7 @@ New Prairie
 Crown Point, Culver Academies, Harrison (West Lafayette), New Prairie
 State-Final
 Saturday, Oct. 28, 2017
-1:45 pm ET
-LaVern Gibson Championship Cross Country Course, Wabash Valley Sports Center, 599 S. Tabortown Road, Terre Haute, IN  47803
+1:00 pm/1:45 pm ET
+LaVern Gibson Championship Cross Country Course, Wabash Valley Sports Center, 599 S. Tabortown Road, Terre Haute, IN  47803|39.456488|-87.260560
 Null
 Brown County, Shelbyville, New Haven, New Prairie
