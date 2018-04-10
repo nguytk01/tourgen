@@ -62,7 +62,7 @@ public class MapDriver implements IMapDriver {
       new SwingWaypointOverlayPainter();
 
   private JXMapViewer mapViewer;
-
+  private javax.swing.JPanel checkBoxPanel;
   //private Meet currentMeet;
   private Repository repo;
 
@@ -209,12 +209,14 @@ public class MapDriver implements IMapDriver {
     // CheckBoxTreeFrame frame2 = new CheckBoxTreeFrame(repo, checkBoxListener,
     // mapController);
     frame.getContentPane().setLayout(new BorderLayout());
-    frame.getContentPane().add(
-        new CheckBoxTreePanel(checkBoxListener, repo, mapController), BorderLayout.WEST);
+    //frame.getContentPane().add(
+    //    , BorderLayout.WEST);
+    checkBoxPanel = new CheckBoxTreePanel(checkBoxListener,  mapController);
     frame.getContentPane().add(mapViewer, BorderLayout.CENTER);
     frame.setSize(1400, 900);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setVisible(true);
+    //frame.setVisible(true);
+    
   }
 
   public void setCon(CheckBoxTreeCustomCheckBoxListener checkBoxListener,
@@ -321,4 +323,11 @@ public class MapDriver implements IMapDriver {
     return meetList;
   }
 
+  javax.swing.JPanel getMapPanel() {
+    return mapViewer;
+  }
+  
+  javax.swing.JPanel getCheckBoxTreePanel() {
+    return checkBoxPanel;
+  }
 }

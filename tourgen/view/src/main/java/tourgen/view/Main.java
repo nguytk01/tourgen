@@ -34,7 +34,7 @@ import tourgen.util.IReportTableView;
 import tourgen.util.IRepositoryView;
 import tourgen.util.ISchoolListView;
 
-import tourgen.model.RepositoryIoManager;
+import tourgen.model.IoManager;
 
 import javax.swing.JFrame;
 
@@ -49,17 +49,14 @@ public class Main {
   public static void main(String[] args) {
     FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
     setUiFont(resource);
-    Repository repo = null;
     SchoolManager manager = null; // new SchoolManager(repo);
-    manager = RepositoryIoManager.loadEverythingUp();
+    manager = IoManager.loadEverythingUp();
     if (manager == null) {
-      repo = Repository.getInstance();
-      manager = new SchoolManager(repo);
+    	
+      manager = new SchoolManager(Repository.getInstance1());
       manager.initSchools();
-      RepositoryInitialization.init(repo, manager);
-    } else {
-      repo = manager.getRepository();
-    }
+      RepositoryInitialization.init(Repository.getInstance1(), manager);
+    };
 
     AddSchoolFormListeners addSchoolFormListeners = new AddSchoolFormListeners();
     ActionListener addListener = addSchoolFormListeners.new AddSchoolListener();
@@ -98,7 +95,7 @@ public class Main {
         reportViewListeners.new TournamentSelectionListener();
 
     IReportTableFrame reportFrame = new ReportTableFrame(reportViewManageSchoolButtonListener,
-        tournamentSelectionListener, repo);
+        tournamentSelectionListener, Repository.getInstance1());
     IReportTableView reportTableView = reportFrame.returnReportTableView();
     IRepositoryView repositoryView = reportFrame.returnRepositoryView();
 
@@ -118,18 +115,30 @@ public class Main {
     // RepositoryInitialization.init(repo, manager);
     repositoryView.populate();
 
-    reportFrame.showView();
+    //reportFrame.showView();
 
     manager.addObserver(editForm);
     manager.addObserver(addForm);
     manager.addObserver(schoolList);
 
-    MapDriver mainMap = new MapDriver(repo);
+    MapDriver mainMap = new MapDriver(Repository.getInstance1());
     MapController mapController2 = new MapController(null, mainMap);
     CheckBoxTreeCustomCheckBoxListener checkBoxListener2 = 
         new CheckBoxTreeCustomCheckBoxListener(mapController2);
     mainMap.setCon(checkBoxListener2, mapController2);
     mainMap.initGui();
+    
+    tourgen.controller.MainWindowCloseListener mainWindowListener = 
+        new tourgen.controller.MainWindowCloseListener(manager);
+    
+    TabbedFrame tabbedFrame= new TabbedFrame(reportViewManageSchoolButtonListener,
+        tournamentSelectionListener,
+        mainWindowListener,
+        (javax.swing.JPanel) (reportFrame.returnRepositoryView()),
+        (javax.swing.JPanel) (reportFrame.returnReportTableView()),
+        mainMap.getCheckBoxTreePanel(),
+        mainMap.getMapPanel());
+    tabbedFrame.setVisible(true);
 
     /* test GMapPinButton resources in Maven case */
     // JFrame myframe = new JFrame();

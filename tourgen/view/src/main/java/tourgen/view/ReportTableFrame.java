@@ -58,17 +58,28 @@ public class ReportTableFrame extends JFrame implements IReportTableFrame {
 
   }
 
+  
   @Override
   public void showView() {
     this.setVisible(true);
 
   }
 
+  @Deprecated
   public IReportTableView returnReportTableView() {
     return reportView;
   }
 
+  @Deprecated
   public IRepositoryView returnRepositoryView() {
     return repoView;
+  }
+  
+  javax.swing.JPanel getRepositoryView(){
+	  return repoView;
+  }
+  
+  javax.swing.JPanel getReportView(){
+	  return reportView;
   }
 }

@@ -8,7 +8,12 @@ import java.util.List;
 
 public class Repository extends java.util.Observable implements Serializable {
 
-  private static Repository instance;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+private static Repository instance = null;
 
   private List<Tournament> girlsTourList;
   private List<Tournament> boysTourList;
@@ -24,7 +29,7 @@ public class Repository extends java.util.Observable implements Serializable {
    * @return a Repository of Tournaments
    */
   
-  public static Repository getInstance() {
+  public static Repository getInstance1() {
     if (instance == null) {
       synchronized (Repository.class) {
         if (instance == null) {
@@ -36,7 +41,7 @@ public class Repository extends java.util.Observable implements Serializable {
   }
 
   public Object readResolve() throws ObjectStreamException {
-    return getInstance();
+    return getInstance1();
   }
 
   public List<Tournament> getBoyList() {
@@ -47,12 +52,18 @@ public class Repository extends java.util.Observable implements Serializable {
     return Collections.unmodifiableList(girlsTourList);
   }
 
-  void setBoyList(List<Tournament> list) {
-    boysTourList = list;
+  void setBoyList(List<Object> list) {
+    for (int i = 0; i < list.size(); i++) {
+      boysTourList.add((Tournament)(list.get(i)));
+    };
   }
 
-  void setGirlList(List<Tournament> list) {
-    girlsTourList = list;
+  void setGirlList(List<Object> list) {
+    //girlsTourList.addAll(list);
+    for (int i = 0; i < list.size(); i++) {
+      System.out.println((Tournament)(list.get(i)));
+      girlsTourList.add((Tournament)(list.get(i)));
+    }
   }
 
   public void addTournament(Tournament tour) {
@@ -63,11 +74,4 @@ public class Repository extends java.util.Observable implements Serializable {
     setChanged();
     notifyObservers();
   }
-
-  /*
-   * private static class RepositoryHelper{ private static final Repository
-   * instance = new Repository(); }
-   * 
-   * public static Repository getInstance(){ return Repository.instance; }
-   */
 }

@@ -9,9 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public class RepositoryIoManager extends java.util.Observable implements Serializable {
+public class IoManager extends java.util.Observable implements Serializable {
 
-  public RepositoryIoManager() {
+  public IoManager() {
 
   }
 
@@ -24,9 +24,11 @@ public class RepositoryIoManager extends java.util.Observable implements Seriali
       File input = new File(fileName);
       inputFile = new ObjectInputStream(new FileInputStream(input));
       try {
-        Repository newRepository = (Repository) inputFile.readObject();
+        java.util.List<Object> newGirlList = (java.util.List<Object>) inputFile.readObject();
+    	  //Object  newRepository =  inputFile.readObject();
         inputFile.close();
-        return newRepository;
+        Repository.getInstance1().setGirlList(newGirlList);
+        //return newGirlList;
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
@@ -43,17 +45,17 @@ public class RepositoryIoManager extends java.util.Observable implements Seriali
   /**
    * Save the current repository to persistent storage.
    */
-  public static void saveRepository(String fileName, Repository repository) {
+  public static void saveRepository(String fileName) {
     try {
       File output = new File(fileName);
       ObjectOutputStream outputFile = new ObjectOutputStream(new FileOutputStream(output));
       try {
-        outputFile.writeObject(Repository.getInstance());
+        outputFile.writeObject(Repository.getInstance1().getGirlList());
         outputFile.close();
+        return;
       } catch (IOException i) {
         i.printStackTrace();
       }
-      outputFile.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -80,6 +82,7 @@ public class RepositoryIoManager extends java.util.Observable implements Seriali
       /* file not found exception will be skipped */
       /* data will be initialized from text file */
       // e.printStackTrace();
+      System.out.println("cannot find file name " + fileName);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -112,11 +115,32 @@ public class RepositoryIoManager extends java.util.Observable implements Seriali
    * @return a schoolManager
    */
   public static SchoolManager loadEverythingUp() {
-    SchoolManager manager = loadSchoolManager("schoolManager.bin");
+	  SchoolManager manager = loadSchoolManager("schoolManager.bin");
+	   loadRepository("abc.bin");
+    
+    
+    //Repository.getInstance().setGirlList(repo.getGirlList());
     if (manager != null) {
-      Repository.getInstance().setBoyList(manager.getRepository().getBoyList());
-      Repository.getInstance().setGirlList(manager.getRepository().getGirlList());
+      System.out.println("manager is not null");
+      System.out.println("manager.repository " + manager.getRepository());
+      System.out.println(manager.getRepository().getGirlList().size());
+      //System.out.println(repo);
+      //System.out.println(repo.getGirlList().size());
+      //System.exit(0);
+      //Repository.getInstance().setBoyList(manager.getRepository().getBoyList());
+      //Repository.getInstance().setGirlList(manager.getRepository().getGirlList());
     }
+    return manager;
+  }
+ 
+
+public static SchoolManager saveEverything(SchoolManager manager) {
+    /* This will also save repository since schoolManager has a repository*/
+    saveSchoolManager("schoolManager.bin", manager);
+    saveRepository("abc.bin");
+    
+    
+    //saveRepository("repository.bin",Repository.getInstance());
     return manager;
   }
 }

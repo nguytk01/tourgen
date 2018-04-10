@@ -1,27 +1,19 @@
 package tourgen.model;
 
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
-
-import com.google.maps.DistanceMatrixApi;
-
-import com.google.maps.GeoApiContext;
-import com.google.maps.errors.ApiException;
-import com.google.maps.model.DistanceMatrix;
-import com.google.maps.model.LatLng;
-import com.google.maps.model.DistanceMatrix;
 
 import java.util.List;
 import java.util.HashMap;
-import tourgen.model.GoogleMapsApiKey;
 
-public class TourgenDistanceMatrix {
-  private HashMap<String, HashMap<String, Long>> distanceMatrix;
-  private GoogleMapsApiHelper helper;
+class TourgenDistanceMatrix implements Serializable {
 
-  public TourgenDistanceMatrix(GoogleMapsApiHelper helperArg) {
-    distanceMatrix = new HashMap<String, HashMap<String, Long>>();
-    helper = helperArg;
+  private static HashMap<String, HashMap<String, Long>> instance;
+  private static GoogleMapsApiHelper helper;
+
+  private TourgenDistanceMatrix() {
+    instance = new HashMap<String, HashMap<String, Long>>();
+    //helper = helperArg;
   }
 
   /**
@@ -30,7 +22,7 @@ public class TourgenDistanceMatrix {
    * @param locationList a list of clients
    * @return an array of long
    */
-  public long[] getDistance1ToN(Location a, List<Location> locationList) {
+  static long[] getDistance1ToN(Location a, List<Location> locationList) {
     String[] origLatLon = new String[] { a.getCoordinateString() };
     String[] destLatLons = new String[locationList.size()];
     for (int i = 0; i < locationList.size(); i++) {
@@ -40,14 +32,33 @@ public class TourgenDistanceMatrix {
     if (distance != null && distance.length == 1 && distance[0].length == locationList.size()) {
       String origLocationName = a.getName();
       for (int i = 0; i < distance[0].length; i++) {
-        if (distanceMatrix.get(origLocationName) == null) {
-          distanceMatrix.put(origLocationName, new HashMap<String, Long>());
+        if (instance.get(origLocationName) == null) {
+          instance.put(origLocationName, new HashMap<String, Long>());
         }
-        distanceMatrix.get(origLocationName).put(locationList.get(i).getName(), distance[0][i]);
+        instance.get(origLocationName).put(locationList.get(i).getName(), distance[0][i]);
       }
       return distance[0];
     } else {
       return null;
     }
   }
+  
+  static void storeDataBothWays(String origLocationName, 
+      String destLocationName, long distance) {
+    storeDataOneWay(origLocationName, destLocationName, distance);
+    storeDataOneWay(destLocationName, origLocationName, distance);
+  }
+  
+  private static void storeDataOneWay(String origLocationName, 
+      String destLocationName, long distance) {
+    if (instance.get(origLocationName) == null) {
+      instance.put(origLocationName, new HashMap<String, Long>());
+    }
+    instance.get(origLocationName).put(destLocationName, distance);
+  }
+  
+  static void setGoogleMapsApiHelper(GoogleMapsApiHelper helperArg) {
+    helper = helperArg;
+  }
+  
 }

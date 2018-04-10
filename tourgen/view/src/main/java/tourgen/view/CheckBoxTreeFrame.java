@@ -67,7 +67,7 @@ public class CheckBoxTreeFrame extends JFrame {
     repo = repository;
 
     getContentPane().add(
-        new CheckBoxTreePanel(checkBoxListener, repository, controller), 
+        new CheckBoxTreePanel(checkBoxListener,  controller), 
         BorderLayout.CENTER);
     // getContentPane().add(panel, BorderLayout.EAST);
     // getContentPane().add(textPanel, BorderLayout.SOUTH);

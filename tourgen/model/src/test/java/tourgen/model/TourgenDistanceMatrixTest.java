@@ -28,13 +28,12 @@ public class TourgenDistanceMatrixTest{
 		dest2.setLongitude(-87.251381);
 
 		GoogleMapsApiHelper helper = new GoogleMapsApiHelper();
-		TourgenDistanceMatrix distanceMatrix = new TourgenDistanceMatrix(helper);
-
+		TourgenDistanceMatrix.setGoogleMapsApiHelper(helper);
 		ArrayList<Location> locationList = new ArrayList<Location>();
 		locationList.add(dest1);
 		locationList.add(dest2);
 
-		long[] result = distanceMatrix.getDistance1ToN(orig, locationList);
+		long[] result = TourgenDistanceMatrix.getDistance1ToN(orig, locationList);
 		assertTrue(result != null);
 		System.out.println(result.length);
 		System.out.println(result[0]);

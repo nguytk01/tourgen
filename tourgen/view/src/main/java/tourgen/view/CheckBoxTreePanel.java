@@ -26,7 +26,7 @@ public class CheckBoxTreePanel extends JPanel {
    * @param repo a Repository object
    * @param controller a MapController object
    */
-  public CheckBoxTreePanel(CheckBoxTreeCustomCheckBoxListener checkBoxListener, Repository repo,
+  public CheckBoxTreePanel(CheckBoxTreeCustomCheckBoxListener checkBoxListener,
       MapController controller) {
     String[] strs = { "Tournament 2017-18", "Tournaments", // 0
         "Sectionals", // 1
@@ -51,8 +51,8 @@ public class CheckBoxTreePanel extends JPanel {
     ArrayList<Meet> semiHost = new ArrayList<Meet>();
     ArrayList<Meet> finalHost = new ArrayList<Meet>();
 
-    for (int tourIndex = 0; tourIndex < repo.getGirlList().size(); tourIndex++) {
-      Tournament tour = repo.getGirlList().get(tourIndex);
+    for (int tourIndex = 0; tourIndex < Repository.getInstance1().getGirlList().size(); tourIndex++) {
+      Tournament tour = Repository.getInstance1().getGirlList().get(tourIndex);
       for (int stageIndex = 0; stageIndex < tour.getStageList().size(); stageIndex++) {
         Stage stage = tour.getStageList().get(stageIndex);
 
