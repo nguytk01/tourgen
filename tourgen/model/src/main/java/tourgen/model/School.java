@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class School implements Serializable {
 
-  private int schoolID;
+  private int schoolId;
   private Location diffLoc;
   private String name;
   private Location schoolLoc;
@@ -19,9 +19,20 @@ public class School implements Serializable {
   @Deprecated
   private String hostName;
   private String displayName;
-
-  public School(String displayNameArg, String schoolName, String streetAddress, String cityName, int zipCode,
-      int enrollmentNumber, 
+  
+  /**
+   * to construct a school object from parameters passed to it.
+   * @param displayNameArg is the display name of school
+   * @param schoolName is the full name of school
+   * @param streetAddress is the street address of school
+   * @param cityName is the city name of school
+   * @param zipCode is the five-digit zipcode of school
+   * @param enrollmentNumber is the number of students enrolled in the school
+   * @param girlsTournamentParticipatingStatusArg is the girls' participation flag
+   * @param boysTournamentParticipatingStatusArg is the boys' participation flag
+   */
+  public School(String displayNameArg, String schoolName, String streetAddress,
+      String cityName, int zipCode, int enrollmentNumber,
       boolean girlsTournamentParticipatingStatusArg, boolean boysTournamentParticipatingStatusArg) {
     displayName = displayNameArg;
     name = schoolName;
@@ -31,7 +42,11 @@ public class School implements Serializable {
     girlsTournamentParticipationStatus = girlsTournamentParticipatingStatusArg;
     boysTournamentParticipationStatus = boysTournamentParticipatingStatusArg;
   }
-
+  
+  /**
+   * to construct a new school object from the data passed to it from the school form.
+   * @param info is a school form object to add a new school
+   */
   public School(SchoolFormMvcData info) {
     name = info.getSchoolName();
     schoolLoc = new Location(info.getStreetAddress(), info.getCityName(), info.getZipCode());
@@ -42,12 +57,12 @@ public class School implements Serializable {
     displayName = info.getSchoolDisplayName();
   }
 
-  public int getID() {
-    return schoolID;
+  public int getId() {
+    return schoolId;
   }
 
-  public void setID(int ID) {
-    schoolID = ID;
+  public void setId(int id) {
+    schoolId = id;
   }
 
   @Deprecated
@@ -131,12 +146,15 @@ public class School implements Serializable {
    * 
    * public void setHostName(String host) { hostName = host; }
    */
-
+  
+  /**
+   * compares an object passed to it check for equality with local school object.
+   */
   public boolean equals(Object obj) {
     if (obj instanceof School) {
       // compare school's name, address
       School sch = (School) obj;
-      if (name.equals(sch.getStreetAddress()) && schoolLoc.equals(sch.getCityName())) {
+      if (name.equals(sch.getStreetAddress()) && schoolLoc.equals(sch.getSchoolLoc())) {
         return true;
       } else {
         return false;

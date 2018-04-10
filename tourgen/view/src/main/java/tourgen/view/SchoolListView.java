@@ -1,17 +1,5 @@
 package tourgen.view;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.event.MenuListener;
-
-import tourgen.controller.IController;
-import tourgen.controller.RemoveSchoolUseCaseController;
-import tourgen.model.IOperationResult;
-import tourgen.model.School;
-import tourgen.model.SchoolManager;
-import tourgen.util.ISchoolListView;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,16 +8,24 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
 
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
-import javax.swing.JMenu;
-import javax.swing.JList;
+import javax.swing.event.MenuListener;
+
+import tourgen.controller.RemoveSchoolUseCaseController;
+import tourgen.model.IOperationResult;
+import tourgen.model.School;
+import tourgen.model.SchoolManager;
+import tourgen.util.ISchoolListView;
 
 public class SchoolListView extends JFrame implements ISchoolListView, Observer {
 
   private Vector<School> schoolVector;
-  private JList jList;
+  private JList swingJList;
   private SchoolManager manager;
   private JScrollPane scrollPane;
   private JMenuItem mntmEdit;
@@ -83,12 +79,12 @@ public class SchoolListView extends JFrame implements ISchoolListView, Observer 
     getContentPane().setLayout(null);
 
     schoolVector = new Vector<School>();
-    jList = new JList(schoolVector);
-    jList.setBounds(61, 35, 379, 330);
+    swingJList = new JList(schoolVector);
+    swingJList.setBounds(61, 35, 379, 330);
     scrollPane = new JScrollPane();
-    scrollPane.setViewportView(jList);
+    scrollPane.setViewportView(swingJList);
     getContentPane().setLayout(new BorderLayout());
-    jList.setVisibleRowCount(10);
+    swingJList.setVisibleRowCount(10);
     getContentPane().add(scrollPane);
 
   }
@@ -104,7 +100,7 @@ public class SchoolListView extends JFrame implements ISchoolListView, Observer 
     newVector.add(school);
     newVector.addAll(schoolVector);
     schoolVector = newVector;
-    jList.setListData(newVector);
+    swingJList.setListData(newVector);
     // repaint();
   }
 
@@ -141,8 +137,8 @@ public class SchoolListView extends JFrame implements ISchoolListView, Observer 
 
   @Override
   public Object getSelectedSchool() {
-    if (jList.getSelectedIndex() != -1) {
-      return schoolVector.get(jList.getSelectedIndex());
+    if (swingJList.getSelectedIndex() != -1) {
+      return schoolVector.get(swingJList.getSelectedIndex());
     } else {
       return null;
     }
@@ -151,7 +147,7 @@ public class SchoolListView extends JFrame implements ISchoolListView, Observer 
 
   @Override
   public void toggleEditButtonBasedOnState() {
-    if (jList.getSelectedIndex() == -1) {
+    if (swingJList.getSelectedIndex() == -1) {
       mntmEdit.setEnabled(false);
     } else {
       mntmEdit.setEnabled(true);
@@ -173,7 +169,7 @@ public class SchoolListView extends JFrame implements ISchoolListView, Observer 
 
   @Override
   public void toggleRemoveButtonBasedOnState() {
-    if (jList.getSelectedIndex() == -1) {
+    if (swingJList.getSelectedIndex() == -1) {
       mntmRemove.setEnabled(false);
     } else {
       mntmRemove.setEnabled(true);

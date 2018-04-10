@@ -1,28 +1,15 @@
 package tourgen.model;
 
-import com.google.maps.GeocodingApi;
-import com.google.maps.DistanceMatrixApi;
-import com.google.maps.PlacesApi;
-import com.google.maps.model.DistanceMatrix;
-
-import com.google.maps.errors.ApiException;
+import com.google.maps.DistanceMatrixApiRequest;
 import com.google.maps.GeoApiContext;
-import com.google.maps.model.Distance;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixRow;
-
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TravelMode;
-import com.google.maps.DistanceMatrixApiRequest;
+import java.io.IOException;
 import org.joda.time.Duration;
 import org.joda.time.Instant;
-
-import com.google.maps.model.PlacesSearchResponse;
-
-import com.google.maps.GeocodingApiRequest;
-
-import java.io.IOException;
-
-import tourgen.model.GoogleMapsApiKey;
 
 class GoogleMapsApiHelper {
   private GeoApiContext distanceMatrixContext;

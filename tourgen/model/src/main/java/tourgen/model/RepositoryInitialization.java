@@ -1,18 +1,14 @@
 package tourgen.model;
 
 import java.io.InputStream;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Scanner;
-import java.util.List;
 import java.util.ArrayList;
-import org.joda.time.format.DateTimeFormatterBuilder;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.DateTimeZone;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 public final class RepositoryInitialization {
   private static final Map<String, DateTimeZone> mapEtCtToTimeZone = 

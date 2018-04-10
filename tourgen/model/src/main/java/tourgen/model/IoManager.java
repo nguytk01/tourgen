@@ -90,9 +90,9 @@ public class IoManager extends java.util.Observable implements Serializable {
   }
   
   /**
-   * 
-   * @param fileName
-   * @param schoolmanager
+   * this method saves the school manager passed to it in a particular file.
+   * @param fileName is the name of the file to write to
+   * @param schoolmanager is the instance of SchoolManager to be saved
    */
   public static void saveSchoolManager(String fileName, SchoolManager schoolmanager) {
     try {

@@ -1,17 +1,16 @@
 package tourgen.view;
 
+import java.awt.List;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 import org.jxmapviewer.viewer.DefaultWaypoint;
 import org.jxmapviewer.viewer.GeoPosition;
 
-import tourgen.model.Location;
 import tourgen.model.Meet;
-import tourgen.model.Repository;
-import tourgen.model.School;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * A waypoint that is represented by a button on the map.
@@ -21,9 +20,8 @@ import java.awt.event.MouseListener;
 public class HostSwingWaypoint extends DefaultWaypoint {
   private final JButton button;
   private final String text;
-  private MapDriver MapDriver;
+  private MapDriver mapDriver;
   private Meet meet;
-  private Repository repo;
   private List meetList;
 
   /**

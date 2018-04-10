@@ -2,8 +2,6 @@ package tourgen.view;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
@@ -14,10 +12,8 @@ import javax.swing.plaf.FontUIResource;
 import tourgen.controller.AddSchoolFormListeners;
 import tourgen.controller.AddSchoolUseCaseController;
 import tourgen.controller.CheckBoxTreeCustomCheckBoxListener;
-import tourgen.controller.CheckBoxTreeListener;
 import tourgen.controller.EditSchoolFormListeners;
 import tourgen.controller.EditSchoolUseCaseController;
-import tourgen.controller.IController;
 import tourgen.controller.MapController;
 import tourgen.controller.RemoveSchoolUseCaseController;
 import tourgen.controller.ReportViewListeners;
@@ -26,6 +22,7 @@ import tourgen.controller.SchoolListListeners;
 import tourgen.controller.ViewSchoolListUseCaseController;
 import tourgen.model.Repository;
 import tourgen.model.RepositoryInitialization;
+import tourgen.model.IoManager;
 import tourgen.model.SchoolManager;
 import tourgen.util.IAddSchoolForm;
 import tourgen.util.IEditSchoolForm;
@@ -33,10 +30,6 @@ import tourgen.util.IReportTableFrame;
 import tourgen.util.IReportTableView;
 import tourgen.util.IRepositoryView;
 import tourgen.util.ISchoolListView;
-
-import tourgen.model.IoManager;
-
-import javax.swing.JFrame;
 
 public class Main {
 
@@ -52,11 +45,10 @@ public class Main {
     SchoolManager manager = null; // new SchoolManager(repo);
     manager = IoManager.loadEverythingUp();
     if (manager == null) {
-    	
       manager = new SchoolManager(Repository.getInstance1());
       manager.initSchools();
       RepositoryInitialization.init(Repository.getInstance1(), manager);
-    };
+    }
 
     AddSchoolFormListeners addSchoolFormListeners = new AddSchoolFormListeners();
     ActionListener addListener = addSchoolFormListeners.new AddSchoolListener();
@@ -131,7 +123,7 @@ public class Main {
     tourgen.controller.MainWindowCloseListener mainWindowListener = 
         new tourgen.controller.MainWindowCloseListener(manager);
     
-    TabbedFrame tabbedFrame= new TabbedFrame(reportViewManageSchoolButtonListener,
+    TabbedFrame tabbedFrame = new TabbedFrame(reportViewManageSchoolButtonListener,
         tournamentSelectionListener,
         mainWindowListener,
         (javax.swing.JPanel) (reportFrame.returnRepositoryView()),

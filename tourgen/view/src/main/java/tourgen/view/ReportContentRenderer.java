@@ -1,20 +1,19 @@
 package tourgen.view;
 
-import tourgen.model.Tournament;
-import tourgen.model.Stage;
-
-import java.util.List;
+import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import tourgen.model.Meet;
-import tourgen.model.StageType;
-import tourgen.model.School;
 import org.apache.commons.text.WordUtils;
-import org.joda.time.format.DateTimeFormatterBuilder;
-import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.DateTimeZone;
-import java.text.DecimalFormat;
+import org.joda.time.format.DateTimeFormatterBuilder;
+
+import tourgen.model.Meet;
+import tourgen.model.School;
+import tourgen.model.Stage;
+import tourgen.model.StageType;
+import tourgen.model.Tournament;
 
 public class ReportContentRenderer {
   // private Tournament tournament;

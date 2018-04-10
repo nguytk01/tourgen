@@ -1,23 +1,21 @@
 package tourgen.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
+import javax.swing.SwingConstants;
 import tourgen.controller.EditSchoolUseCaseController;
 import tourgen.controller.IController;
 import tourgen.model.IOperationResult;
 import tourgen.model.School;
 import tourgen.util.IEditSchoolForm;
-
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 
 public class EditSchoolForm extends JFrame implements IEditSchoolForm {
 
@@ -197,7 +195,6 @@ public class EditSchoolForm extends JFrame implements IEditSchoolForm {
 
   @Override
   public String getAddr() {
-    // TODO Auto-generated method stub
     return null;
   }
 
@@ -209,8 +206,7 @@ public class EditSchoolForm extends JFrame implements IEditSchoolForm {
 
   @Override
   public void cleanUp() {
-    // TODO Auto-generated method stub
-
+  
   }
 
   @Override

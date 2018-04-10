@@ -12,13 +12,21 @@ public class SchoolManager extends java.util.Observable implements Serializable 
   private java.util.ArrayList<School> schoolList;
   private HashMap<String, School> schoolHashMap;
   private Repository repo;
-
+  
+  /**
+   * constructs a SchoolManagerobject.
+   * @param repoArg
+   */
   public SchoolManager(Repository repoArg) {
     repo = repoArg;
     schoolList = new java.util.ArrayList<School>();
     schoolHashMap = new HashMap<String, School>();
   }
 
+  /**
+   * add school from the school form values.
+   * @param info is the school form data object
+   */
   public void addSchool(SchoolFormMvcData info) {
     School school = new School(info);
     IOperationResult result;
@@ -56,7 +64,11 @@ public class SchoolManager extends java.util.Observable implements Serializable 
     }
     return -1;
   }
-
+  
+  /**
+   * remove school selected on the form.
+   * @param info is the school form data object
+   */
   public void removeSchool(SchoolFormMvcData info) {
     School school = null;
     int index = getSchoolIndex(info);
@@ -74,12 +86,17 @@ public class SchoolManager extends java.util.Observable implements Serializable 
       result = new OperationResult(info.getTicket(), OperationResultEnum.SUCCESS, "", school);
 
     } else {
-      result = new OperationResult(info.getTicket(), OperationResultEnum.FAILURE, "Remove failure", null);
+      result = new OperationResult(info.getTicket(), OperationResultEnum.FAILURE,
+          "Remove failure", null);
     }
     setChanged();
     notifyObservers(result);
   }
-
+  
+  /**
+   * edits school from the school form values.
+   * @param info is the school form data object
+   */
   public void editSchool(SchoolFormMvcData info) {
 
     int index = getSchoolIndex(info);
@@ -92,7 +109,8 @@ public class SchoolManager extends java.util.Observable implements Serializable 
       schoolList.get(index).setGStatus(info.getGirlsParticipationStatus());
       result = new OperationResult(info.getTicket(), OperationResultEnum.SUCCESS, "", school);
     } else {
-      result = new OperationResult(info.getTicket(), OperationResultEnum.FAILURE, "Remove failure", null);
+      result = new OperationResult(info.getTicket(), OperationResultEnum.FAILURE,
+          "Remove failure", null);
     }
     setChanged();
     notifyObservers(result);
@@ -102,9 +120,14 @@ public class SchoolManager extends java.util.Observable implements Serializable 
     return Collections.unmodifiableList(schoolList);
   }
 
+  /**
+   * edits school database from a text file.
+   */
   public void initSchools() {
-    InputStream stream = this.getClass().getClassLoader().getResourceAsStream("schoolDataAlphabetData.txt");
-    InputStream coordinatesStream = this.getClass().getClassLoader().getResourceAsStream("schoolCoordinatesData.csv");
+    InputStream stream = this.getClass().getClassLoader()
+            .getResourceAsStream("schoolDataAlphabetData.txt");
+    InputStream coordinatesStream = this.getClass().getClassLoader()
+            .getResourceAsStream("schoolCoordinatesData.csv");
 
     Scanner scanner = new Scanner(stream);
     scanner.useDelimiter("\\||\\r?\\n|\\r");
@@ -121,7 +144,8 @@ public class SchoolManager extends java.util.Observable implements Serializable 
       int zipCode = Integer.parseInt(scanner.next());
 
       // scanner.next();
-      school = new School(displayName, schoolName, streetAddress, cityName, zipCode, enrollmentNumber, true, false);
+      school = new School(displayName, schoolName, streetAddress, cityName,
+                          zipCode, enrollmentNumber, true, false);
       double[] coor = getCoordinatesFromStream(coordinatesFileScanner);
       school.getSchoolLoc().setLatitude(coor[0]);
       school.getSchoolLoc().setLongitude(coor[1]);
@@ -146,19 +170,21 @@ public class SchoolManager extends java.util.Observable implements Serializable 
       // System.out.println("line is " + line);
       lineComponents = line.split("\\|");
       // System.out.println("line length: " + lineComponents.length);
-      result = new double[] { Double.parseDouble(lineComponents[4]), Double.parseDouble(lineComponents[5]) };
+      result = new double[] { Double.parseDouble(lineComponents[4]),
+          Double.parseDouble(lineComponents[5]) };
       return result;
-    } else
+    } else {
       return null;
-
+    }
   }
 
   School getSchoolFromDisplayName(String displayName) {
     if (schoolHashMap.containsKey(displayName.trim()) == false) {
       System.out.println("cannot find school in schoolManager >" + displayName + "<");
       return null;
-    } else
+    } else {
       return schoolHashMap.get(displayName.trim());
+    }
   }
 
   public Repository getRepository() {

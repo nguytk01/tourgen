@@ -1,5 +1,15 @@
 package tourgen.view;
 
+import java.awt.BorderLayout;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.swing.JFrame;
+import javax.swing.event.MouseInputListener;
+
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.input.CenterMapListener;
@@ -13,31 +23,11 @@ import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
 
 import tourgen.controller.CheckBoxTreeCustomCheckBoxListener;
-import tourgen.controller.CheckBoxTreeListener;
 import tourgen.controller.MapController;
 import tourgen.model.Meet;
 import tourgen.model.Repository;
 import tourgen.model.School;
-import tourgen.model.SchoolManager;
-import tourgen.model.Stage;
-import tourgen.model.StageType;
-import tourgen.model.Tournament;
 import tourgen.util.IMapDriver;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.event.MouseInputListener;
-import javax.tools.DocumentationTool.Location;
-
-import java.awt.BorderLayout;
-import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * A sample application demonstrating usage of Swing components as waypoints

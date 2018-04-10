@@ -24,8 +24,9 @@ private static Repository instance = null;
   }
 
   /**
-   * This method returns the singleton instance of the repository.
-   * It creates the instance if it does not exist.
+   * This method initializes the singleton repository if it
+   * hasn't already been initialized otherwise it returns
+   * the instance of the singleton repository.
    * @return a Repository of Tournaments
    */
   
@@ -65,12 +66,18 @@ private static Repository instance = null;
       girlsTourList.add((Tournament)(list.get(i)));
     }
   }
-
+  
+  /**
+   * This method checks the tournament for its gender
+   * and add it to the appropriate list in the repository.
+   * @param tour is the 
+   */
   public void addTournament(Tournament tour) {
     if (tour.getTourParticipantsType() == TournamentParticipants.BOYS) {
       boysTourList.add(tour);
-    } else
+    } else {
       girlsTourList.add(tour);
+    }
     setChanged();
     notifyObservers();
   }
