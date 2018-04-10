@@ -19,7 +19,7 @@ import java.awt.event.MouseListener;
  * @author Daniel Stahr
  */
 public class SwingWaypoint extends DefaultWaypoint {
-  private final JButton button;
+  private  JButton button;
   private final String text;
   private MapDriver mapDriver;
   private Meet meet;
@@ -32,10 +32,18 @@ public class SwingWaypoint extends DefaultWaypoint {
    * @param coord the coordinates of the point
    * @param meet the meet associated to the point.
    */
-  public SwingWaypoint(String text, GeoPosition coord, Meet meet) {
+  public SwingWaypoint(String text, GeoPosition coord, Meet meet, boolean hostFlag) {
     super(coord);
     this.text = text;
-    button = new GMapPinButton(text.substring(0, 1));
+   // button = new GMapPinButton(text.substring(0, 1));
+    if(hostFlag == true)
+    {
+      button = new HostGMapPinButton(text.substring(0, 1));
+    }
+    else
+    {
+      button = new GMapPinButton(text.substring(0, 1)); 
+    }
     // button.setSize(24, 24);
     // button.setPreferredSize(new Dimension(24, 24));
     button.addMouseListener(new SwingWaypointMouseListener());

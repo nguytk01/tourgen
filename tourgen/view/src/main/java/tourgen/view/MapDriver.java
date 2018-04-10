@@ -54,15 +54,19 @@ public class MapDriver implements IMapDriver {
 
   private tourgen.model.Location tempLoc = schoolTest.getSchoolLoc();
   private Set<SwingWaypoint> waypoints;
-  private Set<HostSwingWaypoint> hostwaypoints;
+  
 
   private WaypointPainter<SwingWaypoint> swingWaypointPainter = 
       new SwingWaypointOverlayPainter();
-  private WaypointPainter<SwingWaypoint> hostSwingWaypointPainter = 
-      new SwingWaypointOverlayPainter();
+  private WaypointPainter<SwingWaypoint> SwingWaypointPainter = new SwingWaypointOverlayPainter();
 
+  
+  
+  private Set<HostSwingWaypoint> Hostwaypoints;
+  //private WaypointPainter<HostSwingWaypoint> HostSwingWaypointPainter = new HostSwingWaypointOverlayPainter();
+  
   private JXMapViewer mapViewer;
-  private javax.swing.JPanel checkBoxPanel;
+
   //private Meet currentMeet;
   private Repository repo;
 
@@ -92,6 +96,8 @@ public class MapDriver implements IMapDriver {
   // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   // frame.setVisible(true);
   // }
+  
+  private javax.swing.JPanel checkBoxPanel;
   
   /**
    * The driver for the map view.
@@ -151,6 +157,8 @@ public class MapDriver implements IMapDriver {
 
     // Create waypoints from the geo-positions
     waypoints = new HashSet<SwingWaypoint>();
+    Hostwaypoints = new HashSet<HostSwingWaypoint>();
+    
 
     // Iteration for all schools to be displayed from the File of database of
     // shcools and pins
@@ -201,6 +209,8 @@ public class MapDriver implements IMapDriver {
     for (SwingWaypoint w : waypoints) {
       mapViewer.add(w.getButton());
     }
+    
+    
 
     // Test waypoint
 
@@ -209,14 +219,12 @@ public class MapDriver implements IMapDriver {
     // CheckBoxTreeFrame frame2 = new CheckBoxTreeFrame(repo, checkBoxListener,
     // mapController);
     frame.getContentPane().setLayout(new BorderLayout());
-    //frame.getContentPane().add(
-    //    , BorderLayout.WEST);
-    checkBoxPanel = new CheckBoxTreePanel(checkBoxListener,  mapController);
+    frame.getContentPane().add(
+        new CheckBoxTreePanel(checkBoxListener, mapController), BorderLayout.WEST);
     frame.getContentPane().add(mapViewer, BorderLayout.CENTER);
     frame.setSize(1400, 900);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //frame.setVisible(true);
-    
+    frame.setVisible(true);
   }
 
   public void setCon(CheckBoxTreeCustomCheckBoxListener checkBoxListener,
@@ -246,6 +254,9 @@ public class MapDriver implements IMapDriver {
     // System.out.println("meetlist cleared. size = " + meetList.size());
     mapViewer.removeAll();
     waypoints.clear();
+    Hostwaypoints.clear();
+    
+    
     // System.out.println("showMeetList ");
     List<Meet> meets = new ArrayList<Meet>();
     for (Object i : meetsArg) {
@@ -289,7 +300,18 @@ public class MapDriver implements IMapDriver {
         // System.out.println("school Loc" + tempLoc.getLatitude());
         // System.out.println("school Loc" + tempLoc.getLongitude());
         GeoPosition points = new GeoPosition(tempLoc.getLatitude(), tempLoc.getLongitude());
-        waypoints.add(new SwingWaypoint(schools.get(i).getDisplayName(), points, meetList.get(j)));
+        waypoints.add(new SwingWaypoint(schools.get(i).getDisplayName(),
+            points, meetList.get(j),false));
+        
+        
+        GeoPosition hostPoint = 
+            new GeoPosition(meetList.get(j).getLocation().getLatitude(),
+                meetList.get(j).getLocation().getLongitude());
+        waypoints.add(new
+                SwingWaypoint(meetList.get(j).getLocation().getName(),
+                hostPoint, meetList.get(j),true));
+     
+        
         // GeoPosition hostPoints = new
         // GeoPosition(meetList.get(j).getHostSchool().getSchoolLoc().getLatitude(),
         // meetList.get(j).getHostSchool().getSchoolLoc().getLatitude());
@@ -305,6 +327,13 @@ public class MapDriver implements IMapDriver {
     // all schoolls
     // hostSwingWaypointPainter.setWaypoints(Hostwaypoints);
     //
+    /* for (HostSwingWaypoint b : Hostwaypoints) {
+      mapViewer.add(b.getButton());
+    }
+    HostSwingWaypointPainter.setWaypoints(Hostwaypoints);
+    mapViewer.setOverlayPainter(HostSwingWaypointPainter);
+     */
+      
 
     // Add the JButtons to the map viewer
     // System.out.println("waypoints full size" + waypoints.size());
@@ -313,8 +342,12 @@ public class MapDriver implements IMapDriver {
     }
     swingWaypointPainter.setWaypoints(waypoints);
     mapViewer.setOverlayPainter(swingWaypointPainter);
-
+    
     mapViewer.revalidate();
+    mapViewer.repaint();  
+    
+      
+     
     // mapViewer.repaint();
 
   }
@@ -323,7 +356,7 @@ public class MapDriver implements IMapDriver {
     return meetList;
   }
 
-  javax.swing.JPanel getMapPanel() {
+    javax.swing.JPanel getMapPanel() {
     return mapViewer;
   }
   
