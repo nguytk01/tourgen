@@ -49,9 +49,11 @@ public class MapController {
     Set<ICheckNode> meetSet = tree.getMeetList();
     Object[] arr = meetSet.toArray();
     List<Meet> meetList = new ArrayList<Meet>();
-
+    System.out.println("set size:" + meetSet.size());
     for (int i = 0; i < arr.length; i++) {
-      meetList.add((Meet) ((ICheckNode) arr[i]).getValue());
+      if (arr[i] instanceof ICheckNode && ((ICheckNode) arr[i]).getValue() instanceof Meet) {
+        meetList.add((Meet) ((ICheckNode) arr[i]).getValue());
+      }
     }
 
     mapDriver.showMeetList(meetList);

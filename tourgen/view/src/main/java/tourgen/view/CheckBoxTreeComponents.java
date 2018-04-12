@@ -26,14 +26,15 @@ public class CheckBoxTreeComponents {
     protected TreeLabel label;
 
     public CheckRenderer(CheckBoxTreeCustomCheckBoxListener listener) {
-      setLayout(null);
-      checkBox = new CheckBoxTreeCustomCheckBox();
+      //setLayout(null);
+      //checkBox = new CheckBoxTreeCustomCheckBox();
       // checkBox.addActionListener(listener);
       System.out.println("actionListener added");
-      add(checkBox);
+      //add(checkBox);
       add(label = new TreeLabel());
-      checkBox.setBackground(UIManager.getColor("Tree.textBackground"));
-      label.setForeground(UIManager.getColor("Tree.textForeground"));
+      setBackground(new Color(0,0,0,0));
+      //checkBox.setBackground(UIManager.getColor("Tree.textBackground"));
+      //label.setForeground(UIManager.getColor("Tree.textForeground"));
     }
 
     public Component getTreeCellRendererComponent(JTree tree, Object value, 
@@ -41,7 +42,7 @@ public class CheckBoxTreeComponents {
         boolean leaf, int row, boolean hasFocus) {
       
       setEnabled(tree.isEnabled());
-      checkBox.setSelected(((CheckNode) value).isSelected());
+      //checkBox.setSelected(((CheckNode) value).isSelected());
       label.setFont(tree.getFont());
       
       String stringValue = tree.convertValueToText(value, isSelected, 
@@ -50,46 +51,17 @@ public class CheckBoxTreeComponents {
       
       label.setSelected(isSelected);
       label.setFocus(hasFocus);
-      if (leaf) {
+      /*if (leaf) {
         label.setIcon(UIManager.getIcon("Tree.leafIcon"));
       } else if (expanded) {
         label.setIcon(UIManager.getIcon("Tree.openIcon"));
       } else {
         label.setIcon(UIManager.getIcon("Tree.closedIcon"));
-      }
-      checkBox.setCheckNode(value);
+      }*/
+      //checkBox.setCheckNode(value);
       return this;
     }
 
-    public Dimension getPreferredSize() {
-      Dimension diCheck = checkBox.getPreferredSize();
-      Dimension diLabel = label.getPreferredSize();
-      return new Dimension(diCheck.width + diLabel.width,
-          (diCheck.height < diLabel.height ? diLabel.height : diCheck.height));
-    }
-
-    public void doLayout() {
-      Dimension diCheck = checkBox.getPreferredSize();
-      Dimension diLabel = label.getPreferredSize();
-      int coordYcheck = 0;
-      int coordYlabel = 0;
-      if (diCheck.height < diLabel.height) {
-        coordYcheck = (diLabel.height - diCheck.height) / 2;
-      } else {
-        coordYlabel = (diCheck.height - diLabel.height) / 2;
-      }
-      checkBox.setLocation(0, coordYcheck);
-      checkBox.setBounds(0, coordYcheck, diCheck.width, diCheck.height);
-      label.setLocation(diCheck.width, coordYlabel);
-      label.setBounds(diCheck.width, coordYlabel, diLabel.width, diLabel.height);
-    }
-
-    public void setBackground(Color color) {
-      if (color instanceof ColorUIResource) {
-        color = null;
-      }
-      super.setBackground(color);
-    }
 
     public class TreeLabel extends JLabel {
       boolean isSelected;
@@ -97,46 +69,6 @@ public class CheckBoxTreeComponents {
       boolean hasFocus;
 
       public TreeLabel() {
-      }
-
-      public void setBackground(Color color) {
-        if (color instanceof ColorUIResource) {
-          color = null;
-        }
-        super.setBackground(color);
-      }
-
-      public void paint(Graphics g) {
-        String str;
-        if ((str = getText()) != null) {
-          if (0 < str.length()) {
-            if (isSelected) {
-              g.setColor(UIManager.getColor("Tree.selectionBackground"));
-            } else {
-              g.setColor(UIManager.getColor("Tree.textBackground"));
-            }
-            Dimension d = getPreferredSize();
-            int imageOffset = 0;
-            Icon currentI = getIcon();
-            if (currentI != null) {
-              imageOffset = currentI.getIconWidth() + Math.max(0, getIconTextGap() - 1);
-            }
-            g.fillRect(imageOffset, 0, d.width - 1 - imageOffset, d.height);
-            if (hasFocus) {
-              g.setColor(UIManager.getColor("Tree.selectionBorderColor"));
-              g.drawRect(imageOffset, 0, d.width - 1 - imageOffset, d.height - 1);
-            }
-          }
-        }
-        super.paint(g);
-      }
-
-      public Dimension getPreferredSize() {
-        Dimension retDimension = super.getPreferredSize();
-        if (retDimension != null) {
-          retDimension = new Dimension(retDimension.width + 3, retDimension.height);
-        }
-        return retDimension;
       }
 
       public void setSelected(boolean isSelected) {

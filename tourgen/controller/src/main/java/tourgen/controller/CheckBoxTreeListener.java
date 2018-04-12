@@ -39,7 +39,7 @@ public class CheckBoxTreeListener extends MouseAdapter {
     int row = tree.getRowForLocation(x, y);
     TreePath path = tree.getPathForRow(row);
     // TreePath path = tree.getSelectionPath();
-    if (path != null) {
+    /*if (path != null) {
       ICheckNode node = (ICheckNode) path.getLastPathComponent();
       boolean isSelected = !(node.isSelected());
       node.setSelected(isSelected);

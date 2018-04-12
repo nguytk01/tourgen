@@ -169,5 +169,6 @@ public class Main {
         uiDef.put(key, f);
       }
     }
+    com.jidesoft.plaf.LookAndFeelFactory.installJideExtension();
   }
 }
