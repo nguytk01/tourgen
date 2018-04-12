@@ -6,6 +6,10 @@
 <artifactId>tourgen</artifactId>
 <packaging>pom</packaging>
 <version>0.5</version>
+
+  <properties>
+    <checkstyle.config.location>tourgen/controller/google_checks_for_TC.xml</checkstyle.config.location>
+  </properties>
 <build>
     <plugins>
       <plugin>
@@ -38,19 +42,6 @@
       </plugins>
     </pluginManagement>
   </build>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.0.0</version>
-        <configuration>
-          <configLocation>whizbang/google_checks.xml</configLocation>
-          <!--<headerLocation>whizbang/LICENSE.txt</headerLocation>-->
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
 <name>tourgen</name>
 <modules>
   <module>build-tools</module>

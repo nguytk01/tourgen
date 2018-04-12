@@ -15,25 +15,23 @@ import tourgen.model.Repository;
 import tourgen.model.Tournament;
 import tourgen.util.IRepositoryView;
 
-public class RepositoryView extends JPanel implements IRepositoryView {
+public class RepositoryView extends JPanel implements IRepositoryView, java.util.Observer {
   private JList<Tournament> tournamentList;
   private Vector<Tournament> tournamentVector;
   private JScrollPane scrollPane;
-  private Repository repositoryModel;
-
+  
   /**
    * Build a Repository View (a list of tournament).
    * @param listener an ActionListener to listen to selection event in the list.
-   * @param repositoryModelArg a repository object.
    */
-  public RepositoryView(ListSelectionListener listener, Repository repositoryModelArg) {
+  
+  public RepositoryView(ListSelectionListener listener) {
     setSize(200, 500);
     setLayout(new BorderLayout());
     tournamentVector = new Vector<Tournament>();
     tournamentList = new JList<Tournament>(tournamentVector);
     this.add(tournamentList, BorderLayout.CENTER);
     tournamentList.addListSelectionListener(listener);
-    repositoryModel = repositoryModelArg;
   }
 
   void populateView(List<Tournament> list) {
@@ -68,7 +66,7 @@ public class RepositoryView extends JPanel implements IRepositoryView {
 
   @Override
   public void populate() {
-    List<Tournament> list = repositoryModel.getGirlList();
+    List<Tournament> list = Repository.getInstance1().getGirlList();
     for (Tournament i : list) {
       try {
         Tournament type = (Tournament) i;
@@ -80,4 +78,19 @@ public class RepositoryView extends JPanel implements IRepositoryView {
     populateView(list);
   }
 
+  @Override
+  public void update(java.util.Observable arg0, Object arg1) {
+    List<Tournament> list = Repository.getInstance1().getGirlList();
+    System.out.println("list.size : " + list.size());
+    Vector<Tournament> newVector = new Vector<Tournament>();
+    /*for (Tournament i : list) {
+      tournamentVector.addAll(list);
+      tournamentList.revalidate();
+      tournamentList.repaint();
+    }*/
+    newVector.addAll(list);
+    tournamentList.setListData(newVector);
+    tournamentVector = newVector;
+    tournamentList.repaint();
+  }
 }

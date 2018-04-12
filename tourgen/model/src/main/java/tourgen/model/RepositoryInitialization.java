@@ -68,8 +68,7 @@ public final class RepositoryInitialization {
    * @param manager a school manager object fully-loaded with data.
    */
   public static void init(Repository repo, SchoolManager manager) {
-    InputStream stream = RepositoryInitialization.class
-        .getClassLoader().getResourceAsStream("tournamentData.txt");
+
 
     
     // scanner.useDelimiter("\\||\\n?\\n|\\r");
@@ -122,6 +121,8 @@ public final class RepositoryInitialization {
     String participants;
 
     Meet meet;
+    InputStream stream = RepositoryInitialization.class
+        .getClassLoader().getResourceAsStream("tournamentData.txt");
     Scanner scanner = new Scanner(stream);
     while (scanner.hasNext()) {
       String line = scanner.nextLine();

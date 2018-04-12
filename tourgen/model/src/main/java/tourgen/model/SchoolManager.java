@@ -9,16 +9,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SchoolManager extends java.util.Observable implements Serializable {
+  /**
+   * Default serialization ID.
+   */
+  private static final long serialVersionUID = 1L;
   private java.util.ArrayList<School> schoolList;
   private HashMap<String, School> schoolHashMap;
   private Repository repo;
   
   /**
    * constructs a SchoolManagerobject.
-   * @param repoArg
    */
-  public SchoolManager(Repository repoArg) {
-    repo = repoArg;
+  public SchoolManager() {
+    repo = Repository.getInstance1();
     schoolList = new java.util.ArrayList<School>();
     schoolHashMap = new HashMap<String, School>();
   }
@@ -152,7 +155,7 @@ public class SchoolManager extends java.util.Observable implements Serializable 
       schoolHashMap.put(displayName, school);
       schoolList.add(school);
     }
-
+    scanner.close();
     try {
       stream.close();
     } catch (IOException e) {

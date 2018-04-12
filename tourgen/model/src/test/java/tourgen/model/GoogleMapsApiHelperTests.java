@@ -1,21 +1,22 @@
 package tourgen.model;
 
-import tourgen.model.GoogleMapsApiHelper;
-
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import java.util.Arrays;
+
+import org.junit.Test;
+
+import tourgen.model.GoogleMapsApiHelper;
+
 
 public class GoogleMapsApiHelperTests{
 	
 	@Test
-	public void getDistanceWithPlaceIDTest(){
-		String originPlaceID = "place_id:ChIJ386Ird9daogRIfL2WDoH99U";	
-		String destPlaceID1 = "place_id:ChIJidwp0ZhvbYgRRO17SY_cCBA";
-		String destPlaceID2 = "place_id:ChIJb6T-dVuobIgRfz7RNYfKz0Y";
+	public void getDistanceWithPlaceIdTest(){
+		String originPlaceId = "place_id:ChIJ386Ird9daogRIfL2WDoH99U";	
+		String destPlaceId1 = "place_id:ChIJidwp0ZhvbYgRRO17SY_cCBA";
+		String destPlaceId2 = "place_id:ChIJb6T-dVuobIgRfz7RNYfKz0Y";
 		GoogleMapsApiHelper helper = new GoogleMapsApiHelper();
-		long[][] distance = helper.getDistanceWithPlaceId(new String[]{originPlaceID}, new String[]{destPlaceID1, destPlaceID2});
+		long[][] distance = helper.getDistanceWithPlaceId(new String[]{originPlaceId}, new String[]{destPlaceId1, destPlaceId2});
 		assertTrue(distance != null);
 		assertTrue(distance[0].length == 2);
 		assertTrue(distance[0][0] > 0);

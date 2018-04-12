@@ -32,7 +32,7 @@ public class CollapsibleStagePanel extends JPanel {
   private String title;
   private JTextPane content;
   private String contentStorage;
-  private JPanel childPane;
+  private JPanel childJTextPane;
 
   /**
    * Construct a CollapsibleStagePanel.
@@ -48,7 +48,7 @@ public class CollapsibleStagePanel extends JPanel {
 
     button = new JCustomizedButton(this, title);
     button.addActionListener(listener);
-    button.setFont(new Font("Tahoma", Font.BOLD, 24));
+    button.setFont(new Font("Courier New", Font.BOLD, 24));
     
     JPanel sectionalTitlePane = new JPanel();
     sectionalTitlePane.setLayout(new BorderLayout());
@@ -58,8 +58,8 @@ public class CollapsibleStagePanel extends JPanel {
     stageCollapsiblePane = new JXCollapsiblePane();
     stageCollapsiblePane.setLayout(new BorderLayout());
     stageCollapsiblePane.setCollapsed(true);
-    childPane = new JPanel();
-    childPane.setLayout(new BorderLayout());
+    childJTextPane = new JPanel();
+    childJTextPane.setLayout(new BorderLayout());
     content = new JTextPane();
     Font font = new Font("Serif", Font.ITALIC, 20);
 
@@ -80,8 +80,13 @@ public class CollapsibleStagePanel extends JPanel {
     }
 
     content.setEditable(false);
-    childPane.add(content);
-    stageCollapsiblePane.add(childPane);
+    childJTextPane.add(content);
+    JScrollPane scrollPane = new JScrollPane(childJTextPane);
+    scrollPane.setHorizontalScrollBarPolicy(
+        javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    scrollPane.setViewportView(childJTextPane);
+    stageCollapsiblePane.add(childJTextPane);
+    //stageCollapsiblePane.add(scrollPane);
 
     containerPanel.add(sectionalTitlePane, BorderLayout.NORTH);
     containerPanel.add(stageCollapsiblePane, BorderLayout.CENTER);
@@ -105,13 +110,13 @@ public class CollapsibleStagePanel extends JPanel {
       contentStorage = content.getText();
       ;
       // content.setText("");
-      // childPane.remove(content);
+      // childJTextPane.remove(content);
       revalidate();
       repaint();
 
     } else {
       content.setText(contentStorage);
-      // childPane.add(content);
+      // childJTextPane.add(content);
       // stageCollapsiblePane.setCollapsed(true);
       // stageCollapsiblePane.setCollapsed(false);
       revalidate();

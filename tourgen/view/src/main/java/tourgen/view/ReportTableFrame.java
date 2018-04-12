@@ -32,7 +32,7 @@ public class ReportTableFrame extends JFrame implements IReportTableFrame {
     setBounds(200, 50, 1400, 800);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-    repoView = new RepositoryView(tournamentSelectionListener, model);
+    repoView = new RepositoryView(tournamentSelectionListener);
     reportView = new ReportTableView();
     JScrollPane scrollPane = new JScrollPane(reportView);
     // scrollPane.setPreferredSize(new Dimension(100,100));
@@ -74,11 +74,11 @@ public class ReportTableFrame extends JFrame implements IReportTableFrame {
     return repoView;
   }
   
-  javax.swing.JPanel getRepositoryView(){
-	  return repoView;
+  javax.swing.JPanel getRepositoryView() {
+    return repoView;
   }
   
-  javax.swing.JPanel getReportView(){
-	  return reportView;
+  javax.swing.JPanel getReportView() {
+    return reportView;
   }
 }

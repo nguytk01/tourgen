@@ -2,12 +2,14 @@ package tourgen.controller;
 
 import java.awt.event.WindowEvent;
 
-public class MainWindowCloseListener implements java.awt.event.WindowListener{
+public class MainWindowCloseListener implements java.awt.event.WindowListener {
 
   private tourgen.model.SchoolManager schoolManager;
+  
   public MainWindowCloseListener(tourgen.model.SchoolManager schoolManagerArg) {
     schoolManager = schoolManagerArg;
   }
+  
   @Override
   public void windowOpened(WindowEvent e) {
     

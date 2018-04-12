@@ -1,15 +1,14 @@
 package tourgen.model;
 
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import tourgen.model.TourgenDistanceMatrix;
-import tourgen.model.GoogleMapsApiHelper;
-import tourgen.model.School;
-import tourgen.model.Location;
-import java.util.Arrays;
 import java.util.ArrayList;
+import org.junit.Test;
+
+import tourgen.model.GoogleMapsApiHelper;
+import tourgen.model.Location;
+import tourgen.model.TourgenDistanceMatrix;
 
 public class TourgenDistanceMatrixTest{
 

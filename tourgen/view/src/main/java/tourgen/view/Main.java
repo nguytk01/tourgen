@@ -22,7 +22,6 @@ import tourgen.controller.SchoolListListeners;
 import tourgen.controller.ViewSchoolListUseCaseController;
 import tourgen.model.Repository;
 import tourgen.model.RepositoryInitialization;
-import tourgen.model.IoManager;
 import tourgen.model.SchoolManager;
 import tourgen.util.IAddSchoolForm;
 import tourgen.util.IEditSchoolForm;
@@ -43,9 +42,9 @@ public class Main {
     FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
     setUiFont(resource);
     SchoolManager manager = null; // new SchoolManager(repo);
-    manager = IoManager.loadEverythingUp();
+    manager = tourgen.model.IoManager.loadEverythingUp();
     if (manager == null) {
-      manager = new SchoolManager(Repository.getInstance1());
+      manager = new SchoolManager();
       manager.initSchools();
       RepositoryInitialization.init(Repository.getInstance1(), manager);
     }
@@ -91,15 +90,20 @@ public class Main {
     IReportTableView reportTableView = reportFrame.returnReportTableView();
     IRepositoryView repositoryView = reportFrame.returnRepositoryView();
 
+    tourgen.controller.AddTournamentMenuItemListener addTournamentMenuItemListener = 
+        new tourgen.controller.AddTournamentMenuItemListener();
+
     ReportViewUseCaseController reportViewUseCaseController = 
         new ReportViewUseCaseController(reportTableView,
-        repositoryView);
+        repositoryView, addTournamentMenuItemListener);
     reportViewListeners.setCoordinator(reportViewUseCaseController);
+    tourgen.controller.TournamentMenuListener tournamentMenuListener = 
+        new tourgen.controller.TournamentMenuListener();
     ViewSchoolListUseCaseController viewSchoolListUseCaseController = 
         new ViewSchoolListUseCaseController(schoolList);
     listListeners.setViewSchoolListController(viewSchoolListUseCaseController);
     reportViewListeners.setViewSchoolListUseCaseController(viewSchoolListUseCaseController);
-
+    tournamentMenuListener.setReportViewUseCaseController(reportViewUseCaseController);
     // manager.initSchools();
     // schoolList.populate();
 
@@ -123,15 +127,20 @@ public class Main {
     tourgen.controller.MainWindowCloseListener mainWindowListener = 
         new tourgen.controller.MainWindowCloseListener(manager);
     
+
     TabbedFrame tabbedFrame = new TabbedFrame(reportViewManageSchoolButtonListener,
         tournamentSelectionListener,
         mainWindowListener,
         (javax.swing.JPanel) (reportFrame.returnRepositoryView()),
         (javax.swing.JPanel) (reportFrame.returnReportTableView()),
         mainMap.getCheckBoxTreePanel(),
-        mainMap.getMapPanel());
+        mainMap.getMapPanel(),
+        addTournamentMenuItemListener,
+        tournamentMenuListener);
     tabbedFrame.setVisible(true);
-
+    
+    Repository.getInstance1().addObserver(repositoryView);
+    
     /* test GMapPinButton resources in Maven case */
     // JFrame myframe = new JFrame();
     // myframe.setBounds(50,50,300,300);

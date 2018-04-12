@@ -36,7 +36,8 @@ public class ReportViewListeners {
 
     @Override
     public void valueChanged(ListSelectionEvent arg0) {
-      if (!((JList) arg0.getSource()).getValueIsAdjusting()) {
+      if (!((JList) arg0.getSource()).getValueIsAdjusting() 
+          && ((JList) arg0.getSource()).getSelectedIndex() != -1) {
         controller.changeTournamentView();
       }
     }

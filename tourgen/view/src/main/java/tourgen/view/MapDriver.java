@@ -48,13 +48,10 @@ public class MapDriver implements IMapDriver {
 
   private WaypointPainter<SwingWaypoint> swingWaypointPainter = 
       new SwingWaypointOverlayPainter();
-  private WaypointPainter<SwingWaypoint> SwingWaypointPainter = new SwingWaypointOverlayPainter();
 
   
   
-  private Set<HostSwingWaypoint> Hostwaypoints;
-  //private WaypointPainter<HostSwingWaypoint> HostSwingWaypointPainter = new HostSwingWaypointOverlayPainter();
-  
+  private Set<HostSwingWaypoint> hostwaypoints;
   private JXMapViewer mapViewer;
 
   //private Meet currentMeet;
@@ -147,7 +144,7 @@ public class MapDriver implements IMapDriver {
 
     // Create waypoints from the geo-positions
     waypoints = new HashSet<SwingWaypoint>();
-    Hostwaypoints = new HashSet<HostSwingWaypoint>();
+    hostwaypoints = new HashSet<HostSwingWaypoint>();
     
 
     // Iteration for all schools to be displayed from the File of database of
@@ -208,13 +205,13 @@ public class MapDriver implements IMapDriver {
     JFrame frame = new JFrame("THE MAP");
     // CheckBoxTreeFrame frame2 = new CheckBoxTreeFrame(repo, checkBoxListener,
     // mapController);
+    checkBoxPanel = new CheckBoxTreePanel(checkBoxListener, mapController);
     frame.getContentPane().setLayout(new BorderLayout());
-    frame.getContentPane().add(
-        new CheckBoxTreePanel(checkBoxListener, mapController), BorderLayout.WEST);
+    frame.getContentPane().add(checkBoxPanel);
     frame.getContentPane().add(mapViewer, BorderLayout.CENTER);
     frame.setSize(1400, 900);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setVisible(true);
+    //frame.setVisible(true);
   }
 
   public void setCon(CheckBoxTreeCustomCheckBoxListener checkBoxListener,
@@ -244,7 +241,7 @@ public class MapDriver implements IMapDriver {
     // System.out.println("meetlist cleared. size = " + meetList.size());
     mapViewer.removeAll();
     waypoints.clear();
-    Hostwaypoints.clear();
+    hostwaypoints.clear();
     
     
     // System.out.println("showMeetList ");

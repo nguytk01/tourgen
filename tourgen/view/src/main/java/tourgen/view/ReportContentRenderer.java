@@ -38,9 +38,23 @@ public class ReportContentRenderer {
   public HashMap<String, String> getTournamentReport(Tournament tournament) {
     List<Stage> stageList = tournament.getStageList();
     StringBuilder builder = new StringBuilder();
-    HashMap<String, String> map = new HashMap<String, String>();
+    HashMap<String, String> map = new java.util.LinkedHashMap<String, String>();
+    java.text.DecimalFormat format = new java.text.DecimalFormat("#00.00");
     for (Stage stage : stageList) {
-      map.put(stage.getStageTitle(), getStageReport(stage));
+      double[] stageDistance = stage.getMaxAndAvgDistance();
+      String maxDistance = format.format(stageDistance[0] / 1000 * 0.621);
+      String avgDistance = format.format(stageDistance[1] / 1000 * 0.621);
+      
+      String stageTitle = 
+          String.format("%-12s", stage.getStageTitle()) 
+          + "    " 
+          + "Max./Avg. : " 
+          + String.format("%6s",maxDistance) 
+          + " / " 
+          + String.format("%6s",avgDistance) 
+          + " (miles)";
+      //map.put(stage.getStageTitle(), getStageReport(stage));
+      map.put(stageTitle, getStageReport(stage));
     }
     return map;
   }

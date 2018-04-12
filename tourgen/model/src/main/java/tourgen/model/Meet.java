@@ -143,4 +143,26 @@ public class Meet implements Serializable {
       return location.getName();
     }
   }
+  
+  /**
+   * Return the maximum and average distance of a meet.
+   * @return an array of 2 doubles: maximum and average distance of a meet.
+   */
+  public double[] getMaxAndAvgDistance() {
+    List<Location> locationList = new ArrayList<Location>();
+    for (int i = 0; i < participantSchools.size(); i++) {
+      locationList.add(participantSchools.get(i).getSchoolLoc());
+    }
+    long[] distanceMatrix = TourgenDistanceMatrix.getDistance1ToN(location, locationList);
+
+    long maximumDistance = -1;
+    long sumDistance = 0;
+    for (int i = 0; i < distanceMatrix.length; i++) {
+      sumDistance += distanceMatrix[i];
+      if (distanceMatrix[i] > maximumDistance) {
+        maximumDistance = distanceMatrix[i];
+      }
+    }
+    return new double[] { maximumDistance, 1.0 * sumDistance / distanceMatrix.length};
+  }
 }

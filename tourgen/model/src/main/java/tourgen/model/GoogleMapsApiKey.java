@@ -3,7 +3,7 @@ package tourgen.model;
 public class GoogleMapsApiKey {
   private static String geocodeApiKey = "";
   private static String placesApiKey = "";
-  private static String distanceMatrixApiKey = "";
+  private static String distanceMatrixApiKey = "AIzaSyAvT_idXMpl5RrsLjOSLfPYZUPv0VgVrSo";
 
   /**
    * return geocodeApikey from the Environment or from the value preset in this class. 

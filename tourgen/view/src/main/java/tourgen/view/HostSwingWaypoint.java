@@ -22,7 +22,9 @@ public class HostSwingWaypoint extends DefaultWaypoint {
   private final String text;
   private MapDriver mapDriver;
   private Meet meet;
-  private List meetList;
+
+  private String distanceStr;
+ 
 
   /**
    * Construct a HostSwingWaypoint.
@@ -33,7 +35,12 @@ public class HostSwingWaypoint extends DefaultWaypoint {
   public HostSwingWaypoint(String text, GeoPosition coord, Meet meet) {
     super(coord);
     this.text = text;
-    button = new GMapPinButton(text.substring(0, 1));
+    double[] maxAndAvgDistances = meet.getMaxAndAvgDistance();
+    distanceStr = "Max distance = " 
+      + new java.text.DecimalFormat("0").format(maxAndAvgDistances[0])
+      + " Average distance =" 
+      + new java.text.DecimalFormat("0").format(maxAndAvgDistances[1]);
+    button = new GMapPinButton(text);
     // button.setSize(24, 24);
     // button.setPreferredSize(new Dimension(24, 24));
     button.addMouseListener(new SwingWaypointMouseListener());
@@ -50,7 +57,7 @@ public class HostSwingWaypoint extends DefaultWaypoint {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      JOptionPane.showMessageDialog(button, "You clicked on " + text);
+      JOptionPane.showMessageDialog(button, distanceStr);
 
       // System.out.println(meet.getHostSchool().getSchoolLoc().getLatitude() + " " +
       // meet.getHostSchool().getSchoolLoc().getLongitude());

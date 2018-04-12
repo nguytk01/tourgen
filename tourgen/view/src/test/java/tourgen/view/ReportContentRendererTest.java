@@ -1,5 +1,7 @@
 package tourgen.view;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import tourgen.model.Meet;
@@ -7,17 +9,20 @@ import tourgen.model.Repository;
 import tourgen.model.RepositoryInitialization;
 import tourgen.model.SchoolManager;
 import tourgen.model.Stage;
+import tourgen.model.StageType;
+
+import tourgen.view.ReportContentRenderer;
 
 public class ReportContentRendererTest {
   private Repository repo;
   private SchoolManager manager;
-  
+
   /**
-   * test.
+   * Construct ReportContentRendererTest object.
    */
   public ReportContentRendererTest() {
     repo = Repository.getInstance1();
-    manager = new SchoolManager(repo);
+    manager = new SchoolManager();
     manager.initSchools();
     RepositoryInitialization.init(repo, manager);
   }

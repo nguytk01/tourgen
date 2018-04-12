@@ -25,7 +25,6 @@ public class IoManager extends java.util.Observable implements Serializable {
       inputFile = new ObjectInputStream(new FileInputStream(input));
       try {
         java.util.List<Object> newGirlList = (java.util.List<Object>) inputFile.readObject();
-    	  //Object  newRepository =  inputFile.readObject();
         inputFile.close();
         Repository.getInstance1().setGirlList(newGirlList);
         //return newGirlList;
@@ -111,13 +110,69 @@ public class IoManager extends java.util.Observable implements Serializable {
   }
   
   /**
+   * Save distance matrix to a file.
+   * @param fileName a file name
+   */
+  
+  public static void saveDistanceMatrix(String fileName) {
+    try {
+      File output = new File(fileName);
+      //System.out.println("saveDistanceMatrix ?");
+      ObjectOutputStream outputFile = new ObjectOutputStream(new FileOutputStream(output));
+      //System.out.println("saveDistanceMatrix ?");
+      try {
+        outputFile.writeObject(TourgenDistanceMatrix.getInstance());
+        System.out.println("saveDistanceMatrix ?");
+        outputFile.close();
+      } catch (IOException i) {
+        i.printStackTrace();
+      }
+      outputFile.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Load distance matrix from a file.
+   * @param fileName the name of the file.
+   */
+  public static Object loadDistanceMatrix(String fileName) {
+    ObjectInputStream inputFile;
+    
+    try {
+      File input = new File(fileName);
+      inputFile = new ObjectInputStream(new FileInputStream(input));
+      //System.out.println("succes ?");
+      try {
+        Object hashMap = inputFile.readObject();
+        //System.out.println("succes ?");
+        //System.out.println(hashMap);
+        TourgenDistanceMatrix.setInstance(hashMap);
+        inputFile.close();
+        return hashMap;
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
+    } catch (FileNotFoundException e) {
+      /* file not found exception will be skipped */
+      /* data will be initialized from text file */
+      // e.printStackTrace();
+      System.out.println("cannot find file name " + fileName);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+  
+  /**
    * This is a convenient method to load everything up from files stored on disk.
    * @return a schoolManager
    */
   public static SchoolManager loadEverythingUp() {
-	  SchoolManager manager = loadSchoolManager("schoolManager.bin");
-	   loadRepository("abc.bin");
-    
+    SchoolManager manager = loadSchoolManager("schoolManager.bin");
+    loadRepository("tournaments.bin");
+    loadDistanceMatrix("distanceMatrix.bin");
     
     //Repository.getInstance().setGirlList(repo.getGirlList());
     if (manager != null) {
@@ -134,13 +189,17 @@ public class IoManager extends java.util.Observable implements Serializable {
   }
  
 
-public static SchoolManager saveEverything(SchoolManager manager) {
+  /**
+   * Save the distance matrix, the repository and the school manager's data to disk.
+   * @param manager the school manager object
+   */
+  public static void saveEverything(SchoolManager manager) {
     /* This will also save repository since schoolManager has a repository*/
     saveSchoolManager("schoolManager.bin", manager);
-    saveRepository("abc.bin");
-    
+    saveRepository("tournaments.bin");
+    System.out.println("saveDistanceMatrix ?");
+    saveDistanceMatrix("distanceMatrix.bin");
     
     //saveRepository("repository.bin",Repository.getInstance());
-    return manager;
   }
 }

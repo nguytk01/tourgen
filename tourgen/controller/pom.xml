@@ -12,6 +12,9 @@
 	<artifactId>tourgen-container</artifactId>
 	<version>0.5</version>
   </parent>
+    <properties>
+    <checkstyle.config.location>google_checks_for_TC.xml</checkstyle.config.location>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

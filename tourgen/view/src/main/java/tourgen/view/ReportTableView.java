@@ -1,6 +1,7 @@
 package tourgen.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,7 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.jdesktop.swingx.JXCollapsiblePane;
+import javax.swing.border.LineBorder;
+
 import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.JXTitledPanel;
@@ -21,8 +23,7 @@ import org.jdesktop.swingx.VerticalLayout;
 
 import tourgen.model.Tournament;
 import tourgen.util.IReportTableView;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
+
 
 /*import org.jdesktop.swingx.JXCollapsiblePane;*/
 
@@ -77,6 +78,8 @@ public class ReportTableView extends JPanel implements IReportTableView {
     Tournament tournament = (Tournament) arg;
     if (stageList.isEmpty() == false) {
       stageList.clear();
+      northPanel.removeAll();
+      
     }
     HashMap<String, String> stageDescriptionsMap = 
         reportContentRenderer.getTournamentReport(tournament);

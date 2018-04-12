@@ -9,11 +9,12 @@ import java.util.List;
 public class Repository extends java.util.Observable implements Serializable {
 
   /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+   * serial id for the serialization.
+   */
+  
+  private static final long serialVersionUID = 1L;
 
-private static Repository instance = null;
+  private static Repository instance = null;
 
   private List<Tournament> girlsTourList;
   private List<Tournament> boysTourList;
@@ -56,7 +57,7 @@ private static Repository instance = null;
   void setBoyList(List<Object> list) {
     for (int i = 0; i < list.size(); i++) {
       boysTourList.add((Tournament)(list.get(i)));
-    };
+    }
   }
 
   void setGirlList(List<Object> list) {
@@ -74,10 +75,20 @@ private static Repository instance = null;
    */
   public void addTournament(Tournament tour) {
     if (tour.getTourParticipantsType() == TournamentParticipants.BOYS) {
-      boysTourList.add(tour);
+      if (!boysTourList.contains(tour)) {
+        boysTourList.add(tour);
+      } else { 
+        boysTourList.add(org.apache.commons.lang3.SerializationUtils.clone(tour));
+      }
     } else {
-      girlsTourList.add(tour);
+      if (!girlsTourList.contains(tour)) {
+        girlsTourList.add(tour);
+      } else {
+        girlsTourList.add(org.apache.commons.lang3.SerializationUtils.clone(tour));
+      }
     }
+    System.out.println("girls List size " + girlsTourList.size());
+
     setChanged();
     notifyObservers();
   }

@@ -3,6 +3,10 @@ package tourgen.model;
 import java.io.Serializable;
 
 public class Location implements Serializable {
+  /**
+   * Serialization Id.
+   */
+  private static final long serialVersionUID = 1L;
   private String streetAddress;
   private String cityName;
   private int zipCode;

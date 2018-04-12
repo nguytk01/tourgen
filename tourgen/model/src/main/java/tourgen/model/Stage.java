@@ -151,4 +151,20 @@ public class Stage implements Serializable {
     return stageType;
   }
 
+  /**
+   * Return an array of 2 doubles: maximum distance and average distance of a stage.
+   * @return
+   */
+  public double[] getMaxAndAvgDistance() {
+    double maxDistance = 0;
+    double sumDistance = 0;
+    for (int i = 0; i < stageMeets.size(); i++) {
+      double[] meetDistance = stageMeets.get(i).getMaxAndAvgDistance();
+      if (meetDistance[0] > maxDistance) {
+        maxDistance = meetDistance[0];
+      }
+      sumDistance += meetDistance[1];
+    }
+    return new double[] {maxDistance, sumDistance / stageMeets.size()};
+  }
 }

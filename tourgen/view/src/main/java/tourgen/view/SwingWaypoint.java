@@ -13,18 +13,12 @@ import org.jxmapviewer.viewer.GeoPosition;
 import tourgen.model.Meet;
 import tourgen.model.Repository;
 
-/**
- * A waypoint that is represented by a button on the map.
- *
- * @author Daniel Stahr
- */
+
 public class SwingWaypoint extends DefaultWaypoint {
   private  JButton button;
-  private final String text;
-  private MapDriver mapDriver;
+  private String text;
   private Meet meet;
-  private Repository repo;
-  private List meetList;
+  private String distanceStr;
 
   /**
    * Build the SwingWaypoint.
@@ -35,14 +29,38 @@ public class SwingWaypoint extends DefaultWaypoint {
   public SwingWaypoint(String text, GeoPosition coord, Meet meet, boolean hostFlag) {
     super(coord);
     this.text = text;
-   // button = new GMapPinButton(text.substring(0, 1));
-    if(hostFlag == true)
-    {
+    // button = new GMapPinButton(text.substring(0, 1));
+    //System.out.println("hostFlag is " +hostFlag);
+    if (hostFlag == true) {
       button = new HostGMapPinButton(text.substring(0, 1));
-    }
-    else
-    {
+      double[] maxAndAvgDistances = meet.getMaxAndAvgDistance();
+      double maximumDistanceInMiles = maxAndAvgDistances[0] / 1000.0 * 0.621;
+      double averageDistanceInMiles = maxAndAvgDistances[1] / 1000.0 * 0.621;
+      
+      //System.out.println(maximumDistanceInMiles);
+      //System.out.println(averageDistanceInMiles);
+      distanceStr = "Host : "
+                             + meet.toString()
+                             + "\n"
+                             + "Stage : "
+                             + meet.getStage().getStageTitle()
+                             + "\n"
+                             + "Max distance = " 
+                             + new java.text.DecimalFormat("0").format(maximumDistanceInMiles)
+                             + " miles"
+                             + "\n"
+                             + "Average distance = " 
+                             + new java.text.DecimalFormat("0").format(averageDistanceInMiles)
+                             + " miles";
+    } else {
       button = new GMapPinButton(text.substring(0, 1)); 
+      distanceStr = "You clicked on school " + text 
+                              + "\n"
+                              + "Host : "
+                              + meet.toString()
+                              + "\n"
+                              + "Stage : "
+                              + meet.getStage().getStageTitle();
     }
     // button.setSize(24, 24);
     // button.setPreferredSize(new Dimension(24, 24));
@@ -60,7 +78,8 @@ public class SwingWaypoint extends DefaultWaypoint {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      JOptionPane.showMessageDialog(button, "You clicked on " + text);
+      JOptionPane.showMessageDialog(
+          button, distanceStr, "Information", JOptionPane.INFORMATION_MESSAGE);
 
       // System.out.println(meet.getHostSchool().getSchoolLoc().getLatitude() + " " +
       // meet.getHostSchool().getSchoolLoc().getLongitude());
@@ -69,11 +88,7 @@ public class SwingWaypoint extends DefaultWaypoint {
       // +HostSchool.getLongitude());
 
     }
-
-    public void addMeet(Meet meet) {
-
-    }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
     }
