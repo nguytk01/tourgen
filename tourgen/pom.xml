@@ -12,7 +12,7 @@
 <parent>
   <groupId>tourgen</groupId>
   	<artifactId>tourgen</artifactId>
-  	<version>0.5</version>
+  	<version>0.6</version>
 </parent>
 
 <modules>
