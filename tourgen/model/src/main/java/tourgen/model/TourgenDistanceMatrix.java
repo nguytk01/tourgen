@@ -25,6 +25,9 @@ class TourgenDistanceMatrix implements Serializable {
     }
     //System.out.println(instance1);
     HashMap<Object,Object> temp = (HashMap<Object,Object>) instance1;
+    if (temp == null) {
+      return;
+    }
     java.util.Set<Object> keys = temp.keySet();
     HashMap<String,Long> innerHashMap = null;
     for (Object key : keys) {
