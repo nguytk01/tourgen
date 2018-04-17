@@ -39,7 +39,7 @@ public class Main {
    * @param args command line arguments of the program.
    */
   public static void main(String[] args) {
-    FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
+    FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 18));
     setUiFont(resource);
     SchoolManager manager = null; // new SchoolManager(repo);
     manager = tourgen.model.IoManager.loadEverythingUp();
@@ -116,8 +116,8 @@ public class Main {
     tourgen.controller.AddTournamentMenuItemListener addTournamentMenuItemListener = 
         new tourgen.controller.AddTournamentMenuItemListener();
 
-     /* this creates a controller and plugs 2 views and one listener into that controller */
-     /* that controller depends on the 2 views and the listener.*/
+    /* this creates a controller and plugs 2 views and one listener into that controller */
+    /* that controller depends on the 2 views and the listener.*/
     ReportViewUseCaseController reportViewUseCaseController = 
         new ReportViewUseCaseController(reportTableView,
         repositoryView, addTournamentMenuItemListener);
@@ -176,7 +176,8 @@ public class Main {
         addTournamentMenuItemListener,
         tournamentMenuListener);
     tabbedFrame.setVisible(true);
-    
+    NewMain newMain = new NewMain(mapController2, mainMap.getMapPanel());
+    newMain.setVisible(true);
     Repository.getInstance1().addObserver(repositoryView);
     
     /* test GMapPinButton resources in Maven case */
@@ -198,7 +199,7 @@ public class Main {
     UIManager.put("MenuItem.font", f);
     uiDef.put("TextPane.font", f);
     UIManager.put("TextPane.font", f);
-    uiDef.put("defaultFont", 20);
+    //uiDef.put("defaultFont", 20);
     java.util.Enumeration keys = UIManager.getLookAndFeelDefaults().keys();
     while (keys.hasMoreElements()) {
       Object key = keys.nextElement();
