@@ -102,15 +102,17 @@ public class ReportContentRenderer {
           ") ", "| ", buildMeetTime(meet), " (",
           meet.getLocation().getName(), ")", "<br/>" };
     } else {
+      double[] temp = meet.getMaxAndAvgDistance();
       arr = new String[] { numbering, hostSchoolString, " (",
           new Integer(meet.getParticipatingSchool().size()).toString(), 
-          ") ", "| ", buildMeetTime(meet), "<br/>" };
+          ") ", "| ", buildMeetTime(meet), " Max: " + metersToMiles(temp[0]), " Miles Avg: " + metersToMiles(temp[1]) +" Miles", "<br/>" };
     }
     builder.append("<b>");
     for (int i = 0; i < arr.length; i++) {
       builder.append(arr[i]);
     }
     builder.append("</b>");
+    
     StringBuilder builder2 = new StringBuilder();
     String hostSchoolName = "";
     for (int i = 0; i < meet.getParticipatingSchool().size(); i++) {
@@ -339,5 +341,9 @@ public class ReportContentRenderer {
 
   private String fixTimeFormat(String time) {
     return time.replace("EDT", "ET").replace("CDT", "CT").replace("AM", "am").replace("PM", "pm");
+  }
+  
+  public static double metersToMiles(double meters) {
+    return Double.parseDouble(new java.text.DecimalFormat("0.0").format(meters / 1000.0 * 0.621));
   }
 }
