@@ -41,4 +41,16 @@ public class Tournament implements Serializable {
   public String toString() {
     return tournamentName;
   }
+  
+  public List<Meet> getSectionalMeetSuggestions(School candidate){
+    List<Meet> sectionalMeetsSuggestion = new ArrayList<Meet>();
+    Stage sectional = stageList.get(0);
+    for (Meet meet: sectional.getMeetList()) {
+      School host = meet.getHostSchool();
+      if ( host != candidate && ! meet.getParticipatingSchool().contains(host) ) {
+        sectionalMeetsSuggestion.add(meet);
+      }
+    }
+    return Collections.unmodifiableList(sectionalMeetsSuggestion);
+  }
 }

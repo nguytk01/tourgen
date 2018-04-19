@@ -11,7 +11,7 @@
   <parent>
 	<groupId>tourgen</groupId>
 	<artifactId>tourgen-container</artifactId>
-	<version>0.5</version>
+	<version>0.6</version>
   </parent>
   <repositories>
     <repository>
@@ -40,17 +40,17 @@
 	<dependency>
 		<groupId>tourgen.util</groupId>
 		<artifactId>util</artifactId>
-		<version>0.5</version>
+		<version>0.6</version>
 	</dependency>
 	<dependency>
 		<groupId>tourgen.model</groupId>
 		<artifactId>model</artifactId>
-		<version>0.5</version>
+		<version>0.6</version>
 	</dependency>
 	<dependency>
 		<groupId>tourgen.controller</groupId>
 		<artifactId>controller</artifactId>
-		<version>0.5</version>
+		<version>0.6</version>
 	</dependency>
 	<dependency>
     <groupId>org.apache.commons</groupId>

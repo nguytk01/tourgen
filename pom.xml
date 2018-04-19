@@ -5,7 +5,7 @@
 <groupId>tourgen</groupId>
 <artifactId>tourgen</artifactId>
 <packaging>pom</packaging>
-<version>0.5</version>
+<version>0.6</version>
 
   <properties>
     <checkstyle.config.location>tourgen/controller/google_checks_for_TC.xml</checkstyle.config.location>

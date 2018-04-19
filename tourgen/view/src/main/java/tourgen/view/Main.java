@@ -39,7 +39,7 @@ public class Main {
    * @param args command line arguments of the program.
    */
   public static void main(String[] args) {
-    FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 24));
+    FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 18));
     setUiFont(resource);
     SchoolManager manager = null; // new SchoolManager(repo);
     manager = tourgen.model.IoManager.loadEverythingUp();
@@ -49,22 +49,38 @@ public class Main {
       RepositoryInitialization.init(Repository.getInstance1(), manager);
     }
 
+    /*AddSchoolFormListeners is just a container for the listeners. It does not have any other meanings.*/
     AddSchoolFormListeners addSchoolFormListeners = new AddSchoolFormListeners();
     ActionListener addListener = addSchoolFormListeners.new AddSchoolListener();
 
+    /*EditSchoolFormListeners is just a container for the listeners. It does not have any other meanings.*/
     EditSchoolFormListeners editSchoolFormListeners = new EditSchoolFormListeners();
     ActionListener editListener = editSchoolFormListeners.new EditSchoolListener();
 
+    /* SchoolListListeners is a logic container for the listeners that listen to events related to the SchoolList */
+    /* in order to create the listeners, I have to create an instance of the container. Hence, pay attention to the 
+     * child listeners only.
+     */
     SchoolListListeners listListeners = new SchoolListListeners();
     ActionListener listAddButtonListener = listListeners.new AddSchoolListener();
     ActionListener listEditButtonListener = listListeners.new EditSchoolListener();
     ActionListener listRemoveButtonListener = listListeners.new RemoveSchoolListener();
     MenuListener listShowSchoolListActions = listListeners.new ShowSchoolListActionsListener();
+
+    /* the following 3 classes represent 2 forms and 1 view */
+    /* schoolListView depends on 4 listeners (add, remove, edit, show) and schoolManager */
+    /* the following code plugs 4 listeners into the schoolListView.*/
+    /* the listeners do not know anything about the caller, or the view. The view just calls them.*/
     IAddSchoolForm addForm = new AddSchoolForm(addListener);
     IEditSchoolForm editForm = new EditSchoolForm(editListener);
     ISchoolListView schoolList = new SchoolListView(listAddButtonListener, listEditButtonListener,
         listRemoveButtonListener, listShowSchoolListActions, manager);
 
+    /* the following creates 3 controller for adding a school, editing a school and remove a school */
+    /* each controller needs a handle to the schoolListView, the form it is working with and the listeners */
+    /* User's actions > listener's actionPerformed > controller > model */
+    /* changes in the model > view classes' update methods -> ask controllers for what to do */
+    /* > controller tells the view  classes what to do  > calls the corresponding view's method */
     AddSchoolUseCaseController addUseCaseController = 
         new AddSchoolUseCaseController(manager, schoolList, addForm,
         addSchoolFormListeners);
@@ -74,33 +90,53 @@ public class Main {
     RemoveSchoolUseCaseController removeUseCaseController = 
         new RemoveSchoolUseCaseController(schoolList, listListeners,
         manager);
+        
+    /* the following set the controller for the listeners. The listeners will use method calls to call the controller*/
+    /* the flow is : View -> Listener -> Controller. */
     listListeners.setAddController(addUseCaseController);
     listListeners.setEditController(editUseCaseController);
     listListeners.setRemoveController(removeUseCaseController);
     schoolList.setRemoveUseCaseController(removeUseCaseController);
 
+    /*ReportViewListeners is just a container for the listeners. It does not have any other meanings.*/
     ReportViewListeners reportViewListeners = new ReportViewListeners();
     ActionListener reportViewManageSchoolButtonListener = 
         reportViewListeners.new ManageSchoolButtonListener();
     ListSelectionListener tournamentSelectionListener = 
         reportViewListeners.new TournamentSelectionListener();
 
+    /* the following creates the reportTableFrame */
+    /* the reportTableFrame creates reportTableView and repositoryView. It provides getter for other classes to access these */
     IReportTableFrame reportFrame = new ReportTableFrame(reportViewManageSchoolButtonListener,
         tournamentSelectionListener, Repository.getInstance1());
     IReportTableView reportTableView = reportFrame.returnReportTableView();
     IRepositoryView repositoryView = reportFrame.returnRepositoryView();
 
+    /* this creates a tournament menu item listener that listens to add tournament event.*/
     tourgen.controller.AddTournamentMenuItemListener addTournamentMenuItemListener = 
         new tourgen.controller.AddTournamentMenuItemListener();
 
+    /* this creates a controller and plugs 2 views and one listener into that controller */
+    /* that controller depends on the 2 views and the listener.*/
     ReportViewUseCaseController reportViewUseCaseController = 
         new ReportViewUseCaseController(reportTableView,
         repositoryView, addTournamentMenuItemListener);
+        
+    /* Since listeners in the reportViewListeners need to access the controller, I put the controller in 
+    the listeners reportViewListeners container */
     reportViewListeners.setCoordinator(reportViewUseCaseController);
+    
+    /* this creates a menuListener for the Tournament Menu of a frame*/
     tourgen.controller.TournamentMenuListener tournamentMenuListener = 
         new tourgen.controller.TournamentMenuListener();
+        
+    /* this creates a controller for the view school list use case. It needs a handle to the schoolListView
+    * because it will call the schoolListView. 
+    * The listener -> controller -> calls the view to show
+    */
     ViewSchoolListUseCaseController viewSchoolListUseCaseController = 
         new ViewSchoolListUseCaseController(schoolList);
+    
     listListeners.setViewSchoolListController(viewSchoolListUseCaseController);
     reportViewListeners.setViewSchoolListUseCaseController(viewSchoolListUseCaseController);
     tournamentMenuListener.setReportViewUseCaseController(reportViewUseCaseController);
@@ -113,6 +149,8 @@ public class Main {
 
     //reportFrame.showView();
 
+    /* the editForm, the addForm and the schoolList will listen to any changes occuring to the manager */
+    /* each of them has an update method that will be called whenever the schoolManager has any changes */
     manager.addObserver(editForm);
     manager.addObserver(addForm);
     manager.addObserver(schoolList);
@@ -138,7 +176,8 @@ public class Main {
         addTournamentMenuItemListener,
         tournamentMenuListener);
     tabbedFrame.setVisible(true);
-    
+    NewMain newMain = new NewMain(mapController2, mainMap.getMapPanel());
+    newMain.setVisible(true);
     Repository.getInstance1().addObserver(repositoryView);
     
     /* test GMapPinButton resources in Maven case */
@@ -160,7 +199,7 @@ public class Main {
     UIManager.put("MenuItem.font", f);
     uiDef.put("TextPane.font", f);
     UIManager.put("TextPane.font", f);
-    uiDef.put("defaultFont", 20);
+    //uiDef.put("defaultFont", 20);
     java.util.Enumeration keys = UIManager.getLookAndFeelDefaults().keys();
     while (keys.hasMoreElements()) {
       Object key = keys.nextElement();

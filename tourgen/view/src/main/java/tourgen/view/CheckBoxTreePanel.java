@@ -75,6 +75,7 @@ public class CheckBoxTreePanel extends JPanel implements java.util.Observer {
 
     // RepoTree tree = new RepoTree(nodes[0]);
     CheckBoxTreeNew tree = new CheckBoxTreeNew(repositoryChildren);
+    tree.setRowHeight(30);
     tree.setCellRenderer(new CheckRenderer(checkBoxListenerParam));
     tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
     tree.putClientProperty("JTree.lineStyle", "Angled");

@@ -149,6 +149,7 @@ public class SchoolManager extends java.util.Observable implements Serializable 
       // scanner.next();
       school = new School(displayName, schoolName, streetAddress, cityName,
                           zipCode, enrollmentNumber, true, false);
+      school.setEligibleToHost(true);
       double[] coor = getCoordinatesFromStream(coordinatesFileScanner);
       school.getSchoolLoc().setLatitude(coor[0]);
       school.getSchoolLoc().setLongitude(coor[1]);
@@ -159,7 +160,6 @@ public class SchoolManager extends java.util.Observable implements Serializable 
     try {
       stream.close();
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
@@ -193,4 +193,5 @@ public class SchoolManager extends java.util.Observable implements Serializable 
   public Repository getRepository() {
     return repo;
   }
+
 }

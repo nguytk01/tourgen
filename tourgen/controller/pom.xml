@@ -10,7 +10,7 @@
   <parent>
 	<groupId>tourgen</groupId>
 	<artifactId>tourgen-container</artifactId>
-	<version>0.5</version>
+	<version>0.6</version>
   </parent>
     <properties>
     <checkstyle.config.location>google_checks_for_TC.xml</checkstyle.config.location>
@@ -25,7 +25,7 @@
 	<dependency>
 		<groupId>tourgen.model</groupId>
 		<artifactId>model</artifactId>
-		<version>0.5</version>
+		<version>0.6</version>
 	</dependency>
   </dependencies>
 </project>

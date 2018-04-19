@@ -20,8 +20,25 @@ public class CheckBoxTreeNew extends com.jidesoft.swing.CheckBoxTree implements 
       return leafNodesSet;
     }
     for (int i = 0; i < paths.length; i++) {
-      leafNodesSet.add( (ICheckNode)paths[i].getLastPathComponent());
+      if ( !((ICheckNode)paths[i].getLastPathComponent()).isLeaf()){
+        Set<ICheckNode> set = getAllLeafNodes((tourgen.view.CheckBoxTreeComponents.CheckNode)paths[i].getLastPathComponent());
+        leafNodesSet.addAll(set);
+      } else {
+        leafNodesSet.add( (ICheckNode)paths[i].getLastPathComponent());
+      }
     }
     return leafNodesSet;
   }
+
+private Set<ICheckNode> getAllLeafNodes(tourgen.view.CheckBoxTreeComponents.CheckNode node) {
+  Set<ICheckNode> leafNodesSet = new HashSet<ICheckNode>();
+  if (node.isLeaf()) {
+    leafNodesSet.add(node);
+  } else {
+    for (int i = 0; i < node.getChildCount(); i++) {
+      leafNodesSet.addAll(getAllLeafNodes((tourgen.view.CheckBoxTreeComponents.CheckNode) node.getChildAt(i)));
+    }
+  }
+  return leafNodesSet;
+}
 }

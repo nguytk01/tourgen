@@ -9,6 +9,8 @@ public class School implements Serializable {
   private String name;
   private Location schoolLoc;
 
+  private boolean eligibleToHost;
+  
   @Deprecated
   private Location hostLoc;
   private int enroll;
@@ -173,4 +175,11 @@ public class School implements Serializable {
     return displayName;
   }
 
+  public void setEligibleToHost(boolean arg) {
+    eligibleToHost = arg;
+  }
+  
+  public boolean isEligibleToHost() {
+    return eligibleToHost;
+  }
 }
