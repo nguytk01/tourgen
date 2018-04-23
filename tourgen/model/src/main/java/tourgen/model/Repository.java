@@ -256,6 +256,7 @@ public class Repository implements Serializable{
       propertyChangeSupport.removePropertyChangeListener(listener);
     }
   }
+  
   public void addPropertyChangeListener(java.beans.PropertyChangeListener listener) {
     propertyChangeSupport.addPropertyChangeListener(listener);
   }
@@ -263,5 +264,16 @@ public class Repository implements Serializable{
   public void removeTournament(Tournament currentTournament) {
 	  girlsTourList.remove(girlsTourList.indexOf(currentTournament));
 	  propertyChangeSupport.firePropertyChange(TOURNAMENT_REMOVED, null, currentTournament);
+  }
+  
+  public boolean hasUnsavedTournament(){
+	  for (Tournament tour : girlsTourList) {
+	      System.out.println(tour.toString() + "is unsaved ? " + tour.isSavingNeeded());
+		  if (tour.isSavingNeeded()){
+		      System.out.println(tour.toString() + "is unsaved");
+			  return true;
+		  }
+	  }
+	  return false;
   }
 }

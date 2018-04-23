@@ -2,6 +2,8 @@ package tourgen.controller;
 
 import java.awt.event.WindowEvent;
 
+import javax.swing.JOptionPane;
+
 public class MainWindowCloseListener implements java.awt.event.WindowListener {
 
   private tourgen.model.SchoolManager schoolManager;
@@ -17,7 +19,14 @@ public class MainWindowCloseListener implements java.awt.event.WindowListener {
 
   @Override
   public void windowClosing(WindowEvent e) {
-    tourgen.model.IoManager.saveEverything(schoolManager);
+    try {
+    	tourgen.model.IoManager.saveEverything(schoolManager);
+    	e.getWindow().dispose();
+    	System.exit(0);
+    } catch (IllegalStateException event) {
+    	JOptionPane.showMessageDialog(null, "Please save all of your changes before exit.", 
+    			"Unsaved changes detected", JOptionPane.INFORMATION_MESSAGE);
+    }
   }
 
   @Override

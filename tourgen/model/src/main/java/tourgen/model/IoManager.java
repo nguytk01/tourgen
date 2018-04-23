@@ -193,8 +193,12 @@ public class IoManager extends java.util.Observable implements Serializable {
    * Save the distance matrix, the repository and the school manager's data to disk.
    * @param manager the school manager object
    */
-  public static void saveEverything(SchoolManager manager) {
+  public static void saveEverything(SchoolManager manager) throws IllegalStateException {
     /* This will also save repository since schoolManager has a repository*/
+	if (Repository.getInstance1().hasUnsavedTournament()) {
+		throw new IllegalStateException(
+				"Unsaved tournaments exist in the repository. Please save them before exit.");
+	}
     Repository.getInstance1().removeAllPropertyChangeListenersForSerialization();
     saveSchoolManager("schoolManager.bin", manager);
     saveRepository("tournaments.bin");

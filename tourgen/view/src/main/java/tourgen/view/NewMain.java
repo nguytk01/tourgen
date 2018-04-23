@@ -18,7 +18,7 @@ public class NewMain extends javax.swing.JFrame implements tourgen.util.INewMain
 
     setTitle("Tournament Generator");
     setBounds(50, 50, 1500, 800);
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
     javax.swing.JMenuBar menuBar = new javax.swing.JMenuBar();
     setJMenuBar(menuBar);
