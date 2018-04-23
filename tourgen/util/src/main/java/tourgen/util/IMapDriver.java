@@ -7,4 +7,6 @@ public interface IMapDriver {
 
   public List getMeetList();
 
+  public void mapReplace(Object oldSchool, Object newSchool);
+
 }
