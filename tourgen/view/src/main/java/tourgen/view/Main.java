@@ -15,6 +15,7 @@ import tourgen.controller.CheckBoxTreeCustomCheckBoxListener;
 import tourgen.controller.EditSchoolFormListeners;
 import tourgen.controller.EditSchoolUseCaseController;
 import tourgen.controller.MapController;
+import tourgen.controller.NewMainViewController;
 import tourgen.controller.RemoveSchoolUseCaseController;
 import tourgen.controller.ReportViewListeners;
 import tourgen.controller.ReportViewUseCaseController;
@@ -39,7 +40,7 @@ public class Main {
    * @param args command line arguments of the program.
    */
   public static void main(String[] args) {
-    FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 18));
+    FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 16));
     setUiFont(resource);
     SchoolManager manager = null; // new SchoolManager(repo);
     manager = tourgen.model.IoManager.loadEverythingUp();
@@ -155,12 +156,39 @@ public class Main {
     manager.addObserver(addForm);
     manager.addObserver(schoolList);
 
+    
+    
+    
+    
     MapDriver mainMap = new MapDriver(Repository.getInstance1());
     MapController mapController2 = new MapController(null, mainMap);
     CheckBoxTreeCustomCheckBoxListener checkBoxListener2 = 
         new CheckBoxTreeCustomCheckBoxListener(mapController2);
     mainMap.setCon(checkBoxListener2, mapController2);
     mainMap.initGui();
+    
+    
+    
+    
+    /**
+     * TODO This can be moved into the NewMain class's contruction method.
+     * Inject the mapAssistantController to the mapPanel through MapDriver's setter
+     *       
+     * Requirements: Make a MapSidePane since the controller requires it.
+     *   Requirements: Make a detailsPanel, a hostChooserPanel, an availableMeetsPanel since those panels are required by the mapSidePane
+     *    Requirements availableMeetsPanel needs a ChangeCompetitionSiteListener
+     *      same for hostChooserPanel
+     */
+    DetailsPanel detailsPanel = new DetailsPanel();
+    HostChooserPanel hostChooserPanel = new HostChooserPanel();
+    AvailableMeetsPanel availableMeetsPanel = new AvailableMeetsPanel();
+    NewMainMapSidePane mapSidePane = new NewMainMapSidePane(detailsPanel, hostChooserPanel, availableMeetsPanel);
+    
+    tourgen.controller.MapAssistantController mapAssistantController = new tourgen.controller.MapAssistantController(mapSidePane);
+    mainMap.setMapAssistantController(mapAssistantController);
+    /* injection done */
+    
+   
     
     tourgen.controller.MainWindowCloseListener mainWindowListener = 
         new tourgen.controller.MainWindowCloseListener(manager);
@@ -176,9 +204,20 @@ public class Main {
         addTournamentMenuItemListener,
         tournamentMenuListener);
     tabbedFrame.setVisible(true);
-    NewMain newMain = new NewMain(mapController2, mainMap.getMapPanel());
+    
+    /* create newMain */
+    NewMain newMain = new NewMain(mapController2, 
+        mainMap.getMapPanel(), 
+        (ReportTableView)reportTableView, 
+        mapSidePane, 
+        manager);
+    newMain.addWindowListener(mainWindowListener);
+    
+    newMain.initUserInterface();
     newMain.setVisible(true);
-    Repository.getInstance1().addObserver(repositoryView);
+    //Repository.getInstance1().addObserver(repositoryView);
+    
+    
     
     /* test GMapPinButton resources in Maven case */
     // JFrame myframe = new JFrame();

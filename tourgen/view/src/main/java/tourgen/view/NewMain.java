@@ -1,7 +1,20 @@
 package tourgen.view;
 
-public class NewMain extends javax.swing.JFrame {
-  public NewMain(tourgen.controller.MapController mapController, javax.swing.JPanel mapPanel) {
+import tourgen.controller.MenuItemRemoveTournamentListener;
+import tourgen.controller.NewMainViewController;
+import tourgen.controller.TournamentChooserComboBoxListener;
+import tourgen.model.SchoolManager;
+
+public class NewMain extends javax.swing.JFrame implements tourgen.util.INewMain {
+  
+  private NewMainLeftTournamentPane newMainLeftTournamentPane;
+  private NewMainRightTournamentPane newMainRightTournamentPane;
+  
+  public NewMain(tourgen.controller.MapController mapController,
+      javax.swing.JPanel mapPanel, 
+      ReportTableView reportTableView,
+      NewMainMapSidePane mapSidePane,
+      SchoolManager schoolManager) {
 
     setTitle("Tournament Generator");
     setBounds(50, 50, 1500, 800);
@@ -26,17 +39,35 @@ public class NewMain extends javax.swing.JFrame {
     javax.swing.JMenu mnTournament = new javax.swing.JMenu("Tournament");
     menuBar.add(mnTournament);
 
+    tourgen.controller.TournamentMenuListener tournamentMenuListener = new tourgen.controller.TournamentMenuListener();
+    mnTournament.addMenuListener(tournamentMenuListener);
+    
     javax.swing.JMenuItem mntmOpenTournament = new javax.swing.JMenuItem("Open a tournament...");
     mnTournament.add(mntmOpenTournament);
     
     javax.swing.JMenuItem mntmSaveTournament = new javax.swing.JMenuItem("Save tournament");
     mnTournament.add(mntmSaveTournament);
     
+    tourgen.controller.MenuItemSaveTournamentListener saveTournamentListener = 
+        new tourgen.controller.MenuItemSaveTournamentListener();
+    mntmSaveTournament.addActionListener(saveTournamentListener);
+    
     javax.swing.JMenuItem mntmSaveAsTournament = new javax.swing.JMenuItem("Save tournament as...");
     mnTournament.add(mntmSaveAsTournament);
     
+    tourgen.controller.MenuItemSaveAsTournamentListener saveAsTournamentListener = 
+        new tourgen.controller.MenuItemSaveAsTournamentListener();
+    
+    mntmSaveAsTournament.addActionListener(saveAsTournamentListener);
+    
+    tournamentMenuListener.setSaveTournamentMenuItem(mntmSaveTournament);
+    tournamentMenuListener.setSaveAsTournamentMenuItem(mntmSaveAsTournament);
+    
     javax.swing.JMenuItem mntmRemoveTournament = new javax.swing.JMenuItem("Remove a tournament");
     mnTournament.add(mntmRemoveTournament);
+    
+    MenuItemRemoveTournamentListener mntmRemoveTournamentListener = new MenuItemRemoveTournamentListener(); 
+    mntmRemoveTournament.addActionListener(mntmRemoveTournamentListener);
     
     javax.swing.JMenu mnHost = new javax.swing.JMenu("Host");
     menuBar.add(mnHost);
@@ -44,19 +75,74 @@ public class NewMain extends javax.swing.JFrame {
     javax.swing.JMenuItem mntmHostManager = new javax.swing.JMenuItem("Host Manager...");
     mnHost.add(mntmHostManager);
 
-    ReportTableView reportTableView = new ReportTableView();
-    DetailsPanel detailsPanel = new DetailsPanel();
-    HostChooserPanel hostChooserPanel = new HostChooserPanel();
-    AvailableMeetsPanel availableMeetsPanel = new AvailableMeetsPanel();
-    NewMainMapSidePane mapSidePane = new NewMainMapSidePane(detailsPanel, hostChooserPanel, availableMeetsPanel);
-    NewMainMapAndDetailsPanel mapAndDetailsPanel = new NewMainMapAndDetailsPanel(mapPanel, mapSidePane);
+    NewMainMapAndDetailsPanel mapAndDetailsPanel = new NewMainMapAndDetailsPanel(mapController, mapPanel, mapSidePane);
     
-    NewMainLeftTournamentPane newMainLeftTournamentPane = new NewMainLeftTournamentPane(mapController);
-    NewMainRightTournamentPane newMainRightTournamentPane = 
-        new NewMainRightTournamentPane(reportTableView, mapAndDetailsPanel);
+    /* create a tournament combobox for the left pane of the window */
+    TournamentChooserComboBoxListener tournamentChooserComboBoxListener = new TournamentChooserComboBoxListener();
+    
+    /* create 2 big panes: left and right panes for the window. */
+    newMainLeftTournamentPane = new NewMainLeftTournamentPane(mapController, tournamentChooserComboBoxListener);
+    newMainRightTournamentPane = new NewMainRightTournamentPane(reportTableView, mapAndDetailsPanel);
     javax.swing.JSplitPane splitPane = new javax.swing.JSplitPane(javax.swing.JSplitPane.HORIZONTAL_SPLIT,
         newMainLeftTournamentPane, newMainRightTournamentPane);
+    
+    /* create NewMainViewController */
+    NewMainViewController newMainViewController = new NewMainViewController(
+        newMainLeftTournamentPane, 
+        newMainRightTournamentPane,
+        schoolManager);
+    /* set TournamentChooserComboBoxListener's controller to NewMainViewController */
+    tournamentChooserComboBoxListener.setNewMainViewController(newMainViewController);
+    
+    /*set AvailableMeetsPanel's controller to NewMainViewController. It needs it for getting sectional meet list */
+    mapSidePane.getAvailableMeetsPanel().setNewMainViewController(newMainViewController);
+    mapSidePane.getHostChooserPanel().setNewMainViewController(newMainViewController);
+    
+    /* create listeners for availableMeetsPanel and HostChooserPanel */
+    /* listeners need to know the panel and the controller. That is why they are created
+     * after the controller is plugged in two panels.
+     */
+    mapSidePane.getAvailableMeetsPanel().createListeners();
+    mapSidePane.getHostChooserPanel().createListeners();
+    
+    /*set TournamentMenuListener's controller to NewMainViewController. It needs it to coordinate saving, saving as feature */
+    tournamentMenuListener.setNewMainViewController(newMainViewController);
+    
+    /*set saveTournamentListener's controller to NewMainViewController */
+    saveTournamentListener.setNewMainViewController(newMainViewController);
+    
+    /*set saveAsTournamentListener's controller to NewMainViewController*/
+    saveAsTournamentListener.setNewMainViewController(newMainViewController);
+    
+    /* set removeTournamentListener's controller to NewMainViewController*/
+    mntmRemoveTournamentListener.setNewMainViewController(newMainViewController);
+    
+    /* set NewMainViewController's NewMain window to this instance */
+    newMainViewController.setMainView(this);
+    
     getContentPane().add(splitPane, java.awt.BorderLayout.CENTER);
+    
+  }
+  
+  public void initUserInterface() {
+    newMainLeftTournamentPane.initUserInterface();
+    newMainRightTournamentPane.initUserInterface();
+  }
+
+  @Override
+  public boolean showOverwriteTournamentConfirmationDialog() {
+    int respond = javax.swing.JOptionPane.showConfirmDialog(this, "Do you want to overwrite the existing tournament ?");
+    if (respond == javax.swing.JOptionPane.OK_OPTION) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @Override
+  public String showSaveAsTournamentConfirmationDialog() {
+    String newName = javax.swing.JOptionPane.showInputDialog("Please enter new name");
+    return newName;
   }
 
 }

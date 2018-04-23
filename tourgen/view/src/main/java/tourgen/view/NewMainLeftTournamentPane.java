@@ -10,25 +10,38 @@ import tourgen.controller.CheckBoxTreeCustomCheckBoxListener;
 import tourgen.controller.MapController;
 
 
-public class NewMainLeftTournamentPane extends javax.swing.JPanel {
-  public NewMainLeftTournamentPane(tourgen.controller.MapController controller) {
+public class NewMainLeftTournamentPane extends javax.swing.JPanel implements tourgen.util.INewMainViewPane {
+  private CheckBoxTreePanel checkBoxTreePanel;
+  private TournamentChooserComboBox repositoryComboBox;
+  public NewMainLeftTournamentPane(tourgen.controller.MapController controller, 
+      java.awt.event.ActionListener tournamentChooserListener) {
     setLayout(new java.awt.BorderLayout(0, 0));
 
     JPanel panel = new JPanel();
-    FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-    flowLayout.setAlignment(FlowLayout.LEFT);
+    panel.setLayout(new java.awt.BorderLayout());
+    //FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+    //flowLayout.setAlignment(FlowLayout.LEFT);
     add(panel, java.awt.BorderLayout.NORTH);
 
-    JLabel lblNewLabel = new JLabel("Tournament");
-    panel.add(lblNewLabel);
+    JLabel lblNewLabel = new JLabel("Current Tournament");
+    panel.add(lblNewLabel, java.awt.BorderLayout.NORTH);
 
-    JComboBox repositoryComboBox = new JComboBox();
+    repositoryComboBox = new TournamentChooserComboBox(tournamentChooserListener);
     repositoryComboBox.setPreferredSize(new Dimension(200, 25));
-    panel.add(repositoryComboBox);
+    panel.add(repositoryComboBox, java.awt.BorderLayout.SOUTH);
 
-    CheckBoxTreePanel checkBoxTreePanel = new CheckBoxTreePanel(null, controller);
+    checkBoxTreePanel = new CheckBoxTreePanel(controller);
     add(checkBoxTreePanel, java.awt.BorderLayout.CENTER);
     revalidate();
+  }
+
+  @Override
+  public void setActiveTournament(Object tournament) {
+    checkBoxTreePanel.setActiveTournament(tournament);
+  }
+
+  public void initUserInterface() {
+    repositoryComboBox.initUserInterface();
   }
 
 }
