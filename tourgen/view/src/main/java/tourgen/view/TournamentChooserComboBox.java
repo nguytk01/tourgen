@@ -15,6 +15,7 @@ implements tourgen.util.ITournamentChooserComboBox, java.util.Observer, java.bea
 	private tourgen.controller.NewMainViewController newMainViewController;
 	private java.awt.event.ActionListener tournamentChooserActionListener;
 	private int proposedSelectedIndex;
+	private boolean newTournamentDisplayed = true;
 	
 	public TournamentChooserComboBox(java.awt.event.ActionListener tournamentChooserActionListenerArg) {
 		//this.addActionListener(tournamentChooserActionListener);
@@ -23,6 +24,7 @@ implements tourgen.util.ITournamentChooserComboBox, java.util.Observer, java.bea
 		Repository.getInstance1().addPropertyChangeListener(this);
 		this.setRenderer(new TournamentChooserComboBoxCellRenderer());
 		proposedSelectedIndex = 0;
+		addActionListener(tournamentChooserActionListener);
 	}
 
 	@Deprecated
@@ -53,10 +55,16 @@ implements tourgen.util.ITournamentChooserComboBox, java.util.Observer, java.bea
 		//this.addItemListener( (java.awt.event.ItemListener)tournamentChooserActionListener);
 		System.out.println("repopulate combobox/");
 		//somehow populating the combobox will fire actionListener
-	    addActionListener(tournamentChooserActionListener);
-
-		setSelectedIndex(proposedSelectedIndex);
+	    if ( newTournamentDisplayed ) {
+	    	setSelectedIndex(proposedSelectedIndex);
+	    	
+	    } else {
+	    	removeActionListener(tournamentChooserActionListener);
+	    	setSelectedIndex(proposedSelectedIndex);
+	    	addActionListener(tournamentChooserActionListener);
+	    }
 		proposedSelectedIndex = 0;
+		newTournamentDisplayed = false;
 	      }});
 	    }
 	
@@ -93,6 +101,9 @@ implements tourgen.util.ITournamentChooserComboBox, java.util.Observer, java.bea
     	System.out.println("currentTournamentPosition " + currentTournamentPosition );
     	System.out.println("itemCount " + this.getItemCount());
     	proposedSelectedIndex = currentTournamentPosition + 1;
+    	if (evt.getNewValue() == currentTournament) {
+    		newTournamentDisplayed = false;
+    	} else newTournamentDisplayed = true;
     	//this.setSelectedIndex(currentTournamentPosition + 1);
     }
     
