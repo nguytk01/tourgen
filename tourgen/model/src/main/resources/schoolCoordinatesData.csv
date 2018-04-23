@@ -72,8 +72,8 @@ Concord|Concord Community High School|180240000269|Concord Community High School
 Fort Wayne Concordia Lutheran|Concordia Lutheran High School|2159782|CONCORDIA LUTHERAN HIGH SCHOOL|41.10922|-85.117401
 Connersville|Connersville Senior High School|180351000498|Connersville Sr High School|39.636171|-85.159724
 Corydon Central|Corydon Central High School|181036002282|Corydon Central High School|38.200137|-86.119437
-Covenant Christian (Indianapolis)|Covenant Christian High School|A0103217|COVENANT CHRISTIAN HIGH SCHOOL|41.18616|-87.205221
-Covenant Christian (DeMotte)|Covenant Christian High School|A0103217|COVENANT CHRISTIAN HIGH SCHOOL|41.18616|-87.205221
+Covenant Christian (Indianapolis)|Covenant Christian High School|A0103217|COVENANT CHRISTIAN HIGH SCHOOL|39.792882|-86.293179
+Covenant Christian (DeMotte)|Covenant Christian High School|A0103217|COVENANT CHRISTIAN HIGH SCHOOL|41.194239|-87.198207
 Covington|Covington Community High School|180243000275|Covington Community High School|40.142986|-87.396112
 Cowan|Cowan High School|180702001200|Cowan High School|40.107651|-85.392567
 Crawford County|Crawford County High School|180244000279|Crawford County Jr-Sr HS|38.31951|-86.353511
@@ -118,7 +118,7 @@ Faith Christian|Faith Christian School|A9901842|FAITH CHRISTIAN SCHOOL|40.41864|
 Fishers|Fishers High School|181065002392|Fishers High School|39.978051|-85.966691
 Floyd Central|Floyd Central High School|180741001265|Floyd Central High School|38.333266|-85.931037
 Forest Park|Forest Park High School|181064001745|Forest Park Jr-Sr High School|38.227576|-86.857431
-Fort Wayne Canterbury|Fort Wayne Canterbury School|181035002230|Fort Branch Community School|38.239642|-87.570178
+Fort Wayne Canterbury|Fort Wayne Canterbury School|181035002230|Fort Branch Community School|41.054054|-85.212181 
 Fountain Central|Fountain Central High School|181062001742|Fountain Central High School|40.106202|-87.226833
 Frankfort|Frankfort Senior High School|180366000574|Frankfort Senior High School|40.281706|-86.485294
 Franklin Central|Franklin Central High School|180375000597|Franklin Central High School|39.677022|-86.015513
@@ -151,11 +151,11 @@ Hammond Gavit|Donald E Gavit Middle/High School|180432000734|Donald E Gavit Midd
 Hammond|Hammond High School|180432000736|Hammond High School|41.605718|-87.509562
 Hammond Morton|Morton Senior High School|180432000746|Morton Senior High School|41.586739|-87.440178
 Hanover Central|Hanover Central Middle School|180435001908|Hanover Central Middle School|41.356487|-87.463382
-Harrison (West Lafayette)|Harrison High School|180069000144|North Harrison High School|38.322145|-86.144273
+Harrison (West Lafayette)|Harrison High School|180069000144|North Harrison High School|40.499316|-86.914805
 Hauser|Hauser Junior-Senior High School|180357000509|Hauser Jr-Sr High School|39.292713|-85.769977
 Hebron|Hebron High School|180075000153|Hebron High School|41.313891|-87.196143
 Henryville|Henryville Jr & Senior High School|180937001531|Henryville Jr & Sr High School|38.544046|-85.768995
-Heritage Christian|Heritage Christian School|353555|PROTESTANT REFORMED/HERITAGE CHRISTIAN SCHOOLS|41.42155|-87.509551
+Heritage Christian|Heritage Christian School|353555|PROTESTANT REFORMED/HERITAGE CHRISTIAN SCHOOLS|39.888127|-86.059706
 Heritage Hills|Heritage Hills High School|180801001376|Heritage Hills High School|38.119622|-86.986804
 Heritage|Heritage Jr/Senior High School|180285000344|Heritage Jr/Sr High School|40.976602|-84.962024
 Herron|Herron High School|180005802315|Herron High School|39.789037|-86.155436
@@ -177,7 +177,7 @@ Indianapolis Metropolitan|Indianapolis Metropolitan High School|180006402408|Ind
 Indianapolis Northwest|Northwest Community High School|180477000878|Northwest Community High School|39.813937|-86.258433
 Indianapolis Scecina Memorial|Scecina Memorial High School|421244|SCECINA MEMORIAL HIGH SCHOOL|39.78723|-86.085331
 Indianapolis Shortridge|Shortridge High School|180477002238|Shortridge High School|39.8181|-86.155604
-International School of Indiana|International School of Indiana High School|180345000481|Plaza Park International Prep Ac|37.96925|-87.46266
+International School of Indiana|International School of Indiana High School|180345000481|Plaza Park International Prep Ac|39.833776|-86.185438
 Irvington Preparatory|Irvington Preparatory Academy|180001401756|Irvington Community School|39.769302|-86.052044
 Jac-Cen-Del|Jac-Cen-Del Junior-Senior High School|180480000907|Jac-Cen-Del MS/HS|39.142016|-85.295121
 Jasper|Jasper High School|180396000685|Jasper High School|38.402437|-86.950229
@@ -236,7 +236,7 @@ Monrovia|Monrovia High School|180414000716|Monrovia High School|39.575739|-86.47
 Mooresville|Mooresville High School|180714001207|Mooresville High School|39.618765|-86.377079
 Morgan Township|Morgan Township Middle/High School|180900001214|Morgan Township Middle/High Scho|41.392104|-87.026034
 Morristown|Morristown Junior-Senior High School|180321000418|Morristown Jr-Sr High School|39.672828|-85.701597
-Mt. Vernon (Fortville)|Mount Vernon High School|180729001226|Mount Vernon High School|37.93704|-87.88703
+Mt. Vernon (Fortville)|Mount Vernon High School|180729001226|Mount Vernon High School|39.901477|-85.844282
 Mt. Vernon|Mount Vernon High School|180729001226|Mount Vernon High School|37.93704|-87.88703
 Muncie Burris|Burris Laboratory School|180003800185|Burris Laboratory School|40.196684|-85.412285
 Muncie Central|Muncie Central High School|180732001242|Muncie Central High School|40.201339|-85.387704
@@ -270,7 +270,7 @@ Northridge|Northridge High School|180660001165|Northridge High School|41.670045|
 Fort Wayne Northrop|Northrop High School|180363000552|Northrop High School|41.145678|-85.139388
 Northview|Northview High School|180084000154|Northview High School|39.515913|-87.166371
 Northwestern|Northwestern Senior High School|180204000255|Northwestern Sr High Sch|40.525761|-86.204407
-Northwood|Northwood High School|180363000553|Northwood Middle School|41.133871|-85.125435
+Northwood|Northwood High School|180363000553|Northwood Middle School|41.461627|-85.999487
 Norwell|Norwell High School|180822001410|Norwell High School|40.828296|-85.201102
 Oak Hill|Oak Hill High School|180834001429|Oak Hill High School|40.579872|-85.821567
 Oldenburg Academy|Oldenburg Academy|422113|OLDENBURG ACADEMY|39.342613|-85.201152
@@ -323,7 +323,7 @@ Signature|Signature School Inc|180002100319|Signature School Inc|37.973174|-87.5
 Silver Creek|Silver Creek High School|180937001536|Silver Creek High School|38.407806|-85.755288
 Smith Academy for Excellence|Smith Academy for Excellence|180013102539|Smith Academy for Excellence|41.07559|-85.148891
 South Adams|South Adams Middle School|181026001641|South Adams Middle School|40.646877|-84.96039
-South Bend Adams|Adams Middle School|181026001641|South Adams Middle School|40.646877|-84.96039
+South Bend Adams|Adams Middle School|181026001641|South Adams Middle School|41.666610|-86.224185
 South Bend St. Joseph|ST JOSEPH HIGH SCHOOL|422973|ST JOSEPH HIGH SCHOOL|41.681327|-86.239778
 South Bend Washington|Washington High School|181029001684|Washington High School|41.675494|-86.314923
 South Central (Elizabeth)|South Central (Elizabeth) Jr & Senior High School|181036002285|South Central Jr & Sr High Schoo|38.081694|-86.0005
@@ -360,7 +360,7 @@ Traders Point|Traders Point Christian Academy|A9102775|TRADERS POINT CHRISTIAN A
 Tri Central|Tri Central Middle/High School|180804001379|Tri Central Middle-High School|40.375298|-86.053492
 Tri|Tri Junior-Senior High School|181038001702|Tri Junior-Senior High School|39.83272|-85.350879
 Tri-County|Tri-County Middle-Senior High|181143001846|Tri-County Middle-Senior High|40.734863|-87.084797
-Trinity Lutheran|Trinity Lutheran School|424325|TRINITY LUTHERAN SCHOOL|41.72344|-86.059291
+Trinity Lutheran|Trinity Lutheran School|424325|TRINITY LUTHERAN SCHOOL|38.985783|-85.877203
 Triton Central|Triton Central High School|180831001423|Triton Central High School|39.611299|-85.873511
 Triton|Triton Junior-Senior High School|181149001856|Triton Jr-Sr High School|41.301353|-86.108477
 Tri-West Hendricks|Tri-West Senior High School|180810001387|Tri-West Senior High School|39.876672|-86.541983
