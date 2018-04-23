@@ -10,6 +10,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JToolTip;
 import javax.swing.event.MouseInputListener;
 
 public class GMapPinButton extends JButton {
@@ -24,6 +26,8 @@ public class GMapPinButton extends JButton {
   private static Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
   private JButton currentButton;
 
+  private JToolTip toolTip;
+  
   public GMapPinButton(String text) {
     // super(text);
     mapPinButtonCommonConstructor();
@@ -33,7 +37,23 @@ public class GMapPinButton extends JButton {
     super();
     mapPinButtonCommonConstructor();
   }
+  
+  public GMapPinButton(JToolTip toolTipArg) {
+	    super();
+	    toolTip = toolTipArg;
+	    mapPinButtonCommonConstructor();
+	    this.setToolTipText("");
+  }
 
+  @Override
+  public JToolTip createToolTip() {
+	if (toolTip != null) {
+		return toolTip;
+	} else {
+		return super.createToolTip();
+	}
+  }
+  
   /**
    * Common routine used by the constructors of GMapPinButton.
    */
@@ -51,7 +71,7 @@ public class GMapPinButton extends JButton {
     this.addMouseListener(mouseListener);
     // this.revalidate();
     // this.repaint();
-    this.addFocusListener(new PinButtonFocusListener());
+    //this.addFocusListener(new PinButtonFocusListener());
   }
 
   private static ImageIcon makeIcon(String img, int i, int j) {
@@ -124,4 +144,8 @@ public class GMapPinButton extends JButton {
       System.out.println("focus lost");
     }
   }
+  
+
+  
+
 }

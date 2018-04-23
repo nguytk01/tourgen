@@ -1,11 +1,19 @@
 package tourgen.view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.List;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JToolTip;
+import javax.swing.border.EmptyBorder;
 
 import org.jxmapviewer.viewer.DefaultWaypoint;
 import org.jxmapviewer.viewer.GeoPosition;
@@ -38,11 +46,14 @@ public class SwingWaypoint extends DefaultWaypoint {
     // button = new GMapPinButton(text.substring(0, 1));
     //System.out.println("hostFlag is " +hostFlag);
     if (hostFlag == true) {
-      button = new HostGMapPinButton(text.substring(0, 1));
+      button = new HostGMapPinButton();
       double[] maxAndAvgDistances = meet.getMaxAndAvgDistance();
       double maximumDistanceInMiles = maxAndAvgDistances[0] / 1000.0 * 0.621;
       double averageDistanceInMiles = maxAndAvgDistances[1] / 1000.0 * 0.621;
-      
+      java.text.DecimalFormat distanceToStringFormat = new java.text.DecimalFormat();
+      String maximumDistanceInMilesStr = distanceToStringFormat.format(maximumDistanceInMiles);
+      String averageDistanceInMilesStr = distanceToStringFormat.format(averageDistanceInMiles);
+      button = new HostGMapPinButton(new HostSchoolToolTip(averageDistanceInMilesStr, maximumDistanceInMilesStr));
       //System.out.println(maximumDistanceInMiles);
       //System.out.println(averageDistanceInMiles);
       distanceStr = "Host : "
@@ -59,7 +70,7 @@ public class SwingWaypoint extends DefaultWaypoint {
                              + new java.text.DecimalFormat("0").format(averageDistanceInMiles)
                              + " miles";
     } else {
-      button = new GMapPinButton(text.substring(0, 1)); 
+      button = new GMapPinButton(new RegularSchoolToolTip()); 
       distanceStr = "You clicked on school " + text 
                               + "\n"
                               + "Host : "
@@ -82,6 +93,71 @@ public class SwingWaypoint extends DefaultWaypoint {
   JButton getButton() {
     return button;
   }
+  
+  class RegularSchoolToolTip extends JToolTip {
+	  private JPanel panel;
+	  private JLabel label;
+	  private JPanel detailsPanel;
+	  public RegularSchoolToolTip() {
+		  panel = new JPanel();
+		  //panel.setLayout(new BorderLayout());
+		  panel.setLayout(new BorderLayout());
+		  label = new javax.swing.JLabel("hi");
+		this.setBackground(Color.WHITE);
+		this.setLayout(new BorderLayout());
+		panel.add(label, BorderLayout.CENTER);
+		//panel.add(new javax.swing.JLabel("Max/Avg:"), BorderLayout.SOUTH);
+		  panel.setBorder(new EmptyBorder(2,2,2,2));
+		panel.setOpaque(false);
+		
+		//detailsPanel = new JPanel();
+		//panel.add(detailsPanel, BorderLayout.SOUTH);
+		this.add(panel, BorderLayout.WEST);
+	  }
+	  
+	  public void setTipText(String text) {
+		  label.setText(text);
+	  }
+	  
+	  public Dimension getPreferredSize() {
+		  return panel.getPreferredSize();
+	  }
+  }
+  
+  class HostSchoolToolTip extends JToolTip {
+	  private JPanel panel;
+	  private JLabel label;
+	  private JPanel detailsPanel;
+	  public HostSchoolToolTip(String averageDistance, String maximumDistance) {
+		  panel = new JPanel();
+		  panel.setBorder(new EmptyBorder(2,2,2,2));
+		  //panel.setLayout(new BorderLayout());
+		  panel.setLayout(new BorderLayout());
+		  label = new javax.swing.JLabel("hi");
+		this.setBackground(Color.WHITE);
+		this.setLayout(new BorderLayout());
+		panel.add(label, BorderLayout.CENTER);
+		panel.add(new javax.swing.JLabel("Max / Avg: " 
+		+ averageDistance 
+		+ " / " 
+		+ maximumDistance
+		+ " miles"), BorderLayout.SOUTH);
+		panel.setOpaque(false);
+		
+		//detailsPanel = new JPanel();
+		//panel.add(detailsPanel, BorderLayout.SOUTH);
+		this.add(panel, BorderLayout.WEST);
+	  }
+	  
+	  public void setTipText(String text) {
+		  label.setText(text);
+	  }
+	  
+	  public Dimension getPreferredSize() {
+		  
+		  return panel.getPreferredSize();
+	  }
+  }
 
   private class SwingWaypointMouseListener implements MouseListener {
 
@@ -94,11 +170,6 @@ public class SwingWaypoint extends DefaultWaypoint {
           } else {
             mapAssistantController.showPinRegularInfoSidePane(meet, school);
           }
-          // System.out.println(meet.getHostSchool().getSchoolLoc().getLatitude() + " " +
-          // meet.getHostSchool().getSchoolLoc().getLongitude());
-
-          // System.out.println(HostSchool.getLatitude() + " "+HostSchool.getLongitude());
-
     }
     
     @Override

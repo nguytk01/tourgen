@@ -10,7 +10,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JToolTip;
 import javax.swing.event.MouseInputListener;
+
+import tourgen.view.SwingWaypoint.HostSchoolToolTip;
 
 public class HostGMapPinButton extends JButton {
   private static String pinPath = "Hostpin.png";
@@ -24,6 +27,7 @@ public class HostGMapPinButton extends JButton {
   private static Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
   private JButton currentButton;
 
+  private JToolTip toolTip;
   public HostGMapPinButton(String text) {
     // super(text);
     mapPinButtonCommonConstructor();
@@ -34,7 +38,20 @@ public class HostGMapPinButton extends JButton {
     mapPinButtonCommonConstructor();
   }
 
-  /**
+  public HostGMapPinButton(HostSchoolToolTip hostSchoolToolTip) {
+	  toolTip = hostSchoolToolTip;
+	  mapPinButtonCommonConstructor();
+  }
+  
+  public JToolTip createToolTip() {
+	  if (toolTip != null) {
+		  return toolTip;
+	  } else {
+		  return super.createToolTip();
+	  }
+  }
+
+/**
    * Common routine used by the constructors of GMapPinButton.
    */
   public void mapPinButtonCommonConstructor() {
