@@ -1,11 +1,17 @@
 package tourgen.controller;
 
+import java.sql.Savepoint;
+
 public class TournamentMenuListener 
     extends javax.swing.AbstractAction 
     implements javax.swing.event.MenuListener {
 
+  @Deprecated
   private ReportViewUseCaseController reportViewController;
-
+  
+  private NewMainViewController newMainViewController;
+  private javax.swing.JMenuItem saveTournamentMenuItem;
+  private javax.swing.JMenuItem saveAsTournamentMenuItem;
   /**
    * Construct a listener listening to the Tournament menu.
    */
@@ -16,8 +22,10 @@ public class TournamentMenuListener
   }
 
   public void actionPerformed(java.awt.event.ActionEvent event) {
+    
   }
 
+  @Deprecated
   public void setReportViewUseCaseController(ReportViewUseCaseController controllerArg) {
     reportViewController = controllerArg;
   }
@@ -26,11 +34,29 @@ public class TournamentMenuListener
   }
 
   public void menuSelected(javax.swing.event.MenuEvent e) {
-    System.out.println("call reportViewUseCaseController.enableDisable..()");
-    reportViewController.enableDisableAddTournamentMenuItem();
+    //System.out.println("call reportViewUseCaseController.enableDisable..()");
+    //reportViewController.enableDisableAddTournamentMenuItem();
+    if (!newMainViewController.getCurrentlyDisplayTournament().isSavingNeeded()) {
+      saveAsTournamentMenuItem.setEnabled(true);
+      saveTournamentMenuItem.setEnabled(false);
+    } else {
+      saveAsTournamentMenuItem.setEnabled(true);
+      saveTournamentMenuItem.setEnabled(true);
+    }
   }
 
+  public void setNewMainViewController(NewMainViewController newMainViewControllerArg) {
+    newMainViewController = newMainViewControllerArg;
+  }
+  
   public void menuDeselected(javax.swing.event.MenuEvent e) {
   }
 
+  public void setSaveTournamentMenuItem(javax.swing.JMenuItem saveTournamentMenuItemArg) {
+    saveTournamentMenuItem = saveTournamentMenuItemArg;
+  }
+  
+  public void setSaveAsTournamentMenuItem(javax.swing.JMenuItem saveAsTournamentMenuItemArg) {
+    saveAsTournamentMenuItem = saveAsTournamentMenuItemArg;
+  }
 }
