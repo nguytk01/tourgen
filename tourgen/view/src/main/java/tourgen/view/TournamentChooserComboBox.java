@@ -75,7 +75,9 @@ implements tourgen.util.ITournamentChooserComboBox, java.util.Observer, java.bea
     Tournament currentTournament = (Tournament)this.getSelectedItem();
     int currentTournamentPosition = this.getSelectedIndex();
     if (evt.getPropertyName() == Repository.TOURNAMENT_MODIFIED 
-    		|| evt.getPropertyName() == Repository.TOURNAMENT_OVERWRITTEN) {}
+    		|| evt.getPropertyName() == Repository.TOURNAMENT_OVERWRITTEN) {
+    	repaint();
+    }
     else if (evt.getPropertyName() == Repository.TOURNAMENT_REMOVED) {
     	Tournament tournamentRemoved = (Tournament)evt.getNewValue();
     	//if (tournamentRemoved == currentTournament) {
