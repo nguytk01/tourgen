@@ -195,6 +195,7 @@ public class IoManager extends java.util.Observable implements Serializable {
    */
   public static void saveEverything(SchoolManager manager) {
     /* This will also save repository since schoolManager has a repository*/
+    Repository.getInstance1().removeAllPropertyChangeListenersForSerialization();
     saveSchoolManager("schoolManager.bin", manager);
     saveRepository("tournaments.bin");
     System.out.println("saveDistanceMatrix ?");

@@ -167,4 +167,15 @@ public class Stage implements Serializable {
     }
     return new double[] {maxDistance, sumDistance / stageMeets.size()};
   }
+
+  public boolean containsMeet(Meet meet) {
+    return stageMeets.contains(meet);
+  }
+
+  void removeAllPropertyChangeListenersForSerialization() {
+    for (Meet meet: stageMeets) {
+      meet.removeAllPropertyChangeListenersForSerialization();
+    }
+    
+  }
 }

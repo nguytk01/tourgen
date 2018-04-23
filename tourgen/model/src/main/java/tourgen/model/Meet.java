@@ -28,6 +28,11 @@ public class Meet implements Serializable {
   School hostSchool;
   java.util.ArrayList<School> participantSchools;
   Location location;
+  java.beans.PropertyChangeSupport propertyChangeSupport;
+  
+  public final static String SCHOOL_REMOVED = "School removed";
+  public final static String SCHOOL_ADDED = "School added";
+  public final static String HOST_SCHOOL_CHANGED = "Host school changed";
 
   /**
    * construct a meet from the given stage and the given meetDate.
@@ -40,6 +45,7 @@ public class Meet implements Serializable {
     this.meetStage = meetStage;
     this.meetDate = meetDate;
     participantSchools = new java.util.ArrayList<School>();
+    propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
     // String meetDate = dtFormat(meetDate);
   }
 
@@ -61,7 +67,9 @@ public class Meet implements Serializable {
   }
 
   public void setHostSchool(School hostSchoolArg) {
+    School oldHostSchool = hostSchool;
     this.hostSchool = hostSchoolArg;
+    propertyChangeSupport.firePropertyChange(HOST_SCHOOL_CHANGED, oldHostSchool, hostSchool);
   }
 
   public void setStage(Stage arg) {
@@ -102,10 +110,12 @@ public class Meet implements Serializable {
 
   public void addSchooltoMeet(School newSchool) {
     participantSchools.add(newSchool);
+    propertyChangeSupport.firePropertyChange(SCHOOL_ADDED, newSchool, null);
   }
 
   public void removeSchoolfromMeet(School oldSchool) {
     participantSchools.remove(oldSchool);
+    propertyChangeSupport.firePropertyChange(SCHOOL_REMOVED, oldSchool, null);
   }
 
   void setAlternateMeetingTime(org.joda.time.DateTime time) {
@@ -164,5 +174,16 @@ public class Meet implements Serializable {
       }
     }
     return new double[] { maximumDistance, 1.0 * sumDistance / distanceMatrix.length};
+  }
+  
+  public void addPropertyChangeListener(java.beans.PropertyChangeListener listener) {
+    propertyChangeSupport.addPropertyChangeListener(listener);
+  }
+
+  void removeAllPropertyChangeListenersForSerialization() {
+    for (java.beans.PropertyChangeListener listener : propertyChangeSupport.getPropertyChangeListeners()) {
+      propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+    
   }
 }

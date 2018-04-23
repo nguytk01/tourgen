@@ -194,4 +194,15 @@ public class SchoolManager extends java.util.Observable implements Serializable 
     return repo;
   }
 
+  List<School> getSnapshotOfCurrentListOfSchoolsNotWillingToHost() {
+    List<School> listOfSchoolsNotWillingToHost = new java.util.ArrayList<School>();
+    for (School school : schoolList) {
+      if (!school.isEligibleToHost()) {
+        listOfSchoolsNotWillingToHost.add(school);
+      }
+    }
+    return listOfSchoolsNotWillingToHost;
+    
+  }
+  
 }

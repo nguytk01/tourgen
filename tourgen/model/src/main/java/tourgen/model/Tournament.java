@@ -10,7 +10,9 @@ public class Tournament implements Serializable {
   TournamentParticipants gender;
   List<Stage> stageList;
   String tournamentName;
-
+  List<School> schoolsNotWillingToHostList;
+  org.joda.time.Instant schoolsNotWillingToHostSnapshotDate;
+  private boolean savingNeeded = false;
   /**
    * Construct a tournament from a tournament name, and gender of the partipants of that tournament.
    * @param name tournament's name
@@ -20,6 +22,7 @@ public class Tournament implements Serializable {
     tournamentName = name;
     stageList = new ArrayList<Stage>();
     gender = genderArg;
+    schoolsNotWillingToHostList = new ArrayList<School>();
   }
 
   public void removeStage(Stage stage) {
@@ -42,15 +45,56 @@ public class Tournament implements Serializable {
     return tournamentName;
   }
   
-  public List<Meet> getSectionalMeetSuggestions(School candidate){
+  public List<Meet> getSectionalMeetSuggestions(Object school){
     List<Meet> sectionalMeetsSuggestion = new ArrayList<Meet>();
     Stage sectional = stageList.get(0);
     for (Meet meet: sectional.getMeetList()) {
       School host = meet.getHostSchool();
-      if ( host != candidate && ! meet.getParticipatingSchool().contains(host) ) {
+      if ( host != school && ! meet.getParticipatingSchool().contains(school) ) {
         sectionalMeetsSuggestion.add(meet);
       }
     }
     return Collections.unmodifiableList(sectionalMeetsSuggestion);
+  }
+  
+  void setName(String nameArg) {
+    tournamentName = nameArg;
+  }
+  void setSchoolsNotWillingToHostList(List<School> schoolsNotWillingToHostListArg) {
+    this.schoolsNotWillingToHostList = schoolsNotWillingToHostListArg;
+    schoolsNotWillingToHostSnapshotDate = new org.joda.time.Instant();
+  }
+
+  public List<School> getListOfSchoolsNotWillingToHost() {
+    return this.schoolsNotWillingToHostList;
+  }
+  
+  public boolean isSavingNeeded() {
+    return savingNeeded;
+  }
+  
+  public String getName() {
+    return tournamentName;
+  }
+
+  public void setModified(boolean b) {
+    savingNeeded = b;
+  }
+  
+  boolean containsMeet(Meet meet) {
+    for (Stage stage: stageList) {
+      if (stage.containsMeet(meet)) {
+        return true;
+      }
+    }
+    return false;
+    
+  }
+
+  void removeAllPropertyChangeListenersForSerialization() {
+    for (Stage stage: stageList) {
+      stage.removeAllPropertyChangeListenersForSerialization();
+    }
+    
   }
 }

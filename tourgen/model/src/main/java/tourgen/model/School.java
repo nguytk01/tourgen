@@ -156,7 +156,7 @@ public class School implements Serializable {
     if (obj instanceof School) {
       // compare school's name, address
       School sch = (School) obj;
-      if (name.equals(sch.getStreetAddress()) && schoolLoc.equals(sch.getSchoolLoc())) {
+      if (name.equals(sch.name) && schoolLoc.equals(sch.schoolLoc)) {
         return true;
       } else {
         return false;
