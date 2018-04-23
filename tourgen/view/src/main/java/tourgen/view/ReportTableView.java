@@ -32,7 +32,8 @@ public class ReportTableView extends JPanel implements IReportTableView {
   Listener listener;
   JPanel northPanel;
   ReportContentRenderer reportContentRenderer;
-
+  private Tournament currentTournament;
+  private boolean currentTournamentAlreadyRendered = false;
   /**
    * Build a report table view.
    */
@@ -73,9 +74,25 @@ public class ReportTableView extends JPanel implements IReportTableView {
     }
   }
 
+  public void display() {
+    display(currentTournament);
+    showReport();
+  }
+  
   @Override
   public void display(Object arg) {
     Tournament tournament = (Tournament) arg;
+    if (currentTournament == tournament && currentTournamentAlreadyRendered == true) {
+      System.out.println("skip rendering.");
+      return;
+    } else if (currentTournament == tournament && currentTournamentAlreadyRendered == false){
+      currentTournamentAlreadyRendered = true;
+    } else if (currentTournament != tournament) {
+      currentTournament = tournament;
+      currentTournamentAlreadyRendered = true;
+    }
+    
+    
     if (stageList.isEmpty() == false) {
       stageList.clear();
       northPanel.removeAll();
@@ -95,6 +112,17 @@ public class ReportTableView extends JPanel implements IReportTableView {
     revalidate();
 
   }
+
+  public void setActiveTournament(Object tournamentArg) {
+    
+    if (currentTournament != tournamentArg) {
+      System.out.println("set active tournament");
+      currentTournament = (Tournament) tournamentArg;
+      currentTournamentAlreadyRendered = false;
+    }
+  }
+  
+
 }
 
   /*@Override

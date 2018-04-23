@@ -51,6 +51,7 @@ public class GMapPinButton extends JButton {
     this.addMouseListener(mouseListener);
     // this.revalidate();
     // this.repaint();
+    this.addFocusListener(new PinButtonFocusListener());
   }
 
   private static ImageIcon makeIcon(String img, int i, int j) {
@@ -90,7 +91,7 @@ public class GMapPinButton extends JButton {
 
     @Override
     public void mouseExited(MouseEvent e) {
-      // TODO Auto-generated method stub
+      requestFocusInWindow();
     }
 
     @Override
@@ -112,6 +113,15 @@ public class GMapPinButton extends JButton {
     public void mouseMoved(MouseEvent arg0) {
       // TODO Auto-generated method stub
     }
-
+  }
+  private class PinButtonFocusListener implements java.awt.event.FocusListener{
+    @Override
+    public void focusGained(java.awt.event.FocusEvent e) {
+      System.out.println("focus gained");
+    }
+    
+    public void focusLost(java.awt.event.FocusEvent e) {
+      System.out.println("focus lost");
+    }
   }
 }

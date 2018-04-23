@@ -1,6 +1,11 @@
 package tourgen.view;
 
 import java.awt.BorderLayout;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,6 +14,7 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.event.MouseInputListener;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
@@ -16,13 +22,17 @@ import org.jxmapviewer.input.CenterMapListener;
 import org.jxmapviewer.input.PanKeyListener;
 import org.jxmapviewer.input.PanMouseInputListener;
 import org.jxmapviewer.input.ZoomMouseWheelListenerCenter;
+import org.jxmapviewer.input.ZoomMouseWheelListenerCursor;
 import org.jxmapviewer.viewer.DefaultTileFactory;
+import org.jxmapviewer.viewer.DefaultWaypoint;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.LocalResponseCache;
 import org.jxmapviewer.viewer.TileFactoryInfo;
+import org.jxmapviewer.viewer.Waypoint;
 import org.jxmapviewer.viewer.WaypointPainter;
 
 import tourgen.controller.CheckBoxTreeCustomCheckBoxListener;
+import tourgen.controller.MapAssistantController;
 import tourgen.controller.MapController;
 import tourgen.model.Meet;
 import tourgen.model.Repository;
@@ -65,7 +75,7 @@ public class MapDriver implements IMapDriver {
   private CheckBoxTreeCustomCheckBoxListener checkBoxListener;
   private MapController mapController;
 
-  // public MapDriver() {
+  /* public MapDriver() {
   //
   // meetList = new ArrayList<Meet>();
   // waypoints = new HashSet<SwingWaypoint>();
@@ -82,9 +92,10 @@ public class MapDriver implements IMapDriver {
   // frame.setSize(800, 600);
   // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   // frame.setVisible(true);
-  // }
+   }*/
   
   private javax.swing.JPanel checkBoxPanel;
+  private MapAssistantController mapAssistantController;
   
   /**
    * The driver for the map view.
@@ -137,9 +148,10 @@ public class MapDriver implements IMapDriver {
     // Add interactions
     MouseInputListener mia = new PanMouseInputListener(mapViewer);
     mapViewer.addMouseListener(mia);
+    mapViewer.addMouseListener(new MapMouseListener());
     mapViewer.addMouseMotionListener(mia);
     mapViewer.addMouseListener(new CenterMapListener(mapViewer));
-    mapViewer.addMouseWheelListener(new ZoomMouseWheelListenerCenter(mapViewer));
+    mapViewer.addMouseWheelListener(new ZoomMouseWheelListenerCursor(mapViewer));
     mapViewer.addKeyListener(new PanKeyListener(mapViewer));
 
     // Create waypoints from the geo-positions
@@ -205,7 +217,7 @@ public class MapDriver implements IMapDriver {
     JFrame frame = new JFrame("THE MAP");
     // CheckBoxTreeFrame frame2 = new CheckBoxTreeFrame(repo, checkBoxListener,
     // mapController);
-    checkBoxPanel = new CheckBoxTreePanel(checkBoxListener, mapController);
+    checkBoxPanel = new CheckBoxTreePanel(mapController);
     frame.getContentPane().setLayout(new BorderLayout());
     frame.getContentPane().add(checkBoxPanel);
     frame.getContentPane().add(mapViewer, BorderLayout.CENTER);
@@ -287,8 +299,8 @@ public class MapDriver implements IMapDriver {
         // System.out.println("school Loc" + tempLoc.getLatitude());
         // System.out.println("school Loc" + tempLoc.getLongitude());
         GeoPosition points = new GeoPosition(tempLoc.getLatitude(), tempLoc.getLongitude());
-        waypoints.add(new SwingWaypoint(schools.get(i).getDisplayName(),
-            points, meetList.get(j),false));
+        waypoints.add(new SwingWaypoint(schools.get(i).getDisplayName(), 
+            points, schools.get(i), meetList.get(j),false, mapAssistantController));
         
         
         GeoPosition hostPoint = 
@@ -296,7 +308,7 @@ public class MapDriver implements IMapDriver {
                 meetList.get(j).getLocation().getLongitude());
         waypoints.add(new
                 SwingWaypoint(meetList.get(j).getLocation().getName(),
-                hostPoint, meetList.get(j),true));
+                hostPoint, meetList.get(j).getHostSchool(), meetList.get(j),true, mapAssistantController));
      
         
         // GeoPosition hostPoints = new
@@ -349,5 +361,85 @@ public class MapDriver implements IMapDriver {
   
   javax.swing.JPanel getCheckBoxTreePanel() {
     return checkBoxPanel;
+  }
+  
+  void setMapAssistantController(tourgen.controller.MapAssistantController controllerArg) {
+    mapAssistantController = controllerArg;
+  }
+  
+  private class MapMouseListener implements java.awt.event.MouseListener{
+
+    @Override
+    public void mouseClicked(MouseEvent arg0) {
+      System.out.println("mapDriver clicked");
+      mapAssistantController.hideSidePane();
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+
+    @Override
+    public void mouseExited(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+
+    @Override
+    public void mousePressed(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+    
+  }
+
+  @Override
+  public void mapReplace(Object oldSchool, Object newSchool) {
+    double oldSchoolLatitude = 0;
+    double oldSchoolLongitude = 0;  
+    GeoPosition newSchoolGeoPosition = new GeoPosition(((School)newSchool).getSchoolLoc().getLatitude(), ((School)newSchool).getSchoolLoc().getLongitude());
+    //javax.swing.SwingUtilities.invokeLater( new Runnable(){
+      //public void doRun(){
+      if (oldSchool != null) {
+      oldSchoolLatitude = ((tourgen.model.School)oldSchool).getSchoolLoc().getLatitude();
+      oldSchoolLongitude = ((tourgen.model.School)oldSchool).getSchoolLoc().getLongitude();
+      for (final java.util.Iterator<SwingWaypoint> iter = waypoints.iterator(); iter.hasNext();) {
+        SwingWaypoint waypoint = iter.next();
+        if (waypoint.getPosition().getLatitude() - oldSchoolLatitude < 0.005 
+        && waypoint.getPosition().getLongitude() - oldSchoolLongitude < 0.005 
+        && waypoint instanceof SwingWaypointTemporaryHost) {
+          iter.remove();
+          mapViewer.remove(((SwingWaypointTemporaryHost)waypoint).getButton());
+          
+        }
+        
+       }
+    }
+      SwingWaypointTemporaryHost tempHostSwingWaypoint = 
+          new SwingWaypointTemporaryHost("Hey", newSchoolGeoPosition, (tourgen.model.School)newSchool, mapAssistantController);
+          waypoints.add(tempHostSwingWaypoint);
+          swingWaypointPainter.setWaypoints(waypoints);
+          mapViewer.add(tempHostSwingWaypoint.getButton());
+          mapViewer.setOverlayPainter(swingWaypointPainter);
+          mapViewer.revalidate();
+          //mapViewer.repaint();
+          return;
+    //}
+
+      //@Override
+      //public void run() {
+        // TODO Auto-generated method stub
+        
+      //}});
+    
+    
   }
 }

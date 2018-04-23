@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.beans.PropertyChangeEvent;
 import java.util.Enumeration;
 
 import javax.swing.Icon;
@@ -81,7 +82,7 @@ public class CheckBoxTreeComponents {
     }
   }
 
-  static class CheckNode extends DefaultMutableTreeNode implements tourgen.util.ICheckNode {
+  static class CheckNode extends DefaultMutableTreeNode implements tourgen.util.ICheckNode, java.beans.PropertyChangeListener {
 
     public static final int SINGLE_SELECTION = 0;
 
@@ -93,6 +94,7 @@ public class CheckBoxTreeComponents {
 
     private Object value;
 
+    private java.beans.PropertyChangeSupport propertyChangeSupport;
     public CheckNode() {
       this(null);
     }
@@ -105,7 +107,12 @@ public class CheckBoxTreeComponents {
       super(userObject, allowsChildren);
       this.value = userObject;
       this.isSelected = isSelected;
+      if ( !allowsChildren ) {
+        tourgen.model.Meet meet = (tourgen.model.Meet) userObject;
+        meet.addPropertyChangeListener(this);
+      }
       setSelectionMode(DIG_IN_SELECTION);
+      propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
     }
 
     public void setSelectionMode(int mode) {
@@ -127,6 +134,10 @@ public class CheckBoxTreeComponents {
         }
       }
     }
+    
+    /*public void add (CheckNode node) {
+      add(node);
+    }*/
 
     public boolean isSelected() {
       return isSelected;
@@ -138,6 +149,15 @@ public class CheckBoxTreeComponents {
 
     public Object getValue() {
       return value;
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {      
+        propertyChangeSupport.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
+    }
+    
+    public void addPropertyChangeListener(java.beans.PropertyChangeListener listener) {
+      propertyChangeSupport.addPropertyChangeListener(listener);
     }
 
     // If you want to change "isSelected" by CellEditor,

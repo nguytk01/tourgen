@@ -11,6 +11,10 @@ public class CheckBoxTreeNew extends com.jidesoft.swing.CheckBoxTree implements 
   public CheckBoxTreeNew(javax.swing.tree.TreeNode node) {
     super(node);
   }
+  
+  public CheckBoxTreeNew(javax.swing.tree.TreeModel treeModel) {
+    super(treeModel);
+  }
 
   @Override
   public Set<ICheckNode> getMeetList() {

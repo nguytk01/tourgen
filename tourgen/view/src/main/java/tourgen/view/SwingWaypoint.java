@@ -12,6 +12,7 @@ import org.jxmapviewer.viewer.GeoPosition;
 
 import tourgen.model.Meet;
 import tourgen.model.Repository;
+import tourgen.model.School;
 
 
 public class SwingWaypoint extends DefaultWaypoint {
@@ -19,16 +20,21 @@ public class SwingWaypoint extends DefaultWaypoint {
   private String text;
   private Meet meet;
   private String distanceStr;
-
+  private School school;
+  private tourgen.controller.MapAssistantController mapAssistantController;
   /**
    * Build the SwingWaypoint.
    * @param text the text for the point. 
    * @param coord the coordinates of the point
    * @param meet the meet associated to the point.
+   * @param mapAssistantController
    */
-  public SwingWaypoint(String text, GeoPosition coord, Meet meet, boolean hostFlag) {
+  public SwingWaypoint(String text, GeoPosition coord, School schoolArg, Meet meet, boolean hostFlag, 
+      tourgen.controller.MapAssistantController mapAssistantControllerArg) {
     super(coord);
     this.text = text;
+    school = schoolArg;
+    mapAssistantController = mapAssistantControllerArg;
     // button = new GMapPinButton(text.substring(0, 1));
     //System.out.println("hostFlag is " +hostFlag);
     if (hostFlag == true) {
@@ -67,7 +73,10 @@ public class SwingWaypoint extends DefaultWaypoint {
     button.addMouseListener(new SwingWaypointMouseListener());
     button.setVisible(true);
     this.meet = meet;
+  }
 
+  public SwingWaypoint(GeoPosition coord) {
+    super(coord);
   }
 
   JButton getButton() {
@@ -78,14 +87,17 @@ public class SwingWaypoint extends DefaultWaypoint {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      JOptionPane.showMessageDialog(
-          button, distanceStr, "Information", JOptionPane.INFORMATION_MESSAGE);
+      //JOptionPane.showMessageDialog(
+      //    button, distanceStr, "Information", JOptionPane.INFORMATION_MESSAGE);
+          if (button instanceof HostGMapPinButton) {
+            mapAssistantController.showPinHostInfoSidePane(meet, school);
+          } else {
+            mapAssistantController.showPinRegularInfoSidePane(meet, school);
+          }
+          // System.out.println(meet.getHostSchool().getSchoolLoc().getLatitude() + " " +
+          // meet.getHostSchool().getSchoolLoc().getLongitude());
 
-      // System.out.println(meet.getHostSchool().getSchoolLoc().getLatitude() + " " +
-      // meet.getHostSchool().getSchoolLoc().getLongitude());
-
-      // System.out.println(HostSchool.getLatitude() + " "
-      // +HostSchool.getLongitude());
+          // System.out.println(HostSchool.getLatitude() + " "+HostSchool.getLongitude());
 
     }
     
@@ -99,6 +111,11 @@ public class SwingWaypoint extends DefaultWaypoint {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+      if (button instanceof HostGMapPinButton) {
+        button.setToolTipText(meet.getLocation().getName());
+      } else {
+        button.setToolTipText(school.getName());
+      }
     }
 
     @Override
