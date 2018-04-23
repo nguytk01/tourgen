@@ -15,8 +15,14 @@ import tourgen.model.GoogleMapsApiKey;
 public class GooglePlacesApiTest{
 	@Test
 	public void googlePlacesApiTest(){
-		GeoApiContext.Builder builder = new GeoApiContext.Builder()
-			.apiKey(GoogleMapsApiKey.getGooglePlacesApiKey());
+	  GeoApiContext.Builder builder = null;
+	  try {
+		   builder = new GeoApiContext.Builder()
+		      .apiKey(GoogleMapsApiKey.getGooglePlacesApiKey());
+		} catch ( Exception e ) {
+		  return;
+		}
+			
 
 		GeoApiContext context = builder.build();
 		PlacesSearchResponse response;
@@ -33,6 +39,9 @@ public class GooglePlacesApiTest{
 
 		} catch (ApiException | InterruptedException | IOException e) {
 			e.printStackTrace();	
+		} catch (Exception e) {
+          System.out.println("Please have your Google API Key ready.");
+          return;
 		}
 	}
 }

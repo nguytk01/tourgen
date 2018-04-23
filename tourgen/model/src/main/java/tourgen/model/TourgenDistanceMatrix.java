@@ -151,7 +151,7 @@ class TourgenDistanceMatrix implements Serializable {
     instance.get(origLocationName).put(destLocationName, distance);
   }
 
-  static void setGoogleMapsApiHelper(GoogleMapsApiHelper helperArg) {
+  static void setGoogleMapsApiHelper(GoogleMapsApiHelper helperArg) throws NullPointerException{
     helper = helperArg;
   }
 
