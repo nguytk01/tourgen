@@ -27,13 +27,16 @@ public class Meet implements Serializable {
   org.joda.time.DateTime alternateMeetingTime;
   School hostSchool;
   java.util.ArrayList<School> participantSchools;
+  java.util.ArrayList<School> sectionalSchoolsOfMeet;
   Location location;
   java.beans.PropertyChangeSupport propertyChangeSupport;
   
   public final static String SCHOOL_REMOVED = "School removed";
   public final static String SCHOOL_ADDED = "School added";
   public final static String HOST_SCHOOL_CHANGED = "Host school changed";
-
+  double maxDistance = 0;
+  double averageDistance = 0;
+  
   /**
    * construct a meet from the given stage and the given meetDate.
    * The meetDate paramter is obsolete. It is there for backward compatibility.
@@ -47,6 +50,7 @@ public class Meet implements Serializable {
     participantSchools = new java.util.ArrayList<School>();
     propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
     // String meetDate = dtFormat(meetDate);
+    sectionalSchoolsOfMeet = new ArrayList<School> ();
   }
 
   public Meet() {
@@ -160,8 +164,16 @@ public class Meet implements Serializable {
    */
   public double[] getMaxAndAvgDistance() {
     List<Location> locationList = new ArrayList<Location>();
-    for (int i = 0; i < participantSchools.size(); i++) {
-      locationList.add(participantSchools.get(i).getSchoolLoc());
+    List<School> poolOfSchools = null;
+    if ( meetStage.getStageType() != StageType.SECTIONAL ) { 
+    	if (sectionalSchoolsOfMeet.size() == 0) {
+    		recursiveUpdateSectionalSchoolsList();
+    	}
+    	poolOfSchools = sectionalSchoolsOfMeet;
+    } else poolOfSchools = participantSchools;
+    
+    for (int i = 0; i < poolOfSchools.size(); i++) {
+      locationList.add(poolOfSchools.get(i).getSchoolLoc());
     }
     long[] distanceMatrix = TourgenDistanceMatrix.getDistance1ToN(location, locationList);
 
@@ -173,6 +185,8 @@ public class Meet implements Serializable {
         maximumDistance = distanceMatrix[i];
       }
     }
+    maxDistance = maximumDistance;
+    averageDistance = 1.0 * sumDistance / distanceMatrix.length;
     return new double[] { maximumDistance, 1.0 * sumDistance / distanceMatrix.length};
   }
   
@@ -185,5 +199,37 @@ public class Meet implements Serializable {
       propertyChangeSupport.removePropertyChangeListener(listener);
     }
     
+  }
+  
+  public List<School> getSectionalSchoolsOfMeet(){
+	  if (meetStage.getStageType().equals(StageType.SECTIONAL)) { 
+		  return participantSchools;
+	  } else {
+		  if (sectionalSchoolsOfMeet.size() == 0) {
+			  recursiveUpdateSectionalSchoolsList();
+		  }
+		  return sectionalSchoolsOfMeet;
+	  }
+  }
+  
+  void recursiveUpdateSectionalSchoolsList() {
+	  if (meetStage.getStageType().equals(StageType.SECTIONAL)) { 
+		  return;
+	  } else {
+		  System.out.println("meetstage stage type is " + meetStage.getStageType());
+		  sectionalSchoolsOfMeet.clear();
+		  for (School school : participantSchools) {
+			  sectionalSchoolsOfMeet.addAll(
+					  this.getStage()
+					  .getTournament()
+					  .getStageOfStageType(meetStage.getStageType().getLowerStageType())
+					  .getMeetOfHostSchool(school)
+					  .getSectionalSchoolsOfMeet());
+		  }
+	  }
+  }
+  
+  public boolean isSectionalMeet() {
+    return this.getStage().isSectionalStage();
   }
 }

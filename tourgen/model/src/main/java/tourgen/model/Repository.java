@@ -148,7 +148,7 @@ public class Repository implements Serializable{
     }
     //setChanged();
     //notifyObservers(result);
-    
+    tournament.initiateRecursiveUpdate();
   }
   
   public void changeHostEligibility(Object ticket, School school) {
@@ -187,6 +187,7 @@ public class Repository implements Serializable{
       result = new OperationResult(ticket, OperationResultEnum.SUCCESS,
           "", null);
     }
+    tournament.initiateRecursiveUpdate();
     
     
     
@@ -276,4 +277,6 @@ public class Repository implements Serializable{
 	  }
 	  return false;
   }
+  
+  
 }

@@ -33,6 +33,7 @@ public class Stage implements Serializable {
 
   private org.joda.time.DateTime girlsMeetingTime;
   private org.joda.time.DateTime boysMeetingTime;
+  private Tournament tournament;
 
   /**
    * Construct a stage from an enum, a header string (deprecated), feeder header (deprecated).
@@ -177,5 +178,30 @@ public class Stage implements Serializable {
       meet.removeAllPropertyChangeListenersForSerialization();
     }
     
+  }
+  void setTournament(Tournament tournamentArg) {
+	  tournament = tournamentArg;
+  }
+  
+  Tournament getTournament() {
+	  return tournament;
+  }
+  
+  Meet getMeetOfHostSchool(School hostSchool) {
+	  for (Meet meet: stageMeets) {
+	      if (meet.getHostSchool() == hostSchool) {
+	    	return meet;  
+	      }
+	    }
+	  System.out.println("cant find meet for school" + hostSchool.getName());
+	 return null;
+  }
+
+  public void initiateRecursiveUpdate() {
+    stageMeets.get(0).recursiveUpdateSectionalSchoolsList();
+  }
+  
+  public boolean isSectionalStage() {
+    return stageType.equals(StageType.SECTIONAL);
   }
 }

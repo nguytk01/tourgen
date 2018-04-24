@@ -27,10 +27,12 @@ public class Tournament implements Serializable {
 
   public void removeStage(Stage stage) {
     stageList.remove(stage);
+    stage.setTournament(null);
   }
 
   public void addStage(Stage stage) {
     stageList.add(stage);
+    stage.setTournament(this);
   }
 
   public List<Stage> getStageList() {
@@ -95,6 +97,22 @@ public class Tournament implements Serializable {
     for (Stage stage: stageList) {
       stage.removeAllPropertyChangeListenersForSerialization();
     }
-    
+  }
+  
+  Stage getStageOfStageType(StageType inputStageType) {
+	for (int i = 0; i < stageList.size(); i++) {
+		if (stageList.get(i).getStageType() == inputStageType) {
+			return stageList.get(i);
+		}
+	}
+	return null;
+  }
+  
+  void initiateRecursiveUpdate() {
+	  for (Stage stage: stageList) {
+		  if (stage.getStageType().equals(StageType.STATEFINAL)) {
+			  stage.initiateRecursiveUpdate();
+		  }
+	  }
   }
 }
