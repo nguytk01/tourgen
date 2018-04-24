@@ -81,6 +81,7 @@ public class NewMainMapSidePane extends javax.swing.JTabbedPane implements tourg
     if (collapsiblePanel != null) {
       glassPane.setVisible(false);
       collapsiblePanel.setCollapsed(true);
+      hostChooserPanel.parentPanelAboutToHide();
     }
   }
   

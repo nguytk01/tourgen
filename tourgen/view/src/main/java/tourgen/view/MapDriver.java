@@ -291,8 +291,8 @@ public class MapDriver implements IMapDriver {
     // waypoints.clear();
 
     for (int j = 0; j < meetList.size(); j++) {
-      schools = meetList.get(j).getParticipatingSchool();
-      for (int i = 0; i < meetList.get(j).getParticipatingSchool().size(); i++) {
+      schools = meetList.get(j).getSectionalSchoolsOfMeet();
+      for (int i = 0; i < schools.size(); i++) {
         // schools.set(i, meet.getParticipatingSchool().get(i));
         // System.out.println("school " + schools.get(i).getDisplayName());
         tempLoc = schools.get(i).getSchoolLoc();
@@ -405,7 +405,10 @@ public class MapDriver implements IMapDriver {
   public void mapReplace(Object oldSchool, Object newSchool) {
     double oldSchoolLatitude = 0;
     double oldSchoolLongitude = 0;  
-    GeoPosition newSchoolGeoPosition = new GeoPosition(((School)newSchool).getSchoolLoc().getLatitude(), ((School)newSchool).getSchoolLoc().getLongitude());
+    GeoPosition newSchoolGeoPosition = null;
+    if (newSchool != null) {
+      newSchoolGeoPosition = new GeoPosition(((School)newSchool).getSchoolLoc().getLatitude(), ((School)newSchool).getSchoolLoc().getLongitude());
+    }
     //javax.swing.SwingUtilities.invokeLater( new Runnable(){
       //public void doRun(){
       if (oldSchool != null) {
@@ -423,11 +426,13 @@ public class MapDriver implements IMapDriver {
         
        }
     }
+      if (newSchool != null) {
       SwingWaypointTemporaryHost tempHostSwingWaypoint = 
           new SwingWaypointTemporaryHost("Hey", newSchoolGeoPosition, (tourgen.model.School)newSchool, mapAssistantController);
           waypoints.add(tempHostSwingWaypoint);
-          swingWaypointPainter.setWaypoints(waypoints);
           mapViewer.add(tempHostSwingWaypoint.getButton());
+      }
+          swingWaypointPainter.setWaypoints(waypoints);
           mapViewer.setOverlayPainter(swingWaypointPainter);
           mapViewer.revalidate();
           //mapViewer.repaint();

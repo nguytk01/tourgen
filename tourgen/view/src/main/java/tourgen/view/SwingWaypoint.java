@@ -168,7 +168,9 @@ public class SwingWaypoint extends DefaultWaypoint {
           if (button instanceof HostGMapPinButton) {
             mapAssistantController.showPinHostInfoSidePane(meet, school);
           } else {
-            mapAssistantController.showPinRegularInfoSidePane(meet, school);
+            if (meet.isSectionalMeet()) {
+              mapAssistantController.showPinRegularInfoSidePane(meet, school);
+            }
           }
     }
     
