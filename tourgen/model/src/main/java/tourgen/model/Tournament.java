@@ -13,6 +13,8 @@ public class Tournament implements Serializable {
   List<School> schoolsNotWillingToHostList;
   org.joda.time.Instant schoolsNotWillingToHostSnapshotDate;
   private boolean savingNeeded = false;
+  private boolean removable = false;
+  
   /**
    * Construct a tournament from a tournament name, and gender of the partipants of that tournament.
    * @param name tournament's name
@@ -114,5 +116,14 @@ public class Tournament implements Serializable {
 			  stage.initiateRecursiveUpdate();
 		  }
 	  }
+  }
+  
+  /* set tournament's ability to be deleted */
+  void setRemovable(boolean flag) {
+	  removable = flag;
+  }
+  
+  public boolean isRemovable() {
+	  return removable;
   }
 }

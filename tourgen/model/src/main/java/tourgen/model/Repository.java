@@ -25,6 +25,8 @@ public class Repository implements Serializable{
   public static final String TOURNAMENT_OVERWRITTEN = "Tournament saved";
   public static final String TOURNAMENT_SAVEAS = "Tournament saved as a new tournament.";
   public static final String TOURNAMENT_REMOVED = "Tournament removed.";
+  public static final String TOURNAMENT_NOT_REMOVABLE = "Tournament is not removable.";
+
 
   private Repository() {
     girlsTourList = new ArrayList<Tournament>();
@@ -263,6 +265,10 @@ public class Repository implements Serializable{
   }
 
   public void removeTournament(Tournament currentTournament) {
+	  if ( !currentTournament.isRemovable() ) {
+		  propertyChangeSupport.firePropertyChange(TOURNAMENT_NOT_REMOVABLE, null, currentTournament);
+		  return;
+	  }
 	  girlsTourList.remove(girlsTourList.indexOf(currentTournament));
 	  propertyChangeSupport.firePropertyChange(TOURNAMENT_REMOVED, null, currentTournament);
   }
