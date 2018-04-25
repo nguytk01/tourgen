@@ -24,7 +24,7 @@ public class ReportContentRendererTest {
     repo = Repository.getInstance1();
     manager = new SchoolManager();
     manager.initSchools();
-    RepositoryInitialization.init(repo, manager);
+    RepositoryInitialization.init("tournamentData.txt", repo, manager);
   }
 
   @Test
