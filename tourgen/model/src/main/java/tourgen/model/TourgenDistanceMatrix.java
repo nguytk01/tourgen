@@ -178,7 +178,7 @@ class TourgenDistanceMatrix implements Serializable {
 
     double a = haversin(haversineLat) + Math.cos(startLat) * Math.cos(endLat) * haversin(haversineLong);
     double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    System.out.println("distance is " + c );
+    //System.out.println("distance is " + c );
     return EARTH_RADIUS * c * 1000; // <-- d
   }
 

@@ -19,6 +19,7 @@ public class MainWindowCloseListener implements java.awt.event.WindowListener {
 
   @Override
   public void windowClosing(WindowEvent e) {
+	  System.out.println("called ?");
     try {
     	tourgen.model.IoManager.saveEverything(schoolManager);
     	e.getWindow().dispose();
