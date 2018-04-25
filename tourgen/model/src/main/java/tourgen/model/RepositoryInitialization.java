@@ -67,7 +67,7 @@ public final class RepositoryInitialization {
    * @param repo an empty instance of repository
    * @param manager a school manager object fully-loaded with data.
    */
-  public static void init(Repository repo, SchoolManager manager) {
+  public static void init(String fileName, Repository repo, SchoolManager manager) {
 
 
     
@@ -122,7 +122,7 @@ public final class RepositoryInitialization {
 
     Meet meet;
     InputStream stream = RepositoryInitialization.class
-        .getClassLoader().getResourceAsStream("tournamentData.txt");
+        .getClassLoader().getResourceAsStream(fileName);
     Scanner scanner = new Scanner(stream);
     while (scanner.hasNext()) {
       String line = scanner.nextLine();
@@ -182,6 +182,7 @@ public final class RepositoryInitialization {
     }
     Tournament girls2017Tournament = new Tournament("2017-2018 Girls Cross Country", 
         TournamentParticipants.GIRLS);
+    girls2017Tournament.setRemovable(false);
     girls2017Tournament.addStage(sectionalStage);
     girls2017Tournament.addStage(regionalStage);
     girls2017Tournament.addStage(semiStateStage);

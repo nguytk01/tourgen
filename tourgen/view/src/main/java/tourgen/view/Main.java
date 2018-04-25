@@ -40,6 +40,7 @@ public class Main {
    * @param args command line arguments of the program.
    */
   public static void main(String[] args) {
+	          
     FontUIResource resource = new FontUIResource(new Font("Tahoma", Font.PLAIN, 16));
     setUiFont(resource);
     SchoolManager manager = null; // new SchoolManager(repo);
@@ -47,7 +48,7 @@ public class Main {
     if (manager == null) {
       manager = new SchoolManager();
       manager.initSchools();
-      RepositoryInitialization.init(Repository.getInstance1(), manager);
+      RepositoryInitialization.init("tournamentData.txt", Repository.getInstance1(), manager);
     }
 
     /*AddSchoolFormListeners is just a container for the listeners. It does not have any other meanings.*/
@@ -206,6 +207,7 @@ public class Main {
     tabbedFrame.setVisible(true);
     
     /* create newMain */
+    
     NewMain newMain = new NewMain(mapController2, 
         mainMap.getMapPanel(), 
         (ReportTableView)reportTableView, 
@@ -224,6 +226,7 @@ public class Main {
     // myframe.setBounds(50,50,300,300);
     // myframe.add(new GMapPinButton("hey"));
     // myframe.setVisible(true);
+	  
   }
 
   /**

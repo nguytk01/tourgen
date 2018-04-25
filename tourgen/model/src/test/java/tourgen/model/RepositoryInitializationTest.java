@@ -36,6 +36,6 @@ public class RepositoryInitializationTest {
     Repository repo = Repository.getInstance1();
     SchoolManager manager = new SchoolManager();
     manager.initSchools();
-    RepositoryInitialization.init(repo, manager);
+    RepositoryInitialization.init("tournamentData.txt", repo, manager);
   }
 }
