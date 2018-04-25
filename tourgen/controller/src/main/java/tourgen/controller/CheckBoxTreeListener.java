@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
@@ -14,7 +15,7 @@ import tourgen.model.Meet;
 import tourgen.util.ICheckNode;
 import tourgen.util.IRepoTree;
 
-public class CheckBoxTreeListener extends MouseAdapter {
+public class CheckBoxTreeListener extends MouseAdapter implements javax.swing.event.TreeSelectionListener {
   IRepoTree repoTree;
   JTree tree;
   MapController mapController;
@@ -34,6 +35,7 @@ public class CheckBoxTreeListener extends MouseAdapter {
    * This method will be called by an action of clicking on the tree.
    */
   public void mouseClicked(MouseEvent e) {
+	  System.out.println("checkbox tree mouse clicked");
     int x = e.getX();
     int y = e.getY();
     int row = tree.getRowForLocation(x, y);
@@ -73,4 +75,11 @@ public class CheckBoxTreeListener extends MouseAdapter {
     mapController = map;
     mapController.setTree(repoTree);
   }
+
+@Override
+public void valueChanged(TreeSelectionEvent arg0) {
+	  System.out.println("checkbox tree selection listener clicked");
+
+	mapController.treeCheckBoxClicked();
+}
 }

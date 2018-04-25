@@ -73,13 +73,14 @@ public class CheckBoxTreePanel extends JPanel implements java.util.Observer {
     CheckBoxTreeNew tree = new CheckBoxTreeNew(defaultTreeModel);
     tree.setRowHeight(30);
     tree.setCellRenderer(new CheckRenderer(checkBoxListenerParam));
-    tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+    tree.getCheckBoxTreeSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
     tree.putClientProperty("JTree.lineStyle", "Angled");
     //treeListener.setIRepoTree(tree);
     CheckBoxTreeListener listener = new CheckBoxTreeListener();
     listener.setJTree(tree);
     listener.setMapController(mapControllerParam);
-    tree.addMouseListener(listener);
+    //tree.addMouseListener(listener);
+    tree.getCheckBoxTreeSelectionModel().addTreeSelectionListener(listener);
     this.setLayout(new BorderLayout());
     tree.setSelectPartialOnToggling(true);
     JScrollPane sp = new JScrollPane(tree);
