@@ -5,6 +5,10 @@ import javax.swing.JList;
 import tourgen.controller.NewMainViewController;
 import tourgen.model.Repository;
 import tourgen.util.IAvailableMeetsPanel;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import javax.swing.BoxLayout;
 
 public class AvailableMeetsPanel extends javax.swing.JPanel 
 implements IAvailableMeetsPanel {
@@ -18,11 +22,32 @@ implements IAvailableMeetsPanel {
   private javax.swing.JList<tourgen.model.Meet> availableMeetGraphicalList;
   private tourgen.controller.ChangeCompetitionSiteListener changeCompetitionSiteListener;
   private javax.swing.JButton changeCompetitionSiteButton;
+  private JPanel headerPanel;
+  private JLabel lblAvailableSectionalMeets;
+  private JLabel lblSchoolName;
+  private JPanel schoolNamePanel;
+  private JPanel titlePanel;
   public AvailableMeetsPanel() {
     
     availableMeetListModel = new javax.swing.DefaultListModel();
     
     this.setLayout(new java.awt.BorderLayout());
+    
+    headerPanel = new JPanel();
+    add(headerPanel, BorderLayout.NORTH);
+    headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
+    
+    titlePanel = new JPanel();
+    headerPanel.add(titlePanel);
+    
+    lblAvailableSectionalMeets = new JLabel("Available Sectional Meets for:");
+    titlePanel.add(lblAvailableSectionalMeets);
+    
+    schoolNamePanel = new JPanel();
+    headerPanel.add(schoolNamePanel);
+    
+    lblSchoolName = new JLabel("New label");
+    schoolNamePanel.add(lblSchoolName);
     availableMeetGraphicalList = 
         new JList<tourgen.model.Meet>(availableMeetListModel);
     javax.swing.JScrollPane scrollPane = new javax.swing.JScrollPane(availableMeetGraphicalList);
@@ -45,6 +70,7 @@ implements IAvailableMeetsPanel {
   public void showAvailableMeets(Object meet, Object school) {
    selectedSchool = school;
    oldMeet = meet;
+   lblSchoolName.setText(((tourgen.model.School)school).getName());
    java.util.List<tourgen.model.Meet> sectionalMeetSuggestionList = 
        newMainViewController.getAvailableSectionalMeets(meet, school);
    availableMeetListModel.removeAllElements();

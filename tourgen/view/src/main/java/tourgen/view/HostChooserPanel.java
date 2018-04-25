@@ -13,6 +13,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import javax.swing.JLabel;
+import javax.swing.BoxLayout;
 
 public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util.IHostChooserPanel {
   
@@ -28,6 +30,11 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
   
   static final String ALTERNATIVE_HOST_MOUSE_ENTER = "mouse entered the host school.";
   static final String ALTERNATIVE_HOST_MOUSE_EXIT = "mouse exit the host school.";
+  private JPanel headerPanel;
+  private JPanel titlePanel;
+  private JPanel meetPanel;
+  private JLabel lblAlternativeHost;
+  private JLabel lblMeetName;
   
   public HostChooserPanel() {
     
@@ -38,6 +45,22 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
     //list.addMouseWheelListener(new HostChooserListMouseListener());
     //list.setCellRenderer(new HostChooserCellRenderer());
     setLayout(new BorderLayout(0, 0));
+    
+    headerPanel = new JPanel();
+    add(headerPanel, BorderLayout.NORTH);
+    headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
+    
+    titlePanel = new JPanel();
+    headerPanel.add(titlePanel);
+    
+    lblAlternativeHost = new JLabel("Alternative Hosts for Meet:");
+    titlePanel.add(lblAlternativeHost);
+    
+    meetPanel = new JPanel();
+    headerPanel.add(meetPanel);
+    
+    lblMeetName = new JLabel("New label");
+    meetPanel.add(lblMeetName);
     
     JScrollPane scrollPane = new JScrollPane(list);
     scrollPane.setViewportView(list);
@@ -73,7 +96,7 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
         defaultListModel.addElement(school);
       }
     }
-    
+    lblMeetName.setText(((tourgen.model.Meet)meetArg).toString());
     
     /*for (tourgen.model.School school: schoolManager.getSchoolList()) {
       if (!listOfSchoolsNotWillingToHost.contains(school) && !meetSchoolList.contains(school)) {
