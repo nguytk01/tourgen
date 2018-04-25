@@ -13,11 +13,13 @@ import java.util.List;
 import java.util.Set;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputListener;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
+import org.jxmapviewer.cache.FileBasedLocalCache;
 import org.jxmapviewer.input.CenterMapListener;
 import org.jxmapviewer.input.PanKeyListener;
 import org.jxmapviewer.input.PanMouseInputListener;
@@ -104,13 +106,14 @@ public class MapDriver implements IMapDriver {
   public MapDriver(Repository repository) {
     // Create a TileFactoryInfo for OSM
     TileFactoryInfo info = new OSMTileFactoryInfo();
+    
     DefaultTileFactory tileFactory = new DefaultTileFactory(info);
     tileFactory.setThreadPoolSize(8);
 
     // Setup local file cache
     File cacheDir = new File(System.getProperty("user.home") + File.separator + ".jxmapviewer2");
-    LocalResponseCache.installResponseCache(info.getBaseURL(), cacheDir, false);
-
+    //LocalResponseCache.installResponseCache(info.getBaseURL(), cacheDir, false);
+    tileFactory.setLocalCache(new FileBasedLocalCache(cacheDir, false));
     // Setup JXMapViewer
     mapViewer = new JXMapViewer();
     mapViewer.setTileFactory(tileFactory);
@@ -203,11 +206,12 @@ public class MapDriver implements IMapDriver {
     swingWaypointPainter.setWaypoints(waypoints);
 
     mapViewer.setOverlayPainter(swingWaypointPainter);
-
+    SwingUtilities.invokeLater( new Runnable() {
+    	public void run() {
     // Add the JButtons to the map viewer
     for (SwingWaypoint w : waypoints) {
       mapViewer.add(w.getButton());
-    }
+    }}});
     
     
 
@@ -249,9 +253,15 @@ public class MapDriver implements IMapDriver {
    */
   
   public void showMeetList(List meetsArg) {
+	  mapAssistantController.hideSidePane();
     meetList.clear();
     // System.out.println("meetlist cleared. size = " + meetList.size());
-    mapViewer.removeAll();
+    SwingUtilities.invokeLater( new Runnable() {
+    	public void run() {
+    		mapViewer.removeAll();
+    	}
+    });
+    
     waypoints.clear();
     hostwaypoints.clear();
     
@@ -279,7 +289,11 @@ public class MapDriver implements IMapDriver {
     // mapViewer.revalidate();
     // mapViewer.repaint();
     // System.out.println("waypoints size " + waypoints.size());
-    refresh();
+    SwingUtilities.invokeLater( new Runnable() {
+    	public void run() {
+    		refresh();
+    	}
+    });
   }
 
   /**
@@ -289,28 +303,46 @@ public class MapDriver implements IMapDriver {
   public void refresh() {
 
     // waypoints.clear();
-
+	  System.out.println("refresh called with meetList size " + meetList.size());
+	School hostSchoolOfAMeet = null;
     for (int j = 0; j < meetList.size(); j++) {
       schools = meetList.get(j).getSectionalSchoolsOfMeet();
+      System.out.println("schools list size " + schools.size());
+      hostSchoolOfAMeet = meetList.get(j).getHostSchool();
       for (int i = 0; i < schools.size(); i++) {
         // schools.set(i, meet.getParticipatingSchool().get(i));
         // System.out.println("school " + schools.get(i).getDisplayName());
         tempLoc = schools.get(i).getSchoolLoc();
         // System.out.println("school Loc" + tempLoc.getLatitude());
         // System.out.println("school Loc" + tempLoc.getLongitude());
-        GeoPosition points = new GeoPosition(tempLoc.getLatitude(), tempLoc.getLongitude());
-        waypoints.add(new SwingWaypoint(schools.get(i).getDisplayName(), 
-            points, schools.get(i), meetList.get(j),false, mapAssistantController));
         
-        
-        GeoPosition hostPoint = 
-            new GeoPosition(meetList.get(j).getLocation().getLatitude(),
-                meetList.get(j).getLocation().getLongitude());
-        waypoints.add(new
-                SwingWaypoint(meetList.get(j).getLocation().getName(),
-                hostPoint, meetList.get(j).getHostSchool(), meetList.get(j),true, mapAssistantController));
-     
-        
+        /* the host school, if present, will be displayed with a different pin */
+        if (schools.get(i) != hostSchoolOfAMeet) {
+        	GeoPosition points = new GeoPosition(tempLoc.getLatitude(), tempLoc.getLongitude());
+        	waypoints.add(new SwingWaypoint(schools.get(i).getDisplayName(), 
+        			points, schools.get(i), meetList.get(j),false, mapAssistantController));
+        }
+        /* display the host school, which could be null or not. */
+        if (meetList.get(j) != null) {
+            GeoPosition hostPoint = 
+                    new GeoPosition(meetList.get(j).getHostSchool().getSchoolLoc().getLatitude(),
+                        meetList.get(j).getHostSchool().getSchoolLoc().getLongitude());
+            waypoints.add(new
+                    SwingWaypoint(meetList.get(j).getHostSchool().getName(),
+                    hostPoint, meetList.get(j).getHostSchool(), meetList.get(j),true, mapAssistantController));
+        if (meetList.get(j).getHostSchool() == null 
+        || meetList.get(j).getHostSchool().getSchoolLoc() != meetList.get(j).getLocation()) { 
+        //(meetList.get(j).getLocation() != null || meetList.get(j).getHostSchool() == null) {
+	        /* if there is no host school (state final),
+	         * display the hosting location, which always exists for a meet*/
+	        GeoPosition hostingLocationPoint = 
+	            new GeoPosition(meetList.get(j).getLocation().getLatitude(),
+	                meetList.get(j).getLocation().getLongitude());
+	        waypoints.add(new
+	                SwingHostingLocationWaypoint(meetList.get(j).getLocation().getName(),
+	                hostingLocationPoint, meetList.get(j).getHostSchool(), meetList.get(j),true, mapAssistantController));
+	        }
+        }
         // GeoPosition hostPoints = new
         // GeoPosition(meetList.get(j).getHostSchool().getSchoolLoc().getLatitude(),
         // meetList.get(j).getHostSchool().getSchoolLoc().getLatitude());
@@ -339,11 +371,15 @@ public class MapDriver implements IMapDriver {
     for (SwingWaypoint w : waypoints) {
       mapViewer.add(w.getButton());
     }
+    if (meetList.size() == 1 && hostSchoolOfAMeet != null) {
+    	mapViewer.setCenterPosition(new GeoPosition(hostSchoolOfAMeet.getSchoolLoc().getLatitude(), hostSchoolOfAMeet.getSchoolLoc().getLongitude()));
+    }
     swingWaypointPainter.setWaypoints(waypoints);
     mapViewer.setOverlayPainter(swingWaypointPainter);
     
     mapViewer.revalidate();
-    mapViewer.repaint();  
+    
+    //mapViewer.repaint();  
     
       
      
@@ -376,28 +412,16 @@ public class MapDriver implements IMapDriver {
     }
 
     @Override
-    public void mouseEntered(MouseEvent arg0) {
-      // TODO Auto-generated method stub
-      
-    }
+    public void mouseEntered(MouseEvent arg0) {}
 
     @Override
-    public void mouseExited(MouseEvent arg0) {
-      // TODO Auto-generated method stub
-      
-    }
+    public void mouseExited(MouseEvent arg0) {}
 
     @Override
-    public void mousePressed(MouseEvent arg0) {
-      // TODO Auto-generated method stub
-      
-    }
+    public void mousePressed(MouseEvent arg0) {}
 
     @Override
-    public void mouseReleased(MouseEvent arg0) {
-      // TODO Auto-generated method stub
-      
-    }
+    public void mouseReleased(MouseEvent arg0) {}
     
   }
 
