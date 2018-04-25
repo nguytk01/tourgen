@@ -106,7 +106,7 @@ public class GMapPinButton extends JButton {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-      currentButton.setCursor(handCursor);
+      //currentButton.setCursor(handCursor);
     }
 
     @Override
