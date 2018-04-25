@@ -137,7 +137,7 @@ public class SwingWaypoint extends DefaultWaypoint {
 		this.setBackground(Color.WHITE);
 		this.setLayout(new BorderLayout());
 		panel.add(label, BorderLayout.CENTER);
-		panel.add(new javax.swing.JLabel("Max / Avg: " 
+		panel.add(new javax.swing.JLabel("Avg / Max: " 
 		+ averageDistance 
 		+ " / " 
 		+ maximumDistance
@@ -185,7 +185,7 @@ public class SwingWaypoint extends DefaultWaypoint {
     @Override
     public void mouseEntered(MouseEvent e) {
       if (button instanceof HostGMapPinButton) {
-        button.setToolTipText(meet.getLocation().getName());
+        button.setToolTipText(meet.getHostSchool().getName());
       } else {
         button.setToolTipText(school.getName());
       }
