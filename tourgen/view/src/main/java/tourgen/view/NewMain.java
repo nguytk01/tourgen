@@ -1,5 +1,7 @@
 package tourgen.view;
 
+import java.awt.event.ActionEvent;
+
 import tourgen.controller.MenuItemRemoveTournamentListener;
 import tourgen.controller.NewMainViewController;
 import tourgen.controller.TournamentChooserComboBoxListener;
@@ -9,6 +11,7 @@ public class NewMain extends javax.swing.JFrame implements tourgen.util.INewMain
   
   private NewMainLeftTournamentPane newMainLeftTournamentPane;
   private NewMainRightTournamentPane newMainRightTournamentPane;
+  private javax.swing.JFrame thisFrame;
   
   public NewMain(tourgen.controller.MapController mapController,
       javax.swing.JPanel mapPanel, 
@@ -16,6 +19,7 @@ public class NewMain extends javax.swing.JFrame implements tourgen.util.INewMain
       NewMainMapSidePane mapSidePane,
       SchoolManager schoolManager) {
 
+	thisFrame = this;
     setTitle("Tournament Generator");
     setBounds(50, 50, 1500, 800);
     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -31,8 +35,17 @@ public class NewMain extends javax.swing.JFrame implements tourgen.util.INewMain
     menuBar.add(mnFile);
     
     javax.swing.JMenuItem mntmExit = new javax.swing.JMenuItem("Exit");
-    mnFile.add(mntmExit);
+    mntmExit.setMnemonic(java.awt.event.KeyEvent.VK_E);
+    mntmExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke('Q', java.awt.Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
 
+    mnFile.add(mntmExit);
+    mntmExit.addActionListener(new java.awt.event.ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			thisFrame.dispatchEvent(new java.awt.event.WindowEvent(thisFrame, java.awt.event.WindowEvent.WINDOW_CLOSING));
+		}
+    });
     /**
      * Tournament menu
      */
@@ -42,11 +55,12 @@ public class NewMain extends javax.swing.JFrame implements tourgen.util.INewMain
     tourgen.controller.TournamentMenuListener tournamentMenuListener = new tourgen.controller.TournamentMenuListener();
     mnTournament.addMenuListener(tournamentMenuListener);
     
-    javax.swing.JMenuItem mntmOpenTournament = new javax.swing.JMenuItem("Open a tournament...");
-    mnTournament.add(mntmOpenTournament);
+    //javax.swing.JMenuItem mntmOpenTournament = new javax.swing.JMenuItem("Open a tournament...");
+    //mnTournament.add(mntmOpenTournament);
     
     javax.swing.JMenuItem mntmSaveTournament = new javax.swing.JMenuItem("Save tournament");
     mnTournament.add(mntmSaveTournament);
+    mntmExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke('Q', java.awt.Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
     
     tourgen.controller.MenuItemSaveTournamentListener saveTournamentListener = 
         new tourgen.controller.MenuItemSaveTournamentListener();
@@ -60,11 +74,12 @@ public class NewMain extends javax.swing.JFrame implements tourgen.util.INewMain
     
     mntmSaveAsTournament.addActionListener(saveAsTournamentListener);
     
-    tournamentMenuListener.setSaveTournamentMenuItem(mntmSaveTournament);
-    tournamentMenuListener.setSaveAsTournamentMenuItem(mntmSaveAsTournament);
-    
     javax.swing.JMenuItem mntmRemoveTournament = new javax.swing.JMenuItem("Remove a tournament");
     mnTournament.add(mntmRemoveTournament);
+    
+    tournamentMenuListener.setSaveTournamentMenuItem(mntmSaveTournament);
+    tournamentMenuListener.setSaveAsTournamentMenuItem(mntmSaveAsTournament);
+    tournamentMenuListener.setRemoveTournamentMenuItem(mntmRemoveTournament);
     
     MenuItemRemoveTournamentListener mntmRemoveTournamentListener = new MenuItemRemoveTournamentListener(); 
     mntmRemoveTournament.addActionListener(mntmRemoveTournamentListener);
@@ -121,6 +136,8 @@ public class NewMain extends javax.swing.JFrame implements tourgen.util.INewMain
     newMainViewController.setMainView(this);
     
     getContentPane().add(splitPane, java.awt.BorderLayout.CENTER);
+    
+    javax.swing.ToolTipManager.sharedInstance().setInitialDelay(10);
     
   }
   
