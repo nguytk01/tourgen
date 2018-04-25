@@ -21,8 +21,8 @@ public class NewMainMapSidePane extends javax.swing.JTabbedPane implements tourg
     detailsPanel = detailsPanelArg;
     hostChooserPanel = hostChooserPanelArg;
     availableMeetsPanel = availableMeetsPanelArg;
-    this.addTab("Details", detailsPanel);
-    this.addTab("hosts", hostChooserPanel);
+    //this.addTab("Details", detailsPanel);
+    this.addTab("Hosts", hostChooserPanel);
     this.addTab("Meets", availableMeetsPanel);
     
     hostChooserPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -47,14 +47,14 @@ public class NewMainMapSidePane extends javax.swing.JTabbedPane implements tourg
   }
 
   public void resetPanel() {
+    this.setEnabledAt(0, false);
     this.setEnabledAt(1, false);
-    this.setEnabledAt(2, false);
   }
 
   @Override
   public void displayPinRegularInformation(Object meet, Object school) {
-    this.setEnabledAt(1, false);
-    this.setEnabledAt(2, true);
+    this.setEnabledAt(0, false);
+    this.setEnabledAt(1, true);
     if (collapsiblePanel != null) {
       glassPane.setVisible(true);
       collapsiblePanel.setCollapsed(false);
@@ -62,19 +62,19 @@ public class NewMainMapSidePane extends javax.swing.JTabbedPane implements tourg
     System.out.println("displayPinRegularInformation");
 
     availableMeetsPanel.showAvailableMeets(meet, school);
-    this.setSelectedIndex(2);
+    this.setSelectedIndex(1);
   }
 
   @Override
   public void displayPinHostInformation(Object meet, Object school) {
-    this.setEnabledAt(1, true);
-    this.setEnabledAt(2, false);
+    this.setEnabledAt(0, true);
+    this.setEnabledAt(1, false);
     if (collapsiblePanel != null) {
       glassPane.setVisible(true);
       collapsiblePanel.setCollapsed(false);
     }
     hostChooserPanel.showHostList(meet, school);
-    this.setSelectedIndex(1);
+    this.setSelectedIndex(0);
   }
   
   public void hide(){
