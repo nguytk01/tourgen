@@ -105,7 +105,7 @@ public final class RepositoryInitialization {
     semiStateStage.setNoteOnChangingHostLocation(true);
     semiStateStage.setAdvancementRule(
         "The top 10 individuals from " 
-        + "non‐advancing teams and the first 5 qualifying teams from "
+        + "non-advancing teams and the first 5 qualifying teams from "
         + "each semi-state shall advance to state finals.");
 
     Stage stateFinalStage = new Stage(StageType.STATEFINAL, "", "Feeder semi-states:");

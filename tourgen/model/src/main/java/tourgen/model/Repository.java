@@ -133,7 +133,16 @@ public class Repository implements Serializable{
     if (unsavedTournament == null) {
       storeBackupTournament(schoolManager, tournament);
       tournament.setModified(true);
-      propertyChangeSupport.firePropertyChange(TOURNAMENT_MODIFIED, false, true);
+      //propertyChangeSupport.firePropertyChange(TOURNAMENT_MODIFIED, false, true);
+    }
+    // always fire this event
+    propertyChangeSupport.firePropertyChange(TOURNAMENT_MODIFIED, false, true);
+    
+    School oldHost = meet.getHostSchool();
+    School newHost = school;
+    
+    if (oldHost != null) {
+    	tournament.getStageOfStageType(meet.getStage().getStageType().getUpperStageType()).announceNewHostForALowerStageMeet(oldHost, newHost);
     }
     meet.setLocation(school.getSchoolLoc());
     meet.setHostSchool(school);
@@ -178,9 +187,10 @@ public class Repository implements Serializable{
     
     if (unsavedTournament == null) {
       storeBackupTournament(schoolManager, tournament);
-      propertyChangeSupport.firePropertyChange(TOURNAMENT_MODIFIED, false, true);
       tournament.setModified(true);
     }
+    // always fire this event
+    propertyChangeSupport.firePropertyChange(TOURNAMENT_MODIFIED, false, true);
 
     if (! tournament.getStageList().get(0).getMeetList().contains(newMeet)) {
       result = new OperationResult(ticket, OperationResultEnum.FAILURE,

@@ -194,7 +194,14 @@ public class Stage implements Serializable {
 	      }
 	    }
 	  System.out.println("cant find meet for school" + hostSchool.getName());
+	  
 	 return null;
+  }
+  
+  void announceNewHostForALowerStageMeet(School oldHost, School newHost){
+	  for (Meet meet: stageMeets) {
+	      meet.announceNewHostForALowerStageMeet(oldHost, newHost);
+	    }
   }
 
   public void initiateRecursiveUpdate() {

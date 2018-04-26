@@ -20,4 +20,18 @@ public enum StageType implements Serializable {
 		}
 		return null;
 	}
+	
+	public StageType getUpperStageType() {
+		for (int i = 0; i < stageTypeArr.length; i++) {
+			if (this.equals(stageTypeArr[i])) {
+				if ( i == stageTypeArr.length - 1) {
+					return null;
+				} else {
+					return stageTypeArr[i + 1];
+				}
+			}
+			
+		}
+		return null;
+	}
 }

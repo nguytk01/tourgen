@@ -15,7 +15,7 @@ public class Meet implements Serializable {
   /**
    * Example: 1. Hammond Gavit (14) | 10/10:45 am CT (Riverside Park) | Boys
    * Results | Girls Results Calumet, East Chicago Central, Gary West Side,
-   * Griffith, Hammond, Hammond Academy of Science & Technology, Hammond Bishop
+   * Griffith, Hammond, Hammond Academy of Science and Technology, Hammond Bishop
    * Noll, Hammond Clark, Hammond Gavit, Hammond Morton, Highland, Lake Central,
    * Munster, Whiting.
    */
@@ -219,12 +219,20 @@ public class Meet implements Serializable {
 		  System.out.println("meetstage stage type is " + meetStage.getStageType());
 		  sectionalSchoolsOfMeet.clear();
 		  for (School school : participantSchools) {
-			  sectionalSchoolsOfMeet.addAll(
-					  this.getStage()
-					  .getTournament()
-					  .getStageOfStageType(meetStage.getStageType().getLowerStageType())
-					  .getMeetOfHostSchool(school)
-					  .getSectionalSchoolsOfMeet());
+			  try {
+				  sectionalSchoolsOfMeet.addAll(
+						  this.getStage()
+						  .getTournament()
+						  .getStageOfStageType(meetStage.getStageType().getLowerStageType())
+						  .getMeetOfHostSchool(school)
+						  .getSectionalSchoolsOfMeet());
+			  } catch (NullPointerException e) {
+				  System.out.print("Stage type " + meetStage.getStageType() + " Lower Stage type " + meetStage.getStageType().getLowerStageType());
+				  System.out.print(" looking for Meet of school :" + school);
+				  e.printStackTrace();
+				  throw e;
+			  }
+					  
 		  }
 	  }
   }
@@ -232,4 +240,14 @@ public class Meet implements Serializable {
   public boolean isSectionalMeet() {
     return this.getStage().isSectionalStage();
   }
+
+ public void announceNewHostForALowerStageMeet(School oldHost, School newHost) {
+	for (int i = 0; i < participantSchools.size(); i++){
+		if ( participantSchools.get(i) == oldHost ) {
+			participantSchools.set(i, newHost);
+			return;
+		}
+	}
+	
+}
 }
