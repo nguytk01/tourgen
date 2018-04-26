@@ -17,7 +17,9 @@ public class NewMainMapAndDetailsPanel extends javax.swing.JLayeredPane {
   private JPanel glassPane = new JPanel();
   private JPanel mapPanel;
   
-  public NewMainMapAndDetailsPanel(tourgen.controller.MapController mapControllerArg, javax.swing.JPanel mapPanelArg, NewMainMapSidePane mapSidePaneArg) {
+  public NewMainMapAndDetailsPanel(tourgen.controller.MapController mapControllerArg, 
+		  javax.swing.JPanel mapPanelArg,
+		  NewMainMapSidePane mapSidePaneArg) {
     mapPanel = mapPanelArg;
     glassPane.setOpaque(false);
     glassPane.setVisible(false);

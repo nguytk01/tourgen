@@ -13,8 +13,8 @@ import javax.swing.JButton;
 import javax.swing.event.MouseInputListener;
 
 public class GMapTempHostPinButton extends JButton {
-  private static String pinPath = "AlternativeHostPin1.png";
-  private static String pinBrightPath = "AlternativeHostPin-bright.png";
+  private static String pinPath = "alternativeHostPin1.png";
+  private static String pinBrightPath = "alternativeHostPin-bright.png";
   private static String pinOldPath = "resources/Hostpin-old.png";
   private static String pinOldHoverPath = "resources/Hostpin-old-hover.png";
   private static ImageIcon okPin = getImageIcon(pinPath);

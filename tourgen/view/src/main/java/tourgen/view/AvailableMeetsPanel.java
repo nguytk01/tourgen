@@ -5,7 +5,11 @@ import javax.swing.JList;
 import tourgen.controller.NewMainViewController;
 import tourgen.model.Repository;
 import tourgen.util.IAvailableMeetsPanel;
+
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
@@ -50,6 +54,12 @@ implements IAvailableMeetsPanel {
     schoolNamePanel.add(lblSchoolName);
     availableMeetGraphicalList = 
         new JList<tourgen.model.Meet>(availableMeetListModel);
+    availableMeetGraphicalList.addListSelectionListener(new ListSelectionListener() {
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			changeCompetitionSiteButton.setEnabled(true);
+		}
+	});
     javax.swing.JScrollPane scrollPane = new javax.swing.JScrollPane(availableMeetGraphicalList);
     add(scrollPane, java.awt.BorderLayout.CENTER);
     
@@ -77,6 +87,7 @@ implements IAvailableMeetsPanel {
    for (tourgen.model.Meet sectionalMeet : sectionalMeetSuggestionList) {
      availableMeetListModel.addElement(sectionalMeet);
    }
+   changeCompetitionSiteButton.setEnabled(false);
   }
   
   void createListeners() {

@@ -3,6 +3,7 @@ package tourgen.view;
 import java.beans.PropertyChangeEvent;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import org.jdesktop.swingx.JXCollapsiblePane;
 
@@ -42,7 +43,7 @@ public class NewMainMapSidePane extends javax.swing.JTabbedPane implements tourg
     if (collapsiblePanel != null) {
       collapsiblePanel.setCollapsed(false);
     }
-    System.out.println("hey");
+    //System.out.println("hey");
     
   }
 
@@ -69,11 +70,25 @@ public class NewMainMapSidePane extends javax.swing.JTabbedPane implements tourg
   public void displayPinHostInformation(Object meet, Object school) {
     this.setEnabledAt(0, true);
     this.setEnabledAt(1, false);
-    if (collapsiblePanel != null) {
-      glassPane.setVisible(true);
-      collapsiblePanel.setCollapsed(false);
-    }
+    
     hostChooserPanel.showHostList(meet, school);
+    SwingUtilities.invokeLater(new Runnable() {
+    	public void run(){
+		    if (collapsiblePanel != null) {
+		    	collapsiblePanel.setCollapsed(false);
+		    }
+    	}
+    });
+    
+    SwingUtilities.invokeLater(new Runnable() {
+    	public void run(){
+		    if (collapsiblePanel != null) {
+		    	glassPane.setVisible(true);
+		    }
+    	}
+    });
+    
+    
     this.setSelectedIndex(0);
   }
   

@@ -13,6 +13,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+
+import org.jdesktop.swingx.JXList;
+
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
 
@@ -21,7 +24,7 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
   private javax.swing.DefaultListModel<tourgen.model.School> defaultListModel;
   private tourgen.controller.NewMainViewController newMainViewController;
   private JButton hostChooserButton;
-  private JList<tourgen.model.School> list;
+  private JXList list;
   
   private Object selectedMeet;
   private Object newHost;
@@ -39,7 +42,10 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
   public HostChooserPanel() {
     
     defaultListModel = new  javax.swing.DefaultListModel<tourgen.model.School>();
-    list = new JList<tourgen.model.School>(defaultListModel);
+    list = new JXList(defaultListModel);
+    list.setComparator(new HostChooserComparator());
+    list.setAutoCreateRowSorter(true);
+    list.toggleSortOrder();
     list.addMouseListener(new HostChooserListMouseListener());
     list.addMouseMotionListener(new HostChooserListMouseListener());
     //list.addMouseWheelListener(new HostChooserListMouseListener());
@@ -88,16 +94,16 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
     tourgen.model.Tournament tournament = newMainViewController.getCurrentlyDisplayTournament();
     tourgen.model.SchoolManager schoolManager = newMainViewController.getSchoolManager();
    
-    java.util.List<tourgen.model.School> meetSchoolList = ((tourgen.model.Meet)meetArg).getParticipatingSchool();
+    java.util.List<tourgen.model.School> meetSchoolList = ((tourgen.model.Meet)meetArg).getSectionalSchoolsOfMeet();
     java.util.List<tourgen.model.School> listOfSchoolsNotWillingToHost = tournament.getListOfSchoolsNotWillingToHost();
     
     for (tourgen.model.School school : meetSchoolList){
-      if (!listOfSchoolsNotWillingToHost.contains(school)){
+      if (!listOfSchoolsNotWillingToHost.contains(school) && school != (((tourgen.model.Meet)meetArg).getHostSchool())){
         defaultListModel.addElement(school);
       }
     }
     lblMeetName.setText(((tourgen.model.Meet)meetArg).toString());
-    
+    hostChooserButton.setEnabled(false);
     /*for (tourgen.model.School school: schoolManager.getSchoolList()) {
       if (!listOfSchoolsNotWillingToHost.contains(school) && !meetSchoolList.contains(school)) {
         defaultListModel.addElement(school);
@@ -124,6 +130,15 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
     return list.getSelectedValue();
   }
   
+  private class HostChooserComparator implements java.util.Comparator{
+
+	@Override
+	public int compare(Object o1, Object o2) {
+		return (((tourgen.model.School)o1).getName().compareTo(((tourgen.model.School)o2).getName()));
+	}
+	  
+  }
+  
   private class HostChooserListMouseListener implements java.awt.event.MouseListener,
   java.awt.event.MouseMotionListener, java.awt.event.MouseWheelListener, 
   java.awt.event.AdjustmentListener{
@@ -131,6 +146,7 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
     @Override
     public void mouseClicked(MouseEvent e) {
       System.out.println("mouse entered host chooser panel.");
+      hostChooserButton.setEnabled(true);
     }
 
     
@@ -190,10 +206,10 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
 		System.out.println("activeItemIndex " + activeItemIndex);
 		Rectangle lastCellRectangle = list.getCellBounds(defaultListModel.getSize() - 1, defaultListModel.getSize() - 1);
 		//tourgen.model.School school = defaultListModel.getElementAt(list.locationToIndex(e.getPoint()));
-	    if (mousePoint.getY() > lastCellRectangle.getMaxY() ) {
+	    /*if (mousePoint.getY() > lastCellRectangle.getMaxY() ) {
 	      mouseExited(e);
 	      return;
-	    }
+	    }*/
 		if (school != null && school != hostUnderMouse) {
 	    	firePropertyChange(ALTERNATIVE_HOST_MOUSE_ENTER, hostUnderMouse, school);
 	    	hostUnderMouse = school;

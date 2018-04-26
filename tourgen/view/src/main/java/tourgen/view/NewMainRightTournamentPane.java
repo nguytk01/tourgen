@@ -9,7 +9,9 @@ public class NewMainRightTournamentPane extends javax.swing.JTabbedPane implemen
   
   public NewMainRightTournamentPane(ReportTableView reportTableViewArg, NewMainMapAndDetailsPanel mapDetailsPanelArg) {
     this.addTab("Map", mapDetailsPanelArg);
-    this.addTab("Report", new javax.swing.JScrollPane(reportTableViewArg));
+    javax.swing.JScrollPane reportScrollPane = new javax.swing.JScrollPane(reportTableViewArg);
+    reportScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+    this.addTab("Report", reportScrollPane);
     reportTableView = reportTableViewArg;
     mapAndDetailsPane = mapDetailsPanelArg;
     this.addChangeListener(new MapAndReportTabChangeListener());
@@ -30,7 +32,7 @@ public class NewMainRightTournamentPane extends javax.swing.JTabbedPane implemen
     @Override
     public void stateChanged(ChangeEvent arg0) {
       if (getSelectedIndex() == 1) {
-        System.out.println("he");
+    	
         reportTableView.display();
        revalidate();
         repaint();

@@ -107,7 +107,7 @@ public class SwingWaypoint extends DefaultWaypoint {
 		this.setLayout(new BorderLayout());
 		panel.add(label, BorderLayout.CENTER);
 		//panel.add(new javax.swing.JLabel("Max/Avg:"), BorderLayout.SOUTH);
-		  panel.setBorder(new EmptyBorder(2,2,2,2));
+		panel.setBorder(new EmptyBorder(2,2,2,2));
 		panel.setOpaque(false);
 		
 		//detailsPanel = new JPanel();

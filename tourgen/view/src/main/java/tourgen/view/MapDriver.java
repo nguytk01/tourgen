@@ -258,10 +258,10 @@ public class MapDriver implements IMapDriver {
     // System.out.println("meetlist cleared. size = " + meetList.size());
     SwingUtilities.invokeLater( new Runnable() {
     	public void run() {
-    		mapViewer.removeAll();
+    		
     	}
     });
-    
+    mapViewer.removeAll();
     waypoints.clear();
     hostwaypoints.clear();
     
@@ -291,9 +291,10 @@ public class MapDriver implements IMapDriver {
     // System.out.println("waypoints size " + waypoints.size());
     SwingUtilities.invokeLater( new Runnable() {
     	public void run() {
-    		refresh();
+    		
     	}
     });
+    refresh();
   }
 
   /**
@@ -323,13 +324,15 @@ public class MapDriver implements IMapDriver {
         			points, schools.get(i), meetList.get(j),false, mapAssistantController));
         }
         /* display the host school, which could be null or not. */
-        if (meetList.get(j) != null) {
+        if (meetList.get(j).getHostSchool() != null) {
             GeoPosition hostPoint = 
                     new GeoPosition(meetList.get(j).getHostSchool().getSchoolLoc().getLatitude(),
                         meetList.get(j).getHostSchool().getSchoolLoc().getLongitude());
             waypoints.add(new
                     SwingWaypoint(meetList.get(j).getHostSchool().getName(),
                     hostPoint, meetList.get(j).getHostSchool(), meetList.get(j),true, mapAssistantController));
+        }
+        
         if (meetList.get(j).getHostSchool() == null 
         || meetList.get(j).getHostSchool().getSchoolLoc() != meetList.get(j).getLocation()) { 
         //(meetList.get(j).getLocation() != null || meetList.get(j).getHostSchool() == null) {
@@ -342,7 +345,6 @@ public class MapDriver implements IMapDriver {
 	                SwingHostingLocationWaypoint(meetList.get(j).getLocation().getName(),
 	                hostingLocationPoint, meetList.get(j).getHostSchool(), meetList.get(j),true, mapAssistantController));
 	        }
-        }
         // GeoPosition hostPoints = new
         // GeoPosition(meetList.get(j).getHostSchool().getSchoolLoc().getLatitude(),
         // meetList.get(j).getHostSchool().getSchoolLoc().getLatitude());

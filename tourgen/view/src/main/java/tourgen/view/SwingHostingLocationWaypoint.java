@@ -37,7 +37,7 @@ public class SwingHostingLocationWaypoint extends SwingWaypoint {
    * @param meet the meet associated to the point.
    * @param mapAssistantController
    */
-  public SwingHostingLocationWaypoint(String text, GeoPosition coord, School schoolArg, Meet meet, boolean hostFlag, 
+  public SwingHostingLocationWaypoint(String text, GeoPosition coord, School schoolArg, Meet meetArg, boolean hostFlag, 
       tourgen.controller.MapAssistantController mapAssistantControllerArg) {
     super(coord);
     this.text = text;
@@ -45,8 +45,10 @@ public class SwingHostingLocationWaypoint extends SwingWaypoint {
     mapAssistantController = mapAssistantControllerArg;
     // button = new GMapPinButton(text.substring(0, 1));
     //System.out.println("hostFlag is " +hostFlag);
+    //System.out.println("SwingHostingLocationWayPoint meet is " + meetArg);
+    this.meet = meetArg;
     if (hostFlag == true) {
-      double[] maxAndAvgDistances = meet.getMaxAndAvgDistance();
+      double[] maxAndAvgDistances = meetArg.getMaxAndAvgDistance();
       double maximumDistanceInMiles = maxAndAvgDistances[0] / 1000.0 * 0.621;
       double averageDistanceInMiles = maxAndAvgDistances[1] / 1000.0 * 0.621;
       java.text.DecimalFormat distanceToStringFormat = new java.text.DecimalFormat();
@@ -82,7 +84,7 @@ public class SwingHostingLocationWaypoint extends SwingWaypoint {
     // button.setPreferredSize(new Dimension(24, 24));
     button.addMouseListener(new SwingWaypointMouseListener());
     button.setVisible(true);
-    this.meet = meet;
+
   }
 
   public SwingHostingLocationWaypoint(GeoPosition coord) {
@@ -107,11 +109,13 @@ public class SwingHostingLocationWaypoint extends SwingWaypoint {
 		this.setLayout(new BorderLayout());
 		panel.add(new javax.swing.JLabel("Hosting Location"), BorderLayout.CENTER);
 		panel.add(label, BorderLayout.SOUTH);
-		/*panel.add(new javax.swing.JLabel("Max / Avg: " 
+		if (meet.getHostSchool() == null){
+			panel.add(new javax.swing.JLabel("Avg / Max: " 
 		+ averageDistance 
 		+ " / " 
 		+ maximumDistance
-		+ " miles"), BorderLayout.SOUTH);*/
+		+ " miles"), BorderLayout.SOUTH);
+		}
 		panel.setOpaque(false);
 		
 		//detailsPanel = new JPanel();
@@ -133,18 +137,23 @@ public class SwingHostingLocationWaypoint extends SwingWaypoint {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      //JOptionPane.showMessageDialog(
-      //    button, distanceStr, "Information", JOptionPane.INFORMATION_MESSAGE);
-          /*if (button instanceof HostGMapPinButton) {
+      // if there is no host school for this meet, this pin will show the side pane
+    	// when it is clicked.
+      if (meet.getHostSchool() == null){
+    	  //JOptionPane.showMessageDialog(
+          //button, distanceStr, "Information", JOptionPane.INFORMATION_MESSAGE);
+          if (button instanceof HostingLocationPinButton) {
             mapAssistantController.showPinHostInfoSidePane(meet, school);
           } else {
             if (meet.isSectionalMeet()) {
               mapAssistantController.showPinRegularInfoSidePane(meet, school);
             }
-          }*/
-    	mapAssistantController.hideSidePane();
+          }
+      } else { 
+    	  //otherwise, clicking on a hosting location will just hide the side pane.
+    	  mapAssistantController.hideSidePane();
+      }
     }
-    
     @Override
     public void mousePressed(MouseEvent e) {
     }

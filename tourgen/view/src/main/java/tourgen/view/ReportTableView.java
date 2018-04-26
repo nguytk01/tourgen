@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,19 +22,21 @@ import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.JXTitledPanel;
 import org.jdesktop.swingx.VerticalLayout;
 
+import tourgen.model.Repository;
 import tourgen.model.Tournament;
 import tourgen.util.IReportTableView;
 
 
 /*import org.jdesktop.swingx.JXCollapsiblePane;*/
 
-public class ReportTableView extends JPanel implements IReportTableView {
+public class ReportTableView extends JPanel implements IReportTableView, java.beans.PropertyChangeListener{
   List<CollapsibleStagePanel> stageList;
   Listener listener;
   JPanel northPanel;
   ReportContentRenderer reportContentRenderer;
   private Tournament currentTournament;
   private boolean currentTournamentAlreadyRendered = false;
+  private boolean damaged = true;
   /**
    * Build a report table view.
    */
@@ -49,6 +52,7 @@ public class ReportTableView extends JPanel implements IReportTableView {
     listener = new Listener();
     this.add(northPanel, BorderLayout.NORTH);
     northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+    Repository.getInstance1().addPropertyChangeListener(this);
   }
 
   @Override
@@ -83,34 +87,40 @@ public class ReportTableView extends JPanel implements IReportTableView {
   public void display(Object arg) {
     Tournament tournament = (Tournament) arg;
     if (currentTournament == tournament && currentTournamentAlreadyRendered == true) {
-      System.out.println("skip rendering.");
-      return;
+      if (damaged == false) {
+    	System.out.println("skip rendering.");
+    	return;
+      } else {
+    	  recalculateTournament(tournament);
+      }
     } else if (currentTournament == tournament && currentTournamentAlreadyRendered == false){
       currentTournamentAlreadyRendered = true;
     } else if (currentTournament != tournament) {
       currentTournament = tournament;
       currentTournamentAlreadyRendered = true;
     }
-    
-    
-    if (stageList.isEmpty() == false) {
-      stageList.clear();
-      northPanel.removeAll();
-      
-    }
-    HashMap<String, String> stageDescriptionsMap = 
-        reportContentRenderer.getTournamentReport(tournament);
-    for (String stageTitle : stageDescriptionsMap.keySet()) {
-      CollapsibleStagePanel panel = 
-          new CollapsibleStagePanel(stageTitle, stageDescriptionsMap.get(stageTitle),
-          listener);
-      stageList.add(panel);
-      panel.setCollapsed(true);
-      northPanel.add(panel);
-    }
-    repaint();
-    revalidate();
-
+    recalculateTournament(tournament);
+  }
+  
+  private void recalculateTournament(Tournament tournament){
+	  if (stageList.isEmpty() == false) {
+	      stageList.clear();
+	      northPanel.removeAll();
+	      
+	    }
+	    HashMap<String, String> stageDescriptionsMap = 
+	        reportContentRenderer.getTournamentReport(tournament);
+	    for (String stageTitle : stageDescriptionsMap.keySet()) {
+	      CollapsibleStagePanel panel = 
+	          new CollapsibleStagePanel(stageTitle, stageDescriptionsMap.get(stageTitle),
+	          listener);
+	      stageList.add(panel);
+	      panel.setCollapsed(true);
+	      northPanel.add(panel);
+	    }
+	    repaint();
+	    revalidate();
+	    damaged = false;
   }
 
   public void setActiveTournament(Object tournamentArg) {
@@ -121,7 +131,17 @@ public class ReportTableView extends JPanel implements IReportTableView {
       currentTournamentAlreadyRendered = false;
     }
   }
-  
+
+@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (evt.getPropertyName().equals(tourgen.model.Repository.TOURNAMENT_MODIFIED)){
+			damaged = true;
+		}
+	}
+  	
+	public boolean isDamaged(){
+		return damaged;
+	}
 
 }
 
