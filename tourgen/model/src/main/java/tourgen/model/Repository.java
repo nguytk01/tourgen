@@ -236,6 +236,7 @@ public class Repository implements Serializable{
         girlsTourList.add(girlsTourList.indexOf(tournament), unsavedTournament);
         /* tournament is already a modified tournament. the changes are finalized.*/
         tournament.setModified(false);
+        tournament.setRemovable(true);
         tournament.setName(newName);
         propertyChangeSupport.firePropertyChange(TOURNAMENT_SAVEAS, false, true);
 

@@ -46,9 +46,11 @@ public class TournamentMenuListener
     }
     
     if (! newMainViewController.getCurrentlyDisplayTournament().isRemovable() ) {
+    	saveTournamentMenuItem.setEnabled(false);
     	removeTournamentMenuItem.setEnabled(false);
     } else {
     	removeTournamentMenuItem.setEnabled(true);
+    	saveTournamentMenuItem.setEnabled(true);
     }
   }
 
