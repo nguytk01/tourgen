@@ -1,11 +1,13 @@
 package tourgen.view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputListener;
 import javax.swing.text.html.HTMLDocument.Iterator;
+
 
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
@@ -32,10 +35,12 @@ import org.jxmapviewer.viewer.LocalResponseCache;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.Waypoint;
 import org.jxmapviewer.viewer.WaypointPainter;
+import org.jxmapviewer.viewer.util.GeoUtil;
 
 import tourgen.controller.CheckBoxTreeCustomCheckBoxListener;
 import tourgen.controller.MapAssistantController;
 import tourgen.controller.MapController;
+import tourgen.model.Location;
 import tourgen.model.Meet;
 import tourgen.model.Repository;
 import tourgen.model.School;
@@ -98,14 +103,14 @@ public class MapDriver implements IMapDriver {
   
   private javax.swing.JPanel checkBoxPanel;
   private MapAssistantController mapAssistantController;
-  
+  private TileFactoryInfo info; 
   /**
    * The driver for the map view.
    * @param repository of tournaments
    */
   public MapDriver(Repository repository) {
     // Create a TileFactoryInfo for OSM
-    TileFactoryInfo info = new OSMTileFactoryInfo();
+    info = new OSMTileFactoryInfo();
     
     DefaultTileFactory tileFactory = new DefaultTileFactory(info);
     tileFactory.setThreadPoolSize(8);
@@ -306,7 +311,9 @@ public class MapDriver implements IMapDriver {
     // waypoints.clear();
 	  System.out.println("refresh called with meetList size " + meetList.size());
 	School hostSchoolOfAMeet = null;
-    for (int j = 0; j < meetList.size(); j++) {
+
+	
+	for (int j = 0; j < meetList.size(); j++) {
       schools = meetList.get(j).getSectionalSchoolsOfMeet();
       System.out.println("schools list size " + schools.size());
       hostSchoolOfAMeet = meetList.get(j).getHostSchool();
@@ -354,6 +361,10 @@ public class MapDriver implements IMapDriver {
 
       }
     }
+	
+    if (meetList.size() == 1) {
+    	configureZoomLevel();
+    }
 
     // host schools
     // hostSwingWaypointPainter.setWaypoints(Hostwaypoints);
@@ -388,6 +399,76 @@ public class MapDriver implements IMapDriver {
     // mapViewer.repaint();
 
   }
+  
+  private void configureZoomLevel(){
+	  Meet onlyMeet = meetList.get(0);
+	  Location hostLocation = null;
+	  Point2D hostSchoolPoint = null;
+	  if (onlyMeet.getHostSchool() == null) {
+		  hostLocation = onlyMeet.getLocation();
+	  } else {
+		  hostLocation = onlyMeet.getHostSchool().getSchoolLoc();
+	  }
+	  GeoPosition hostGeoPos = new GeoPosition(hostLocation.getLatitude(), hostLocation.getLongitude());
+	  hostSchoolPoint = mapViewer.getTileFactory().geoToPixel( hostGeoPos, mapViewer.getZoom());
+	  
+	  /* find the furthest school */
+	  double maxDistance = 0;
+	  SwingWaypoint furthestWaypoint = null;
+	  for (SwingWaypoint a : waypoints) {
+		  Point2D schoolPos = mapViewer.getTileFactory().geoToPixel( a.getPosition(), mapViewer.getZoom());
+		  double distance = schoolPos.distance(hostSchoolPoint);
+		  if (distance > maxDistance) {
+			  maxDistance = distance;
+			  furthestWaypoint = a;
+		  }
+	  }
+	  
+	  mapViewer.setCenterPosition(hostGeoPos);;
+	  mapViewer.setZoom(16);
+	  int currentZoom = mapViewer.getZoom();
+	  while (true){
+		  mapViewer.setCenterPosition(hostGeoPos);;
+		  System.out.println("currentZoom " + currentZoom);
+		  if (currentZoom <= 2) {
+			  break;
+		  }
+		  Point2D schoolPos = mapViewer.getTileFactory().geoToPixel( furthestWaypoint.getPosition(), currentZoom);
+		  hostSchoolPoint = mapViewer.getTileFactory().geoToPixel( hostGeoPos, currentZoom);
+		  
+		  
+		  
+		  double width = mapViewer.getViewportBounds().getWidth();
+		  double height = mapViewer.getViewportBounds().getHeight();
+		  if (schoolPos.getX() <= mapViewer.getViewportBounds().getX() + width && 
+				  schoolPos.getX() >= mapViewer.getViewportBounds().getX()
+				  && schoolPos.getY() <= mapViewer.getViewportBounds().getY() + height &&
+				  schoolPos.getY() >= mapViewer.getViewportBounds().getY()) {
+			  currentZoom --;
+			  mapViewer.setZoom(currentZoom);
+		  }/*
+		  
+		  if (((schoolPos.getX() > hostSchoolPoint.getX() 
+				  && schoolPos.getX() - hostSchoolPoint.getX() 
+				  <= mapViewer.getCenter().getX() + width/2 - hostSchoolPoint.getX())
+				  || (schoolPos.getX() < hostSchoolPoint.getX()
+			  && hostSchoolPoint.getX() - schoolPos.getX() 
+			  <= hostSchoolPoint.getX() - mapViewer.getCenter().getX() + width/2 ))
+			&& (schoolPos.getY() > hostSchoolPoint.getY() 
+					  && schoolPos.getY() - hostSchoolPoint.getY() <= mapViewer.getCenter().getY() + height/2 - hostSchoolPoint.getY()
+					  || (schoolPos.getY() < hostSchoolPoint.getY()
+				  && hostSchoolPoint.getY() - schoolPos.getY() <= hostSchoolPoint.getY() - mapViewer.getCenter().getY() + height/2))) 
+			  {
+			  	currentZoom--;
+			  	mapViewer.setZoom(currentZoom);
+			  } */else {
+				  break;
+			  }  
+	  }
+	  currentZoom++;
+	  mapViewer.setZoom(currentZoom);
+  }
+  
 
   public List getMeetList() {
     return meetList;
