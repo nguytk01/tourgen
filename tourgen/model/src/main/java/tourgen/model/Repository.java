@@ -142,7 +142,10 @@ public class Repository implements Serializable{
     School newHost = school;
     
     if (oldHost != null) {
-    	tournament.getStageOfStageType(meet.getStage().getStageType().getUpperStageType()).announceNewHostForALowerStageMeet(oldHost, newHost);
+    	Stage stage = tournament.getStageOfStageType(meet.getStage().getStageType().getUpperStageType());
+    	if (stage != null) {
+    		stage.announceNewHostForALowerStageMeet(oldHost, newHost);
+    	}
     }
     meet.setLocation(school.getSchoolLoc());
     meet.setHostSchool(school);
