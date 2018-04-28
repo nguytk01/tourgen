@@ -1,6 +1,7 @@
 package tourgen.view;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import tourgen.controller.MenuItemRemoveTournamentListener;
 import tourgen.controller.NewMainViewController;
@@ -12,6 +13,8 @@ public class NewMain extends javax.swing.JFrame implements tourgen.util.INewMain
   private NewMainLeftTournamentPane newMainLeftTournamentPane;
   private NewMainRightTournamentPane newMainRightTournamentPane;
   private javax.swing.JFrame thisFrame;
+  
+  private HostListView hostListView; 
   
   public NewMain(tourgen.controller.MapController mapController,
       javax.swing.JPanel mapPanel, 
@@ -138,6 +141,16 @@ public class NewMain extends javax.swing.JFrame implements tourgen.util.INewMain
     getContentPane().add(splitPane, java.awt.BorderLayout.CENTER);
     
     javax.swing.ToolTipManager.sharedInstance().setInitialDelay(10);
+    
+    hostListView = new HostListView(schoolManager);
+    
+    mntmHostManager.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			hostListView.setVisible(true);
+		}
+	});
     
   }
   

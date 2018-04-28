@@ -195,7 +195,7 @@ public class Main {
         new tourgen.controller.MainWindowCloseListener(manager);
     
 
-    TabbedFrame tabbedFrame = new TabbedFrame(reportViewManageSchoolButtonListener,
+    /*TabbedFrame tabbedFrame = new TabbedFrame(reportViewManageSchoolButtonListener,
         tournamentSelectionListener,
         mainWindowListener,
         (javax.swing.JPanel) (reportFrame.returnRepositoryView()),
@@ -203,8 +203,8 @@ public class Main {
         mainMap.getCheckBoxTreePanel(),
         mainMap.getMapPanel(),
         addTournamentMenuItemListener,
-        tournamentMenuListener);
-    tabbedFrame.setVisible(true);
+        tournamentMenuListener);*/
+    //tabbedFrame.setVisible(true);
     
     /* create newMain */
     
