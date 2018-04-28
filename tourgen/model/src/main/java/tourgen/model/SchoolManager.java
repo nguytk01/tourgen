@@ -205,4 +205,8 @@ public class SchoolManager extends java.util.Observable implements Serializable 
     
   }
   
+  public void toggleSchoolHostEligibility(School school){
+	  school.setEligibleToHost(!school.isEligibleToHost());
+  }
+  
 }

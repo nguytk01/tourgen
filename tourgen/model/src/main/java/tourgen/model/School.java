@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class School implements Serializable {
 
-  private int schoolId;
+  private int id;
+  @Deprecated
   private Location diffLoc;
   private String name;
   private Location schoolLoc;
@@ -14,13 +15,15 @@ public class School implements Serializable {
   @Deprecated
   private Location hostLoc;
   private int enroll;
-  private boolean boysTournamentParticipationStatus;
-  private boolean girlsTournamentParticipationStatus;
+  private boolean bStatus;
+  private boolean gStatus;
   @Deprecated
   private Location hostAdd;
   @Deprecated
   private String hostName;
   private String displayName;
+  
+  private java.beans.PropertyChangeSupport propertyChangeSupport;
   
   /**
    * to construct a school object from parameters passed to it.
@@ -41,8 +44,9 @@ public class School implements Serializable {
     schoolLoc = new Location(streetAddress, cityName, zipCode);
     schoolLoc.setName(displayName);
     enroll = enrollmentNumber;
-    girlsTournamentParticipationStatus = girlsTournamentParticipatingStatusArg;
-    boysTournamentParticipationStatus = boysTournamentParticipatingStatusArg;
+    gStatus = girlsTournamentParticipatingStatusArg;
+    bStatus = boysTournamentParticipatingStatusArg;
+    propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
   }
   
   /**
@@ -53,18 +57,18 @@ public class School implements Serializable {
     name = info.getSchoolName();
     schoolLoc = new Location(info.getStreetAddress(), info.getCityName(), info.getZipCode());
     enroll = info.getEnrollmentNumber();
-    boysTournamentParticipationStatus = info.getBoysParticipationStatus();
-    girlsTournamentParticipationStatus = info.getGirlsParticipationStatus();
+    bStatus = info.getBoysParticipationStatus();
+    gStatus = info.getGirlsParticipationStatus();
     schoolLoc.setName(displayName);
     displayName = info.getSchoolDisplayName();
   }
 
   public int getId() {
-    return schoolId;
+    return this.id;
   }
 
   public void setId(int id) {
-    schoolId = id;
+    this.id = id;
   }
 
   @Deprecated
@@ -119,24 +123,24 @@ public class School implements Serializable {
     return enroll;
   }
 
-  public void setEnroll(int enrollment) {
-    enroll = enrollment;
+  public void setEnroll(int enroll) {
+    this.enroll = enroll;
   }
 
   public boolean getBStatus() {
-    return boysTournamentParticipationStatus;
+    return bStatus;
   }
 
-  public void setBStatus(boolean boys) {
-    boysTournamentParticipationStatus = boys;
+  public void setBStatus(boolean bStatus) {
+    this.bStatus = bStatus;
   }
 
   public boolean getGStatus() {
-    return girlsTournamentParticipationStatus;
+    return gStatus;
   }
 
-  public void setGStatus(boolean girls) {
-    girlsTournamentParticipationStatus = girls;
+  public void setGStatus(boolean gStatus) {
+    this.gStatus = gStatus;
   }
 
   /*
@@ -177,9 +181,17 @@ public class School implements Serializable {
 
   public void setEligibleToHost(boolean arg) {
     eligibleToHost = arg;
+    this.propertyChangeSupport.firePropertyChange("CHANGED", false, true);
   }
   
   public boolean isEligibleToHost() {
     return eligibleToHost;
+  }
+  
+  public void addPropertyChangeListener(java.beans.PropertyChangeListener listener) {
+	  this.propertyChangeSupport.addPropertyChangeListener(listener);
+  }
+  public void removePropertyChangeListener(java.beans.PropertyChangeListener listener) {
+	  this.propertyChangeSupport.addPropertyChangeListener(listener);
   }
 }
