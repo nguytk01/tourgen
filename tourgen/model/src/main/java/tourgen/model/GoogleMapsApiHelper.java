@@ -17,6 +17,10 @@ class GoogleMapsApiHelper {
   private GeoApiContext placesContext;
 
   GoogleMapsApiHelper() {
+
+  }
+  
+  public void init(){
     distanceMatrixContext = (new GeoApiContext.Builder()
         .apiKey(tourgen.model.GoogleMapsApiKey.getGoogleDistanceMatrixApiKey())).build();
     geocodingContext = (new GeoApiContext.Builder()

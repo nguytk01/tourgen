@@ -12,7 +12,7 @@ import tourgen.model.TourgenDistanceMatrix;
 
 public class TourgenDistanceMatrixTest{
 
-    @Test(expected=ExceptionInInitializerError.class)
+    @Test//(expected=ExceptionInInitializerError.class)
 	public void getDistance1ToNTest(){
 		Location orig = new Location("Austin High School");
 		orig.setLatitude(38.73886);
