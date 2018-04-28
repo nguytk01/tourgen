@@ -12,19 +12,23 @@ public class BaseTournamentCommonTestUtils {
    */
   @BeforeClass
   public static void setUpBeforeClass() throws Exception {
-      java.lang.reflect.Field field = null;
-      try {
-        field = Repository.class.getDeclaredField("instance");
-      } catch (NoSuchFieldException | SecurityException e1) {
-        e1.printStackTrace();
-      }
-      field.setAccessible(true);
-      try {
-        field.set(field, null);
-      } catch (IllegalArgumentException | IllegalAccessException e) {
-        e.printStackTrace();
-      }
-      schoolManager = new SchoolManager();
-	  schoolManager.initSchools();
+    clearRepositorySingleton();
+  }
+  
+  protected static void clearRepositorySingleton() {
+    java.lang.reflect.Field field = null;
+    try {
+      field = Repository.class.getDeclaredField("instance");
+    } catch (NoSuchFieldException | SecurityException e1) {
+      e1.printStackTrace();
     }
+    field.setAccessible(true);
+    try {
+      field.set(field, null);
+    } catch (IllegalArgumentException | IllegalAccessException e) {
+      e.printStackTrace();
+    }
+    schoolManager = new SchoolManager();
+    schoolManager.initSchools();
+  }
 }

@@ -27,7 +27,9 @@ public class TournamentRemoveTest extends BaseTournamentCommonTestUtils{
     assertEquals(1, Repository.getInstance1().getGirlList().size());
   }
   
-  public void removeRemovableTournamentTest() {
+  @Test
+  public void removeRemovableTournamentTest() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+    clearRepositorySingleton();
     Tournament tournament = new Tournament("testTournament",TournamentParticipants.GIRLS);
     Repository.getInstance1().addTournament(tournament);
     
@@ -43,22 +45,7 @@ public class TournamentRemoveTest extends BaseTournamentCommonTestUtils{
     Meet meetB = new Meet(stage, null);
     stage.addMeetToStage(meetB);
     
-    try {
-      tournament.getClass().getMethod("setRemovable",Boolean.class).invoke(true);
-    } catch (NoSuchMethodException | SecurityException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (IllegalAccessException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (IllegalArgumentException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (InvocationTargetException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    
+    tournament.setRemovable(true);
     assertEquals(1, Repository.getInstance1().getGirlList().size());
     Repository.getInstance1().removeTournament(tournament);
     assertEquals(0, Repository.getInstance1().getGirlList().size());
