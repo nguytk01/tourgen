@@ -6,8 +6,8 @@ public class TournamentMenuListener
     extends javax.swing.AbstractAction 
     implements javax.swing.event.MenuListener {
 
-  @Deprecated
-  private ReportViewUseCaseController reportViewController;
+  //@Deprecated
+  //private ReportViewUseCaseController reportViewController;
   
   private NewMainViewController newMainViewController;
   private javax.swing.JMenuItem saveTournamentMenuItem;
@@ -26,11 +26,11 @@ public class TournamentMenuListener
     
   }
 
-  @Deprecated
-  public void setReportViewUseCaseController(ReportViewUseCaseController controllerArg) {
+  //@Deprecated
+  /*public void setReportViewUseCaseController(ReportViewUseCaseController controllerArg) {
     reportViewController = controllerArg;
-  }
-
+  }*/
+  
   public void menuCanceled(javax.swing.event.MenuEvent e) {
   }
 

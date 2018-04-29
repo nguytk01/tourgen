@@ -37,7 +37,7 @@ public class NewMainViewController {
     try {
       return currentTournament.getSectionalMeetSuggestions(school);
     } catch (NullPointerException e) {
-      e.printStackTrace();
+      //e.printStackTrace();
       System.out.println("currentTournament is null. setActiveTournament() has not been called. It needs that to get suggestions on sectional meets.");
     }
     return null;
