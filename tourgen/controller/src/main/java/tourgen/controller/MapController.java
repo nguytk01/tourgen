@@ -36,11 +36,6 @@ public class MapController {
     // tree = treeArg;
 
   }
-
-  public void showMeetsOnTheMap() {
-
-    mapDriver.showMeetList(mapDriver.getMeetList());
-  }
   
   public void emptyMap() {
     mapDriver.showMeetList(new java.util.ArrayList<Meet>());
@@ -52,11 +47,11 @@ public class MapController {
    */
   
   public void treeCheckBoxClicked() {
-    SwingUtilities.invokeLater( new Runnable() {
+    /*SwingUtilities.invokeLater( new Runnable() {
       
 
       @Override
-      public void run() {
+      public void run() {*/
         Set<ICheckNode> meetSet = tree.getMeetList();
         Object[] arr = meetSet.toArray();
         List<Meet> meetList = new ArrayList<Meet>();
@@ -69,8 +64,8 @@ public class MapController {
 
         mapDriver.showMeetList(meetList);
       }
-    });
-  }
+    //});
+  //}
 
   public void setTree(IRepoTree treeArg) {
     tree = treeArg;
