@@ -66,7 +66,7 @@ public class NewMainViewControllerTest extends BaseTestUtils {
 		java.util.List<Meet> meetList = controller.getAvailableSectionalMeets(
 				Repository.getInstance1().getGirlList().get(0).getStageList().get(1).getMeetList().get(0),
 				crownPoint);
-	    assertEquals(1, meetList.size());
+	    assertEquals(2, meetList.size());
 		assertEquals("Hammond Gavit", meetList.get(0).getHostSchool().getDisplayName());
 	}
 	
@@ -91,4 +91,90 @@ public class NewMainViewControllerTest extends BaseTestUtils {
 	public void testSaveCurrentTournamentClicked() {
 
 	}
+	
+	@Test
+	public void testChangeCompetitionSite(){
+		java.util.List<School> schoolList = schoolManager.getSchoolList();
+
+		School calumetFromList = null;
+		for (School school : schoolList) {
+			if (school.getDisplayName().equals("Calumet")) {
+				calumetFromList = school;
+			}
+		}
+		controller.setActiveTournament(Repository.getInstance1().getGirlList().get(0));
+		controller.changeCompetitionSite(calumetFromList, 
+				Repository.getInstance1().getGirlList().get(0).getStageList().get(0).getMeetList().get(0),
+				Repository.getInstance1().getGirlList().get(0).getStageList().get(0).getMeetList().get(1));
+	    assertEquals(Repository.getInstance1().getGirlList().get(0).getStageList().get(0).getMeetList().get(1).getParticipatingSchool().size(),
+	    	2);
+	}
+	
+	@Test
+	public void testChangeHostForMeet(){
+		
+		java.util.List<School> schoolList = schoolManager.getSchoolList();
+
+		School calumetFromList = null;
+		for (School school : schoolList) {
+			if (school.getDisplayName().equals("Calumet")) {
+				calumetFromList = school;
+			}
+		}
+		controller.setActiveTournament(Repository.getInstance1().getGirlList().get(0));
+		controller.changeHostForMeet(
+				Repository.getInstance1().getGirlList().get(0).getStageList().get(1).getMeetList().get(0),
+				calumetFromList);
+	    assertEquals(Repository.getInstance1().getGirlList().get(0).getStageList().get(1).getMeetList().get(0).getHostSchool(),
+	    		calumetFromList);
+	}
+	
+	@Test
+	public void testSaveTournamentClickedOriginalTournament(){
+
+		controller.setActiveTournament(Repository.getInstance1().getGirlList().get(0));
+		controller.saveCurrentTournamentClicked();
+	}
+	
+	@Test
+	public void testSaveTournamentClickedModifedTournament(){
+		java.util.List<School> schoolList = schoolManager.getSchoolList();
+
+		School calumetFromList = null;
+		for (School school : schoolList) {
+			if (school.getDisplayName().equals("Calumet")) {
+				calumetFromList = school;
+			}
+		}
+		controller.setActiveTournament(Repository.getInstance1().getGirlList().get(0));
+		Tournament tour = Repository.getInstance1().getGirlList().get(0);
+		
+		controller.changeHostForMeet(
+				Repository.getInstance1().getGirlList().get(0).getStageList().get(1).getMeetList().get(0),
+				calumetFromList);
+		assertEquals(true,tour.isSavingNeeded());
+		controller.saveCurrentTournamentClicked();
+	}
+	
+	@Test
+	public void testSaveAsTournamentClicked(){
+		controller.setMainView(new NewMainMock());
+		controller.setActiveTournament(Repository.getInstance1().getGirlList().get(0));
+		assertEquals(Repository.getInstance1().getGirlList().get(0), controller.getCurrentlyDisplayTournament());
+		assertEquals(1, Repository.getInstance1().getGirlList().size());
+		controller.saveAsTournamentClicked();
+		assertEquals(2, Repository.getInstance1().getGirlList().size());
+	}
+	
+	@Test
+	public void removeTournamentClicked(){
+		controller.setMainView(new NewMainMock());
+		controller.setActiveTournament(Repository.getInstance1().getGirlList().get(0));
+		controller.saveAsTournamentClicked();
+		controller.setActiveTournament(Repository.getInstance1().getGirlList().get(1));
+		assertEquals(2, Repository.getInstance1().getGirlList().size());
+		controller.removeTournamentClicked();
+		assertEquals(1, Repository.getInstance1().getGirlList().size());
+	}
+
 }

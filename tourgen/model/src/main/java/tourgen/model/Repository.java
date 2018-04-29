@@ -254,6 +254,7 @@ public class Repository implements Serializable{
           /* send this tournament to the view*/
           newTournament = org.apache.commons.lang3.SerializationUtils.clone(tournament);
           newTournament.setName(newName);
+          newTournament.setRemovable(true);
           girlsTourList.add(newTournament);
           propertyChangeSupport.firePropertyChange(TOURNAMENT_SAVEAS, false, true);
 
