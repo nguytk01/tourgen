@@ -12,7 +12,6 @@ import java.awt.event.MouseWheelListener;
 import org.junit.Before;
 import org.junit.Test;
 
-import tourgen.controller.MainViewPanelMock;
 import tourgen.controller.MapAssistantController;
 import tourgen.controller.MapController;
 import tourgen.controller.NewMainViewController;
