@@ -8,7 +8,10 @@ import org.junit.runners.Suite.SuiteClasses;
 	MapDriverTest.class, 
 	HostChooserPanelTest.class,
 	ReportTableViewTest.class,
-	TournamentChooserComboBoxTest.class})
+	TournamentChooserComboBoxTest.class,
+	NewMainMapSidePaneTest.class,
+	HostListViewTest.class,
+	MainTest.class})
 public class ViewAllTests {
 
 }

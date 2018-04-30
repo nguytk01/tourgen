@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import org.junit.Test;
+import org.jxmapviewer.JXMapViewer;
 
 import tourgen.controller.MapAssistantController;
 import tourgen.model.Meet;
@@ -46,7 +47,7 @@ public class MapDriverTest extends BaseTestUtils {
 	}
 	
 	@Test
-	public void testShowMeetList2() {
+	public void testShowMeetList2() throws InterruptedException {
 		IMapSidePane mapSidePane = new MapSidePaneMock();
 		MapAssistantController mapAssistantController = new MapAssistantController(mapSidePane);
 		
@@ -61,6 +62,13 @@ public class MapDriverTest extends BaseTestUtils {
 		mapDriver.showMeetList(meetList);
 		//System.out.println("Qwer" + mapDriver.getMapPanel().getComponentCount());
 		assertEquals(2, mapDriver.getMapPanel().getComponentCount());
+		/*mapDriver.getMapPanel().setSize(new Dimension(500,500));
+		JXMapViewer vie = ((JXMapViewer)(mapDriver.getMapPanel()));
+		vie.setZoom(15);
+		
+		mapDriver.getMapPanel().revalidate();
+		mapDriver.getMapPanel().repaint();
+		Thread.sleep(2000);*/
 	}
 	
 	@Test

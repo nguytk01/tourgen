@@ -88,8 +88,12 @@ public class HostChooserPanelTest extends BaseTestUtils {
 		//System.out.println(list.getModel().getSize());
 		//System.out.println(list.getModel().getElementAt(0).toString());
 		for (MouseListener e : list.getMouseListeners()) {
+			e.mouseExited(new MouseEvent(mapDriver.getMapPanel(), 
+					MouseEvent.MOUSE_EXITED, 99, 0, 50,50, 1, false));
 			e.mouseClicked(new MouseEvent(mapDriver.getMapPanel(), 
 					MouseEvent.MOUSE_CLICKED, 99, 0, 50,50, 1, false));
+			e.mouseClicked(new MouseEvent(mapDriver.getMapPanel(), 
+					MouseEvent.MOUSE_CLICKED, 99, 0, 10,10, 1, false));
 			e.mouseEntered(new MouseEvent(mapDriver.getMapPanel(), 
 					MouseEvent.MOUSE_EXITED, 99, 0, 50,50, 1, false));
 			e.mouseExited(new MouseEvent(mapDriver.getMapPanel(), 

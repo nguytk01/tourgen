@@ -38,12 +38,12 @@ public class NewMainMapSidePane extends javax.swing.JTabbedPane implements tourg
 
   @Override
   public void displayPinInformation(Object meetArg, Object schoolArg) {
-    tourgen.model.Meet meet = (tourgen.model.Meet) meetArg;
+    /*tourgen.model.Meet meet = (tourgen.model.Meet) meetArg;
     tourgen.model.School school = (tourgen.model.School) schoolArg;
     if (collapsiblePanel != null) {
       collapsiblePanel.setCollapsed(false);
     }
-    //System.out.println("hey");
+    //System.out.println("hey");*/
     
   }
 

@@ -18,8 +18,8 @@ import tourgen.model.Meet;
  * @author Daniel Stahr
  */
 public class HostSwingWaypoint extends DefaultWaypoint {
-  private final JButton button;
-  private final String text;
+  private JButton button;
+  private String text;
   private MapDriver mapDriver;
   private Meet meet;
 
@@ -34,7 +34,7 @@ public class HostSwingWaypoint extends DefaultWaypoint {
    */
   public HostSwingWaypoint(String text, GeoPosition coord, Meet meet) {
     super(coord);
-    this.text = text;
+    /*this.text = text;
     double[] maxAndAvgDistances = meet.getMaxAndAvgDistance();
     distanceStr = "Max distance = " 
       + new java.text.DecimalFormat("0").format(maxAndAvgDistances[0])
@@ -85,6 +85,6 @@ public class HostSwingWaypoint extends DefaultWaypoint {
 
     @Override
     public void mouseExited(MouseEvent e) {
-    }
+    }*/
   }
 }

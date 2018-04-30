@@ -10,9 +10,9 @@ import tourgen.util.ICheckNode;
 import tourgen.util.IRepoTree;
 import tourgen.view.CheckBoxTreeComponents.CheckNode;
 
-public class RepoTree extends JTree implements IRepoTree {
+/*public class RepoTree extends JTree implements IRepoTree {
 
-  @Override
+  /*@Override
   public Set getMeetList() {
     Set<ICheckNode> nodeSet = getAllLeafNodes((CheckNode) this.getModel().getRoot());
     System.out.println("set size: " + nodeSet.size());
@@ -25,7 +25,7 @@ public class RepoTree extends JTree implements IRepoTree {
    * @param node the node to start searching
    * @return a set of child nodes.
    */
-  public Set<ICheckNode> getAllLeafNodes(CheckNode node) {
+  /*public Set<ICheckNode> getAllLeafNodes(CheckNode node) {
     Set<ICheckNode> leafNodesSet = new HashSet<ICheckNode>();
     if (node.isLeaf() && node.isSelected()) {
       leafNodesSet.add(node);
@@ -40,6 +40,6 @@ public class RepoTree extends JTree implements IRepoTree {
   public RepoTree(CheckNode node) {
     super(node);
 
-  }
+  }*/
 
-}
+//}
