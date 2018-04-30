@@ -96,11 +96,19 @@ public class ReportContentRenderer {
     String numbering = new Integer(number).toString() + ". ";
     if (number < 1) {
       arr = new String[] {};
-    } else if (meet.getLocation().getName().equals("Null")) {
+    /*} else if (meet.getLocation().getName().equals("Null")) {
       arr = new String[] { numbering, hostSchoolString, " (",
           new Integer(meet.getParticipatingSchool().size()).toString(), 
           ") ", "| ", buildMeetTime(meet), " (",
-          meet.getLocation().getName(), ")", "<br/>" };
+          meet.getLocation().getName(), ")", "<br/>" };*/
+    } else if (meet.getHostSchool() != null 
+    		&& !meet.getLocation().getName().equals("Null")
+    		&& !meet.getLocation().getName().equals(meet.getHostSchool().getDisplayName())){
+        double[] temp = meet.getMaxAndAvgDistance();
+    	arr = new String[] { numbering, hostSchoolString, " (",
+    	          new Integer(meet.getParticipatingSchool().size()).toString(), 
+    	          ") ", "| ", buildMeetTime(meet), " (", meet.getLocation().getName(), ")"," Max: " + metersToMiles(temp[0]), " Miles Avg: " + metersToMiles(temp[1]) +" Miles", "<br/>" };
+    	    
     } else {
       double[] temp = meet.getMaxAndAvgDistance();
       arr = new String[] { numbering, hostSchoolString, " (",

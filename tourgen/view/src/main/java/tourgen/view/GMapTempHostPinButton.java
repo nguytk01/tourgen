@@ -55,10 +55,11 @@ public class GMapTempHostPinButton extends JButton {
 
   private static ImageIcon makeIcon(String img, int i, int j) {
     // The process of scaling an image!
-    ImageIcon ico = new ImageIcon(img);
+    /*ImageIcon ico = new ImageIcon(img);
     Image image = ico.getImage(); // transform it
     Image newimg = image.getScaledInstance(i, j, Image.SCALE_SMOOTH); // scale it the smooth way
-    return new ImageIcon(newimg); // transform it back
+    return new ImageIcon(newimg); // transform it back*/
+	  return null;
   }
 
   private static ImageIcon getImageIcon(String iconName) {

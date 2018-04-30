@@ -74,13 +74,14 @@ public class GMapPinButton extends JButton {
     //this.addFocusListener(new PinButtonFocusListener());
   }
 
-  private static ImageIcon makeIcon(String img, int i, int j) {
+  /*private static ImageIcon makeIcon(String img, int i, int j) {
     // The process of scaling an image!
-    ImageIcon ico = new ImageIcon(img);
+    /*ImageIcon ico = new ImageIcon(img);
     Image image = ico.getImage(); // transform it
     Image newimg = image.getScaledInstance(i, j, Image.SCALE_SMOOTH); // scale it the smooth way
-    return new ImageIcon(newimg); // transform it back
-  }
+    return new ImageIcon(newimg); // transform it back*/
+	  //return null;
+  //}
 
   private static ImageIcon getImageIcon(String iconName) {
     BufferedImage bufferedImage = null;
@@ -134,18 +135,6 @@ public class GMapPinButton extends JButton {
       // TODO Auto-generated method stub
     }
   }
-  private class PinButtonFocusListener implements java.awt.event.FocusListener{
-    @Override
-    public void focusGained(java.awt.event.FocusEvent e) {
-      System.out.println("focus gained");
-    }
-    
-    public void focusLost(java.awt.event.FocusEvent e) {
-      System.out.println("focus lost");
-    }
-  }
-  
-
   
 
 }

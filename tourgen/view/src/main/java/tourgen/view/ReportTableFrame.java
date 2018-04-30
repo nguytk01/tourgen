@@ -17,7 +17,7 @@ import tourgen.util.IRepositoryView;
 
 public class ReportTableFrame extends JFrame implements IReportTableFrame {
   private JMenu schoolsMenu;
-  private RepositoryView repoView;
+  //private RepositoryView repoView;
   private ReportTableView reportView;
 
   /**
@@ -28,20 +28,20 @@ public class ReportTableFrame extends JFrame implements IReportTableFrame {
    */
   public ReportTableFrame(ActionListener reportViewManageSchoolsMenuListener,
       ListSelectionListener tournamentSelectionListener, Repository model) {
-    setTitle("Cross Country Report Table");
+    /*setTitle("Cross Country Report Table");
     setBounds(200, 50, 1400, 800);
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setDefaultCloseOperation(EXIT_ON_CLOSE);*/
 
-    repoView = new RepositoryView(tournamentSelectionListener);
+    //repoView = new RepositoryView(tournamentSelectionListener);
     reportView = new ReportTableView();
-    JScrollPane scrollPane = new JScrollPane(reportView);
+    /*JScrollPane scrollPane = new JScrollPane(reportView);
     // scrollPane.setPreferredSize(new Dimension(100,100));
     scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
     // scrollPane.setViewportView(reportView);
 
     this.getContentPane().setLayout(new BorderLayout());
-    this.getContentPane().add(repoView, BorderLayout.WEST);
+    //this.getContentPane().add(repoView, BorderLayout.WEST);
     this.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
     JMenuBar menuBar = new JMenuBar();
@@ -53,7 +53,7 @@ public class ReportTableFrame extends JFrame implements IReportTableFrame {
 
     JMenuItem manageSchoolMenuItem = new JMenuItem("Manage schools");
     fileMenu.add(manageSchoolMenuItem);
-    manageSchoolMenuItem.addActionListener(reportViewManageSchoolsMenuListener);
+    manageSchoolMenuItem.addActionListener(reportViewManageSchoolsMenuListener);*/
 
   }
 
@@ -71,11 +71,11 @@ public class ReportTableFrame extends JFrame implements IReportTableFrame {
 
   @Deprecated
   public IRepositoryView returnRepositoryView() {
-    return repoView;
+    return null;
   }
   
   javax.swing.JPanel getRepositoryView() {
-    return repoView;
+    return null;
   }
   
   javax.swing.JPanel getReportView() {

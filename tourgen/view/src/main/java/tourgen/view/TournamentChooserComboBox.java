@@ -10,7 +10,8 @@ import tourgen.model.Repository;
 import tourgen.model.Tournament;
 
 public class TournamentChooserComboBox extends javax.swing.JComboBox 
-implements tourgen.util.ITournamentChooserComboBox, java.util.Observer, java.beans.PropertyChangeListener {
+implements tourgen.util.ITournamentChooserComboBox,// java.util.Observer,
+java.beans.PropertyChangeListener {
   
 	private tourgen.controller.NewMainViewController newMainViewController;
 	private java.awt.event.ActionListener tournamentChooserActionListener;
@@ -68,14 +69,14 @@ implements tourgen.util.ITournamentChooserComboBox, java.util.Observer, java.bea
 	      }});
 	    }
 	
-  @Override
+  /*@Override
   public void update(Observable arg0, Object arg1) {
     this.getSelectedIndex();
     List<Tournament> tourList = Repository.getInstance1().getGirlList();
     for (tourgen.model.Tournament tour: Repository.getInstance1().getGirlList()) {
       this.addItem(tour);
     }
-  }
+  }*/
 
   @Override
   public void propertyChange(PropertyChangeEvent evt) {

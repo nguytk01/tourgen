@@ -149,8 +149,7 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
   }
   
   private class HostChooserListMouseListener implements java.awt.event.MouseListener,
-  java.awt.event.MouseMotionListener, java.awt.event.MouseWheelListener, 
-  java.awt.event.AdjustmentListener{
+  java.awt.event.MouseMotionListener{
 	   //private tourgen.model.School persistentSchool = null;
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -237,7 +236,7 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
 	    }
 	}
 
-	@Override
+	/*@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		int activeItemIndex = list.locationToIndex(e.getPoint());
 		System.out.println("activeItemIndex " + activeItemIndex);
@@ -247,9 +246,9 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
 	    	hostUnderMouse = school;
 	        
 	    }
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public void adjustmentValueChanged(AdjustmentEvent e) {
 		//System.out.println("scrolle.d");
 		int activeItemIndex = list.locationToIndex(MouseInfo.getPointerInfo().getLocation());
@@ -261,7 +260,7 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
 		    	hostUnderMouse = school;
 		    }
 		}
-	}
+	}*/
 
 	
   }

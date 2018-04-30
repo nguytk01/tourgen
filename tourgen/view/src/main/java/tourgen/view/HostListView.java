@@ -54,11 +54,11 @@ public class HostListView extends JFrame{
 	private JLabel lblDoubleClickOn;
 	private JPanel panel_5;
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		SchoolManager schoolManager = new SchoolManager();
 		schoolManager.initSchools();
 		new HostListView(schoolManager).setVisible(true);
-	}
+	}*/
 	
 	public HostListView(SchoolManager schoolManager){
 		this.schoolManager = schoolManager;
@@ -166,7 +166,7 @@ public class HostListView extends JFrame{
 	
 	private class SchoolComplexMatcherEditor 
 	extends AbstractMatcherEditor<School> 
-	implements java.awt.event.ActionListener, java.awt.event.FocusListener{
+	implements java.awt.event.ActionListener{
 		private Matcher<School> hostMatcher;
 		private Matcher<School> nonHostMatcher;
 		public SchoolComplexMatcherEditor() {
@@ -187,20 +187,7 @@ public class HostListView extends JFrame{
 			}
 		}
 
-		@Override
-		public void focusGained(FocusEvent e) {
-			if (e.getSource() == textField) {
-				
-			}
 			
-		}
-
-		@Override
-		public void focusLost(FocusEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
 	}
 	
 	private class HostSchoolMatcher implements Matcher<School> {
@@ -230,7 +217,9 @@ public class HostListView extends JFrame{
 
 		public void mouseClicked(java.awt.event.MouseEvent e) {
 			if (e.getClickCount() == 2) {
-				schoolManager.toggleSchoolHostEligibility((School) filterList.get(list.locationToIndex(e.getPoint())));
+				if (((School) filterList.get(list.locationToIndex(e.getPoint())) != null)) {
+					schoolManager.toggleSchoolHostEligibility(((School) filterList.get(list.locationToIndex(e.getPoint()))));
+				}
 			}
 		}
 	}
