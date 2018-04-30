@@ -23,7 +23,7 @@ import tourgen.model.RepositoryInitialization;
 import tourgen.model.SchoolManager;
 import tourgen.util.IMapSidePane;
 
-public class HostChooserPanelTest extends BaseTestUtils {
+public class RepositoryViewTest extends BaseTestUtils {
 
 	@Before
 	public void setUp() throws Exception {
@@ -75,6 +75,10 @@ public class HostChooserPanelTest extends BaseTestUtils {
 		  ((java.awt.Container)
 		  ((java.awt.Container)leftPane[0])
 		  .getComponents()[0]).getComponents()[1];
+		
+		Object obj = 
+				  (java.awt.Container)
+						  ((java.awt.Container)leftPane[0]);
 		
 		
 		assertEquals(comboBox.getModel().getSize(), 1);

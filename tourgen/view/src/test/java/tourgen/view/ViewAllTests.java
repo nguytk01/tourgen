@@ -7,7 +7,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ReportContentRendererTest.class, 
 	MapDriverTest.class, 
 	HostChooserPanelTest.class,
-	ReportTableViewTest.class})
+	ReportTableViewTest.class,
+	TournamentChooserComboBoxTest.class})
 public class ViewAllTests {
 
 }

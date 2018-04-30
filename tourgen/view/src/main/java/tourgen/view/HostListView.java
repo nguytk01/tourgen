@@ -54,11 +54,11 @@ public class HostListView extends JFrame{
 	private JLabel lblDoubleClickOn;
 	private JPanel panel_5;
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		SchoolManager schoolManager = new SchoolManager();
 		schoolManager.initSchools();
 		new HostListView(schoolManager).setVisible(true);
-	}
+	}*/
 	
 	public HostListView(SchoolManager schoolManager){
 		this.schoolManager = schoolManager;

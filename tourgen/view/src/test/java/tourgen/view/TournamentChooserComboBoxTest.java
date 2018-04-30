@@ -23,7 +23,7 @@ import tourgen.model.RepositoryInitialization;
 import tourgen.model.SchoolManager;
 import tourgen.util.IMapSidePane;
 
-public class HostChooserPanelTest extends BaseTestUtils {
+public class TournamentChooserComboBoxTest extends BaseTestUtils {
 
 	@Before
 	public void setUp() throws Exception {
@@ -50,7 +50,7 @@ public class HostChooserPanelTest extends BaseTestUtils {
 		MapAssistantController mapAssistantController = new MapAssistantController(mapSidePane);
 		mapDriver.setMapAssistantController(mapAssistantController);
 
-		NewMain newMain = new NewMain(mapController, 
+		NewMainMock newMain = new NewMainMock(mapController, 
 				mapDriver.getMapPanel(), reportTableView, mapSidePane, schoolManager);
 		newMain.initUserInterface();
 		
@@ -79,35 +79,13 @@ public class HostChooserPanelTest extends BaseTestUtils {
 		
 		assertEquals(comboBox.getModel().getSize(), 1);
 		
+		controller.saveAsTournamentClicked();
+		assertEquals(2, Repository.getInstance1().getGirlList().size());
+		controller.saveAsTournamentClicked();
+		assertEquals(3, Repository.getInstance1().getGirlList().size());
 		
-		//comboBox.setSelectedIndex(0);
-		javax.swing.JList list = (javax.swing.JList)
-				(((java.awt.Container)
-						((java.awt.Container)hostChooserPanel.getComponents()[1])
-						.getComponents()[0]).getComponents()[0]);
-		//System.out.println(list.getModel().getSize());
-		//System.out.println(list.getModel().getElementAt(0).toString());
-		for (MouseListener e : list.getMouseListeners()) {
-			e.mouseClicked(new MouseEvent(mapDriver.getMapPanel(), 
-					MouseEvent.MOUSE_CLICKED, 99, 0, 50,50, 1, false));
-			e.mouseEntered(new MouseEvent(mapDriver.getMapPanel(), 
-					MouseEvent.MOUSE_EXITED, 99, 0, 50,50, 1, false));
-			e.mouseExited(new MouseEvent(mapDriver.getMapPanel(), 
-					MouseEvent.MOUSE_EXITED, 99, 0, 50,50, 1, false));
-		}
-		for (MouseMotionListener e : list.getMouseMotionListeners()) {
-			e.mouseMoved((new MouseEvent(mapDriver.getMapPanel(), 
-				MouseEvent.MOUSE_MOVED, 99, 0, 50,50, 1, false)));
-		}
-		
-		for (MouseWheelListener e : list.getMouseWheelListeners()) {
-			e.mouseWheelMoved(new MouseWheelEvent(list, MouseWheelEvent.MOUSE_WHEEL, 99, 0, 99,5,0,false, MouseWheelEvent.WHEEL_UNIT_SCROLL,1,1));
-		}
-		Component componentRendered = 
-				(Component)list.getCellRenderer()
-				.getListCellRendererComponent(list, sectionalMeet.getHostSchool() , 0, false, false);
-		assertEquals("Hammond Gavit Mdl/High School", ((javax.swing.JLabel) componentRendered).getText().trim());
-		assertEquals("Calumet High School", list.getModel().getElementAt(0).toString().trim());
+		controller.removeTournamentClicked();
+		assertEquals(2, Repository.getInstance1().getGirlList().size());
 	}
 
 }
