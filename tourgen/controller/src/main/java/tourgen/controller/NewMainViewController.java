@@ -63,7 +63,7 @@ public class NewMainViewController {
     if (currentTournament.isSavingNeeded()) {
       Repository.getInstance1().saveTournamentAsNewTournament(currentTournament, null);
     }
-  }
+  } 
 
   public void saveAsTournamentClicked() {
     String newName = newMain.showSaveAsTournamentConfirmationDialog();

@@ -22,10 +22,10 @@ public class NewMainViewControllerTest extends BaseTestUtils {
 	private NewMainViewController controller;
 	private MainViewPanelMock leftPanelMock;
 	private MainViewPanelMock rightPanelMock;
-
+ 
 	@Before
 	public void setUp() {
-		clearRepositorySingleton();
+		clearRepositorySingleton(); 
 		RepositoryInitialization.init("tournamentDataForControllerTests.txt", Repository.getInstance1(), schoolManager);
 		Location crownPointLocation = new Location("n", "n", 12);
 		crownPointLocation.setLatitude(41.389664);
@@ -66,7 +66,7 @@ public class NewMainViewControllerTest extends BaseTestUtils {
 		java.util.List<Meet> meetList = controller.getAvailableSectionalMeets(
 				Repository.getInstance1().getGirlList().get(0).getStageList().get(1).getMeetList().get(0),
 				crownPoint);
-	    assertEquals(2, meetList.size());
+	    assertEquals(3, meetList.size());
 		assertEquals("Hammond Gavit", meetList.get(0).getHostSchool().getDisplayName());
 	}
 	

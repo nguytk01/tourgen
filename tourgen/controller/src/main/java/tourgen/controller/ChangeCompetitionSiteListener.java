@@ -15,7 +15,7 @@ public class ChangeCompetitionSiteListener implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     newMainViewController.changeCompetitionSite(availableMeetsPanel.getSelectedSchool(), 
         availableMeetsPanel.getOldMeet(), availableMeetsPanel.getNewMeet());
-    System.out.println("changeCompetitionSiteCalled");
+    //System.out.println("changeCompetitionSiteCalled");
   }
   
   
@@ -23,3 +23,4 @@ public class ChangeCompetitionSiteListener implements ActionListener {
     newMainViewController = newMainViewControllerArg;
   }
 }
+ 

@@ -8,7 +8,7 @@ public class MenuItemSaveTournamentListener implements java.awt.event.ActionList
   public void actionPerformed(ActionEvent arg0) {
     newMainViewController.saveCurrentTournamentClicked();
   }
-  
+   
   public void setNewMainViewController(NewMainViewController newMainViewControllerArg) {
     newMainViewController = newMainViewControllerArg;
   }

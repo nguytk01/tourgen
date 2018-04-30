@@ -29,7 +29,7 @@ public class MainWindowCloseListener implements java.awt.event.WindowListener {
     			"Unsaved changes detected", JOptionPane.INFORMATION_MESSAGE);
     }
   }
-
+ 
   @Override
   public void windowClosed(WindowEvent e) {
     

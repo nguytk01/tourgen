@@ -27,7 +27,7 @@ public class CheckBoxTreeListener extends MouseAdapter implements javax.swing.ev
     this.tree = tree;
     repoTree = (IRepoTree) tree;
   }
-
+ 
   /*
    * setter for mapController so listener can call mapController's showMeetOnMap
    */

@@ -44,4 +44,6 @@ public class NewMainLeftTournamentPane extends javax.swing.JPanel implements tou
     repositoryComboBox.initUserInterface();
   }
 
+
+
 }

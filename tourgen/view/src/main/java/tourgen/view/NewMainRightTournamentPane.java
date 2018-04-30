@@ -41,4 +41,6 @@ public class NewMainRightTournamentPane extends javax.swing.JTabbedPane implemen
     }
   
   }
+
+
 }

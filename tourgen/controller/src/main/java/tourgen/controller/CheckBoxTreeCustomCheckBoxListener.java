@@ -14,8 +14,8 @@ public class CheckBoxTreeCustomCheckBoxListener implements ActionListener {
   
   @Override
   public void actionPerformed(ActionEvent e) {
-    System.out.println("event received.");
-    controller.treeCheckBoxClicked();
+    /*System.out.println("event received.");
+    controller.treeCheckBoxClicked();*/
   }
 
 }

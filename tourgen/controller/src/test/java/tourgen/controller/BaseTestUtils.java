@@ -22,7 +22,7 @@ public class BaseTestUtils {
 	    schoolManager = new SchoolManager();
 	    schoolManager.initSchools();
 	  }
-	  
+	   
 	  protected static void clearRepositorySingleton(){
 		  try {
 			  _clearRepositorySingleton();
