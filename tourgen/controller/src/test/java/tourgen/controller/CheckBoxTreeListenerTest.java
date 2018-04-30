@@ -1,7 +1,5 @@
 package tourgen.controller;
 
-import static org.junit.Assert.*;
-
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -18,9 +16,8 @@ import tourgen.model.RepositoryInitialization;
 public class CheckBoxTreeListenerTest extends BaseTestUtils{
 
 	 @Before
-	  public void setup() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException
-	  {
-		  //setUpBeforeClass();
+	  public void setup() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException{
+	 //setUpBeforeClass();
 		RepositoryInitialization.init("tournamentDataForControllerTests.txt", Repository.getInstance1(), schoolManager);
 	   }
 	 

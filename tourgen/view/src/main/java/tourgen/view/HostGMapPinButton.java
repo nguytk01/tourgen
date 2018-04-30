@@ -51,7 +51,7 @@ public class HostGMapPinButton extends JButton {
 	  }
   }
 
-/**
+  /**
    * Common routine used by the constructors of GMapPinButton.
    */
   public void mapPinButtonCommonConstructor() {
@@ -76,7 +76,7 @@ public class HostGMapPinButton extends JButton {
     Image image = ico.getImage(); // transform it
     Image newimg = image.getScaledInstance(i, j, Image.SCALE_SMOOTH); // scale it the smooth way
     return new ImageIcon(newimg); // transform it back*/
-	/*  return null;
+  /*  return null;
   }*/
 
   private static ImageIcon getImageIcon(String iconName) {

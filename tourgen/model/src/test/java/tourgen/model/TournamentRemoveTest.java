@@ -1,9 +1,10 @@
 package tourgen.model;
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.InvocationTargetException;
+
+import org.junit.Test;
 
 public class TournamentRemoveTest extends BaseTournamentCommonTestUtils{
   @Test

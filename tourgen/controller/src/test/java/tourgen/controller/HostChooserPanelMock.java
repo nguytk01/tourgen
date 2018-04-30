@@ -1,7 +1,5 @@
 package tourgen.controller;
 
-
-
 import javax.swing.JList;
 
 import tourgen.model.Repository;

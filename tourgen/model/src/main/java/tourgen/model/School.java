@@ -15,8 +15,8 @@ public class School implements Serializable {
   @Deprecated
   private Location hostLoc;
   private int enroll;
-  private boolean bStatus;
-  private boolean gStatus;
+  private boolean baStatus;
+  private boolean gaStatus;
   @Deprecated
   private Location hostAdd;
   @Deprecated
@@ -44,8 +44,8 @@ public class School implements Serializable {
     schoolLoc = new Location(streetAddress, cityName, zipCode);
     schoolLoc.setName(displayName);
     enroll = enrollmentNumber;
-    gStatus = girlsTournamentParticipatingStatusArg;
-    bStatus = boysTournamentParticipatingStatusArg;
+    gaStatus = girlsTournamentParticipatingStatusArg;
+    baStatus = boysTournamentParticipatingStatusArg;
     propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
   }
   
@@ -57,8 +57,8 @@ public class School implements Serializable {
     name = info.getSchoolName();
     schoolLoc = new Location(info.getStreetAddress(), info.getCityName(), info.getZipCode());
     enroll = info.getEnrollmentNumber();
-    bStatus = info.getBoysParticipationStatus();
-    gStatus = info.getGirlsParticipationStatus();
+    baStatus = info.getBoysParticipationStatus();
+    gaStatus = info.getGirlsParticipationStatus();
     schoolLoc.setName(displayName);
     displayName = info.getSchoolDisplayName();
   }
@@ -128,19 +128,19 @@ public class School implements Serializable {
   }
 
   public boolean getBStatus() {
-    return bStatus;
+    return baStatus;
   }
 
-  public void setBStatus(boolean bStatus) {
-    this.bStatus = bStatus;
+  public void setBStatus(boolean baStatus){
+    this.baStatus = baStatus;
   }
 
   public boolean getGStatus() {
-    return gStatus;
+    return gaStatus;
   }
 
-  public void setGStatus(boolean gStatus) {
-    this.gStatus = gStatus;
+  public void setGStatus(boolean gaStatus){
+    this.gaStatus = gaStatus;
   }
 
   /*

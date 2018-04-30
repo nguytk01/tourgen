@@ -15,10 +15,14 @@ public class TournamentChooserComboBoxCellRenderer implements ListCellRenderer {
     Tournament tournament = (Tournament) arg1;
     JLabel label = null;
     System.out.println("get cell renderer");
-    if (tournament == null) return new JLabel();
+    if (tournament == null) {
+		return new JLabel();
+	}
     if (tournament.isSavingNeeded()) {
       label = new JLabel("*" + tournament.toString());
-    } else label = new JLabel(tournament.toString());
+    } else {
+		label = new JLabel(tournament.toString());
+	}
     label.setOpaque(false);
     return label;
   }

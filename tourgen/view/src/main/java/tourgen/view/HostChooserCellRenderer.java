@@ -22,13 +22,13 @@ public class HostChooserCellRenderer extends javax.swing.JLabel implements ListC
   }*/
   @Override
   public Component getListCellRendererComponent(JList arg0, Object arg1, int arg2, boolean arg3, boolean arg4) {
-    //School school = (School)arg1;
-    //System.out.println("get cell renderer");
-    //this.setEditable(false);
-    //this.setText(school.toString());
-    //if (school != null) label.setText(school.toString());
-    //else label.setText("");
-    //return new JLabel("ha");
+   //School school = (School)arg1;
+   //System.out.println("get cell renderer");
+   //this.setEditable(false);
+   //this.setText(school.toString());
+   //if (school != null) label.setText(school.toString());
+   //else label.setText("");
+   //return new JLabel("ha");
 	  return label;
   }
   

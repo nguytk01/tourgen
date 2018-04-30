@@ -1,19 +1,17 @@
 package tourgen.view;
 
+import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JList;
 
-import tourgen.controller.NewMainViewController;
-import tourgen.model.Repository;
-import tourgen.util.IAvailableMeetsPanel;
-
 import javax.swing.JPanel;
+
 import javax.swing.event.ListSelectionEvent;
+
 import javax.swing.event.ListSelectionListener;
 
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-
+import tourgen.util.IAvailableMeetsPanel;
 public class AvailableMeetsPanel extends javax.swing.JPanel 
 implements IAvailableMeetsPanel {
   

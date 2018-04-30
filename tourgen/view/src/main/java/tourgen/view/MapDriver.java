@@ -19,7 +19,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputListener;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
-
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.cache.FileBasedLocalCache;
@@ -216,7 +215,9 @@ public class MapDriver implements IMapDriver {
     // Add the JButtons to the map viewer
     for (SwingWaypoint w : waypoints) {
       mapViewer.add(w.getButton());
-    }}});
+    }
+    }
+    	});
     
     
 
@@ -308,7 +309,7 @@ public class MapDriver implements IMapDriver {
   
   public void refresh() {
 
-    // waypoints.clear();
+   // waypoints.clear();
 	  System.out.println("refresh called with meetList size " + meetList.size());
 	School hostSchoolOfAMeet = null;
 
@@ -319,7 +320,7 @@ public class MapDriver implements IMapDriver {
       hostSchoolOfAMeet = meetList.get(j).getHostSchool();
       if (meetList.get(j).getHostSchool() == null 
     	        || meetList.get(j).getHostSchool().getSchoolLoc() != meetList.get(j).getLocation()) { 
-    	        //(meetList.get(j).getLocation() != null || meetList.get(j).getHostSchool() == null) {
+    	         //(meetList.get(j).getLocation() != null || meetList.get(j).getHostSchool() == null) {
     		        /* if there is no host school (state final),
     		         * display the hosting location, which always exists for a meet*/
     		        GeoPosition hostingLocationPoint = 
@@ -448,9 +449,9 @@ public class MapDriver implements IMapDriver {
 				  schoolPos.getY() >= mapViewer.getViewportBounds().getY()) {
 			  currentZoom --;
 			  mapViewer.setZoom(currentZoom);
-		  }/*
+		              
 		  
-		  if (((schoolPos.getX() > hostSchoolPoint.getX() 
+			  /*if (((schoolPos.getX() > hostSchoolPoint.getX() 
 				  && schoolPos.getX() - hostSchoolPoint.getX() 
 				  <= mapViewer.getCenter().getX() + width/2 - hostSchoolPoint.getX())
 				  || (schoolPos.getX() < hostSchoolPoint.getX()
@@ -463,7 +464,8 @@ public class MapDriver implements IMapDriver {
 			  {
 			  	currentZoom--;
 			  	mapViewer.setZoom(currentZoom);
-			  } */else {
+			  } */
+		  }else {
 				  break;
 			  }  
 	  }
@@ -518,7 +520,7 @@ public class MapDriver implements IMapDriver {
     if (newSchool != null) {
       newSchoolGeoPosition = new GeoPosition(((School)newSchool).getSchoolLoc().getLatitude(), ((School)newSchool).getSchoolLoc().getLongitude());
     }
-    //javax.swing.SwingUtilities.invokeLater( new Runnable(){
+      //javax.swing.SwingUtilities.invokeLater( new Runnable(){
       //public void doRun(){
       if (oldSchool != null) {
       oldSchoolLatitude = ((tourgen.model.School)oldSchool).getSchoolLoc().getLatitude();
@@ -546,13 +548,13 @@ public class MapDriver implements IMapDriver {
           mapViewer.revalidate();
           //mapViewer.repaint();
           return;
-    //}
+          //}
 
-      //@Override
-      //public void run() {
-        // TODO Auto-generated method stub
+          //@Override
+          //public void run() {
+          // TODO Auto-generated method stub
         
-      //}});
+          //}});
     
     
   }

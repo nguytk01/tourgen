@@ -1,7 +1,5 @@
 package tourgen.controller;
 
-import static org.junit.Assert.*;
-
 import javax.swing.JMenuItem;
 import javax.swing.event.MenuEvent;
 

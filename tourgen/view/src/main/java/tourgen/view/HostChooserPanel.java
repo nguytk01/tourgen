@@ -1,6 +1,7 @@
 package tourgen.view;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.MouseInfo;
@@ -8,19 +9,23 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+
 import javax.swing.JList;
+
 import javax.swing.JPanel;
+
 import javax.swing.JScrollPane;
+
 import javax.swing.ListCellRenderer;
 import javax.swing.SwingUtilities;
 
 import org.jdesktop.swingx.JXList;
 
-import javax.swing.JLabel;
-import javax.swing.BoxLayout;
+
+
 
 public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util.IHostChooserPanel {
   
@@ -215,7 +220,7 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
 	  int activeItemIndex = list.locationToIndex(e.getPoint());  
 	  list.setSelectedIndex(activeItemIndex);
 	  tourgen.model.School school = (tourgen.model.School)list.getSelectedValue();//defaultListModel.getElementAt(activeItemIndex);  
-	    /*System.out.println(list.getCellRenderer().getListCellRendererComponent(list, null, defaultListModel.getSize() -1, false, false).getPreferredSize().getHeight());
+  /*System.out.println(list.getCellRenderer().getListCellRendererComponent(list, null, defaultListModel.getSize() -1, false, false).getPreferredSize().getHeight());
 	    Point mousePoint = (Point) e.getPoint().clone();
 		SwingUtilities.convertPointFromScreen(mousePoint, list);//e.getPoint().getY());
 		System.out.println(mousePoint.getY());
@@ -270,7 +275,9 @@ public class HostChooserPanel extends javax.swing.JPanel implements tourgen.util
 		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
 				boolean cellHasFocus) {
 			this.setOpaque(true);
-			if (value == null) return this;
+			if (value == null) {
+				return this;
+			}
 			this.setText(value.toString());
 			System.out.println("customeSelectedIndex is " + customListSelectedIndex);
 			System.out.println("index to be drawn is " + index);

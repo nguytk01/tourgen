@@ -1,7 +1,5 @@
 package tourgen.controller;
 
-import static org.junit.Assert.*;
-
 import java.awt.event.ActionEvent;
 
 import org.junit.Before;

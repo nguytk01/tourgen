@@ -14,7 +14,7 @@ public class BaseTestUtils {
 		clearRepositorySingleton();
 	  }
 	  
-	  private static void _clearRepositorySingleton() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+	  private static void clearRepo() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
 	    java.lang.reflect.Field field = null;
 	    field = Repository.class.getDeclaredField("instance");
 	    field.setAccessible(true);
@@ -23,7 +23,7 @@ public class BaseTestUtils {
 	  
 	  protected static void clearRepositorySingleton(){
 		  try {
-			  _clearRepositorySingleton();
+			  clearRepo();
 		  } catch (Exception e){
 			  
 		  }

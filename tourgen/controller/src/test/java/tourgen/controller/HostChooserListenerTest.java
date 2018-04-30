@@ -1,7 +1,5 @@
 package tourgen.controller;
 
-import static org.junit.Assert.*;
-
 import java.awt.event.ActionEvent;
 
 import org.junit.Before;
@@ -36,11 +34,11 @@ public class HostChooserListenerTest extends BaseTestUtils {
 	@Test
 	public void test() {
 
-		HostChooserListener HostListener = new HostChooserListener(controller, hostChooserPanel);
+		HostChooserListener hostListener = new HostChooserListener(controller, hostChooserPanel);
 
 		ActionEvent event = new ActionEvent(controller, 0, "TEST");
 
-		HostListener.actionPerformed(event);
+		hostListener.actionPerformed(event);
 
 	}
 

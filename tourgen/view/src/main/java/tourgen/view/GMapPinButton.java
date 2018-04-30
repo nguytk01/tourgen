@@ -80,7 +80,7 @@ public class GMapPinButton extends JButton {
     Image image = ico.getImage(); // transform it
     Image newimg = image.getScaledInstance(i, j, Image.SCALE_SMOOTH); // scale it the smooth way
     return new ImageIcon(newimg); // transform it back*/
-	  //return null;
+	 //return null;
   //}
 
   private static ImageIcon getImageIcon(String iconName) {

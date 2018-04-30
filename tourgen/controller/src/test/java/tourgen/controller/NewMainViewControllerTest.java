@@ -1,11 +1,10 @@
 package tourgen.controller;
-
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
 import org.junit.Before;
 
-import tourgen.model.IoManager;
+import org.junit.Test;
+
 import tourgen.model.Location;
 import tourgen.model.Meet;
 import tourgen.model.Repository;

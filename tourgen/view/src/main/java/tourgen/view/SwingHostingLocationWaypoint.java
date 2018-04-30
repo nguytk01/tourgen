@@ -138,9 +138,9 @@ public class SwingHostingLocationWaypoint extends SwingWaypoint {
     @Override
     public void mouseClicked(MouseEvent e) {
       // if there is no host school for this meet, this pin will show the side pane
-    	// when it is clicked.
+      // when it is clicked.
       if (meet.getHostSchool() == null){
-    	  //JOptionPane.showMessageDialog(
+          //JOptionPane.showMessageDialog(
           //button, distanceStr, "Information", JOptionPane.INFORMATION_MESSAGE);
           if (button instanceof HostingLocationPinButton) {
             mapAssistantController.showPinHostInfoSidePane(meet, school);

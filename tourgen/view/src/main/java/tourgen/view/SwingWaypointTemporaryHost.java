@@ -47,8 +47,8 @@ public class SwingWaypointTemporaryHost extends SwingWaypoint {
       
     distanceStr = "1";
     
-    // button.setSize(24, 24);
-    // button.setPreferredSize(new Dimension(24, 24));
+      // button.setSize(24, 24);
+      // button.setPreferredSize(new Dimension(24, 24));
       
       button.addMouseListener(new SwingWaypointMouseListener());
       button.setVisible(true);
@@ -65,8 +65,8 @@ public class SwingWaypointTemporaryHost extends SwingWaypoint {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      //JOptionPane.showMessageDialog(
-      //    button, distanceStr, "Information", JOptionPane.INFORMATION_MESSAGE);
+          //JOptionPane.showMessageDialog(
+          //    button, distanceStr, "Information", JOptionPane.INFORMATION_MESSAGE);
           if (button instanceof HostGMapPinButton) {
             mapAssistantController.showPinHostInfoSidePane(meet, school);
           } else {

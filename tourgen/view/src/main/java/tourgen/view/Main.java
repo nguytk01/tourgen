@@ -9,7 +9,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.MenuListener;
 import javax.swing.plaf.FontUIResource;
 
-
 import tourgen.controller.CheckBoxTreeCustomCheckBoxListener;
 
 import tourgen.controller.MapController;

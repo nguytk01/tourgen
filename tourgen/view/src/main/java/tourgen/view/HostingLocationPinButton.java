@@ -51,7 +51,7 @@ public class HostingLocationPinButton extends JButton {
 	  }
   }
 
-/**
+  /**
    * Common routine used by the constructors of GMapPinButton.
    */
   public void mapPinButtonCommonConstructor() {

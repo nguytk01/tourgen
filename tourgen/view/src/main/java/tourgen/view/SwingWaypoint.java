@@ -163,8 +163,8 @@ public class SwingWaypoint extends DefaultWaypoint {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      //JOptionPane.showMessageDialog(
-      //    button, distanceStr, "Information", JOptionPane.INFORMATION_MESSAGE);
+          //JOptionPane.showMessageDialog(
+          //    button, distanceStr, "Information", JOptionPane.INFORMATION_MESSAGE);
           if (button instanceof HostGMapPinButton) {
             mapAssistantController.showPinHostInfoSidePane(meet, school);
           } else {

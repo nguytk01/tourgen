@@ -20,7 +20,7 @@ java.beans.PropertyChangeListener {
 	
 	public TournamentChooserComboBox(java.awt.event.ActionListener tournamentChooserActionListenerArg) {
 		//this.addActionListener(tournamentChooserActionListener);
-    //this.addItemListener( (java.awt.event.ItemListener)tournamentChooserActionListener);
+  //this.addItemListener( (java.awt.event.ItemListener)tournamentChooserActionListener);
 		tournamentChooserActionListener = tournamentChooserActionListenerArg;
 		Repository.getInstance1().addPropertyChangeListener(this);
 		this.setRenderer(new TournamentChooserComboBoxCellRenderer());
@@ -55,7 +55,7 @@ java.beans.PropertyChangeListener {
 		}
 		//this.addItemListener( (java.awt.event.ItemListener)tournamentChooserActionListener);
 		System.out.println("repopulate combobox/");
-		//somehow populating the combobox will fire actionListener
+		   //somehow populating the combobox will fire actionListener
 	    if ( newTournamentDisplayed ) {
 	    	setSelectedIndex(proposedSelectedIndex);
 	    	
@@ -66,7 +66,8 @@ java.beans.PropertyChangeListener {
 	    }
 		proposedSelectedIndex = 0;
 		newTournamentDisplayed = false;
-	      }});
+	      }
+	      });
 	    }
 	
   /*@Override
@@ -86,17 +87,16 @@ java.beans.PropertyChangeListener {
     if (evt.getPropertyName() == Repository.TOURNAMENT_MODIFIED 
     		|| evt.getPropertyName() == Repository.TOURNAMENT_OVERWRITTEN) {
     	repaint();
-    }
-    else if (evt.getPropertyName() == Repository.TOURNAMENT_REMOVED) {
+    }else if (evt.getPropertyName() == Repository.TOURNAMENT_REMOVED) {
     	Tournament tournamentRemoved = (Tournament)evt.getNewValue();
-    	//if (tournamentRemoved == currentTournament) {
+    	 //if (tournamentRemoved == currentTournament) {
     		if ( currentTournamentPosition == this.getItemCount() - 1 ) {
     			proposedSelectedIndex = this.getItemCount() - 2;
     		} else { 
     			proposedSelectedIndex = currentTournamentPosition;
     		}
     		resetUserInterface();
-    	//}
+    //}
     } else if ( evt.getPropertyName() == Repository.TOURNAMENT_SAVEAS ) {
     	resetUserInterface();
     	System.out.println("currentTournamentPosition " + currentTournamentPosition );
@@ -104,8 +104,10 @@ java.beans.PropertyChangeListener {
     	proposedSelectedIndex = currentTournamentPosition + 1;
     	if (evt.getNewValue() == currentTournament) {
     		newTournamentDisplayed = false;
-    	} else newTournamentDisplayed = true;
-    	//this.setSelectedIndex(currentTournamentPosition + 1);
+    	}else {
+			newTournamentDisplayed = true;
+			//this.setSelectedIndex(currentTournamentPosition + 1);
+		}
     }
     
   }

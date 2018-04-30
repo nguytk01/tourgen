@@ -47,7 +47,7 @@ public class MapController {
    */
   
   public void treeCheckBoxClicked() {
-    /*SwingUtilities.invokeLater( new Runnable() {
+        /*SwingUtilities.invokeLater( new Runnable() {
       
 
       @Override
@@ -64,7 +64,7 @@ public class MapController {
 
         mapDriver.showMeetList(meetList);
       }
-    //});
+  //});
   //}
 
   public void setTree(IRepoTree treeArg) {

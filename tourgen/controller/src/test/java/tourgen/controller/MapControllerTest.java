@@ -1,6 +1,7 @@
 package tourgen.controller;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.Assert.*;
+import org.junit.Before;
 
 import org.junit.Test;
 
@@ -8,7 +9,7 @@ import tourgen.model.Meet;
 import tourgen.model.Repository;
 import tourgen.model.RepositoryInitialization;
 
-import org.junit.Before;
+
 
 public class MapControllerTest extends BaseTestUtils{
 

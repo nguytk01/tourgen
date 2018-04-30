@@ -1,11 +1,12 @@
 package tourgen.view;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
+import org.junit.Before;
 import org.junit.Test;
 import org.jxmapviewer.JXMapViewer;
 
@@ -16,7 +17,7 @@ import tourgen.model.RepositoryInitialization;
 import tourgen.model.Stage;
 import tourgen.util.IMapSidePane;
 
-import org.junit.Before;
+
 
 public class MapDriverTest extends BaseTestUtils {
 

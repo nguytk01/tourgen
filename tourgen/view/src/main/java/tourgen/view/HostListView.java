@@ -1,24 +1,4 @@
 package tourgen.view;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.FocusEvent;
-import java.util.Comparator;
-import java.util.List;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.ListCellRenderer;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.text.Document;
-import javax.swing.text.JTextComponent;
-
 import ca.odell.glazedlists.BasicEventList;
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.FilterList;
@@ -33,13 +13,35 @@ import ca.odell.glazedlists.matchers.MatcherEditor;
 import ca.odell.glazedlists.matchers.Matchers;
 import ca.odell.glazedlists.swing.GlazedListsSwing;
 import ca.odell.glazedlists.swing.TextComponentMatcherEditor;
-import tourgen.model.School;
-import tourgen.model.SchoolManager;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.util.Comparator;
+
+import java.util.List;
+import javax.swing.ButtonGroup;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JCheckBox;
-import java.awt.Dimension;
+import javax.swing.JScrollPane;
+
+import javax.swing.JTextField;
+
+import javax.swing.ListCellRenderer;
+
+import javax.swing.event.ListSelectionEvent;
+
+import javax.swing.event.ListSelectionListener;
+
+import tourgen.model.School;
+import tourgen.model.SchoolManager;
+
 
 public class HostListView extends JFrame{
 	private JRadioButton chkHost;
@@ -49,10 +51,10 @@ public class HostListView extends JFrame{
 	private FilterList<School> filterList;
 	private JTextField textField;
 	private JRadioButton chckbxAll;
-	private JPanel panel_3;
-	private JPanel panel_4;
-	private JLabel lblDoubleClickOn;
-	private JPanel panel_5;
+	private static JPanel panel_3;
+	private static JPanel panel_4;
+	private static JLabel lblDoubleClickOn;
+	private static JPanel panel_5;
 	
 	/*public static void main(String[] args){
 		SchoolManager schoolManager = new SchoolManager();
@@ -100,12 +102,12 @@ public class HostListView extends JFrame{
 		JScrollPane scrollPane = new JScrollPane(list);
 		
 		
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1, BorderLayout.SOUTH);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		JPanel panelOne = new JPanel();
+		panel.add(panelOne, BorderLayout.SOUTH);
+		panelOne.setLayout(new BorderLayout(0, 0));
 		
 		panel_3 = new JPanel();
-		panel_1.add(panel_3, BorderLayout.CENTER);
+		panelOne.add(panel_3, BorderLayout.CENTER);
 		
 		chkHost = new JRadioButton("Host");
 		panel_3.add(chkHost);
@@ -123,7 +125,7 @@ public class HostListView extends JFrame{
 		radioButtonGroup.add(chckbxAll);
 		
 		panel_4 = new JPanel();
-		panel_1.add(panel_4, BorderLayout.SOUTH);
+		panelOne.add(panel_4, BorderLayout.SOUTH);
 		
 		lblDoubleClickOn = new JLabel("Double click on a school to change host eligibility");
 		panel_4.add(lblDoubleClickOn);
@@ -134,8 +136,8 @@ public class HostListView extends JFrame{
 		chkHost.addActionListener(schoolMatcherEditor);
 		
 		
-		JPanel panel_2 = new JPanel();
-		panel.add(panel_2, BorderLayout.NORTH);
+		JPanel panelTwo = new JPanel();
+		panel.add(panelTwo, BorderLayout.NORTH);
 		this.getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		this.setBounds(50,50,500,500);
@@ -229,7 +231,9 @@ public class HostListView extends JFrame{
 		@Override
 		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
 				boolean cellHasFocus) {
-			if (value == null) return this;
+			if (value == null) {
+				return this;
+			}
 			School school = (School) value;
 			this.setText(school.getName());
 			this.setOpaque(true);
