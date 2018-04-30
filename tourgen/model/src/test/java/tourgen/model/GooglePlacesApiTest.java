@@ -1,6 +1,7 @@
 package tourgen.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import com.google.maps.GeoApiContext;
 import com.google.maps.PlacesApi;
@@ -15,6 +16,7 @@ import tourgen.model.GoogleMapsApiKey;
 public class GooglePlacesApiTest{
 	@Test
 	public void googlePlacesApiTest(){
+	  new GoogleMapsApiKey();
 	  GeoApiContext.Builder builder = null;
 	  try {
 		   builder = new GeoApiContext.Builder()
@@ -22,8 +24,9 @@ public class GooglePlacesApiTest{
 		} catch ( Exception e ) {
 		  return;
 		}
-			
-
+		
+	  
+	    
 		GeoApiContext context = builder.build();
 		PlacesSearchResponse response;
 		try{

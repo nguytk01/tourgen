@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.junit.Test;
 
 import tourgen.model.GoogleMapsApiHelper;
@@ -43,5 +45,20 @@ public class TourgenDistanceMatrixTest{
 		System.out.println(result.length);
 		System.out.println(result[0]);
 		System.out.println(result[1]);
+		
+		TourgenDistanceMatrix tour = new TourgenDistanceMatrix();
+		
+		tour.setInstance(null);
+
 	}
+    @Test
+    public void testSetInstance() {
+    	HashMap<String,HashMap<String,Long>> hashMap = new HashMap<String,HashMap<String,Long>>();
+    	HashMap<String,Long> innerHashMap = new HashMap<String,Long>();
+    	innerHashMap.put("abc", new Long(5));
+    	hashMap.put("new", innerHashMap);
+    	TourgenDistanceMatrix tour = new TourgenDistanceMatrix();
+    	tour.setInstance(hashMap);
+    }
+    
 }

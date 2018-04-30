@@ -12,7 +12,7 @@ class TourgenDistanceMatrix implements Serializable {
   
   private static boolean GEOMETRIC_DISTANCE = true;
 
-  private TourgenDistanceMatrix() {
+  TourgenDistanceMatrix() {
     instance = new HashMap<String, HashMap<String, Long>>();
     // helper = helperArg;
   }
@@ -105,7 +105,7 @@ class TourgenDistanceMatrix implements Serializable {
     return distanceArr;
   }
   private static long[] getDrivingDistance1ToN(Location a, List<Location> locationList) {
-    if (instance == null) {
+    /*if (instance == null) {
       instance = new HashMap<String, HashMap<String, Long>>();
     }
     if (!instance.keySet().contains(a.getName())) {
@@ -136,7 +136,8 @@ class TourgenDistanceMatrix implements Serializable {
         distanceLongArr[i] = (long) distanceObjectArray[i];
       }
       return distanceLongArr;
-    }
+    }*/
+	  return null;
   }
 
   static void storeDataBothWays(String origLocationName, String destLocationName, long distance) {

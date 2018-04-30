@@ -17,7 +17,7 @@ class GoogleMapsApiHelper {
   private GeoApiContext placesContext;
 
   GoogleMapsApiHelper() {
-
+ 
   }
   
   public void init(){
@@ -32,7 +32,7 @@ class GoogleMapsApiHelper {
   }
 
   long[][] getDistance(String[] originCoordinates, String[] destinationsCoordinates) {
-    DistanceMatrix matrix = null;
+    /*DistanceMatrix matrix = null;
     try {
       matrix = new DistanceMatrixApiRequest(distanceMatrixContext)
           .origins(originCoordinates)
@@ -51,12 +51,12 @@ class GoogleMapsApiHelper {
       return distances;
     } catch (ApiException | InterruptedException | IOException e) {
       e.printStackTrace();
-    }
+    }*/
     return null;
   }
 
   long[][] getDistanceWithPlaceId(String[] originPlaceId, String[] destinationPlaceIds) {
-    DistanceMatrix matrix = null;
+    /*DistanceMatrix matrix = null;
     try {
       matrix = new DistanceMatrixApiRequest(distanceMatrixContext)
           .origins(originPlaceId)
@@ -77,7 +77,7 @@ class GoogleMapsApiHelper {
       return distances;
     } catch (ApiException | InterruptedException | IOException e) {
       e.printStackTrace();
-    }
+    }*/
     return null;
   }
 

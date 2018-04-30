@@ -20,8 +20,8 @@ public class Meet implements Serializable {
    * Munster, Whiting.
    */
   private Stage meetStage;
-  @Deprecated
-  Date meetDate;
+//  @Deprecated
+//  Date meetDate;
 
   org.joda.time.DateTime meetingTime;
   org.joda.time.DateTime alternateMeetingTime;
@@ -46,7 +46,7 @@ public class Meet implements Serializable {
    */
   public Meet(Stage meetStage, Date meetDate) {
     this.meetStage = meetStage;
-    this.meetDate = meetDate;
+    //this.meetDate = meetDate;
     participantSchools = new java.util.ArrayList<School>();
     propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
     // String meetDate = dtFormat(meetDate);
@@ -65,10 +65,10 @@ public class Meet implements Serializable {
     return meetStage;
   }
 
-  @Deprecated
-  public Date getDate() {
-    return meetDate;
-  }
+//  @Deprecated
+//  public Date getDate() {
+//    return meetDate;
+//  }
 
   public void setHostSchool(School hostSchoolArg) {
     School oldHostSchool = hostSchool;
@@ -99,10 +99,10 @@ public class Meet implements Serializable {
     }
   }
 
-  @Deprecated
-  void setDate(Date arg) {
-    this.meetDate = arg;
-  }
+//  @Deprecated
+//  void setDate(Date arg) {
+//    this.meetDate = arg;
+//  }
 
   org.joda.time.DateTime getmeetingDate() {
     return meetingTime;

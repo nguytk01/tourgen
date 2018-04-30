@@ -9,14 +9,16 @@ public class TournamentRemoveDefaultTest extends BaseTournamentCommonTestUtils{
 	public void denyTournamentRemovalTest() {
 		/* create a schoolManager */
 		SchoolManager schoolManager = new SchoolManager();
-		schoolManager.addSchool(new SchoolFormMvcData(null, "Hammond Gavit", 
-				"Hammond Gavit", 
-				"testStreetAddress",
-				"testCityName",
-				10000, 
-				5, 
-				true,
-				true));;
+		SchoolFormMvcData sfmd = new SchoolFormMvcData(null, "Hammond Gavit", 
+            "Hammond Gavit", 
+            "testStreetAddress",
+            "testCityName",
+            10000, 
+            5, 
+            true,
+            true);
+		sfmd.setEnrollmentNumber(5);
+		schoolManager.addSchool(sfmd);
 		schoolManager.addSchool(new SchoolFormMvcData(null, "Calumet", 
 						"Calumet High School", 
 						"testStreetAddress",

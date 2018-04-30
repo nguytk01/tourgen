@@ -41,7 +41,10 @@ public class TournamentChangeHostForMeetTest extends BaseTournamentCommonTestUti
     Repository.getInstance1().changeHostOfMeet(null, schoolManager, tournament, meetA, newHostSchool);
     
     assertEquals(true, tournament.isSavingNeeded());
+    Repository.getInstance1().saveTournamentAsNewTournament(tournament, null);
     assertEquals(newHostSchool, meetA.getHostSchool());
+    meetA.recursiveUpdateSectionalSchoolsList();
+    
   }
 
 }

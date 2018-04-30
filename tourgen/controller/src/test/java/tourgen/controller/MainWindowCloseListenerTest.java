@@ -25,7 +25,7 @@ public class MainWindowCloseListenerTest extends BaseTestUtils{
 		mainWindowCloseListener.windowDeiconified(null);
 		mainWindowCloseListener.windowActivated(null);
 		
-		SecurityManager sm = new SecurityManagerMock(System.getSecurityManager());
+		/*SecurityManager sm = new SecurityManagerMock(System.getSecurityManager());
 	    System.setSecurityManager(sm);
 		
 		JFrame frame = new JFrame();
@@ -35,7 +35,7 @@ public class MainWindowCloseListenerTest extends BaseTestUtils{
 			mainWindowCloseListener.windowClosing(e);
 		} catch (SecurityException ex) {
 			
-		}
+		}*/
 		
 		
 		 

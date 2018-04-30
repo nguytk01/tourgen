@@ -73,7 +73,7 @@ public class SchoolManager extends java.util.Observable implements Serializable 
    * @param info is the school form data object
    */
   public void removeSchool(SchoolFormMvcData info) {
-    School school = null;
+    /*School school = null;
     int index = getSchoolIndex(info);
     IOperationResult result;
     if (index != -1) {
@@ -83,7 +83,7 @@ public class SchoolManager extends java.util.Observable implements Serializable 
        * OperationResultEnum.FAILURE,
        * "Unable to remove the school. It has an important role in the tournament format"
        * , null); setChanged(); notifyObservers(result); return; }
-       */
+       
       school = schoolList.get(index);
       schoolList.remove(index);
       result = new OperationResult(info.getTicket(), OperationResultEnum.SUCCESS, "", school);
@@ -93,7 +93,7 @@ public class SchoolManager extends java.util.Observable implements Serializable 
           "Remove failure", null);
     }
     setChanged();
-    notifyObservers(result);
+    notifyObservers(result);*/
   }
   
   /**
@@ -101,7 +101,7 @@ public class SchoolManager extends java.util.Observable implements Serializable 
    * @param info is the school form data object
    */
   public void editSchool(SchoolFormMvcData info) {
-
+	  /*
     int index = getSchoolIndex(info);
     School school = null;
     IOperationResult result;
@@ -116,7 +116,7 @@ public class SchoolManager extends java.util.Observable implements Serializable 
           "Remove failure", null);
     }
     setChanged();
-    notifyObservers(result);
+    notifyObservers(result);*/
   }
 
   public List<School> getSchoolList() {
@@ -194,7 +194,7 @@ public class SchoolManager extends java.util.Observable implements Serializable 
     return repo;
   }
 
-  List<School> getSnapshotOfCurrentListOfSchoolsNotWillingToHost() {
+  /*List<School> getSnapshotOfCurrentListOfSchoolsNotWillingToHost() {
     List<School> listOfSchoolsNotWillingToHost = new java.util.ArrayList<School>();
     for (School school : schoolList) {
       if (!school.isEligibleToHost()) {
@@ -203,7 +203,7 @@ public class SchoolManager extends java.util.Observable implements Serializable 
     }
     return listOfSchoolsNotWillingToHost;
     
-  }
+  }*/
   
   public void toggleSchoolHostEligibility(School school){
 	  school.setEligibleToHost(!school.isEligibleToHost());

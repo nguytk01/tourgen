@@ -26,7 +26,7 @@ public class OperationResult implements IOperationResult {
   }
 
   public boolean isFailed() {
-    return resultCode == OperationResultEnum.FAILURE;
+    return resultCode == OperationResultEnum.FAILURE; 
   }
 
   public boolean isOk() {
