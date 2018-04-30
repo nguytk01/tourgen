@@ -100,7 +100,7 @@ public class Main {
     /* the reportTableFrame creates reportTableView and repositoryView. It provides getter for other classes to access these*/ 
     IReportTableFrame reportFrame = new ReportTableFrame(null,null, Repository.getInstance1());
     IReportTableView reportTableView = reportFrame.returnReportTableView();
-    IRepositoryView repositoryView = reportFrame.returnRepositoryView();
+    //IRepositoryView repositoryView = reportFrame.returnRepositoryView();
 
     /* this creates a tournament menu item listener that listens to add tournament event.
     tourgen.controller.AddTournamentMenuItemListener addTournamentMenuItemListener = 
@@ -129,7 +129,7 @@ public class Main {
 
     // RepositoryInitialization init = new RepositoryInitialization();
     // RepositoryInitialization.init(repo, manager);
-    repositoryView.populate();
+    //repositoryView.populate();
 
     //reportFrame.showView();
 
