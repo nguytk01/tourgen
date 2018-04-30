@@ -10,14 +10,14 @@ import tourgen.model.Meet;
 import tourgen.model.School;
 
 public class AddMeetTest {
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
     // addTest();
     test2();
   }
 
   /**
    * This test will test the map driver's ability to add a meet.
-   */
+   
   public static void addTest() {
     SwingUtilities.invokeLater(new Runnable() {
       public void run() {
@@ -38,7 +38,7 @@ public class AddMeetTest {
 
   /**
    * this tests the map driver's ability to show a list of 2 meets.
-   */
+   
   public static void test2() {
     SwingUtilities.invokeLater(new Runnable() {
       public void run() {
@@ -72,6 +72,6 @@ public class AddMeetTest {
         map.addMeet(meet2);
       }
     });
-  }
+  }*/
 
 }

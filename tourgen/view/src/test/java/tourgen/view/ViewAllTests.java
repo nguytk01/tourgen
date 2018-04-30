@@ -4,7 +4,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ReportContentRendererTest.class})
+@SuiteClasses({ReportContentRendererTest.class, MapDriverTest.class})
 public class ViewAllTests {
 
 }

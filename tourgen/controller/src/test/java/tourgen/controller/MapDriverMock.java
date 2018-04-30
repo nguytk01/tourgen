@@ -29,7 +29,6 @@ public class MapDriverMock implements IMapDriver {
 	public void mapReplace(Object oldSchool, Object newSchool) {
 		this.oldSchool = oldSchool;
 		this.newSchool = newSchool;
-
 	}
 	
 	boolean getShowMeetList(){

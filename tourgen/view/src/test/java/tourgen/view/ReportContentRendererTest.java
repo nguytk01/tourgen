@@ -105,9 +105,9 @@ public class ReportContentRendererTest {
 	  HashMap<String, String> reportHash = renderer.getTournamentReport(repo.getGirlList().get(0));
 	  
 	  Object[] arr = reportHash.keySet().toArray();
-	  System.out.println(arr[0]);
+	  //System.out.println(arr[0]);
 	  assertEquals("Sectionals      Max./Avg. :  09.50 /  05.36 (miles)",arr[0]);
-	  System.out.println(reportHash.get(arr[0]));
+	  //System.out.println(reportHash.get(arr[0]));
 	  assertEquals("<b>Entry List Deadline: </b>"
 	  		+ "Monday, Oct. 2, 2017, 4 pm ET/3 pm CT"
 	  		+ "<br /><br />"

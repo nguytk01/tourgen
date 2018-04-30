@@ -245,13 +245,13 @@ public class MapDriver implements IMapDriver {
    * add a meet to the meetList.
    * @param meet the meet to be added
    */
-  public void addMeet(Meet meet) {
+  /*public void addMeet(Meet meet) {
 
     meetList.add(meet);
 
     refresh();
 
-  }
+  }*/
   
   /**
    * show on the map the list of the meets.
@@ -317,6 +317,18 @@ public class MapDriver implements IMapDriver {
       schools = meetList.get(j).getSectionalSchoolsOfMeet();
       System.out.println("schools list size " + schools.size());
       hostSchoolOfAMeet = meetList.get(j).getHostSchool();
+      if (meetList.get(j).getHostSchool() == null 
+    	        || meetList.get(j).getHostSchool().getSchoolLoc() != meetList.get(j).getLocation()) { 
+    	        //(meetList.get(j).getLocation() != null || meetList.get(j).getHostSchool() == null) {
+    		        /* if there is no host school (state final),
+    		         * display the hosting location, which always exists for a meet*/
+    		        GeoPosition hostingLocationPoint = 
+    		            new GeoPosition(meetList.get(j).getLocation().getLatitude(),
+    		                meetList.get(j).getLocation().getLongitude());
+    		        waypoints.add(new
+    		                SwingHostingLocationWaypoint(meetList.get(j).getLocation().getName(),
+    		                hostingLocationPoint, meetList.get(j).getHostSchool(), meetList.get(j),true, mapAssistantController));
+    		        }
       for (int i = 0; i < schools.size(); i++) {
         // schools.set(i, meet.getParticipatingSchool().get(i));
         // System.out.println("school " + schools.get(i).getDisplayName());
@@ -331,7 +343,8 @@ public class MapDriver implements IMapDriver {
         			points, schools.get(i), meetList.get(j),false, mapAssistantController));
         }
         /* display the host school, which could be null or not. */
-        if (meetList.get(j).getHostSchool() != null) {
+        if (hostSchoolOfAMeet != null 
+        		&& schools.get(i) == hostSchoolOfAMeet) {
             GeoPosition hostPoint = 
                     new GeoPosition(meetList.get(j).getHostSchool().getSchoolLoc().getLatitude(),
                         meetList.get(j).getHostSchool().getSchoolLoc().getLongitude());
@@ -340,18 +353,7 @@ public class MapDriver implements IMapDriver {
                     hostPoint, meetList.get(j).getHostSchool(), meetList.get(j),true, mapAssistantController));
         }
         
-        if (meetList.get(j).getHostSchool() == null 
-        || meetList.get(j).getHostSchool().getSchoolLoc() != meetList.get(j).getLocation()) { 
-        //(meetList.get(j).getLocation() != null || meetList.get(j).getHostSchool() == null) {
-	        /* if there is no host school (state final),
-	         * display the hosting location, which always exists for a meet*/
-	        GeoPosition hostingLocationPoint = 
-	            new GeoPosition(meetList.get(j).getLocation().getLatitude(),
-	                meetList.get(j).getLocation().getLongitude());
-	        waypoints.add(new
-	                SwingHostingLocationWaypoint(meetList.get(j).getLocation().getName(),
-	                hostingLocationPoint, meetList.get(j).getHostSchool(), meetList.get(j),true, mapAssistantController));
-	        }
+        
         // GeoPosition hostPoints = new
         // GeoPosition(meetList.get(j).getHostSchool().getSchoolLoc().getLatitude(),
         // meetList.get(j).getHostSchool().getSchoolLoc().getLatitude());
