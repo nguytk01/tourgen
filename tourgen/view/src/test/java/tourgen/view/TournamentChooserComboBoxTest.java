@@ -32,7 +32,7 @@ public class TournamentChooserComboBoxTest extends BaseTestUtils {
 	}
 
 	@Test
-	public void testShowHostList() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public void testShowHostList() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, InterruptedException {
 		ReportTableView reportTableView = new ReportTableView();
 
 		HostChooserPanel panel = new HostChooserPanel();
@@ -83,9 +83,13 @@ public class TournamentChooserComboBoxTest extends BaseTestUtils {
 		assertEquals(2, Repository.getInstance1().getGirlList().size());
 		controller.saveAsTournamentClicked();
 		assertEquals(3, Repository.getInstance1().getGirlList().size());
-		
+		Thread.sleep(1000);
+		assertEquals(3,comboBox.getModel().getSize());
 		controller.removeTournamentClicked();
 		assertEquals(2, Repository.getInstance1().getGirlList().size());
+		Thread.sleep(1000);
+		assertEquals(2,comboBox.getModel().getSize());
+		
 	}
 
 }
