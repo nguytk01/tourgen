@@ -83,10 +83,13 @@ public class TournamentChooserComboBoxTest extends BaseTestUtils {
 		assertEquals(2, Repository.getInstance1().getGirlList().size());
 		controller.saveAsTournamentClicked();
 		assertEquals(3, Repository.getInstance1().getGirlList().size());
+		System.out.println("delay 1 seconds for UI updates");
 		Thread.sleep(1000);
+		
 		assertEquals(3,comboBox.getModel().getSize());
 		controller.removeTournamentClicked();
 		assertEquals(2, Repository.getInstance1().getGirlList().size());
+		System.out.println("delay 1 seconds for UI updates");
 		Thread.sleep(1000);
 		assertEquals(2,comboBox.getModel().getSize());
 		
