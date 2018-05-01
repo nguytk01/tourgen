@@ -211,9 +211,9 @@ public class Meet implements Serializable {
 		if (meetStage.getStageType().equals(StageType.SECTIONAL)) {
 			return participantSchools;
 		} else {
-			if (sectionalSchoolsOfMeet.size() == 0) {
+			//if (sectionalSchoolsOfMeet.size() == 0) {
 				recursiveUpdateSectionalSchoolsList();
-			}
+			//}
 			return sectionalSchoolsOfMeet;
 		}
 	}
