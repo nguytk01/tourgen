@@ -3,6 +3,7 @@
 # tourgen
 Indiana High School Cross Country Tournament Generator.
 
+This is a course project in a Software Engineering course.
 
 ## How to build without maven ##
 ### Requirements: ###
